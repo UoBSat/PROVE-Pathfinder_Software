@@ -1,0 +1,132 @@
+\hypertarget{structlibusb__device__descriptor}{}\doxysection{libusb\+\_\+device\+\_\+descriptor Struct Reference}
+\label{structlibusb__device__descriptor}\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_affda0be3fe1c37092ddc7cb120428f30}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a63c4b109725ce829fc81c5c9cad8c87a}{b\+Descriptor\+Type}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_af0682f293291db942b5d253092d472e4}{bcd\+USB}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_ab86c8f43e75d4d54fccbc199cfa9703b}{b\+Device\+Class}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a9c3a91102d3d53d9414d0dda0191c5ab}{b\+Device\+Sub\+Class}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a480a0b5345a2e59987e20fa7247c3f0e}{b\+Device\+Protocol}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a3b60170f077c9b26fc9f86e0cdb1d28a}{b\+Max\+Packet\+Size0}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_ad26c5e2fbd16ce3ee143f4bac5d49bda}{id\+Vendor}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a568d479fb0b76ea572a739c961fd3047}{id\+Product}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_afb5e0fc6f0cfe51de900d35506fb9317}{bcd\+Device}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_ab9e9a064265f2833d1d3f216f15a487a}{i\+Manufacturer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a20082f9e03f1cbffef3d9472a8dcfd64}{i\+Product}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a327e8ede51268b38955ef035cf6de875}{i\+Serial\+Number}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__device__descriptor_a0f3f80cd931628a0531a815b59d067dd}{b\+Num\+Configurations}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the standard USB device descriptor. This descriptor is documented in section 9.\+6.\+1 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__device__descriptor_afb5e0fc6f0cfe51de900d35506fb9317}\label{structlibusb__device__descriptor_afb5e0fc6f0cfe51de900d35506fb9317}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bcdDevice@{bcdDevice}}
+\index{bcdDevice@{bcdDevice}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bcdDevice}{bcdDevice}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::bcd\+Device}
+
+Device release number in binary-\/coded decimal \mbox{\Hypertarget{structlibusb__device__descriptor_af0682f293291db942b5d253092d472e4}\label{structlibusb__device__descriptor_af0682f293291db942b5d253092d472e4}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bcdUSB@{bcdUSB}}
+\index{bcdUSB@{bcdUSB}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bcdUSB}{bcdUSB}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::bcd\+USB}
+
+USB specification release number in binary-\/coded decimal. A value of 0x0200 indicates USB 2.\+0, 0x0110 indicates USB 1.\+1, etc. \mbox{\Hypertarget{structlibusb__device__descriptor_a63c4b109725ce829fc81c5c9cad8c87a}\label{structlibusb__device__descriptor_a63c4b109725ce829fc81c5c9cad8c87a}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca486e222e9f3053502ce4954a5bd89ba2}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+DEVICE}} LIBUSB\+\_\+\+DT\+\_\+\+DEVICE in this context. \mbox{\Hypertarget{structlibusb__device__descriptor_ab86c8f43e75d4d54fccbc199cfa9703b}\label{structlibusb__device__descriptor_ab86c8f43e75d4d54fccbc199cfa9703b}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bDeviceClass@{bDeviceClass}}
+\index{bDeviceClass@{bDeviceClass}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDeviceClass}{bDeviceClass}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Device\+Class}
+
+USB-\/\+IF class code for the device. See \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1}{libusb\+\_\+class\+\_\+code}}. \mbox{\Hypertarget{structlibusb__device__descriptor_a480a0b5345a2e59987e20fa7247c3f0e}\label{structlibusb__device__descriptor_a480a0b5345a2e59987e20fa7247c3f0e}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bDeviceProtocol@{bDeviceProtocol}}
+\index{bDeviceProtocol@{bDeviceProtocol}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDeviceProtocol}{bDeviceProtocol}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Device\+Protocol}
+
+USB-\/\+IF protocol code for the device, qualified by the b\+Device\+Class and b\+Device\+Sub\+Class values \mbox{\Hypertarget{structlibusb__device__descriptor_a9c3a91102d3d53d9414d0dda0191c5ab}\label{structlibusb__device__descriptor_a9c3a91102d3d53d9414d0dda0191c5ab}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bDeviceSubClass@{bDeviceSubClass}}
+\index{bDeviceSubClass@{bDeviceSubClass}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDeviceSubClass}{bDeviceSubClass}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Device\+Sub\+Class}
+
+USB-\/\+IF subclass code for the device, qualified by the b\+Device\+Class value \mbox{\Hypertarget{structlibusb__device__descriptor_affda0be3fe1c37092ddc7cb120428f30}\label{structlibusb__device__descriptor_affda0be3fe1c37092ddc7cb120428f30}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__device__descriptor_a3b60170f077c9b26fc9f86e0cdb1d28a}\label{structlibusb__device__descriptor_a3b60170f077c9b26fc9f86e0cdb1d28a}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bMaxPacketSize0@{bMaxPacketSize0}}
+\index{bMaxPacketSize0@{bMaxPacketSize0}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bMaxPacketSize0}{bMaxPacketSize0}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Max\+Packet\+Size0}
+
+Maximum packet size for endpoint 0 \mbox{\Hypertarget{structlibusb__device__descriptor_a0f3f80cd931628a0531a815b59d067dd}\label{structlibusb__device__descriptor_a0f3f80cd931628a0531a815b59d067dd}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!bNumConfigurations@{bNumConfigurations}}
+\index{bNumConfigurations@{bNumConfigurations}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bNumConfigurations}{bNumConfigurations}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::b\+Num\+Configurations}
+
+Number of possible configurations \mbox{\Hypertarget{structlibusb__device__descriptor_a568d479fb0b76ea572a739c961fd3047}\label{structlibusb__device__descriptor_a568d479fb0b76ea572a739c961fd3047}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!idProduct@{idProduct}}
+\index{idProduct@{idProduct}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{idProduct}{idProduct}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::id\+Product}
+
+USB-\/\+IF product ID \mbox{\Hypertarget{structlibusb__device__descriptor_ad26c5e2fbd16ce3ee143f4bac5d49bda}\label{structlibusb__device__descriptor_ad26c5e2fbd16ce3ee143f4bac5d49bda}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!idVendor@{idVendor}}
+\index{idVendor@{idVendor}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{idVendor}{idVendor}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::id\+Vendor}
+
+USB-\/\+IF vendor ID \mbox{\Hypertarget{structlibusb__device__descriptor_ab9e9a064265f2833d1d3f216f15a487a}\label{structlibusb__device__descriptor_ab9e9a064265f2833d1d3f216f15a487a}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!iManufacturer@{iManufacturer}}
+\index{iManufacturer@{iManufacturer}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{iManufacturer}{iManufacturer}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::i\+Manufacturer}
+
+Index of string descriptor describing manufacturer \mbox{\Hypertarget{structlibusb__device__descriptor_a20082f9e03f1cbffef3d9472a8dcfd64}\label{structlibusb__device__descriptor_a20082f9e03f1cbffef3d9472a8dcfd64}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!iProduct@{iProduct}}
+\index{iProduct@{iProduct}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{iProduct}{iProduct}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::i\+Product}
+
+Index of string descriptor describing product \mbox{\Hypertarget{structlibusb__device__descriptor_a327e8ede51268b38955ef035cf6de875}\label{structlibusb__device__descriptor_a327e8ede51268b38955ef035cf6de875}} 
+\index{libusb\_device\_descriptor@{libusb\_device\_descriptor}!iSerialNumber@{iSerialNumber}}
+\index{iSerialNumber@{iSerialNumber}!libusb\_device\_descriptor@{libusb\_device\_descriptor}}
+\doxysubsubsection{\texorpdfstring{iSerialNumber}{iSerialNumber}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+device\+\_\+descriptor\+::i\+Serial\+Number}
+
+Index of string descriptor containing device serial number 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

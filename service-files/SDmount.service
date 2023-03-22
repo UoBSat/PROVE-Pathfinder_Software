@@ -1,0 +1,11 @@
+[Unit]
+Description= Service to mount external memory for PROVE Pathfinder
+
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/SDmount.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,61 @@
+\hypertarget{structlibusb__ss__endpoint__companion__descriptor}{}\doxysection{libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor Struct Reference}
+\label{structlibusb__ss__endpoint__companion__descriptor}\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a576f037f393bf45926a2d45a80c3c3ce}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a85344cb4f4d8d03014d9cc2cf90c748f}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a85b999ffaff20e9e1518597339e0a7dc}{b\+Max\+Burst}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_aa7097b478f5e46e8cdd160fb4aaccc1f}{bm\+Attributes}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a13605afcfe00291bc86ebb415226ece6}{w\+Bytes\+Per\+Interval}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the superspeed endpoint companion descriptor. This descriptor is documented in section 9.\+6.\+7 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__ss__endpoint__companion__descriptor_a85344cb4f4d8d03014d9cc2cf90c748f}\label{structlibusb__ss__endpoint__companion__descriptor_a85344cb4f4d8d03014d9cc2cf90c748f}} 
+\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca9bdd0a16eb0647330c2b7085520db533}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+SS\+\_\+\+ENDPOINT\+\_\+\+COMPANION}} in this context. \mbox{\Hypertarget{structlibusb__ss__endpoint__companion__descriptor_a576f037f393bf45926a2d45a80c3c3ce}\label{structlibusb__ss__endpoint__companion__descriptor_a576f037f393bf45926a2d45a80c3c3ce}} 
+\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__ss__endpoint__companion__descriptor_aa7097b478f5e46e8cdd160fb4aaccc1f}\label{structlibusb__ss__endpoint__companion__descriptor_aa7097b478f5e46e8cdd160fb4aaccc1f}} 
+\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}!bmAttributes@{bmAttributes}}
+\index{bmAttributes@{bmAttributes}!libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bmAttributes}{bmAttributes}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor\+::bm\+Attributes}
+
+In bulk EP\+: bits 4\+:0 represents the maximum number of streams the EP supports. In isochronous EP\+: bits 1\+:0 represents the Mult -\/ a zero based value that determines the maximum number of packets within a service interval ~\newline
+ \mbox{\Hypertarget{structlibusb__ss__endpoint__companion__descriptor_a85b999ffaff20e9e1518597339e0a7dc}\label{structlibusb__ss__endpoint__companion__descriptor_a85b999ffaff20e9e1518597339e0a7dc}} 
+\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}!bMaxBurst@{bMaxBurst}}
+\index{bMaxBurst@{bMaxBurst}!libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bMaxBurst}{bMaxBurst}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor\+::b\+Max\+Burst}
+
+The maximum number of packets the endpoint can send or recieve as part of a burst. \mbox{\Hypertarget{structlibusb__ss__endpoint__companion__descriptor_a13605afcfe00291bc86ebb415226ece6}\label{structlibusb__ss__endpoint__companion__descriptor_a13605afcfe00291bc86ebb415226ece6}} 
+\index{libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}!wBytesPerInterval@{wBytesPerInterval}}
+\index{wBytesPerInterval@{wBytesPerInterval}!libusb\_ss\_endpoint\_companion\_descriptor@{libusb\_ss\_endpoint\_companion\_descriptor}}
+\doxysubsubsection{\texorpdfstring{wBytesPerInterval}{wBytesPerInterval}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+ss\+\_\+endpoint\+\_\+companion\+\_\+descriptor\+::w\+Bytes\+Per\+Interval}
+
+The total number of bytes this EP will transfer every service interval. valid only for periodic EPs. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

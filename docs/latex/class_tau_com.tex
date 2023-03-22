@@ -1,0 +1,87 @@
+\hypertarget{class_tau_com}{}\doxysection{Tau\+Com Class Reference}
+\label{class_tau_com}\index{TauCom@{TauCom}}
+
+
+{\ttfamily \#include $<$taucom.\+h$>$}
+
+Inheritance diagram for Tau\+Com\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tau_com}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_tau_com_a90974f727446d399603a50f0532c4858}{parse\+In\+Frame}} (uint8\+\_\+t $\ast$in\+\_\+buffer, uint32\+\_\+t size)
+\item 
+int \mbox{\hyperlink{class_tau_com_afd8735d0eca83c21253776f44e5354f1}{gen\+Tau\+Frame\+No\+Value}} (uint8\+\_\+t function, uint8\+\_\+t $\ast$out\+\_\+buf)
+\item 
+int \mbox{\hyperlink{class_tau_com_a242361a3b00a52c3043517afad629cbe}{gen\+Tau\+Frame16\+Bit\+Value}} (uint8\+\_\+t function, uint16\+\_\+t data, uint8\+\_\+t $\ast$out\+\_\+buf)
+\item 
+int \mbox{\hyperlink{class_tau_com_a36f19c743fc45977962d2067459fddd7}{gen\+Tau\+Frame32\+Bit\+Value}} (uint8\+\_\+t function, uint32\+\_\+t data, uint8\+\_\+t $\ast$out\+\_\+buf)
+\item 
+int \mbox{\hyperlink{class_tau_com_a6c3a535d0af2f40b7a51828910413127}{gen\+Tau\+Frame}} (uint8\+\_\+t function, uint8\+\_\+t data\+\_\+size, uint8\+\_\+t $\ast$data, uint8\+\_\+t $\ast$out\+\_\+buf)
+\item 
+\mbox{\hyperlink{class_tau_com_a6eaa5883e96b02e73ef204c7f4938a1d}{Tau\+Com}} ()
+\item 
+virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_tau_com_aeb5728b9e23efd7d0b099313b4310e80}{process\+Serial\+Packet}} (uint8\+\_\+t $\ast$buffer, uint32\+\_\+t size)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tau_com_a6eaa5883e96b02e73ef204c7f4938a1d}\label{class_tau_com_a6eaa5883e96b02e73ef204c7f4938a1d}} 
+\index{TauCom@{TauCom}!TauCom@{TauCom}}
+\index{TauCom@{TauCom}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{TauCom()}{TauCom()}}
+{\footnotesize\ttfamily Tau\+Com\+::\+Tau\+Com (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tau_com_a6c3a535d0af2f40b7a51828910413127}\label{class_tau_com_a6c3a535d0af2f40b7a51828910413127}} 
+\index{TauCom@{TauCom}!genTauFrame@{genTauFrame}}
+\index{genTauFrame@{genTauFrame}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{genTauFrame()}{genTauFrame()}}
+{\footnotesize\ttfamily int Tau\+Com\+::gen\+Tau\+Frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{function,  }\item[{uint8\+\_\+t}]{data\+\_\+size,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{uint8\+\_\+t $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_com_a242361a3b00a52c3043517afad629cbe}\label{class_tau_com_a242361a3b00a52c3043517afad629cbe}} 
+\index{TauCom@{TauCom}!genTauFrame16BitValue@{genTauFrame16BitValue}}
+\index{genTauFrame16BitValue@{genTauFrame16BitValue}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{genTauFrame16BitValue()}{genTauFrame16BitValue()}}
+{\footnotesize\ttfamily int Tau\+Com\+::gen\+Tau\+Frame16\+Bit\+Value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{function,  }\item[{uint16\+\_\+t}]{data,  }\item[{uint8\+\_\+t $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_com_a36f19c743fc45977962d2067459fddd7}\label{class_tau_com_a36f19c743fc45977962d2067459fddd7}} 
+\index{TauCom@{TauCom}!genTauFrame32BitValue@{genTauFrame32BitValue}}
+\index{genTauFrame32BitValue@{genTauFrame32BitValue}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{genTauFrame32BitValue()}{genTauFrame32BitValue()}}
+{\footnotesize\ttfamily int Tau\+Com\+::gen\+Tau\+Frame32\+Bit\+Value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{function,  }\item[{uint32\+\_\+t}]{data,  }\item[{uint8\+\_\+t $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_com_afd8735d0eca83c21253776f44e5354f1}\label{class_tau_com_afd8735d0eca83c21253776f44e5354f1}} 
+\index{TauCom@{TauCom}!genTauFrameNoValue@{genTauFrameNoValue}}
+\index{genTauFrameNoValue@{genTauFrameNoValue}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{genTauFrameNoValue()}{genTauFrameNoValue()}}
+{\footnotesize\ttfamily int Tau\+Com\+::gen\+Tau\+Frame\+No\+Value (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{function,  }\item[{uint8\+\_\+t $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_com_a90974f727446d399603a50f0532c4858}\label{class_tau_com_a90974f727446d399603a50f0532c4858}} 
+\index{TauCom@{TauCom}!parseInFrame@{parseInFrame}}
+\index{parseInFrame@{parseInFrame}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{parseInFrame()}{parseInFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Tau\+Com\+::parse\+In\+Frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{in\+\_\+buffer,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_com_aeb5728b9e23efd7d0b099313b4310e80}\label{class_tau_com_aeb5728b9e23efd7d0b099313b4310e80}} 
+\index{TauCom@{TauCom}!processSerialPacket@{processSerialPacket}}
+\index{processSerialPacket@{processSerialPacket}!TauCom@{TauCom}}
+\doxysubsubsection{\texorpdfstring{processSerialPacket()}{processSerialPacket()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Tau\+Com\+::process\+Serial\+Packet (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_tau_interface_aacdc4c44e2b59bbca9e9f83197c7b321}{Tau\+Interface}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{taucom_8h}{taucom.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{taucom_8cpp}{taucom.\+cpp}}\end{DoxyCompactItemize}

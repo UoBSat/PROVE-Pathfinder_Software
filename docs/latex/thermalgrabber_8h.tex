@@ -1,0 +1,63 @@
+\hypertarget{thermalgrabber_8h}{}\doxysection{C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/inc/thermalgrabber.h File Reference}
+\label{thermalgrabber_8h}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/inc/thermalgrabber.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/inc/thermalgrabber.h}}
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}
+\begin{DoxyCompactList}\small\item\em Container for raw tau bitmap. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}
+\begin{DoxyCompactList}\small\item\em Container for rgb tau bitmap. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}
+\begin{DoxyCompactList}\small\item\em Class for connecting \char`\"{}\+Thermal Capture Grabber USB\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacethermal__grabber}{thermal\+\_\+grabber}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{thermalgrabber_8h_a159ca84d25a5487d8e81e4438725df19}{LOG}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95e}{TLinear\+Resolution}} \{ \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea24c57acd029e3f96fede49402ea01e6f}{High}}
+, \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea7a352a3dd2accc1dd65a4538c3754ee8}{Low}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\+\_\+grabber\+::\+Gain\+Mode}} \{ \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a2789464bf4749993329ac9c5cff16ace}{thermal\+\_\+grabber\+::\+Automatic}} = 0
+, \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a310818821e4830aa2247f846d96e8c0c}{thermal\+\_\+grabber\+::\+Low\+Gain}} = 1
+, \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a081fc5e8032ec35b4935dfc014036f97}{thermal\+\_\+grabber\+::\+High\+Gain}} = 2
+, \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a47fb752610be66deef3f63526c2ed834}{thermal\+\_\+grabber\+::\+Manual}} = 3
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{thermalgrabber_8h_a159ca84d25a5487d8e81e4438725df19}\label{thermalgrabber_8h_a159ca84d25a5487d8e81e4438725df19}} 
+\index{thermalgrabber.h@{thermalgrabber.h}!LOG@{LOG}}
+\index{LOG@{LOG}!thermalgrabber.h@{thermalgrabber.h}}
+\doxysubsubsection{\texorpdfstring{LOG}{LOG}}
+{\footnotesize\ttfamily \#define LOG}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95e}\label{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95e}} 
+\index{thermalgrabber.h@{thermalgrabber.h}!TLinearResolution@{TLinearResolution}}
+\index{TLinearResolution@{TLinearResolution}!thermalgrabber.h@{thermalgrabber.h}}
+\doxysubsubsection{\texorpdfstring{TLinearResolution}{TLinearResolution}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95e}{TLinear\+Resolution}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{High@{High}!thermalgrabber.h@{thermalgrabber.h}}\index{thermalgrabber.h@{thermalgrabber.h}!High@{High}}}\mbox{\Hypertarget{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea24c57acd029e3f96fede49402ea01e6f}\label{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea24c57acd029e3f96fede49402ea01e6f}} 
+High&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Low@{Low}!thermalgrabber.h@{thermalgrabber.h}}\index{thermalgrabber.h@{thermalgrabber.h}!Low@{Low}}}\mbox{\Hypertarget{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea7a352a3dd2accc1dd65a4538c3754ee8}\label{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea7a352a3dd2accc1dd65a4538c3754ee8}} 
+Low&\\
+\hline
+
+\end{DoxyEnumFields}

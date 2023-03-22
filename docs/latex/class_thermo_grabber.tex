@@ -1,0 +1,148 @@
+\hypertarget{class_thermo_grabber}{}\doxysection{Thermo\+Grabber Class Reference}
+\label{class_thermo_grabber}\index{ThermoGrabber@{ThermoGrabber}}
+
+
+{\ttfamily \#include $<$thermograbber.\+h$>$}
+
+Inheritance diagram for Thermo\+Grabber\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_thermo_grabber}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_thermo_grabber_aabf50bb1586616ef6ace1d7fdd01f1b3}{Thermo\+Grabber}} ()
+\item 
+\mbox{\hyperlink{class_thermo_grabber_acde75d53e8dee1afce232c3ec7c5420b}{$\sim$\+Thermo\+Grabber}} ()
+\item 
+int \mbox{\hyperlink{class_thermo_grabber_a045a14e17e30c67393970b0393e4a5c2}{run\+Grabber}} (char $\ast$i\+Serial\+USB)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_a94d5f6b38d3e5f667b6740ce975f1d15}{stop\+Grabber}} (\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}})
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_a10bb4e3a94d3ed6bb9905f1de803170a}{send\+Uart\+Data}} (uint8\+\_\+t $\ast$buffer, uint32\+\_\+t size)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_ae56168018bead87c8cba23715b7ab693}{reenable\+FTDI}} ()
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_a04b060a8f4e12f6adacea9e9e591bf34}{set\+Sync\+Mode\+No\+External\+Sync\+Or\+Master}} ()
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_a51b50155af77b1c765456a5e1be649cd}{set\+Sync\+Mode\+Camera\+Slave}} ()
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_aea257795d5d93a95323f06e63920dfd4}{set\+Sync\+Mode\+Grabber\+Master}} (uint32\+\_\+t freq, uint32\+\_\+t count)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_thermo_grabber_a68c57dbb46b87b3e3a41bb5cb288750a}{grabber\+Runs}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_a767d559e3cfa5bf5f31ce4b237684a7e}{process\+Uart\+Data}} (uint8\+\_\+t $\ast$buffer, uint32\+\_\+t size)=0
+\item 
+virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermo_grabber_acc1ed06367e1fea53552a90a9dd9097f}{process\+Video\+Data}} (uint16\+\_\+t $\ast$buffer, uint32\+\_\+t size)=0
+\item 
+unsigned int \mbox{\hyperlink{class_thermo_grabber_ad1008c24308e2f6ca54e575ba2cf980e}{get\+PPSTimestamp}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_thermo_grabber_aabf50bb1586616ef6ace1d7fdd01f1b3}\label{class_thermo_grabber_aabf50bb1586616ef6ace1d7fdd01f1b3}} 
+\index{ThermoGrabber@{ThermoGrabber}!ThermoGrabber@{ThermoGrabber}}
+\index{ThermoGrabber@{ThermoGrabber}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{ThermoGrabber()}{ThermoGrabber()}}
+{\footnotesize\ttfamily Thermo\+Grabber\+::\+Thermo\+Grabber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_acde75d53e8dee1afce232c3ec7c5420b}\label{class_thermo_grabber_acde75d53e8dee1afce232c3ec7c5420b}} 
+\index{ThermoGrabber@{ThermoGrabber}!````~ThermoGrabber@{$\sim$ThermoGrabber}}
+\index{````~ThermoGrabber@{$\sim$ThermoGrabber}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{$\sim$ThermoGrabber()}{~ThermoGrabber()}}
+{\footnotesize\ttfamily Thermo\+Grabber\+::$\sim$\+Thermo\+Grabber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_thermo_grabber_ad1008c24308e2f6ca54e575ba2cf980e}\label{class_thermo_grabber_ad1008c24308e2f6ca54e575ba2cf980e}} 
+\index{ThermoGrabber@{ThermoGrabber}!getPPSTimestamp@{getPPSTimestamp}}
+\index{getPPSTimestamp@{getPPSTimestamp}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{getPPSTimestamp()}{getPPSTimestamp()}}
+{\footnotesize\ttfamily unsigned int Thermo\+Grabber\+::get\+PPSTimestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_thermo_grabber_a767d559e3cfa5bf5f31ce4b237684a7e}\label{class_thermo_grabber_a767d559e3cfa5bf5f31ce4b237684a7e}} 
+\index{ThermoGrabber@{ThermoGrabber}!processUartData@{processUartData}}
+\index{processUartData@{processUartData}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{processUartData()}{processUartData()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::process\+Uart\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_tau_interface_ac339dc13a4a1e6cb6ead6ad4f1ac3b71}{Tau\+Interface}}.
+
+\mbox{\Hypertarget{class_thermo_grabber_acc1ed06367e1fea53552a90a9dd9097f}\label{class_thermo_grabber_acc1ed06367e1fea53552a90a9dd9097f}} 
+\index{ThermoGrabber@{ThermoGrabber}!processVideoData@{processVideoData}}
+\index{processVideoData@{processVideoData}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{processVideoData()}{processVideoData()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::process\+Video\+Data (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_tau_interface_ac9ecaf5f6d85804bfda6078743051031}{Tau\+Interface}}.
+
+\mbox{\Hypertarget{class_thermo_grabber_ae56168018bead87c8cba23715b7ab693}\label{class_thermo_grabber_ae56168018bead87c8cba23715b7ab693}} 
+\index{ThermoGrabber@{ThermoGrabber}!reenableFTDI@{reenableFTDI}}
+\index{reenableFTDI@{reenableFTDI}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{reenableFTDI()}{reenableFTDI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::reenable\+FTDI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_a045a14e17e30c67393970b0393e4a5c2}\label{class_thermo_grabber_a045a14e17e30c67393970b0393e4a5c2}} 
+\index{ThermoGrabber@{ThermoGrabber}!runGrabber@{runGrabber}}
+\index{runGrabber@{runGrabber}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{runGrabber()}{runGrabber()}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+::run\+Grabber (\begin{DoxyParamCaption}\item[{char $\ast$}]{i\+Serial\+USB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_a10bb4e3a94d3ed6bb9905f1de803170a}\label{class_thermo_grabber_a10bb4e3a94d3ed6bb9905f1de803170a}} 
+\index{ThermoGrabber@{ThermoGrabber}!sendUartData@{sendUartData}}
+\index{sendUartData@{sendUartData}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{sendUartData()}{sendUartData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::send\+Uart\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_a51b50155af77b1c765456a5e1be649cd}\label{class_thermo_grabber_a51b50155af77b1c765456a5e1be649cd}} 
+\index{ThermoGrabber@{ThermoGrabber}!setSyncModeCameraSlave@{setSyncModeCameraSlave}}
+\index{setSyncModeCameraSlave@{setSyncModeCameraSlave}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{setSyncModeCameraSlave()}{setSyncModeCameraSlave()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::set\+Sync\+Mode\+Camera\+Slave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_aea257795d5d93a95323f06e63920dfd4}\label{class_thermo_grabber_aea257795d5d93a95323f06e63920dfd4}} 
+\index{ThermoGrabber@{ThermoGrabber}!setSyncModeGrabberMaster@{setSyncModeGrabberMaster}}
+\index{setSyncModeGrabberMaster@{setSyncModeGrabberMaster}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{setSyncModeGrabberMaster()}{setSyncModeGrabberMaster()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::set\+Sync\+Mode\+Grabber\+Master (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{freq,  }\item[{uint32\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_a04b060a8f4e12f6adacea9e9e591bf34}\label{class_thermo_grabber_a04b060a8f4e12f6adacea9e9e591bf34}} 
+\index{ThermoGrabber@{ThermoGrabber}!setSyncModeNoExternalSyncOrMaster@{setSyncModeNoExternalSyncOrMaster}}
+\index{setSyncModeNoExternalSyncOrMaster@{setSyncModeNoExternalSyncOrMaster}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{setSyncModeNoExternalSyncOrMaster()}{setSyncModeNoExternalSyncOrMaster()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::set\+Sync\+Mode\+No\+External\+Sync\+Or\+Master (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermo_grabber_a94d5f6b38d3e5f667b6740ce975f1d15}\label{class_thermo_grabber_a94d5f6b38d3e5f667b6740ce975f1d15}} 
+\index{ThermoGrabber@{ThermoGrabber}!stopGrabber@{stopGrabber}}
+\index{stopGrabber@{stopGrabber}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{stopGrabber()}{stopGrabber()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermo\+Grabber\+::stop\+Grabber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}}}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_thermo_grabber_a68c57dbb46b87b3e3a41bb5cb288750a}\label{class_thermo_grabber_a68c57dbb46b87b3e3a41bb5cb288750a}} 
+\index{ThermoGrabber@{ThermoGrabber}!grabberRuns@{grabberRuns}}
+\index{grabberRuns@{grabberRuns}!ThermoGrabber@{ThermoGrabber}}
+\doxysubsubsection{\texorpdfstring{grabberRuns}{grabberRuns}}
+{\footnotesize\ttfamily bool Thermo\+Grabber\+::grabber\+Runs}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{thermograbber_8h}{thermograbber.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{thermograbber_8cpp}{thermograbber.\+cpp}}\end{DoxyCompactItemize}

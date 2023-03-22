@@ -1,0 +1,52 @@
+\hypertarget{structlibusb__usb__2__0__extension__descriptor}{}\doxysection{libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+descriptor Struct Reference}
+\label{structlibusb__usb__2__0__extension__descriptor}\index{libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_a11b9f042687aec219e0e777530df0664}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_ab3f73eeaabab1e8db659bcb6b2cb59c5}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_aa6a3e671c23b77eef252f17ce865734e}{b\+Dev\+Capability\+Type}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_ab22e1857d38c9205aaecca52b2e20ae0}{bm\+Attributes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the USB 2.\+0 Extension descriptor This descriptor is documented in section 9.\+6.\+2.\+1 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__usb__2__0__extension__descriptor_ab3f73eeaabab1e8db659bcb6b2cb59c5}\label{structlibusb__usb__2__0__extension__descriptor_ab3f73eeaabab1e8db659bcb6b2cb59c5}} 
+\index{libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca56875fd1a3df25bdea7680fa9047743c}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY}} LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY in this context. \mbox{\Hypertarget{structlibusb__usb__2__0__extension__descriptor_aa6a3e671c23b77eef252f17ce865734e}\label{structlibusb__usb__2__0__extension__descriptor_aa6a3e671c23b77eef252f17ce865734e}} 
+\index{libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}!bDevCapabilityType@{bDevCapabilityType}}
+\index{bDevCapabilityType@{bDevCapabilityType}!libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDevCapabilityType}{bDevCapabilityType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+descriptor\+::b\+Dev\+Capability\+Type}
+
+Capability type. Will have value \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64ca243b090db95a0fdf7104fbf581724b86}{libusb\+\_\+capability\+\_\+type\+::\+LIBUSB\+\_\+\+BT\+\_\+\+USB\+\_\+2\+\_\+0\+\_\+\+EXTENSION}} LIBUSB\+\_\+\+BT\+\_\+\+USB\+\_\+2\+\_\+0\+\_\+\+EXTENSION in this context. \mbox{\Hypertarget{structlibusb__usb__2__0__extension__descriptor_a11b9f042687aec219e0e777530df0664}\label{structlibusb__usb__2__0__extension__descriptor_a11b9f042687aec219e0e777530df0664}} 
+\index{libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__usb__2__0__extension__descriptor_ab22e1857d38c9205aaecca52b2e20ae0}\label{structlibusb__usb__2__0__extension__descriptor_ab22e1857d38c9205aaecca52b2e20ae0}} 
+\index{libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}!bmAttributes@{bmAttributes}}
+\index{bmAttributes@{bmAttributes}!libusb\_usb\_2\_0\_extension\_descriptor@{libusb\_usb\_2\_0\_extension\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bmAttributes}{bmAttributes}}
+{\footnotesize\ttfamily uint32\+\_\+t libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+descriptor\+::bm\+Attributes}
+
+Bitmap encoding of supported device level features. A value of one in a bit location indicates a feature is supported; a value of zero indicates it is not supported. See \mbox{\hyperlink{libusb_8h_acb8cfa928bffdd0066a3dd2e6aba0558}{libusb\+\_\+usb\+\_\+2\+\_\+0\+\_\+extension\+\_\+attributes}}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it}{}\doxysection{Flight-\/\+Software.shared.\+logging.\+log\+\_\+it Class Reference}
+\label{class_flight-_software_1_1shared_1_1logging_1_1log__it}\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_ad2b161b5ebfd85274fa56576b377eb8f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_a26abc13fe4140b8408ad6691a0e8e772}{filename}}=None, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_af222a6d98972f7dc95a5a0bd97cca384}{Data}}=None, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_aa516fc57851f71da4feef34a242d01aa}{OG\+\_\+data}}=None)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_a76ee88c218c05f4352ee97ee77d699f7}{log\+\_\+append}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_ababeec1cc5b5669b9d2ebf47dc8ec79b}{iter\+\_\+log\+\_\+append}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_acd3e956a19bb2915d0f4ba84e1b18942}{create\+\_\+log}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_a30f639110463cdc8afc36778a3d8c618}{create\+\_\+log\+\_\+iter}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_a26abc13fe4140b8408ad6691a0e8e772}{filename}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_aa516fc57851f71da4feef34a242d01aa}{OG\+\_\+data}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1logging_1_1log__it_af222a6d98972f7dc95a5a0bd97cca384}{Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Log it class is used to log data to a csv file, is designed to be called anywhere.
+The class has varible Data which is the data that you want to log, if it is a 3D iter_log then use a iterable
+this will store all the data at once and uses less power and memory
+ALternativly use log_append which just stores a new line of data
+to create a log file use create_log() and create_log_iter() respectivly WILL NOT WORK IF FILE ALREADY EXISTS
+Iter cannot be used with 1D arrays
+Can change the heeading titels to what needed\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_ad2b161b5ebfd85274fa56576b377eb8f}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_ad2b161b5ebfd85274fa56576b377eb8f}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename = {\ttfamily None},  }\item[{}]{Data = {\ttfamily None},  }\item[{}]{OG\+\_\+data = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_acd3e956a19bb2915d0f4ba84e1b18942}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_acd3e956a19bb2915d0f4ba84e1b18942}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!create\_log@{create\_log}}
+\index{create\_log@{create\_log}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{create\_log()}{create\_log()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+create\+\_\+log (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_a30f639110463cdc8afc36778a3d8c618}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_a30f639110463cdc8afc36778a3d8c618}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!create\_log\_iter@{create\_log\_iter}}
+\index{create\_log\_iter@{create\_log\_iter}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{create\_log\_iter()}{create\_log\_iter()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+create\+\_\+log\+\_\+iter (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_ababeec1cc5b5669b9d2ebf47dc8ec79b}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_ababeec1cc5b5669b9d2ebf47dc8ec79b}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!iter\_log\_append@{iter\_log\_append}}
+\index{iter\_log\_append@{iter\_log\_append}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{iter\_log\_append()}{iter\_log\_append()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+iter\+\_\+log\+\_\+append (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This will be used to bulk add data so if there is large amounts of data to add as log_append
+   requires the data to be pulled from the file this will add the new data with the old data\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_a76ee88c218c05f4352ee97ee77d699f7}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_a76ee88c218c05f4352ee97ee77d699f7}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!log\_append@{log\_append}}
+\index{log\_append@{log\_append}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{log\_append()}{log\_append()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+log\+\_\+append (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_af222a6d98972f7dc95a5a0bd97cca384}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_af222a6d98972f7dc95a5a0bd97cca384}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!Data@{Data}}
+\index{Data@{Data}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{Data}{Data}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+Data}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_a26abc13fe4140b8408ad6691a0e8e772}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_a26abc13fe4140b8408ad6691a0e8e772}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!filename@{filename}}
+\index{filename@{filename}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+filename}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1logging_1_1log__it_aa516fc57851f71da4feef34a242d01aa}\label{class_flight-_software_1_1shared_1_1logging_1_1log__it_aa516fc57851f71da4feef34a242d01aa}} 
+\index{Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}!OG\_data@{OG\_data}}
+\index{OG\_data@{OG\_data}!Flight-\/Software.shared.logging.log\_it@{Flight-\/Software.shared.logging.log\_it}}
+\doxysubsubsection{\texorpdfstring{OG\_data}{OG\_data}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+logging.\+log\+\_\+it.\+OG\+\_\+data}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/shared/\mbox{\hyperlink{logging_8py}{logging.\+py}}\end{DoxyCompactItemize}

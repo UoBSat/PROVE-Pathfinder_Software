@@ -1,0 +1,137 @@
+\hypertarget{class_tau_raw_bitmap}{}\doxysection{Tau\+Raw\+Bitmap Class Reference}
+\label{class_tau_raw_bitmap}\index{TauRawBitmap@{TauRawBitmap}}
+
+
+Container for raw tau bitmap.  
+
+
+
+
+{\ttfamily \#include $<$thermalgrabber.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tau_raw_bitmap_a9a4ba43be435073f0b0150af4f055653}{Tau\+Raw\+Bitmap}} (unsigned int w, unsigned int h)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tau_raw_bitmap_a756c2dd514bf5e014199c3d2bee1172b}{$\sim$\+Tau\+Raw\+Bitmap}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_tau_raw_bitmap_a8aeb0004857e5c54aed84be8497ccbfc}{width}}
+\begin{DoxyCompactList}\small\item\em Width of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_tau_raw_bitmap_a407f1ea86d9cebc18bb04ef408b00c48}{height}}
+\begin{DoxyCompactList}\small\item\em Height of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_tau_raw_bitmap_a31457015bddab4c33ae069954e9510ec}{min}}
+\begin{DoxyCompactList}\small\item\em Minimum value of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_tau_raw_bitmap_a1f6598c1369bfc55a586a0429aaba873}{max}}
+\begin{DoxyCompactList}\small\item\em Maximum value of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_tau_raw_bitmap_a42d419de40ce69b37bf75e9b4ee75cf3}{pps\+\_\+timestamp}}
+\begin{DoxyCompactList}\small\item\em PPS Timestamp. \end{DoxyCompactList}\item 
+unsigned short $\ast$ \mbox{\hyperlink{class_tau_raw_bitmap_a719fa701f57f2ec59e71252cbbeb3ef7}{data}}
+\begin{DoxyCompactList}\small\item\em Array of raw pixel values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container for raw tau bitmap. 
+
+The \char`\"{}width\char`\"{} and \char`\"{}height\char`\"{} paramter inform about the size of the bitmap. Every pixel value of the tau core has 14 bit resolution and is stored in the data section of this class as 16 bit value. In addition for further processing the min and max values of the raw tau bitmap are delivered by the \char`\"{}min\char`\"{} and \char`\"{}max\char`\"{} values. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tau_raw_bitmap_a9a4ba43be435073f0b0150af4f055653}\label{class_tau_raw_bitmap_a9a4ba43be435073f0b0150af4f055653}} 
+\index{TauRawBitmap@{TauRawBitmap}!TauRawBitmap@{TauRawBitmap}}
+\index{TauRawBitmap@{TauRawBitmap}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{TauRawBitmap()}{TauRawBitmap()}}
+{\footnotesize\ttfamily Tau\+Raw\+Bitmap\+::\+Tau\+Raw\+Bitmap (\begin{DoxyParamCaption}\item[{unsigned int}]{w,  }\item[{unsigned int}]{h }\end{DoxyParamCaption})}
+
+
+
+Constructor of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. 
+
+Initializes an object for raw tau bitmaps. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Width of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. \\
+\hline
+{\em h} & height of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tau_raw_bitmap_a756c2dd514bf5e014199c3d2bee1172b}\label{class_tau_raw_bitmap_a756c2dd514bf5e014199c3d2bee1172b}} 
+\index{TauRawBitmap@{TauRawBitmap}!````~TauRawBitmap@{$\sim$TauRawBitmap}}
+\index{````~TauRawBitmap@{$\sim$TauRawBitmap}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{$\sim$TauRawBitmap()}{~TauRawBitmap()}}
+{\footnotesize\ttfamily Tau\+Raw\+Bitmap\+::$\sim$\+Tau\+Raw\+Bitmap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor of \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}}. 
+
+Cleans up the \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} object memory. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_tau_raw_bitmap_a719fa701f57f2ec59e71252cbbeb3ef7}\label{class_tau_raw_bitmap_a719fa701f57f2ec59e71252cbbeb3ef7}} 
+\index{TauRawBitmap@{TauRawBitmap}!data@{data}}
+\index{data@{data}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily unsigned short$\ast$ Tau\+Raw\+Bitmap\+::data}
+
+
+
+Array of raw pixel values. 
+
+The raw pixel values (14 bit) are stored in a 16 bit array. \mbox{\Hypertarget{class_tau_raw_bitmap_a407f1ea86d9cebc18bb04ef408b00c48}\label{class_tau_raw_bitmap_a407f1ea86d9cebc18bb04ef408b00c48}} 
+\index{TauRawBitmap@{TauRawBitmap}!height@{height}}
+\index{height@{height}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily unsigned int Tau\+Raw\+Bitmap\+::height}
+
+
+
+Height of raw tau core bitmap. 
+
+For example 128, 256 or 512. \mbox{\Hypertarget{class_tau_raw_bitmap_a1f6598c1369bfc55a586a0429aaba873}\label{class_tau_raw_bitmap_a1f6598c1369bfc55a586a0429aaba873}} 
+\index{TauRawBitmap@{TauRawBitmap}!max@{max}}
+\index{max@{max}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily unsigned int Tau\+Raw\+Bitmap\+::max}
+
+
+
+Maximum value of raw tau core bitmap. 
+
+The range of raw pixel values goes from 0 to 16383. \mbox{\Hypertarget{class_tau_raw_bitmap_a31457015bddab4c33ae069954e9510ec}\label{class_tau_raw_bitmap_a31457015bddab4c33ae069954e9510ec}} 
+\index{TauRawBitmap@{TauRawBitmap}!min@{min}}
+\index{min@{min}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily unsigned int Tau\+Raw\+Bitmap\+::min}
+
+
+
+Minimum value of raw tau core bitmap. 
+
+The range of raw pixel values goes from 0 to 16383. \mbox{\Hypertarget{class_tau_raw_bitmap_a42d419de40ce69b37bf75e9b4ee75cf3}\label{class_tau_raw_bitmap_a42d419de40ce69b37bf75e9b4ee75cf3}} 
+\index{TauRawBitmap@{TauRawBitmap}!pps\_timestamp@{pps\_timestamp}}
+\index{pps\_timestamp@{pps\_timestamp}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{pps\_timestamp}{pps\_timestamp}}
+{\footnotesize\ttfamily unsigned int Tau\+Raw\+Bitmap\+::pps\+\_\+timestamp}
+
+
+
+PPS Timestamp. 
+
+The present pps timestamp value (Milliseconds since last rising edge of ppm signal). \mbox{\Hypertarget{class_tau_raw_bitmap_a8aeb0004857e5c54aed84be8497ccbfc}\label{class_tau_raw_bitmap_a8aeb0004857e5c54aed84be8497ccbfc}} 
+\index{TauRawBitmap@{TauRawBitmap}!width@{width}}
+\index{width@{width}!TauRawBitmap@{TauRawBitmap}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily unsigned int Tau\+Raw\+Bitmap\+::width}
+
+
+
+Width of raw tau core bitmap. 
+
+For example 160, 324, 336 or 640. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/inc/\mbox{\hyperlink{thermalgrabber_8h}{thermalgrabber.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{tauimagedecoder_8cpp}{tauimagedecoder.\+cpp}}\end{DoxyCompactItemize}

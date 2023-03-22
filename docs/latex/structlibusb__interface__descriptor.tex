@@ -1,0 +1,116 @@
+\hypertarget{structlibusb__interface__descriptor}{}\doxysection{libusb\+\_\+interface\+\_\+descriptor Struct Reference}
+\label{structlibusb__interface__descriptor}\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a646b7bf875e5b927796d47e57c9182b8}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_affe977ae83d3bbf07513d87ebfb6ed0e}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a75046f443d3330f590f3d3fb1f9df863}{b\+Interface\+Number}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a2c94bce217e8ecd5fd23728510e9c838}{b\+Alternate\+Setting}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a487bd2058bfbe749d370c6e7d3add20e}{b\+Num\+Endpoints}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a19dcf80e6a5fedf3d3673630897ad649}{b\+Interface\+Class}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a0b9b890f84694a4e6a0103944e1247f4}{b\+Interface\+Sub\+Class}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a5062bbb17fc76e6c3624ea7ca68d554c}{b\+Interface\+Protocol}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__interface__descriptor_a19227cc111c27e27c2c07430777e1ab8}{i\+Interface}}
+\item 
+const struct \mbox{\hyperlink{structlibusb__endpoint__descriptor}{libusb\+\_\+endpoint\+\_\+descriptor}} $\ast$ \mbox{\hyperlink{structlibusb__interface__descriptor_a42bd0c63b361cf6c0bda5ecdf73e1c75}{endpoint}}
+\item 
+const unsigned char $\ast$ \mbox{\hyperlink{structlibusb__interface__descriptor_aa1169e8c0b22a9928bbd51169609f31d}{extra}}
+\item 
+int \mbox{\hyperlink{structlibusb__interface__descriptor_ad77fa0b951a83d0c7eac28920367f200}{extra\+\_\+length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the standard USB interface descriptor. This descriptor is documented in section 9.\+6.\+5 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__interface__descriptor_a2c94bce217e8ecd5fd23728510e9c838}\label{structlibusb__interface__descriptor_a2c94bce217e8ecd5fd23728510e9c838}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bAlternateSetting@{bAlternateSetting}}
+\index{bAlternateSetting@{bAlternateSetting}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bAlternateSetting}{bAlternateSetting}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Alternate\+Setting}
+
+Value used to select this alternate setting for this interface \mbox{\Hypertarget{structlibusb__interface__descriptor_affe977ae83d3bbf07513d87ebfb6ed0e}\label{structlibusb__interface__descriptor_affe977ae83d3bbf07513d87ebfb6ed0e}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca797f18e35ee27434562aed0c20c46b78}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+INTERFACE}} LIBUSB\+\_\+\+DT\+\_\+\+INTERFACE in this context. \mbox{\Hypertarget{structlibusb__interface__descriptor_a19dcf80e6a5fedf3d3673630897ad649}\label{structlibusb__interface__descriptor_a19dcf80e6a5fedf3d3673630897ad649}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bInterfaceClass@{bInterfaceClass}}
+\index{bInterfaceClass@{bInterfaceClass}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bInterfaceClass}{bInterfaceClass}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Interface\+Class}
+
+USB-\/\+IF class code for this interface. See \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1}{libusb\+\_\+class\+\_\+code}}. \mbox{\Hypertarget{structlibusb__interface__descriptor_a75046f443d3330f590f3d3fb1f9df863}\label{structlibusb__interface__descriptor_a75046f443d3330f590f3d3fb1f9df863}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bInterfaceNumber@{bInterfaceNumber}}
+\index{bInterfaceNumber@{bInterfaceNumber}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bInterfaceNumber}{bInterfaceNumber}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Interface\+Number}
+
+Number of this interface \mbox{\Hypertarget{structlibusb__interface__descriptor_a5062bbb17fc76e6c3624ea7ca68d554c}\label{structlibusb__interface__descriptor_a5062bbb17fc76e6c3624ea7ca68d554c}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bInterfaceProtocol@{bInterfaceProtocol}}
+\index{bInterfaceProtocol@{bInterfaceProtocol}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bInterfaceProtocol}{bInterfaceProtocol}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Interface\+Protocol}
+
+USB-\/\+IF protocol code for this interface, qualified by the b\+Interface\+Class and b\+Interface\+Sub\+Class values \mbox{\Hypertarget{structlibusb__interface__descriptor_a0b9b890f84694a4e6a0103944e1247f4}\label{structlibusb__interface__descriptor_a0b9b890f84694a4e6a0103944e1247f4}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bInterfaceSubClass@{bInterfaceSubClass}}
+\index{bInterfaceSubClass@{bInterfaceSubClass}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bInterfaceSubClass}{bInterfaceSubClass}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Interface\+Sub\+Class}
+
+USB-\/\+IF subclass code for this interface, qualified by the b\+Interface\+Class value \mbox{\Hypertarget{structlibusb__interface__descriptor_a646b7bf875e5b927796d47e57c9182b8}\label{structlibusb__interface__descriptor_a646b7bf875e5b927796d47e57c9182b8}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__interface__descriptor_a487bd2058bfbe749d370c6e7d3add20e}\label{structlibusb__interface__descriptor_a487bd2058bfbe749d370c6e7d3add20e}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!bNumEndpoints@{bNumEndpoints}}
+\index{bNumEndpoints@{bNumEndpoints}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bNumEndpoints}{bNumEndpoints}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::b\+Num\+Endpoints}
+
+Number of endpoints used by this interface (excluding the control endpoint). \mbox{\Hypertarget{structlibusb__interface__descriptor_a42bd0c63b361cf6c0bda5ecdf73e1c75}\label{structlibusb__interface__descriptor_a42bd0c63b361cf6c0bda5ecdf73e1c75}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!endpoint@{endpoint}}
+\index{endpoint@{endpoint}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{endpoint}{endpoint}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structlibusb__endpoint__descriptor}{libusb\+\_\+endpoint\+\_\+descriptor}}$\ast$ libusb\+\_\+interface\+\_\+descriptor\+::endpoint}
+
+Array of endpoint descriptors. This length of this array is determined by the b\+Num\+Endpoints field. \mbox{\Hypertarget{structlibusb__interface__descriptor_aa1169e8c0b22a9928bbd51169609f31d}\label{structlibusb__interface__descriptor_aa1169e8c0b22a9928bbd51169609f31d}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!extra@{extra}}
+\index{extra@{extra}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra}{extra}}
+{\footnotesize\ttfamily const unsigned char$\ast$ libusb\+\_\+interface\+\_\+descriptor\+::extra}
+
+Extra descriptors. If libusbx encounters unknown interface descriptors, it will store them here, should you wish to parse them. \mbox{\Hypertarget{structlibusb__interface__descriptor_ad77fa0b951a83d0c7eac28920367f200}\label{structlibusb__interface__descriptor_ad77fa0b951a83d0c7eac28920367f200}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!extra\_length@{extra\_length}}
+\index{extra\_length@{extra\_length}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra\_length}{extra\_length}}
+{\footnotesize\ttfamily int libusb\+\_\+interface\+\_\+descriptor\+::extra\+\_\+length}
+
+Length of the extra descriptors, in bytes. \mbox{\Hypertarget{structlibusb__interface__descriptor_a19227cc111c27e27c2c07430777e1ab8}\label{structlibusb__interface__descriptor_a19227cc111c27e27c2c07430777e1ab8}} 
+\index{libusb\_interface\_descriptor@{libusb\_interface\_descriptor}!iInterface@{iInterface}}
+\index{iInterface@{iInterface}!libusb\_interface\_descriptor@{libusb\_interface\_descriptor}}
+\doxysubsubsection{\texorpdfstring{iInterface}{iInterface}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+interface\+\_\+descriptor\+::i\+Interface}
+
+Index of string descriptor describing this interface 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

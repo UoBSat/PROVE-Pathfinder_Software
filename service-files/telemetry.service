@@ -1,0 +1,12 @@
+[Unit]
+Description= Telemetry service for PROVE Pathfinder
+
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/telemetry.sh
+
+[Install]
+WantedBy=multi-user.target
+

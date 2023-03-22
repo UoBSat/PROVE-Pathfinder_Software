@@ -1,0 +1,108 @@
+\hypertarget{structlibusb__config__descriptor}{}\doxysection{libusb\+\_\+config\+\_\+descriptor Struct Reference}
+\label{structlibusb__config__descriptor}\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a18ccd46a86328fd9c849e17ca8f01738}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_abc4f9a751c5b2ed968b045cb17528f74}{b\+Descriptor\+Type}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a819c160c66c1bd7b569399e6a6fc278f}{w\+Total\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a2c89b2d0a9ec0440801b97a8f8145792}{b\+Num\+Interfaces}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a04549d99d38080857e0256fcad8dcce7}{b\+Configuration\+Value}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a06dbb2e068b3999dd23954e63640d953}{i\+Configuration}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_adb65fe86ce28394110caad982c566525}{bm\+Attributes}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__config__descriptor_a527518147a0c7321a195f2d8dac2ea01}{Max\+Power}}
+\item 
+const struct \mbox{\hyperlink{structlibusb__interface}{libusb\+\_\+interface}} $\ast$ \mbox{\hyperlink{structlibusb__config__descriptor_afe04b70611b0ac83866639103d27df76}{interface}}
+\item 
+const unsigned char $\ast$ \mbox{\hyperlink{structlibusb__config__descriptor_acc982e6c82f7183dfa41076d28d991f7}{extra}}
+\item 
+int \mbox{\hyperlink{structlibusb__config__descriptor_a18439e83e8f46606a13d70c00a48a9d9}{extra\+\_\+length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the standard USB configuration descriptor. This descriptor is documented in section 9.\+6.\+3 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__config__descriptor_a04549d99d38080857e0256fcad8dcce7}\label{structlibusb__config__descriptor_a04549d99d38080857e0256fcad8dcce7}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!bConfigurationValue@{bConfigurationValue}}
+\index{bConfigurationValue@{bConfigurationValue}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bConfigurationValue}{bConfigurationValue}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::b\+Configuration\+Value}
+
+Identifier value for this configuration \mbox{\Hypertarget{structlibusb__config__descriptor_abc4f9a751c5b2ed968b045cb17528f74}\label{structlibusb__config__descriptor_abc4f9a751c5b2ed968b045cb17528f74}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca2a3f906d7755932ab67f39701da0b508}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+CONFIG}} LIBUSB\+\_\+\+DT\+\_\+\+CONFIG in this context. \mbox{\Hypertarget{structlibusb__config__descriptor_a18ccd46a86328fd9c849e17ca8f01738}\label{structlibusb__config__descriptor_a18ccd46a86328fd9c849e17ca8f01738}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__config__descriptor_adb65fe86ce28394110caad982c566525}\label{structlibusb__config__descriptor_adb65fe86ce28394110caad982c566525}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!bmAttributes@{bmAttributes}}
+\index{bmAttributes@{bmAttributes}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bmAttributes}{bmAttributes}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::bm\+Attributes}
+
+Configuration characteristics \mbox{\Hypertarget{structlibusb__config__descriptor_a2c89b2d0a9ec0440801b97a8f8145792}\label{structlibusb__config__descriptor_a2c89b2d0a9ec0440801b97a8f8145792}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!bNumInterfaces@{bNumInterfaces}}
+\index{bNumInterfaces@{bNumInterfaces}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bNumInterfaces}{bNumInterfaces}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::b\+Num\+Interfaces}
+
+Number of interfaces supported by this configuration \mbox{\Hypertarget{structlibusb__config__descriptor_acc982e6c82f7183dfa41076d28d991f7}\label{structlibusb__config__descriptor_acc982e6c82f7183dfa41076d28d991f7}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!extra@{extra}}
+\index{extra@{extra}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra}{extra}}
+{\footnotesize\ttfamily const unsigned char$\ast$ libusb\+\_\+config\+\_\+descriptor\+::extra}
+
+Extra descriptors. If libusbx encounters unknown configuration descriptors, it will store them here, should you wish to parse them. \mbox{\Hypertarget{structlibusb__config__descriptor_a18439e83e8f46606a13d70c00a48a9d9}\label{structlibusb__config__descriptor_a18439e83e8f46606a13d70c00a48a9d9}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!extra\_length@{extra\_length}}
+\index{extra\_length@{extra\_length}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra\_length}{extra\_length}}
+{\footnotesize\ttfamily int libusb\+\_\+config\+\_\+descriptor\+::extra\+\_\+length}
+
+Length of the extra descriptors, in bytes. \mbox{\Hypertarget{structlibusb__config__descriptor_a06dbb2e068b3999dd23954e63640d953}\label{structlibusb__config__descriptor_a06dbb2e068b3999dd23954e63640d953}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!iConfiguration@{iConfiguration}}
+\index{iConfiguration@{iConfiguration}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{iConfiguration}{iConfiguration}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::i\+Configuration}
+
+Index of string descriptor describing this configuration \mbox{\Hypertarget{structlibusb__config__descriptor_afe04b70611b0ac83866639103d27df76}\label{structlibusb__config__descriptor_afe04b70611b0ac83866639103d27df76}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!interface@{interface}}
+\index{interface@{interface}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{interface}{interface}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structlibusb__interface}{libusb\+\_\+interface}}$\ast$ libusb\+\_\+config\+\_\+descriptor\+::interface}
+
+Array of interfaces supported by this configuration. The length of this array is determined by the b\+Num\+Interfaces field. \mbox{\Hypertarget{structlibusb__config__descriptor_a527518147a0c7321a195f2d8dac2ea01}\label{structlibusb__config__descriptor_a527518147a0c7321a195f2d8dac2ea01}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!MaxPower@{MaxPower}}
+\index{MaxPower@{MaxPower}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{MaxPower}{MaxPower}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::\+Max\+Power}
+
+Maximum power consumption of the USB device from this bus in this configuration when the device is fully opreation. Expressed in units of 2 mA. \mbox{\Hypertarget{structlibusb__config__descriptor_a819c160c66c1bd7b569399e6a6fc278f}\label{structlibusb__config__descriptor_a819c160c66c1bd7b569399e6a6fc278f}} 
+\index{libusb\_config\_descriptor@{libusb\_config\_descriptor}!wTotalLength@{wTotalLength}}
+\index{wTotalLength@{wTotalLength}!libusb\_config\_descriptor@{libusb\_config\_descriptor}}
+\doxysubsubsection{\texorpdfstring{wTotalLength}{wTotalLength}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+config\+\_\+descriptor\+::w\+Total\+Length}
+
+Total length of data returned for this configuration 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

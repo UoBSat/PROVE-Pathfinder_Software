@@ -1,0 +1,87 @@
+\hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct}{}\doxysection{Flight-\/\+Software.shared.\+config.\+Config\+Struct Class Reference}
+\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct}\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2672b617f7a54da98be94be30ee286ee}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a4cffd11907e8a2be065a847d811bcad2}{general}}, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_abcfe3785aca903a154afcb1adb2e228c}{cameras}}, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2ae19919672c3168a1aa03ee6b891076}{sensors}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a0cf397c83e8e05c479845abca550ff0c}{create\+\_\+from\+\_\+json}} (data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a4cffd11907e8a2be065a847d811bcad2}{general}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_abcfe3785aca903a154afcb1adb2e228c}{cameras}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2ae19919672c3168a1aa03ee6b891076}{sensors}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Config struct class describing the structure of the overall JSON config
+...
+
+Methods
+-------
+create_from_json(): 
+    Converts a json dictionary to a class
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2672b617f7a54da98be94be30ee286ee}\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2672b617f7a54da98be94be30ee286ee}} 
+\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config\+Struct.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{general,  }\item[{}]{cameras,  }\item[{}]{sensors }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Initialises the ConfigStruct class, defines the config variables
+
+    Parameters:
+        self (ConfigStruct) - default class from the Python convention
+        general (GeneralConfig) - general config parameters from the JSON file
+        cameras (CamerasStruct) - cameras config and their parameters from the JSON file
+        sensors (SensorsConfig) - sensors config parameters from the JSON file
+
+    Returns:
+        void
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a0cf397c83e8e05c479845abca550ff0c}\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a0cf397c83e8e05c479845abca550ff0c}} 
+\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}!create\_from\_json@{create\_from\_json}}
+\index{create\_from\_json@{create\_from\_json}!Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsubsection{\texorpdfstring{create\_from\_json()}{create\_from\_json()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config\+Struct.\+create\+\_\+from\+\_\+json (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct_abcfe3785aca903a154afcb1adb2e228c}\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct_abcfe3785aca903a154afcb1adb2e228c}} 
+\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}!cameras@{cameras}}
+\index{cameras@{cameras}!Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsubsection{\texorpdfstring{cameras}{cameras}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+config.\+Config\+Struct.\+cameras}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a4cffd11907e8a2be065a847d811bcad2}\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a4cffd11907e8a2be065a847d811bcad2}} 
+\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}!general@{general}}
+\index{general@{general}!Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsubsection{\texorpdfstring{general}{general}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+config.\+Config\+Struct.\+general}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2ae19919672c3168a1aa03ee6b891076}\label{class_flight-_software_1_1shared_1_1config_1_1_config_struct_a2ae19919672c3168a1aa03ee6b891076}} 
+\index{Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}!sensors@{sensors}}
+\index{sensors@{sensors}!Flight-\/Software.shared.config.ConfigStruct@{Flight-\/Software.shared.config.ConfigStruct}}
+\doxysubsubsection{\texorpdfstring{sensors}{sensors}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+config.\+Config\+Struct.\+sensors}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/shared/\mbox{\hyperlink{config_8py}{config.\+py}}\end{DoxyCompactItemize}

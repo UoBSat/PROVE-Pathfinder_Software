@@ -1,0 +1,181 @@
+This document describes the process of installation of all of the flight software components on a completely fresh Beagle\+Bone Black. Some links to other documentation for parts of the installation are provided. This document is still a work in progess.\hypertarget{md__installation_autotoc_md8}{}\doxysection{Prerequisites}\label{md__installation_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Clean Beagle\+Bone Black
+\item SD card (at least 4 GB)
+\item USB Cable
+\item Stable internet connection to the bbb (via non UoB computer)
+\item Git\+Hub API token (online guide\+: \href{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token}{\texttt{ https\+://docs.\+github.\+com/en/authentication/keeping-\/your-\/account-\/and-\/data-\/secure/creating-\/a-\/personal-\/access-\/token}})
+\end{DoxyItemize}\hypertarget{md__installation_autotoc_md9}{}\doxysection{1. OS Flashing}\label{md__installation_autotoc_md9}
+The chosen OS is Debian, with the current testing version of 10.\+3. The OS should be flashed on the Emmc device onboard the BBB from an SD card. For this process a \char`\"{}flasher\char`\"{} OS image should be used, see \href{https://beagleboard.org/latest-images}{\texttt{ https\+://beagleboard.\+org/latest-\/images}} For detailed steps on how to do this follow this link\+:
+\begin{DoxyItemize}
+\item \href{https://beagleboard.org/getting-started}{\texttt{ https\+://beagleboard.\+org/getting-\/started}}
+\end{DoxyItemize}\hypertarget{md__installation_autotoc_md10}{}\doxysection{2. Communication with the Board}\label{md__installation_autotoc_md10}
+Communication with the BBB can easily be achieved over SHH via a USB cable. Win\+SCP (alongside putty) is the best tool to do this on windows. To establish the connection itself open win\+SCP and enter the following details\+:
+\begin{DoxyItemize}
+\item Hostname\+: beaglebone
+\item Username\+: debian
+\end{DoxyItemize}
+
+Then hit login, yes if any new address query appears and then enter \char`\"{}temppwd\char`\"{} as the password. Win\+SCP is useful for transferring files and providing a graphical insight into the filesystem on the bbb. To actually interact with the bbb use putty by clicking on its icon in the top menu bar.\hypertarget{md__installation_autotoc_md11}{}\doxysection{3. Required Files from the Git\+Hub}\label{md__installation_autotoc_md11}
+There is only 1 file required\+: setup.\+sh
+
+Download the file from the latest master branch. Copy over the file to the Beaglebone using Win\+SCP. The file must be located at /home/debian/setup.sh.
+
+Run the setup file from /home/debian with the following command\+:
+
+{\ttfamily \$ sh setup.\+sh}
+
+If any \char`\"{}not found\char`\"{} errors occur, run the following command and re-\/run the setup afterwards\+:
+
+`\$ sed -\/i \textquotesingle{}s/\textbackslash{}r\$//' setup.\+sh\`{}
+
+If asked, enter your Git\+Hub username and the personal API token correctly.
+
+The prompt for the internet connection will pop out. Type \textquotesingle{}N\textquotesingle{} if the internet connection with the Beaglebone is not established and continue to the following sections.\hypertarget{md__installation_autotoc_md12}{}\doxysection{4. Beaglebone Internet Connection}\label{md__installation_autotoc_md12}
+For future editing, it is useful for the Beaglebone to have an active internet connection. This is complicated considerably when an external Anti-\/\+Virus is used and the way to rectify this is specific to each Anti-\/\+Virus. This may involve turning off the firewall. This method will also not work when a host device is connected to University\textquotesingle{}s network (consider the following method -\/ Wi\+Fi dongle).
+
+Access the Windows Control Centre. From here -\/-\/\texorpdfstring{$>$}{>} Network and Internet -\/-\/\texorpdfstring{$>$}{>} Network and Sharing Center -\/-\/\texorpdfstring{$>$}{>} Change Adapter Settings.
+
+
+
+Within this, there will be 2 connections, both for the Beaglebone (External Device/\+Gadget) and the internet connection to the host computer.
+
+From the host computer internet, go to \textquotesingle{}properties\textquotesingle{}
+
+
+
+then access the \textquotesingle{}sharing\textquotesingle{} tab.
+
+
+
+From here, make sure the top box is ticked or a Home networking connection can be set
+
+
+
+Then select the adapter associated with the Beaglebone
+
+
+
+Move on to the Beaglebone adapter and select the IPv4 properties
+
+
+
+For Beagle\+Bone Enhanced\+:
+
+Change the properties of this, so that the \textquotesingle{}Use the following IP address\textquotesingle{} is checked.
+
+The IP address should be 192.\+168.\+7.\+1
+
+The subnet mask should be 255.\+255.\+255.\+252
+
+For Beaglebone Black\+:
+
+Change the properties of this, so that the \textquotesingle{}Obtain an IP address automatically\textquotesingle{} is checked.\hypertarget{md__installation_autotoc_md13}{}\doxysubsection{4.\+1. Alternative Beaglebone Internet Connection}\label{md__installation_autotoc_md13}
+The Beagle\+Bone can also be connected to the internet via the dlink router (acing as an extender for a phone mobile hotspot).
+
+To set this up for your phone, connect to the router\textquotesingle{}s network named \textquotesingle{}dlink-\/\+C264-\/5\+GHz\textquotesingle{} and enter the current phone\textquotesingle{}s hotspot password. If the router is not currently connected to a phone hotspot the network may appear as \textquotesingle{}ESAT-\/\+Network\textquotesingle{} and the password should be \textquotesingle{}iljjj86635\textquotesingle{}.
+
+To configure the router, enter \textquotesingle{}\href{http://dlinkrouter.local./'}{\texttt{ http\+://dlinkrouter.\+local./\textquotesingle{}}} in a browser. The page will ask you log in, leave the user as adimin and enter \textquotesingle{}DCWWROWWIFI10010\textquotesingle{} as the password. Go to wireless setting and ensure the access point mode is set to repeater-\/ 2.\+4\+Ghz. Turn on your phone\textquotesingle{}s hotspot and scroll down in your browser to site survey and press scan. Select your phone\textquotesingle{}s hotspot and enter its password. Finally connect the Beagelebone to one of the ethernet ports of the router. A basic internet connection should now be established (see next steps for verifacation).\hypertarget{md__installation_autotoc_md14}{}\doxysubsection{4.\+2. Internet Verification}\label{md__installation_autotoc_md14}
+To verify your internet connection on the Beaglebone, ping google.\+com with the following command\+:
+
+{\ttfamily \$ ping google.\+com}\hypertarget{md__installation_autotoc_md15}{}\doxysection{5. Setup execution}\label{md__installation_autotoc_md15}
+! Make sure the previous steps were successful, internet connection is required for the following !
+
+Run the setup file again, this time with the internet connection\+:
+
+{\ttfamily \$ sh setup.\+sh}
+
+The procedure will take some time and will terminate with a reboot of the Beaglebone. Setup is now complete.\hypertarget{md__installation_autotoc_md16}{}\doxysection{6. Explanation of Setup}\label{md__installation_autotoc_md16}
+\hypertarget{md__installation_autotoc_md17}{}\doxysubsection{6.\+1. UART pin and serial console setup}\label{md__installation_autotoc_md17}
+By default the Bealge\+Bone uses UART 0 on the serial debug header as the primary serial console. However this has been changed for our purposes, to simplify PCB design to be UART1 that appears on the P9 header. this has been done, alongside the actual enabling of UARTs 1,2 and 4 by editing the /boot/u\+Env.txt file (or /boot/uboot/u\+Env.txt on older beaglebone images). the commands below can be run to check pin modes\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd /opt/scripts/device/bone}
+\DoxyCodeLine{sudo ./show-\/pins.pl}
+
+\end{DoxyCode}
+ The contents of the u\+Env.\+txt file is edited when executing the setup.\+sh script and should be the following (minus comments)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#Docs: http://elinux.org/Beagleboard:U-\/boot\_partitioning\_layout\_2.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{uname\_r=4.19.94-\/ti-\/r42}
+\DoxyCodeLine{\#uuid=}
+\DoxyCodeLine{\#dtb=}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#U-\/Boot Overlays\#\#\#}
+\DoxyCodeLine{\#\#\#Documentation: http://elinux.org/Beagleboard:BeagleBoneBlack\_Debian\#U-\/Boot\_Overlays}
+\DoxyCodeLine{\#\#\#Master Enable}
+\DoxyCodeLine{disable\_uboot\_overlay\_video=1}
+\DoxyCodeLine{disable\_uboot\_overlay\_audio=1}
+\DoxyCodeLine{}
+\DoxyCodeLine{enable\_uboot\_overlays=1}
+\DoxyCodeLine{\# UART 1}
+\DoxyCodeLine{uboot\_overlay\_addr0=/lib/firmware/BB-\/UART1-\/00A0.dtbo}
+\DoxyCodeLine{\# UART 2}
+\DoxyCodeLine{uboot\_overlay\_addr1=/lib/firmware/BB-\/UART2-\/00A0.dtbo}
+\DoxyCodeLine{\# UART 4}
+\DoxyCodeLine{uboot\_overlay\_addr2=/lib/firmware/BB-\/UART4-\/00A0.dtbo}
+\DoxyCodeLine{\# UART 5}
+\DoxyCodeLine{uboot\_overlay\_addr3=/lib/firmware/BB-\/UART5-\/00A0.dtbo}
+\DoxyCodeLine{\# UART 3 (only TX). Note that in "{}uboot\_overlay\_addrX"{}, the X need not be = UART id}
+\DoxyCodeLine{uboot\_overlay\_addr4=/lib/firmware/BB-\/UART3-\/00A0.dtbo}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Overide capes with eeprom}
+\DoxyCodeLine{\#uboot\_overlay\_addr0=/lib/firmware/<file0>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr1=/lib/firmware/<file1>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr2=/lib/firmware/<file2>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr3=/lib/firmware/<file3>.dtbo}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Additional custom capes}
+\DoxyCodeLine{\#uboot\_overlay\_addr4=/lib/firmware/<file4>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr5=/lib/firmware/<file5>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr6=/lib/firmware/<file6>.dtbo}
+\DoxyCodeLine{\#uboot\_overlay\_addr7=/lib/firmware/<file7>.dtbo}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Custom Cape}
+\DoxyCodeLine{\#dtb\_overlay=/lib/firmware/<file8>.dtbo}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Disable auto loading of virtual capes (emmc/video/wireless/adc)}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_emmc=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_video=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_audio=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_wireless=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_adc=1}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#PRUSS OPTIONS}
+\DoxyCodeLine{\#\#\#pru\_rproc (4.14.x-\/ti kernel)}
+\DoxyCodeLine{\#uboot\_overlay\_pru=/lib/firmware/AM335X-\/PRU-\/RPROC-\/4-\/14-\/TI-\/00A0.dtbo}
+\DoxyCodeLine{\#\#\#pru\_rproc (4.19.x-\/ti kernel)}
+\DoxyCodeLine{uboot\_overlay\_pru=/lib/firmware/AM335X-\/PRU-\/RPROC-\/4-\/19-\/TI-\/00A0.dtbo}
+\DoxyCodeLine{\#\#\#pru\_uio (4.14.x-\/ti, 4.19.x-\/ti \& mainline/bone kernel)}
+\DoxyCodeLine{\#uboot\_overlay\_pru=/lib/firmware/AM335X-\/PRU-\/UIO-\/00A0.dtbo}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Cape Universal Enable}
+\DoxyCodeLine{enable\_uboot\_cape\_universal=1}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#Debug: disable uboot autoload of Cape}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_addr0=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_addr1=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_addr2=1}
+\DoxyCodeLine{\#disable\_uboot\_overlay\_addr3=1}
+\DoxyCodeLine{\#\#\#}
+\DoxyCodeLine{\#\#\#U-\/Boot fdt tweaks... (60000 = 384KB)}
+\DoxyCodeLine{\#uboot\_fdt\_buffer=0x60000}
+\DoxyCodeLine{\#\#\#U-\/Boot Overlays\#\#\#}
+\DoxyCodeLine{}
+\DoxyCodeLine{cmdline=coherent\_pool=1M net.ifnames=0 lpj=1990656 rng\_core.default\_quality=100 quiet}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#In the event of edid real failures, uncomment this next line:}
+\DoxyCodeLine{\#cmdline=coherent\_pool=1M net.ifnames=0 lpj=1990656 rng\_core.default\_quality=100 quiet video=HDMI-\/A-\/1:1024x768@60e}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#enable Generic eMMC Flasher:}
+\DoxyCodeLine{\#\#make sure, these tools are installed: dosfstools rsync}
+\DoxyCodeLine{\#cmdline=init=/opt/scripts/tools/eMMC/init-\/eMMC-\/flasher-\/v3.sh}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#cape\_disable=capemgr.disable\_partno=BB-\/BONELT-\/HDMI,BB-\/BONELT-\/HDMIN}
+\DoxyCodeLine{cape\_enable=capemgr.enable\_partno=BB-\/UART1,BB-\/UART2,BB-\/UART4,BB-\/UART5}
+\DoxyCodeLine{optargs= console=ttyS1,115200}
+
+\end{DoxyCode}
+ 

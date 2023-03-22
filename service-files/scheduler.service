@@ -1,0 +1,11 @@
+[Unit]
+Description= Scheduler service for PROVE Pathfinder
+
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/scheduler.sh
+
+[Install]
+WantedBy=multi-user.target

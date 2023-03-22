@@ -1,0 +1,93 @@
+\hypertarget{class_tau_image_decoder}{}\doxysection{Tau\+Image\+Decoder Class Reference}
+\label{class_tau_image_decoder}\index{TauImageDecoder@{TauImageDecoder}}
+
+
+{\ttfamily \#include $<$tauimagedecoder.\+h$>$}
+
+Inheritance diagram for Tau\+Image\+Decoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tau_image_decoder}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tau_image_decoder_a016f4cb2b2e3e557744945f346914691}{Tau\+Image\+Decoder}} ()
+\item 
+\mbox{\hyperlink{class_tau_image_decoder_af8d4d6602a26320f9c6755644e6e6e9e}{$\sim$\+Tau\+Image\+Decoder}} ()
+\item 
+virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_tau_image_decoder_a7a4ddaece330fe5fbd11dedd06522fdc}{frame\+Decoded}} (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} $\ast$frame)=0
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_tau_image_decoder_ad71c2149775ebf808006c8c837d11ae8}{decode\+Data}} (vector$<$ uint16\+\_\+t $>$ buffer)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_tau_image_decoder_a6c3dcb1525e7fdfb8d875cb1838452f9}{process\+Raw\+Data}} (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} $\ast$tau\+Raw\+Bitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} $\ast$t\+RGBBitmap)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_tau_image_decoder_a69a2b8c1382fd86630203b8ac55a629d}{m\+Tau\+Core\+Res\+Width}}
+\item 
+unsigned int \mbox{\hyperlink{class_tau_image_decoder_a7b1f1f86b83ad817d227b3b39d671b6f}{m\+Tau\+Core\+Res\+Height}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tau_image_decoder_a016f4cb2b2e3e557744945f346914691}\label{class_tau_image_decoder_a016f4cb2b2e3e557744945f346914691}} 
+\index{TauImageDecoder@{TauImageDecoder}!TauImageDecoder@{TauImageDecoder}}
+\index{TauImageDecoder@{TauImageDecoder}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{TauImageDecoder()}{TauImageDecoder()}}
+{\footnotesize\ttfamily Tau\+Image\+Decoder\+::\+Tau\+Image\+Decoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_image_decoder_af8d4d6602a26320f9c6755644e6e6e9e}\label{class_tau_image_decoder_af8d4d6602a26320f9c6755644e6e6e9e}} 
+\index{TauImageDecoder@{TauImageDecoder}!````~TauImageDecoder@{$\sim$TauImageDecoder}}
+\index{````~TauImageDecoder@{$\sim$TauImageDecoder}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{$\sim$TauImageDecoder()}{~TauImageDecoder()}}
+{\footnotesize\ttfamily Tau\+Image\+Decoder\+::$\sim$\+Tau\+Image\+Decoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tau_image_decoder_ad71c2149775ebf808006c8c837d11ae8}\label{class_tau_image_decoder_ad71c2149775ebf808006c8c837d11ae8}} 
+\index{TauImageDecoder@{TauImageDecoder}!decodeData@{decodeData}}
+\index{decodeData@{decodeData}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{decodeData()}{decodeData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Tau\+Image\+Decoder\+::decode\+Data (\begin{DoxyParamCaption}\item[{vector$<$ uint16\+\_\+t $>$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_tau_image_decoder_a7a4ddaece330fe5fbd11dedd06522fdc}\label{class_tau_image_decoder_a7a4ddaece330fe5fbd11dedd06522fdc}} 
+\index{TauImageDecoder@{TauImageDecoder}!frameDecoded@{frameDecoded}}
+\index{frameDecoded@{frameDecoded}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{frameDecoded()}{frameDecoded()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Tau\+Image\+Decoder\+::frame\+Decoded (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} $\ast$}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_tau_interface_a7a5e26ddd70bee3f9aa8f73245c44040}{Tau\+Interface}}.
+
+\mbox{\Hypertarget{class_tau_image_decoder_a6c3dcb1525e7fdfb8d875cb1838452f9}\label{class_tau_image_decoder_a6c3dcb1525e7fdfb8d875cb1838452f9}} 
+\index{TauImageDecoder@{TauImageDecoder}!processRawData@{processRawData}}
+\index{processRawData@{processRawData}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{processRawData()}{processRawData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Tau\+Image\+Decoder\+::process\+Raw\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} $\ast$}]{tau\+Raw\+Bitmap,  }\item[{\mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} $\ast$}]{t\+RGBBitmap }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_tau_image_decoder_a7b1f1f86b83ad817d227b3b39d671b6f}\label{class_tau_image_decoder_a7b1f1f86b83ad817d227b3b39d671b6f}} 
+\index{TauImageDecoder@{TauImageDecoder}!mTauCoreResHeight@{mTauCoreResHeight}}
+\index{mTauCoreResHeight@{mTauCoreResHeight}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{mTauCoreResHeight}{mTauCoreResHeight}}
+{\footnotesize\ttfamily unsigned int Tau\+Image\+Decoder\+::m\+Tau\+Core\+Res\+Height\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_tau_image_decoder_a69a2b8c1382fd86630203b8ac55a629d}\label{class_tau_image_decoder_a69a2b8c1382fd86630203b8ac55a629d}} 
+\index{TauImageDecoder@{TauImageDecoder}!mTauCoreResWidth@{mTauCoreResWidth}}
+\index{mTauCoreResWidth@{mTauCoreResWidth}!TauImageDecoder@{TauImageDecoder}}
+\doxysubsubsection{\texorpdfstring{mTauCoreResWidth}{mTauCoreResWidth}}
+{\footnotesize\ttfamily unsigned int Tau\+Image\+Decoder\+::m\+Tau\+Core\+Res\+Width\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{tauimagedecoder_8h}{tauimagedecoder.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{tauimagedecoder_8cpp}{tauimagedecoder.\+cpp}}\end{DoxyCompactItemize}

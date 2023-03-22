@@ -1,0 +1,70 @@
+\label{index_md_Software_Overview}%
+\Hypertarget{index_md_Software_Overview}%
+This document describes the main components of PROVE Pathfinder\textquotesingle{}s flight software and how they work together. It firstly describes the hardware platform, OS and library dependencies then the custom python code written for the mission.\hypertarget{index_autotoc_md19}{}\doxysection{Beagle\+Bone Black And Debian OS}\label{index_autotoc_md19}
+The Beagle\+Bone Black is a single board computer, running an Arm Cortex-\/\+A8 CPU and 4GB emmc memory. An SD card and as yet unselected \char`\"{}reliable\char`\"{} redundant memory device will be used as mass storage for images and log files. Debian Linux has been selected as the systems OS, as this has wide support, specifically with the Beagle\+Bone Black, and a large range of easily accessible packages. The operating system is flashed onto the onboard emmc storage device on the Beagle\+Bone Black\hypertarget{index_autotoc_md20}{}\doxysection{Libraries}\label{index_autotoc_md20}
+The major libraries used by the flight software, besides several general python libraries, are the three camera libraries, used when communicating with the camera hardware. The three libraries are\+:
+\begin{DoxyItemize}
+\item flirpy\+: used to communicate with the \mbox{\hyperlink{class_tau}{Tau}} II thermal infrared camera
+\item pypylon\+: used to communicate with the Basler high resolution camera
+\item arducam-\/bbb\+: used to communicate with the wide field of view Ardu\+Cam
+\end{DoxyItemize}\hypertarget{index_autotoc_md21}{}\doxysection{Custom Python Services And Applications}\label{index_autotoc_md21}
+In order to achieve the mission a set of services and applications have been written in python. These allow the system to follow the mission timeline and perform functions. The primary components of this layer are\+:
+\begin{DoxyItemize}
+\item Scheduler Service\+: handles timing control and executes tasks according to mission logic
+\item Bus Service\+: handles communication with the spacecraft bus
+\item Task Applications\+: The various tasks to be performed by the software, for example taking \mbox{\hyperlink{class_tau}{Tau}} II images
+\item Shared Package\+: Provides the rest of the codebase with common functions and classes
+\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysubsection{Overview Diagram}\label{index_autotoc_md22}
+The figure below shows roughly how the python components link with each other (Bus service not yet implemented) \hypertarget{index_autotoc_md23}{}\doxysubsection{Repository File Tree}\label{index_autotoc_md23}
+The file structure of the repo and how it should be deployed on the Beagle\+Bone is described below\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{│   requirements.txt}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───docs}
+\DoxyCodeLine{│       beaglebone-\/black.dtb}
+\DoxyCodeLine{│       beaglebone\_black.dts}
+\DoxyCodeLine{│       conf.py}
+\DoxyCodeLine{│       Makefile}
+\DoxyCodeLine{│       SoftwareoverviewV1\_postKubos.png}
+\DoxyCodeLine{│       Software\_Overview.md}
+\DoxyCodeLine{│}
+\DoxyCodeLine{└───PROVE-\/Pathfinder *** THIS DIRECTORY IS DEPLOYED ON THE BEAGLEBONE***}
+\DoxyCodeLine{    ├───Scheduler}
+\DoxyCodeLine{    │       config.json}
+\DoxyCodeLine{    │       scheduler.py}
+\DoxyCodeLine{    │       tasks.json}
+\DoxyCodeLine{    │}
+\DoxyCodeLine{    ├───shared}
+\DoxyCodeLine{    │       config.py}
+\DoxyCodeLine{    │       logging.py}
+\DoxyCodeLine{    │       tasks.py}
+\DoxyCodeLine{    │       \_\_init\_\_.py}
+\DoxyCodeLine{    │}
+\DoxyCodeLine{    ├───Tasks}
+\DoxyCodeLine{    │   ├───arducam}
+\DoxyCodeLine{    │   │   │   arducam.py}
+\DoxyCodeLine{    │   │   │}
+\DoxyCodeLine{    │   │   ├───libs}
+\DoxyCodeLine{    │   │       │   system\_memory.c}
+\DoxyCodeLine{    │   │       │}
+\DoxyCodeLine{    │   │       └───arducam-\/bbb}
+\DoxyCodeLine{    │   │}
+\DoxyCodeLine{    │   ├───basler}
+\DoxyCodeLine{    │   │       basler.py}
+\DoxyCodeLine{    │   │}
+\DoxyCodeLine{    │   ├───tau2}
+\DoxyCodeLine{    │   │       tau.py}
+\DoxyCodeLine{    │   │}
+\DoxyCodeLine{    │   └───Transfer-\/to-\/storage}
+\DoxyCodeLine{    │           transfer\_images\_SD.py}
+\DoxyCodeLine{    │}
+\DoxyCodeLine{    └───tests}
+\DoxyCodeLine{            context.py}
+\DoxyCodeLine{            test\_arducam.py}
+\DoxyCodeLine{            test\_basler.py}
+\DoxyCodeLine{            test\_general.py}
+\DoxyCodeLine{            test\_tau2.py}
+\DoxyCodeLine{            \_\_init\_\_.py}
+
+\end{DoxyCode}
+ TODO\+: add installation process 

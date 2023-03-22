@@ -1,0 +1,175 @@
+\hypertarget{thermalgrabber_8h_source}{}\doxysection{thermalgrabber.\+h}
+\label{thermalgrabber_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/inc/thermalgrabber.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/inc/thermalgrabber.h}}
+\mbox{\hyperlink{thermalgrabber_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef THERMALGRABBER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define THERMALGRABBER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define LOG}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_interface}{TauInterface}};}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_raw_bitmap_a8aeb0004857e5c54aed84be8497ccbfc}{width}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_raw_bitmap_a407f1ea86d9cebc18bb04ef408b00c48}{height}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_raw_bitmap_a31457015bddab4c33ae069954e9510ec}{min}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{45     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_raw_bitmap_a1f6598c1369bfc55a586a0429aaba873}{max}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_raw_bitmap_a42d419de40ce69b37bf75e9b4ee75cf3}{pps\_timestamp}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}* \mbox{\hyperlink{class_tau_raw_bitmap_a719fa701f57f2ec59e71252cbbeb3ef7}{data}};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{66     \mbox{\hyperlink{class_tau_raw_bitmap_a9a4ba43be435073f0b0150af4f055653}{TauRawBitmap}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} w, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} h);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{72     \mbox{\hyperlink{class_tau_raw_bitmap_a756c2dd514bf5e014199c3d2bee1172b}{\string~TauRawBitmap}}();}
+\DoxyCodeLine{73 \};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{83 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_r_g_b_bitmap}{TauRGBBitmap}}}
+\DoxyCodeLine{84 \{}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{keyword}{public}:}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}{width}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}{height}};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{104     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} * \mbox{\hyperlink{class_tau_r_g_b_bitmap_a42450f62aa9ff80e559abe3176111358}{data}};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{112     \mbox{\hyperlink{class_tau_r_g_b_bitmap_a9724ce7728872da015b03cad6e386055}{TauRGBBitmap}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}{width}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}{height}});}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{115 }
+\DoxyCodeLine{118     \mbox{\hyperlink{class_tau_r_g_b_bitmap_a918b87148738cb604375a33676d4e6cb}{\string~TauRGBBitmap}}();}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{121 }
+\DoxyCodeLine{124     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} * \mbox{\hyperlink{class_tau_r_g_b_bitmap_af98718d7f88fdace4c559c89a1448623}{scanLine}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} line);}
+\DoxyCodeLine{125 \};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{keyword}{enum} \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95e}{TLinearResolution}} \{ \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea24c57acd029e3f96fede49402ea01e6f}{High}}, \mbox{\hyperlink{thermalgrabber_8h_ae0415fb5dfebd430b77021f0b050f95ea7a352a3dd2accc1dd65a4538c3754ee8}{Low}} \};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacethermal__grabber}{thermal\_grabber}} \{}
+\DoxyCodeLine{131 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{GainMode}} \{}
+\DoxyCodeLine{132     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a2789464bf4749993329ac9c5cff16ace}{Automatic}} = 0,}
+\DoxyCodeLine{133     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a310818821e4830aa2247f846d96e8c0c}{LowGain}} = 1,}
+\DoxyCodeLine{134     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a081fc5e8032ec35b4935dfc014036f97}{HighGain}} = 2,}
+\DoxyCodeLine{135     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1a47fb752610be66deef3f63526c2ed834}{Manual}} = 3}
+\DoxyCodeLine{136 \};}
+\DoxyCodeLine{137 \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{140 }
+\DoxyCodeLine{148 \textcolor{keyword}{class }\mbox{\hyperlink{class_thermal_grabber}{ThermalGrabber}}}
+\DoxyCodeLine{149 \{}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{keyword}{public}:}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{154     \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (*\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callbackThermalGrabber}})(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}\& tauRawBitmap, \textcolor{keywordtype}{void}* caller);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{157 }
+\DoxyCodeLine{168     \mbox{\hyperlink{class_thermal_grabber_af6c392005121b8a8a6fd88808688f35b}{ThermalGrabber}}(\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callbackThermalGrabber}} cb, \textcolor{keywordtype}{void}* caller);}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 }
+\DoxyCodeLine{172 }
+\DoxyCodeLine{188     \mbox{\hyperlink{class_thermal_grabber_af6c392005121b8a8a6fd88808688f35b}{ThermalGrabber}}(\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callbackThermalGrabber}} cb, \textcolor{keywordtype}{void}* caller, \textcolor{keywordtype}{char}* iSerialUSB);}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{191 }
+\DoxyCodeLine{195     \mbox{\hyperlink{class_thermal_grabber_a02cc3194b547ce917b41e45d24c4ebf7}{\string~ThermalGrabber}}();}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{198 }
+\DoxyCodeLine{211     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a49d6aa783143bbcf78c9677ce56668e6}{changeWatchdogCount}}(\textcolor{keywordtype}{int} wait\_time);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{214 }
+\DoxyCodeLine{218     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_ab11b23792a8bf0bff463773121ee902c}{convertTauRawBitmapToTauRGBBitmap}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}} \&tauRawBitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{TauRGBBitmap}} \&tauRGBBitmap);}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a6710842cd215f6e7f918bf61b9df54ae}{convertTauRawBitmapToTauRGBBitmapFusion}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}} \&tauRawBitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{TauRGBBitmap}} \&tauRGBBitmap);}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a004b088542d4a02efa187167594b87a6}{convertTauRawBitmapToTauRGBBitmapRainbow}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}} \&tauRawBitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{TauRGBBitmap}} \&tauRGBBitmap);}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{235     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_ac694262d61e78882efd99488a614d7ff}{sendCommand}}(\textcolor{keywordtype}{char} cmd, \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} data\_len);}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{238 }
+\DoxyCodeLine{243     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_thermal_grabber_a4736f8e0ecacb8df8abd36695587ee05}{getResolutionWidth}}();}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{246 }
+\DoxyCodeLine{251     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_thermal_grabber_a01970f4bd5e263afea2c29b012c4ae5d}{getResolutionHeight}}();}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{254 }
+\DoxyCodeLine{260     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_thermal_grabber_a84e19b3121dc9e769cee486c350cacee}{getCameraSerialNumber}}();}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{263 }
+\DoxyCodeLine{271     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_thermal_grabber_a1d17f396a1bfd2fb904c5b0f7d445197}{getCameraPartNumber}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 }
+\DoxyCodeLine{275 }
+\DoxyCodeLine{280     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a12bd03575ff2257106f3f75fba69b016}{doFFC}}();}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{283 }
+\DoxyCodeLine{290     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_afbc511b8f0daa175c2bbe95059a880af}{setGainMode}}(\mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\_grabber::GainMode}} gainMode);}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\_grabber::GainMode}} \mbox{\hyperlink{class_thermal_grabber_aae221648401ed249eaad98b9fee5013d}{getGainMode}}();}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{295 }
+\DoxyCodeLine{300     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_af01cddb1a82246f91337832f84d91147}{enableTLinearHighResolution}}();}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 }
+\DoxyCodeLine{304 }
+\DoxyCodeLine{309     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_ac197e5264283856abfe765c1aece80a9}{enableTlinearLowResolution}}();}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{312 }
+\DoxyCodeLine{315     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a802e09a012a74396f6e5760da7da308f}{disableTLinear}}();}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{318 }
+\DoxyCodeLine{329     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_afc11fdf1c4845ebfeaef722c3df035ff}{enableInternalSyncByTau2CoreSyncOutOn}}();}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{332 }
+\DoxyCodeLine{342     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a548075ba65d926c520865c2aa2a1572e}{enableInternalSyncByTau2CoreSyncOutOff}}();}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{345 }
+\DoxyCodeLine{409     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_a9aec026a9c83a05a2a53b3ddebab3574}{enableInternalSyncByTCGrabberUSB}}(uint32\_t frequency\_parameter, uint32\_t count);}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{412 }
+\DoxyCodeLine{430     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermal_grabber_adb4c719a52869d9e19d12efe308d1c23}{enableExternalSyncAsSlave}}();}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{keyword}{private}:}
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435     \mbox{\hyperlink{class_tau_interface}{TauInterface}}* mTauInterface;}
+\DoxyCodeLine{436 }
+\DoxyCodeLine{437     \textcolor{comment}{// internally used callback definitions}}
+\DoxyCodeLine{438     \textcolor{keyword}{static} \textcolor{keywordtype}{void} static\_callbackTauData(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}\& tauRawBitmap , \textcolor{keywordtype}{void}* caller);}
+\DoxyCodeLine{439     \textcolor{keywordtype}{void} callbackTauData(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}\& tRawBitmap);}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{441     \textcolor{comment}{// internally used reference to callback and calling instance}}
+\DoxyCodeLine{442     \mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callbackThermalGrabber}} mCallbackThermalGrabber;}
+\DoxyCodeLine{443     \textcolor{keywordtype}{void}* mCallingInstance;}
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445     \textcolor{comment}{// internally used helper function for scaling color values.}}
+\DoxyCodeLine{446     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} scale(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} value, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} lowBound, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} upBound , \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} minOutput, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} maxOutput);}
+\DoxyCodeLine{447 \};}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// THERMALGRABBER\_H}}
+
+\end{DoxyCode}

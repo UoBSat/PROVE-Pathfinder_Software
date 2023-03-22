@@ -1,0 +1,145 @@
+This document provides instructions on a setup of Ardu\+CAM (\href{https://www.arducam.com/product/arducam-5mp-plus-spi-cam-arduino-ov5642/}{\texttt{ product link}}), SPI interfacing on the beaglebone black, and image capturing.
+
+For any questions, please contact {\itshape Vilius Stonkus} (\href{mailto:zh19737@bristol.ac.uk}{\texttt{ email}}). \hypertarget{md__ardu_c_a_m__setup_autotoc_md1}{}\doxysection{Prerequisites}\label{md__ardu_c_a_m__setup_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item Ardu\+CAM official library from \href{https://github.com/ArduCAM/BeagleboneBlack}{\texttt{ here}}. We are using modified version of the library which is tailored for our needs.
+\item For compilation and Python bindings, {\ttfamily cmake}, {\ttfamily make} and {\ttfamily Cython} packages are required 
+\end{DoxyEnumerate}\hypertarget{md__ardu_c_a_m__setup_autotoc_md2}{}\doxysection{Camera Connection}\label{md__ardu_c_a_m__setup_autotoc_md2}
+We are using the {\bfseries{SPI0 device}}. On Debian 10.\+3, the pins described below connect to the {\bfseries{spidev0.\+0}} channel.
+
+Connect the Ardu\+CAM to the following SPI pins\+:
+\begin{DoxyItemize}
+\item P9\+\_\+22 =\texorpdfstring{$>$}{>} SPI0\+\_\+\+SCLK
+\item P9\+\_\+18 =\texorpdfstring{$>$}{>} SPI0\+\_\+\+MOSI
+\item P9\+\_\+21 =\texorpdfstring{$>$}{>} SPI0\+\_\+\+MISO
+\item P9\+\_\+17 =\texorpdfstring{$>$}{>} SPI0\+\_\+\+CSO
+\end{DoxyItemize}
+
+The camera is also using the i2c interfacing for sensor communications. On Debian 10.\+3, the {\bfseries{i2c-\/2}} device is used.
+
+Connect the Ardu\+CAM to the following I2C pins\+:
+\begin{DoxyItemize}
+\item P9\+\_\+19 =\texorpdfstring{$>$}{>} I2\+C2\+\_\+\+SCL
+\item P9\+\_\+20 =\texorpdfstring{$>$}{>} I2\+C2\+\_\+\+SDA
+\end{DoxyItemize}
+
+The camera can operate at either 3.\+3V or 5V. \hypertarget{md__ardu_c_a_m__setup_autotoc_md3}{}\doxysection{Enable SPI}\label{md__ardu_c_a_m__setup_autotoc_md3}
+By default, the SPI interface is disabled on the Beagle\+Bone Black. Both SPI devices (0 and 1) have to be enabled manually. We are only using the SPI0 device for camera, so we will only enable this device.
+
+The standard procedure is as follows (based on \href{https://www.element14.com/community/community/designcenter/single-board-computers/next-genbeaglebone/blog/2019/07/28/beaglebone-enable-spi-with-overlay}{\texttt{ this}})\+:
+\begin{DoxyItemize}
+\item Open the u\+Env.\+txt file\+: {\ttfamily sudo nano /boot/u\+Env.txt}
+\item Scroll down to {\ttfamily uboot\+\_\+overlay\+\_\+addr4}, uncomment it (or add a new entry) and include the SPI0 overlay file path\+: {\ttfamily uboot\+\_\+overlay\+\_\+addr4=/lib/firmware/\+BB-\/\+SPIDEV0-\/00\+A0.dtbo}
+\item Reboot your Beaglebone\+: {\ttfamily sudo reboot now}
+\end{DoxyItemize}
+
+The SPI0 interface should now be working. In order to test it, a spidev-\/test repository can be used (\href{https://github.com/derekmolloy/exploringBB/tree/version2/chp08/spi/spidev_test}{\texttt{ repo}})\+:
+\begin{DoxyItemize}
+\item Compile the spidev\+\_\+test.\+c file\+: {\ttfamily gcc spidev\+\_\+test.\+c -\/o spidev\+\_\+test}
+\item Run the spidev\+\_\+test executable\+: {\ttfamily ./spidev\+\_\+test}, or for a specific device\+: {\ttfamily ./spidev\+\_\+test -\/-\/device /dev/spidev0.0}
+\end{DoxyItemize}\hypertarget{md__ardu_c_a_m__setup_autotoc_md4}{}\doxysection{Library Compilation}\label{md__ardu_c_a_m__setup_autotoc_md4}
+A custom Makefile has been created for the library compilation. It should be located at {\ttfamily /home/debian/\+Tasks/arducam} together with all other Ardu\+CAM files.
+
+To compile the library, simply run {\ttfamily make} in the same directory where the Makefile is located.
+
+A shared object file {\ttfamily py\+BBBCAM.\+so} will be generated, which will act as an importable Python module.\hypertarget{md__ardu_c_a_m__setup_autotoc_md5}{}\doxysection{Image Capture}\label{md__ardu_c_a_m__setup_autotoc_md5}
+To start the capturing process, simply run the {\ttfamily \mbox{\hyperlink{arducam_8py}{arducam.\+py}}} file from {\ttfamily /home/debian/\+Tasks/arducam}.
+
+The number of images to be captured is described by a list of timestamps.
+
+This is the standard cmd to start the capturing\+: {\ttfamily sudo python3 \mbox{\hyperlink{arducam_8py}{arducam.\+py}} -\/-\/times \mbox{[}timestamps\mbox{]}}, where {\ttfamily \mbox{[}timestamps\mbox{]}} is a list of unix timestamps separated by single spacings.
+
+E.\+g. {\ttfamily sudo python3 \mbox{\hyperlink{arducam_8py}{arducam.\+py}} -\/-\/times 1627652497 1627652597} will capture 2 images at 2 specific timestamps.\hypertarget{md__ardu_c_a_m__setup_autotoc_md6}{}\doxysection{File Structure}\label{md__ardu_c_a_m__setup_autotoc_md6}
+The standard file structure of {\ttfamily /home/debian/arducam/}. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{├── arducam.py}
+\DoxyCodeLine{├── default\_properties.json}
+\DoxyCodeLine{├── libs}
+\DoxyCodeLine{│   ├── arducam-\/bbb}
+\DoxyCodeLine{│   │   ├── arducam-\/bbb      // Library header files}
+\DoxyCodeLine{│   │   │   ├── BBBCAM.h}
+\DoxyCodeLine{│   │   │   ├── BBBCAM\_OV5642\_DigitalCamera.h}
+\DoxyCodeLine{│   │   │   ├── memorysaver.h}
+\DoxyCodeLine{│   │   │   ├── mt9d111\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov2640\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov3640\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov5642\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov7660\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov7670\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov7675\_regs.h}
+\DoxyCodeLine{│   │   │   ├── ov7725\_regs.h}
+\DoxyCodeLine{│   │   │   └── UTFT\_SPI.h}
+\DoxyCodeLine{│   │   ├── build            // Library build files generated with cmake}
+\DoxyCodeLine{│   │   │   ├── CMakeCache.txt}
+\DoxyCodeLine{│   │   │   ├── CMakeFiles}
+\DoxyCodeLine{│   │   │   │   ├── 3.13.4}
+\DoxyCodeLine{│   │   │   │   │   ├── CMakeCCompiler.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── CMakeCXXCompiler.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── CMakeDetermineCompilerABI\_C.bin}
+\DoxyCodeLine{│   │   │   │   │   ├── CMakeDetermineCompilerABI\_CXX.bin}
+\DoxyCodeLine{│   │   │   │   │   ├── CMakeSystem.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── CompilerIdC}
+\DoxyCodeLine{│   │   │   │   │   │   ├── a.out}
+\DoxyCodeLine{│   │   │   │   │   │   ├── CMakeCCompilerId.c}
+\DoxyCodeLine{│   │   │   │   │   │   └── tmp}
+\DoxyCodeLine{│   │   │   │   │   └── CompilerIdCXX}
+\DoxyCodeLine{│   │   │   │   │       ├── a.out}
+\DoxyCodeLine{│   │   │   │   │       ├── CMakeCXXCompilerId.cpp}
+\DoxyCodeLine{│   │   │   │   │       └── tmp}
+\DoxyCodeLine{│   │   │   │   ├── arducam-\/bbb.dir}
+\DoxyCodeLine{│   │   │   │   │   ├── build.make}
+\DoxyCodeLine{│   │   │   │   │   ├── C.includecache}
+\DoxyCodeLine{│   │   │   │   │   ├── cmake\_clean.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── cmake\_clean\_target.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── DependInfo.cmake}
+\DoxyCodeLine{│   │   │   │   │   ├── depend.internal}
+\DoxyCodeLine{│   │   │   │   │   ├── depend.make}
+\DoxyCodeLine{│   │   │   │   │   ├── flags.make}
+\DoxyCodeLine{│   │   │   │   │   ├── link.txt}
+\DoxyCodeLine{│   │   │   │   │   ├── progress.make}
+\DoxyCodeLine{│   │   │   │   │   └── source}
+\DoxyCodeLine{│   │   │   │   │       ├── BBBCAM.c.o}
+\DoxyCodeLine{│   │   │   │   │       ├── BBBCAM\_OV5642\_DigitalCamera.c.o}
+\DoxyCodeLine{│   │   │   │   │       └── UTFT\_SPI.c.o}
+\DoxyCodeLine{│   │   │   │   ├── cmake.check\_cache}
+\DoxyCodeLine{│   │   │   │   ├── CMakeDirectoryInformation.cmake}
+\DoxyCodeLine{│   │   │   │   ├── CMakeOutput.log}
+\DoxyCodeLine{│   │   │   │   ├── CMakeTmp}
+\DoxyCodeLine{│   │   │   │   ├── feature\_tests.bin}
+\DoxyCodeLine{│   │   │   │   ├── feature\_tests.c}
+\DoxyCodeLine{│   │   │   │   ├── feature\_tests.cxx}
+\DoxyCodeLine{│   │   │   │   ├── Makefile2}
+\DoxyCodeLine{│   │   │   │   ├── Makefile.cmake}
+\DoxyCodeLine{│   │   │   │   ├── progress.marks}
+\DoxyCodeLine{│   │   │   │   └── TargetDirectories.txt}
+\DoxyCodeLine{│   │   │   ├── cmake\_install.cmake}
+\DoxyCodeLine{│   │   │   ├── libarducam-\/bbb.a}
+\DoxyCodeLine{│   │   │   └── Makefile}
+\DoxyCodeLine{│   │   ├── CMakeLists.txt}
+\DoxyCodeLine{│   │   └── source           // Library source files}
+\DoxyCodeLine{│   │       ├── BBBCAM.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV2640\_DigitalCamera.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV2640\_Playback.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV3640\_Playback.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV5642\_DigitalCamera.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV5642\_Playback.c}
+\DoxyCodeLine{│   │       ├── BBBCAM\_OV7670\_Playback.c}
+\DoxyCodeLine{│   │       ├── DefaultFonts\_SPI.c}
+\DoxyCodeLine{│   │       └── UTFT\_SPI.c}
+\DoxyCodeLine{│   └── system\_memory.c      // CPU and RAM consumption}
+\DoxyCodeLine{├── Makefile                 // Custom Makefile for library compilation}
+\DoxyCodeLine{├── notes}
+\DoxyCodeLine{│   └── configuration properties.txt}
+\DoxyCodeLine{├── pyBBBCAM.pyc}
+\DoxyCodeLine{├── pyBBBCAM.pyx             // Python bindings for C functions, using Cython wrapper}
+\DoxyCodeLine{├── pyBBBCAM.so              // Shared object file. Acts as a Python module}
+\DoxyCodeLine{├── README.md}
+\DoxyCodeLine{├── setup.py                 // Setup file for Cython wrapper}
+\DoxyCodeLine{└── spi\_test                 // SPI testing using Python and C}
+\DoxyCodeLine{    ├── spidev\_test}
+\DoxyCodeLine{    ├── spidev\_test.c}
+\DoxyCodeLine{    └── spitest.py}
+
+\end{DoxyCode}
+ 

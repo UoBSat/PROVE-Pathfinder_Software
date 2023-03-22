@@ -1,0 +1,61 @@
+\hypertarget{crc_8cpp}{}\doxysection{C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/crc.cpp File Reference}
+\label{crc_8cpp}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/crc.cpp@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/crc.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crc_8cpp_a35c6d66fdfd232ea12497abaeddaacab}{poly}}~0x1021
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{crc_8cpp_a2bfdc672afe5e237498ea1b0a66e68b7}{update\+\_\+good\+\_\+crc}} (unsigned short ch)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{crc_8cpp_a858b759334b813d45916fe6c08a8734c}{augment\+\_\+message\+\_\+for\+\_\+good\+\_\+crc}} ()
+\item 
+unsigned short \mbox{\hyperlink{crc_8cpp_a4cb6df4ef9dfd66d6a9e0e4bf6fae4f9}{calc\+\_\+crc}} (unsigned char $\ast$data, int len)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \mbox{\hyperlink{crc_8cpp_a8985fd2a7e1fe248e1f39eac58426089}{good\+\_\+crc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crc_8cpp_a35c6d66fdfd232ea12497abaeddaacab}\label{crc_8cpp_a35c6d66fdfd232ea12497abaeddaacab}} 
+\index{crc.cpp@{crc.cpp}!poly@{poly}}
+\index{poly@{poly}!crc.cpp@{crc.cpp}}
+\doxysubsubsection{\texorpdfstring{poly}{poly}}
+{\footnotesize\ttfamily \#define poly~0x1021}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crc_8cpp_a858b759334b813d45916fe6c08a8734c}\label{crc_8cpp_a858b759334b813d45916fe6c08a8734c}} 
+\index{crc.cpp@{crc.cpp}!augment\_message\_for\_good\_crc@{augment\_message\_for\_good\_crc}}
+\index{augment\_message\_for\_good\_crc@{augment\_message\_for\_good\_crc}!crc.cpp@{crc.cpp}}
+\doxysubsubsection{\texorpdfstring{augment\_message\_for\_good\_crc()}{augment\_message\_for\_good\_crc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} augment\+\_\+message\+\_\+for\+\_\+good\+\_\+crc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crc_8cpp_a4cb6df4ef9dfd66d6a9e0e4bf6fae4f9}\label{crc_8cpp_a4cb6df4ef9dfd66d6a9e0e4bf6fae4f9}} 
+\index{crc.cpp@{crc.cpp}!calc\_crc@{calc\_crc}}
+\index{calc\_crc@{calc\_crc}!crc.cpp@{crc.cpp}}
+\doxysubsubsection{\texorpdfstring{calc\_crc()}{calc\_crc()}}
+{\footnotesize\ttfamily unsigned short calc\+\_\+crc (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{data,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crc_8cpp_a2bfdc672afe5e237498ea1b0a66e68b7}\label{crc_8cpp_a2bfdc672afe5e237498ea1b0a66e68b7}} 
+\index{crc.cpp@{crc.cpp}!update\_good\_crc@{update\_good\_crc}}
+\index{update\_good\_crc@{update\_good\_crc}!crc.cpp@{crc.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_good\_crc()}{update\_good\_crc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} update\+\_\+good\+\_\+crc (\begin{DoxyParamCaption}\item[{unsigned short}]{ch }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{crc_8cpp_a8985fd2a7e1fe248e1f39eac58426089}\label{crc_8cpp_a8985fd2a7e1fe248e1f39eac58426089}} 
+\index{crc.cpp@{crc.cpp}!good\_crc@{good\_crc}}
+\index{good\_crc@{good\_crc}!crc.cpp@{crc.cpp}}
+\doxysubsubsection{\texorpdfstring{good\_crc}{good\_crc}}
+{\footnotesize\ttfamily unsigned short good\+\_\+crc}
+

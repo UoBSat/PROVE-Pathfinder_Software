@@ -1,0 +1,125 @@
+\hypertarget{struct_thermo_grabber_private}{}\doxysection{Thermo\+Grabber\+Private Struct Reference}
+\label{struct_thermo_grabber_private}\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} \mbox{\hyperlink{struct_thermo_grabber_private_afedea29cc10f915a239a59792ce3f2ce}{dev}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_ac2a17b6b812ac9b883cf8ca4d1adda29}{stop}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a65c9d603c73a2c8b331d2bb74279902d}{stopped}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a2f99fcfb25914a1c8165645fb8ea8eac}{byte\+\_\+count}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_abfb81354e4706f93353b2e7c3be14502}{parser\+\_\+state}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a86d4dc46535f4e09061df12449e58208}{bytecount}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a4744197ce82ade5481cc080d205371f5}{linecount}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a084b99ab81466f10f8767f8aa3fd6180}{size}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a354acd9251658963d14a5b9d771a59f5}{frames}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a378af8f621e162967a3c4cd84ed4bd27}{uart\+\_\+in\+\_\+size}}
+\item 
+int \mbox{\hyperlink{struct_thermo_grabber_private_a57dee62e6c8cd38e7db14fa188c0905f}{uart\+\_\+in\+\_\+counter}}
+\item 
+unsigned char \mbox{\hyperlink{struct_thermo_grabber_private_a0db86922328754691e2195f2e72aa94c}{uart\+\_\+in\+\_\+buffer}} \mbox{[}256\mbox{]}
+\item 
+struct timespec \mbox{\hyperlink{struct_thermo_grabber_private_a61fec74a42afb2898c8143c4106fadf6}{starttime}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{struct_thermo_grabber_private_ae9357de816601dcbceee6eb8bcda7bd3}{framebuffer}} \mbox{[}\mbox{\hyperlink{thermograbber_8cpp_a74781479781a2631a1ec3bef2b7ae95d}{MAX\+\_\+\+FRAME\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_thermo_grabber_private_a2f99fcfb25914a1c8165645fb8ea8eac}\label{struct_thermo_grabber_private_a2f99fcfb25914a1c8165645fb8ea8eac}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!byte\_count@{byte\_count}}
+\index{byte\_count@{byte\_count}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{byte\_count}{byte\_count}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::byte\+\_\+count}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a86d4dc46535f4e09061df12449e58208}\label{struct_thermo_grabber_private_a86d4dc46535f4e09061df12449e58208}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!bytecount@{bytecount}}
+\index{bytecount@{bytecount}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{bytecount}{bytecount}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::bytecount}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_afedea29cc10f915a239a59792ce3f2ce}\label{struct_thermo_grabber_private_afedea29cc10f915a239a59792ce3f2ce}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!dev@{dev}}
+\index{dev@{dev}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{dev}{dev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} Thermo\+Grabber\+Private\+::dev}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_ae9357de816601dcbceee6eb8bcda7bd3}\label{struct_thermo_grabber_private_ae9357de816601dcbceee6eb8bcda7bd3}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!framebuffer@{framebuffer}}
+\index{framebuffer@{framebuffer}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{framebuffer}{framebuffer}}
+{\footnotesize\ttfamily uint16\+\_\+t Thermo\+Grabber\+Private\+::framebuffer\mbox{[}\mbox{\hyperlink{thermograbber_8cpp_a74781479781a2631a1ec3bef2b7ae95d}{MAX\+\_\+\+FRAME\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a354acd9251658963d14a5b9d771a59f5}\label{struct_thermo_grabber_private_a354acd9251658963d14a5b9d771a59f5}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!frames@{frames}}
+\index{frames@{frames}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{frames}{frames}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::frames}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a4744197ce82ade5481cc080d205371f5}\label{struct_thermo_grabber_private_a4744197ce82ade5481cc080d205371f5}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!linecount@{linecount}}
+\index{linecount@{linecount}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{linecount}{linecount}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::linecount}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_abfb81354e4706f93353b2e7c3be14502}\label{struct_thermo_grabber_private_abfb81354e4706f93353b2e7c3be14502}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!parser\_state@{parser\_state}}
+\index{parser\_state@{parser\_state}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{parser\_state}{parser\_state}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::parser\+\_\+state}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a084b99ab81466f10f8767f8aa3fd6180}\label{struct_thermo_grabber_private_a084b99ab81466f10f8767f8aa3fd6180}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!size@{size}}
+\index{size@{size}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::size}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a61fec74a42afb2898c8143c4106fadf6}\label{struct_thermo_grabber_private_a61fec74a42afb2898c8143c4106fadf6}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!starttime@{starttime}}
+\index{starttime@{starttime}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{starttime}{starttime}}
+{\footnotesize\ttfamily struct timespec Thermo\+Grabber\+Private\+::starttime}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_ac2a17b6b812ac9b883cf8ca4d1adda29}\label{struct_thermo_grabber_private_ac2a17b6b812ac9b883cf8ca4d1adda29}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!stop@{stop}}
+\index{stop@{stop}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{stop}{stop}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::stop}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a65c9d603c73a2c8b331d2bb74279902d}\label{struct_thermo_grabber_private_a65c9d603c73a2c8b331d2bb74279902d}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!stopped@{stopped}}
+\index{stopped@{stopped}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{stopped}{stopped}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::stopped}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a0db86922328754691e2195f2e72aa94c}\label{struct_thermo_grabber_private_a0db86922328754691e2195f2e72aa94c}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!uart\_in\_buffer@{uart\_in\_buffer}}
+\index{uart\_in\_buffer@{uart\_in\_buffer}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{uart\_in\_buffer}{uart\_in\_buffer}}
+{\footnotesize\ttfamily unsigned char Thermo\+Grabber\+Private\+::uart\+\_\+in\+\_\+buffer\mbox{[}256\mbox{]}}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a57dee62e6c8cd38e7db14fa188c0905f}\label{struct_thermo_grabber_private_a57dee62e6c8cd38e7db14fa188c0905f}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!uart\_in\_counter@{uart\_in\_counter}}
+\index{uart\_in\_counter@{uart\_in\_counter}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{uart\_in\_counter}{uart\_in\_counter}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::uart\+\_\+in\+\_\+counter}
+
+\mbox{\Hypertarget{struct_thermo_grabber_private_a378af8f621e162967a3c4cd84ed4bd27}\label{struct_thermo_grabber_private_a378af8f621e162967a3c4cd84ed4bd27}} 
+\index{ThermoGrabberPrivate@{ThermoGrabberPrivate}!uart\_in\_size@{uart\_in\_size}}
+\index{uart\_in\_size@{uart\_in\_size}!ThermoGrabberPrivate@{ThermoGrabberPrivate}}
+\doxysubsubsection{\texorpdfstring{uart\_in\_size}{uart\_in\_size}}
+{\footnotesize\ttfamily int Thermo\+Grabber\+Private\+::uart\+\_\+in\+\_\+size}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{thermograbber_8cpp}{thermograbber.\+cpp}}\end{DoxyCompactItemize}

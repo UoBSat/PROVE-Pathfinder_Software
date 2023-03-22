@@ -1,0 +1,99 @@
+\hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service}{}\doxysection{Flight-\/\+Software.telemetry-\/service.telemetry-\/service Namespace Reference}
+\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service}\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_ac82d8a943f560b2e001875928d66d26f}{log\+\_\+sensor}} (sensor\+Name, pin\+ID, list thresholds, logger)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_aadb858165b5979aa92e0e75c90886ea5}{mitigation\+\_\+actions}} (t\+\_\+\+TEMP, b\+\_\+\+TEMP, a\+\_\+\+TEMP, cpu\+\_\+\+TEMP, t\+\_\+\+CUR, b\+\_\+\+CUR, a\+\_\+\+CUR, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config, logger)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a417dc2aaa1baee05963ccdd61986cb84}{temp\+\_\+conversion}} (pinvalue)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a0e2f684a2b941e0a3a21aa4a5de33548}{curr\+\_\+conversion}} (pinvalue)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a5b65a5ba7883adc4f37d6dbeee467485}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a0e2f684a2b941e0a3a21aa4a5de33548}\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a0e2f684a2b941e0a3a21aa4a5de33548}} 
+\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}!curr\_conversion@{curr\_conversion}}
+\index{curr\_conversion@{curr\_conversion}!Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsubsection{\texorpdfstring{curr\_conversion()}{curr\_conversion()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+telemetry-\/service.\+telemetry-\/service.\+curr\+\_\+conversion (\begin{DoxyParamCaption}\item[{}]{pinvalue }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    converts the raw pin reading to a physical current sensor value
+
+    Parameters:
+        pinvalue (string) - raw pin value from sensor
+
+    Returns:
+        sensorValue (float) - current sensor reading, NaN if no reading successfully read\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_ac82d8a943f560b2e001875928d66d26f}\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_ac82d8a943f560b2e001875928d66d26f}} 
+\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}!log\_sensor@{log\_sensor}}
+\index{log\_sensor@{log\_sensor}!Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsubsection{\texorpdfstring{log\_sensor()}{log\_sensor()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+telemetry-\/service.\+telemetry-\/service.\+log\+\_\+sensor (\begin{DoxyParamCaption}\item[{}]{sensor\+Name,  }\item[{}]{pin\+ID,  }\item[{list}]{thresholds,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Writes the current value of a specified sensor and logs it with a level according to the config thresholds
+
+    Parameters:
+        sensorName (string) - Name of sensor to use when writing the log
+        pinID (string) - ID of pin to read sensor signal from
+        thresholds (list) - list of logger level thresholds to apply to the sensor reading: thresholds[0] is the
+        warning threshold, thresholds[1] is the error threshold
+        logger (object): Object containing information on how to write logs
+
+    Returns:
+        sensorValue (float) - sensor reading, NaN if no reading sucessfully read
+        pinValue (float) - raw pin reading, NaN if no reading sucessfully read
+        logflag (float) - number related to log level following standard practise: 20  is info level, 30  is warning
+        level, 40  is error level, 0 if no reading sucessfully read\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a5b65a5ba7883adc4f37d6dbeee467485}\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a5b65a5ba7883adc4f37d6dbeee467485}} 
+\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}!main@{main}}
+\index{main@{main}!Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+telemetry-\/service.\+telemetry-\/service.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Main code for the Telemetry service.
+Steps:
+    setup logger and ADC
+    while loop
+        log sensor readings
+        take corrective action if nessecary
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_aadb858165b5979aa92e0e75c90886ea5}\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_aadb858165b5979aa92e0e75c90886ea5}} 
+\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}!mitigation\_actions@{mitigation\_actions}}
+\index{mitigation\_actions@{mitigation\_actions}!Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsubsection{\texorpdfstring{mitigation\_actions()}{mitigation\_actions()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+telemetry-\/service.\+telemetry-\/service.\+mitigation\+\_\+actions (\begin{DoxyParamCaption}\item[{}]{t\+\_\+\+TEMP,  }\item[{}]{b\+\_\+\+TEMP,  }\item[{}]{a\+\_\+\+TEMP,  }\item[{}]{cpu\+\_\+\+TEMP,  }\item[{}]{t\+\_\+\+CUR,  }\item[{}]{b\+\_\+\+CUR,  }\item[{}]{a\+\_\+\+CUR,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    If any sensor readings are above error thresholds, take some corrective action, generally enter safe mode
+    Parameters:
+        t_TEMP (list) : tau temperature and related data
+        b_TEMP (list) : baslertemperature and related data
+        a_TEMP (list) : tau lens temperature and related data
+        cpu_TEMP (list) : cpu temperature and related data
+        t_CUR (list) : tau current and related data
+        b_CUR (list) : basler current and related data
+        a_CUR  (list) : unassigned current and related data
+        config (object): Object containing scheduler configuration
+        logger (object): Object containing information on how to write logs
+
+    Returns
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a417dc2aaa1baee05963ccdd61986cb84}\label{namespace_flight-_software_1_1telemetry-service_1_1telemetry-service_a417dc2aaa1baee05963ccdd61986cb84}} 
+\index{Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}!temp\_conversion@{temp\_conversion}}
+\index{temp\_conversion@{temp\_conversion}!Flight-\/Software.telemetry-\/service.telemetry-\/service@{Flight-\/Software.telemetry-\/service.telemetry-\/service}}
+\doxysubsubsection{\texorpdfstring{temp\_conversion()}{temp\_conversion()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+telemetry-\/service.\+telemetry-\/service.\+temp\+\_\+conversion (\begin{DoxyParamCaption}\item[{}]{pinvalue }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    converts the raw pin reading to a physical temp sensor value
+
+    Parameters:
+        pinvalue (string) - raw pin value from sensor
+
+    Returns:
+        sensorValue (float) - temp sensor reading, NaN if no reading successfully read\end{DoxyVerb}
+ 

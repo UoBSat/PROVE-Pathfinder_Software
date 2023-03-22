@@ -1,0 +1,169 @@
+\hypertarget{fastftdi_8h_source}{}\doxysection{fastftdi.\+h}
+\label{fastftdi_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/fastftdi.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/fastftdi.h}}
+\mbox{\hyperlink{fastftdi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * fastftdi.h -\/ A minimal FTDI FT232H interface for Linux which supports}}
+\DoxyCodeLine{3 \textcolor{comment}{ *              bit-\/bang mode, but focuses on very high-\/performance support}}
+\DoxyCodeLine{4 \textcolor{comment}{ *              for synchronous FIFO mode.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Copyright (C) 2009 Micah Elizabeth Scott}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a copy}}
+\DoxyCodeLine{9 \textcolor{comment}{ * of this software and associated documentation files (the "{}Software"{}), to deal}}
+\DoxyCodeLine{10 \textcolor{comment}{ * in the Software without restriction, including without limitation the rights}}
+\DoxyCodeLine{11 \textcolor{comment}{ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell}}
+\DoxyCodeLine{12 \textcolor{comment}{ * copies of the Software, and to permit persons to whom the Software is}}
+\DoxyCodeLine{13 \textcolor{comment}{ * furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included in}}
+\DoxyCodeLine{16 \textcolor{comment}{ * all copies or substantial portions of the Software.}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,}}
+\DoxyCodeLine{20 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER}}
+\DoxyCodeLine{22 \textcolor{comment}{ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,}}
+\DoxyCodeLine{23 \textcolor{comment}{ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN}}
+\DoxyCodeLine{24 \textcolor{comment}{ * THE SOFTWARE.}}
+\DoxyCodeLine{25 \textcolor{comment}{ */}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifndef \_\_FASTFTDI\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define \_\_FASTFTDI\_H}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef USE\_FTDI}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{    \#include <\mbox{\hyperlink{ftd2xx_8h}{ftd2xx.h}}>}}
+\DoxyCodeLine{34     \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int8   uint8\_t;}
+\DoxyCodeLine{35     \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int16  uint16\_t;}
+\DoxyCodeLine{36     \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int32  uint32\_t;}
+\DoxyCodeLine{37 \textcolor{preprocessor}{    \#if defined(interface)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{        \#undef interface}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{    \#include <time.h>}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{    \#include <\mbox{\hyperlink{libusb_8h}{libusb.h}}>}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{49     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ae488c060a0708cb491f05c9c9f64a7f2}{FTDI\_BITMODE\_RESET}}        = 0,}
+\DoxyCodeLine{50     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ade79bdc048b8d14ef02ae693cfd7ffca}{FTDI\_BITMODE\_BITBANG}}      = 1 << 0,}
+\DoxyCodeLine{51     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a654f491851aaaec8ea5074aebc529eab}{FTDI\_BITMODE\_MPSSE}}        = 1 << 1,}
+\DoxyCodeLine{52     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360acdc461fd49656ce744acd1f9d5409e04}{FTDI\_BITMODE\_SYNC\_BITBANG}} = 1 << 2,}
+\DoxyCodeLine{53     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a8f621e930a91989b6458f1c7ea49a6ae}{FTDI\_BITMODE\_MCU}}          = 1 << 3,}
+\DoxyCodeLine{54     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ac364a03daa28b416b651b92e53fd2084}{FTDI\_BITMODE\_OPTO}}         = 1 << 4,}
+\DoxyCodeLine{55     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ad670c271a15825e666ae490419c5671c}{FTDI\_BITMODE\_CBUS}}         = 1 << 5,}
+\DoxyCodeLine{56     \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ab679c13384937615dcc86393a1bfe977}{FTDI\_BITMODE\_SYNC\_FIFO}}    = 1 << 6,}
+\DoxyCodeLine{57 \} \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{60     \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a4ae35f4cc5b4f2239d8ee1a1b90da7a1}{FTDI\_MPSSE\_SETLOW}}  = 0x80,}
+\DoxyCodeLine{61     \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162afe1d7894698243b555830ac50885148e}{FTDI\_MPSSE\_SETHIGH}} = 0x82,}
+\DoxyCodeLine{62     \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a8cb5bc372b095bde4918bcc500003d76}{FTDI\_MPSSE\_GETLOW}}  = 0x81,}
+\DoxyCodeLine{63     \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a61e79b1bb895c760d634ce57d3d907c0}{FTDI\_MPSSE\_GETHIGH}} = 0x83,}
+\DoxyCodeLine{64     \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162acfc4814626b69970febdb9c9c2b0715c}{FTDI\_MPSSE\_SETDIVISOR}} = 0x86,}
+\DoxyCodeLine{65 \} \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162}{FTDIMPSSEOpcode}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{68     \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a5ccfbb3dcd7dbfd4cd795f166b0bf2d3}{FTDI\_INTERFACE\_A}} = 1,}
+\DoxyCodeLine{69     \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a045a2f7862087881679fa6fbc3210fe3}{FTDI\_INTERFACE\_B}} = 2,}
+\DoxyCodeLine{70 \} \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{  \#ifdef USE\_FTDI}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} handle;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{  \#else}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *\mbox{\hyperlink{struct_f_t_d_i_device_ada1c5d6bb84de310c72b02e0fdee55f8}{libusb}};}
+\DoxyCodeLine{81     \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *\mbox{\hyperlink{struct_f_t_d_i_device_ab637ca20dc6a77fe2384a4bef09374a6}{handle}};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \} \mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{88     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{89         uint64\_t       \mbox{\hyperlink{struct_f_t_d_i_progress_info_af76a315f135d0d87fbe9f55d324f657e}{totalBytes}};}
+\DoxyCodeLine{90         \textcolor{keyword}{struct }timeval time;}
+\DoxyCodeLine{91     \} first, prev, current;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_f_t_d_i_progress_info_a95057afd13aaa69e72e14dd00c810e9d}{totalTime}};}
+\DoxyCodeLine{94     \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_f_t_d_i_progress_info_a93d286aab4f3eb6ebe74607e4ff7ffb2}{totalRate}};}
+\DoxyCodeLine{95     \textcolor{keywordtype}{double} \mbox{\hyperlink{struct_f_t_d_i_progress_info_a9bd1dfc76038bd295a1b470150c6a4a7}{currentRate}};}
+\DoxyCodeLine{96 \} \mbox{\hyperlink{struct_f_t_d_i_progress_info}{FTDIProgressInfo}};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define FTDI\_VENDOR               0x0403}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define FTDI\_PRODUCT\_FT2232H      0x6010}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{//\#define FTDI\_DESCRIPTION "{}USB <-\/> TAU A"{}}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define FTDI\_DESCRIPTION "{}USB <-\/> FLIR TAU A"{}}}
+\DoxyCodeLine{105 \textcolor{comment}{//\#define FTDI\_DESCRIPTION "{}USB <-\/> TAU2 A"{}}}
+\DoxyCodeLine{106 \textcolor{comment}{//\#define FTDI\_DESCRIPTION "{}USB <-\/> TAU"{}}}
+\DoxyCodeLine{107 \textcolor{comment}{//\#define FTDI\_DESCRIPTION "{}USB <-\/> TAU2"{}}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{comment}{//\#define OV\_VENDOR                 0x1d50}}
+\DoxyCodeLine{110 \textcolor{comment}{//\#define OV\_PRODUCT                0x607c // FIXME}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define FTDI\_COMMAND\_TIMEOUT      1000}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define FTDI\_SET\_BAUD\_REQUEST     0x03}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define FTDI\_SET\_BITMODE\_REQUEST  0x0B}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define FTDI\_EP\_IN(i)             (0x81 + (i-\/1)*2)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define FTDI\_EP\_OUT(i)            (0x02 + (i-\/1)*2)}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define FTDI\_PACKET\_SIZE          512   }\textcolor{comment}{// Specific to FT2232H}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define FTDI\_LOG\_PACKET\_SIZE      9     }\textcolor{comment}{// 512 == 1 << 9}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define FTDI\_HEADER\_SIZE          2}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{keyword}{typedef} int (\mbox{\hyperlink{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}{FTDIStreamCallback}})(uint8\_t *buffer, \textcolor{keywordtype}{int} length,}
+\DoxyCodeLine{125                                  \mbox{\hyperlink{struct_f_t_d_i_progress_info}{FTDIProgressInfo}} *progress, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{/*}}
+\DoxyCodeLine{128 \textcolor{comment}{ * Public Functions}}
+\DoxyCodeLine{129 \textcolor{comment}{ */}}
+\DoxyCodeLine{130 \textcolor{keywordtype}{void} \mbox{\hyperlink{fastftdi_8h_ab25285a53118b4726af0b2aec3c7054d}{FTDI\_PrintDeviceList}}();}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_a5f965b3a4098d9a9d980a3d7723f1586}{FTDIDevice\_Open}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \textcolor{keywordtype}{char}* iSerialUSB);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{keywordtype}{void} \mbox{\hyperlink{fastftdi_8h_a5594e4f73d5361c522ea28a4e07aa237}{FTDIDevice\_Close}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev);}
+\DoxyCodeLine{135 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_abf480be5e721afc9e450d703096dccbe}{FTDIDevice\_Reset}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_ace833527bc86b7a8bf8c074567c6e1f4}{FTDIDevice\_SetMode}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{138                        \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}} mode, uint8\_t pinDirections,}
+\DoxyCodeLine{139                        \textcolor{keywordtype}{int} baudRate);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_a212f7fe50e70661584ffab15016c4dd9}{FTDIDevice\_Write}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{142                      uint8\_t *data, \textcolor{keywordtype}{size\_t} length, \textcolor{keywordtype}{bool} async);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_afc81a4eaa4b298c898d457588b2d6ccf}{FTDIDevice\_WriteByteSync}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\_t \textcolor{keywordtype}{byte});}
+\DoxyCodeLine{145 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_a07c4aeb3178f8f14d843d1bdf32b1a82}{FTDIDevice\_ReadByteSync}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\_t *\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_aec9e222db2d29a6f00674e09b27ed5d0}{FTDIDevice\_ReadStream}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{148                           \mbox{\hyperlink{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}{FTDIStreamCallback}} *callback, \textcolor{keywordtype}{void} *userdata,}
+\DoxyCodeLine{149                           \textcolor{keywordtype}{int} packetsPerTransfer, \textcolor{keywordtype}{int} numTransfers);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_a0facc428934f5765c20440d1a3cf6820}{FTDIDevice\_MPSSE\_Enable}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface);}
+\DoxyCodeLine{152 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_aa484e92661f558c0a2f1f8fc3038ec61}{FTDIDevice\_MPSSE\_SetDivisor}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{153                                 uint8\_t ValueL, uint8\_t ValueH);}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_acedcb134f747cf8e13e46973b5b2f583}{FTDIDevice\_MPSSE\_SetLowByte}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{156                                 uint8\_t data, uint8\_t dir);}
+\DoxyCodeLine{157 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_af6a12104f5c76b2e489a43d5bfd53d96}{FTDIDevice\_MPSSE\_SetHighByte}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface,}
+\DoxyCodeLine{158                                  uint8\_t data, uint8\_t dir);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_af82a5ac89d2e181fea5a2d93bd9cfb6e}{FTDIDevice\_MPSSE\_GetLowByte}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\_t *\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{161 \textcolor{keywordtype}{int} \mbox{\hyperlink{fastftdi_8h_adde3517f42c6e47dedd949971ba2f9ac}{FTDIDevice\_MPSSE\_GetHighByte}}(\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} *dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\_t *\textcolor{keywordtype}{byte});}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FASTFTDI\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

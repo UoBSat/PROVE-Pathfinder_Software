@@ -1,0 +1,255 @@
+\hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks}{}\doxysection{Flight-\/\+Software.shared.\+tasks.\+Tasks Class Reference}
+\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks}\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_af8c6b0c5fa53d32a625f33e8a9e1b130}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a4989f791e0ba54039340ef277b243b7d}{get\+\_\+tasks}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ae98a6bace3dd267fc00f176c39e9e446}{get\+\_\+tasks\+\_\+total}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0e644f5a67f7c320446caf84250b6cee}{pass\+\_\+tasks\+\_\+ids}} (self, passtype)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aeea52be4838904cbd5e362b6411d69e4}{capture\+\_\+timings}} (self, n, orbital\+Altitude, pass\+Start\+Time, pass\+End\+Time, final\+Time\+Offset)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aed974ab954ced07c8c937c5711bf7cea}{array\+\_\+to\+\_\+string}} (self, array)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a05e021375113029825db775ffa93cc62}{post\+\_\+pass\+\_\+capture\+\_\+timings}} (self, current\+Time, numb, interval)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ad0acf6d262a3a75b62363927b2b6a924}{start\+\_\+task}} (self, current\+Time, pass\+\_\+started, task, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config, logger, passtype)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0d3f5decc88ecb6a8843bd2cfc804507}{task\+\_\+argument\+\_\+string}} (self, task\+\_\+id, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aa930fdda9f550436f16c31928e9d429c}{tasks}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aec819918346208f5959f80eb53756843}{tasks\+\_\+total}}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_acc54eefc472dcfeb99b9eb56509fb1b1}{arguments}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a6849a160ce0fc58df3876767155f5d6b}{tasks\+\_\+done}} = \mbox{[}$\,$\mbox{]}
+\item 
+list \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a8818ec85dab91b07b31a6e4e56c3065d}{tasks\+\_\+in\+\_\+progress}} = \mbox{[}$\,$\mbox{]}
+\item 
+string \mbox{\hyperlink{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ac0c5297d29b066b18eec82e08d3f4981}{arguments}} = \char`\"{} \char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb} The Tasks base class
+
+Class for controlling execution of the various tasks during an imaging pass, using the scheduler service
+
+...
+
+Attributes
+----------
+tasks : list
+    list of tasks from the tasks.json file
+tasks_total : ing
+    total number of tasks defined in the tasks.json file
+
+Methods
+-------
+get_tasks():
+    Reads the tasks.json file and returns its content in a json object
+get_tasks_total():
+    Calculates the total number of both pass and post-pass tasks
+pass_tasks_ids():
+    Creates an array of pass tasks IDs
+capture_timings(n, orbitalAltitude,passStartTime,passEndTime, camera):
+    Calculates the capture times of a set of images with equal angles between each capture
+array_to_string(array):
+    Converts a list of string to a single string
+start_task(pass_started, task, config, logger):
+    Starts a pass or post-pass task as a background subprocess\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_af8c6b0c5fa53d32a625f33e8a9e1b130}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_af8c6b0c5fa53d32a625f33e8a9e1b130}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Initialises the Tasks class, reads the tasks.json file and stores its content
+
+    Parameters:
+        self (Tasks) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aed974ab954ced07c8c937c5711bf7cea}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aed974ab954ced07c8c937c5711bf7cea}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!array\_to\_string@{array\_to\_string}}
+\index{array\_to\_string@{array\_to\_string}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{array\_to\_string()}{array\_to\_string()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+array\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{array }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Converts a list of string to a single string
+
+    Parameters:
+        self (Tasks): default class from the Python convention
+        array (list: string): a list of strings 
+
+    Returns:
+        string (string) - a single string
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aeea52be4838904cbd5e362b6411d69e4}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aeea52be4838904cbd5e362b6411d69e4}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!capture\_timings@{capture\_timings}}
+\index{capture\_timings@{capture\_timings}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{capture\_timings()}{capture\_timings()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+capture\+\_\+timings (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n,  }\item[{}]{orbital\+Altitude,  }\item[{}]{pass\+Start\+Time,  }\item[{}]{pass\+End\+Time,  }\item[{}]{final\+Time\+Offset }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Calculates the capture times of a set of images with equal angles between each capture
+
+        Parameters:
+                        n(Int): The number of images required in the set
+                        orbitalAltitude(float): The altitude of the spacecraft (km)
+                        passStartTime(float): Required time of the first image capture
+                        passEndTime(float): Required time of the last image capture
+                        finalTimeOffset(float): an offset to change the pass end time by, to ensure no images
+                        are taken after the end of the pass
+
+        Returns:
+            tc (list): A list of all the image capture times, as timestamps\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a4989f791e0ba54039340ef277b243b7d}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a4989f791e0ba54039340ef277b243b7d}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!get\_tasks@{get\_tasks}}
+\index{get\_tasks@{get\_tasks}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{get\_tasks()}{get\_tasks()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+get\+\_\+tasks (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Reads the tasks.json file and returns its content in a json object
+
+    Parameters:
+        self (Tasks) - default class from the Python convention
+
+    Returns:
+        data_json (object) - tasks and their parameters in a json object
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ae98a6bace3dd267fc00f176c39e9e446}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ae98a6bace3dd267fc00f176c39e9e446}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!get\_tasks\_total@{get\_tasks\_total}}
+\index{get\_tasks\_total@{get\_tasks\_total}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{get\_tasks\_total()}{get\_tasks\_total()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+get\+\_\+tasks\+\_\+total (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Calculates the total number of both pass and post-pass tasks
+
+    Parameters:
+        self (Tasks) - default class from the Python convention
+
+    Returns:
+        total (int) - total number of tasks in tasks.json file
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0e644f5a67f7c320446caf84250b6cee}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0e644f5a67f7c320446caf84250b6cee}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!pass\_tasks\_ids@{pass\_tasks\_ids}}
+\index{pass\_tasks\_ids@{pass\_tasks\_ids}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{pass\_tasks\_ids()}{pass\_tasks\_ids()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+pass\+\_\+tasks\+\_\+ids (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{passtype }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Creates an array of pass tasks IDs
+
+    Parameters:
+        self (Tasks) - default class from the Python convention
+        passtype (string): a string describing what type of the pass is to be performed
+
+
+    Returns:
+        ids (list: int) - a list of ids of pass Tasks
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a05e021375113029825db775ffa93cc62}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a05e021375113029825db775ffa93cc62}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!post\_pass\_capture\_timings@{post\_pass\_capture\_timings}}
+\index{post\_pass\_capture\_timings@{post\_pass\_capture\_timings}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{post\_pass\_capture\_timings()}{post\_pass\_capture\_timings()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+post\+\_\+pass\+\_\+capture\+\_\+timings (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{current\+Time,  }\item[{}]{numb,  }\item[{}]{interval }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Creates a string representing the timings for a post pass task (Arducam high-res capturing task)
+
+    Parameters:
+        self (Tasks): default class from the Python convention
+        currentTime (float): Current timestamp at time of function call
+        numb (int): a number of timings expected
+        interval (int): a time interval between separate timings
+
+    Returns:
+        string (string) - a single string with timings separated by a space
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ad0acf6d262a3a75b62363927b2b6a924}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ad0acf6d262a3a75b62363927b2b6a924}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!start\_task@{start\_task}}
+\index{start\_task@{start\_task}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{start\_task()}{start\_task()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+start\+\_\+task (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{current\+Time,  }\item[{}]{pass\+\_\+started,  }\item[{}]{task,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config,  }\item[{}]{logger,  }\item[{}]{passtype }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Starts a pass or post-pass task as a background subprocess
+
+    Parameters:
+        self (Tasks): default class from the Python convention
+        currentTime (float): Current timestamp at time of function call
+        pass_started (bool): indicates whether the pass is ongoing (true) or not (false)
+        task (object): a task object with its parameters
+        config (class): a config class, representing the content of the config.json file
+        logger (class): a class for logging
+        passtype (string): a string describing what type of the pass is to be performed
+
+    Returns:
+        process (class) - a subprocess.Popen class, representing the parameters of the current subprocess
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0d3f5decc88ecb6a8843bd2cfc804507}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a0d3f5decc88ecb6a8843bd2cfc804507}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!task\_argument\_string@{task\_argument\_string}}
+\index{task\_argument\_string@{task\_argument\_string}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{task\_argument\_string()}{task\_argument\_string()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+tasks.\+Tasks.\+task\+\_\+argument\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{task\+\_\+id,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ac0c5297d29b066b18eec82e08d3f4981}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_ac0c5297d29b066b18eec82e08d3f4981}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!arguments@{arguments}}
+\index{arguments@{arguments}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{arguments}{arguments}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily string Flight-\/Software.\+shared.\+tasks.\+Tasks.\+arguments = \char`\"{} \char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_acc54eefc472dcfeb99b9eb56509fb1b1}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_acc54eefc472dcfeb99b9eb56509fb1b1}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!arguments@{arguments}}
+\index{arguments@{arguments}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{arguments}{arguments}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+tasks.\+Tasks.\+arguments}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aa930fdda9f550436f16c31928e9d429c}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aa930fdda9f550436f16c31928e9d429c}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!tasks@{tasks}}
+\index{tasks@{tasks}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{tasks}{tasks}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+tasks.\+Tasks.\+tasks}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a6849a160ce0fc58df3876767155f5d6b}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a6849a160ce0fc58df3876767155f5d6b}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!tasks\_done@{tasks\_done}}
+\index{tasks\_done@{tasks\_done}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{tasks\_done}{tasks\_done}}
+{\footnotesize\ttfamily list Flight-\/Software.\+shared.\+tasks.\+Tasks.\+tasks\+\_\+done = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a8818ec85dab91b07b31a6e4e56c3065d}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_a8818ec85dab91b07b31a6e4e56c3065d}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!tasks\_in\_progress@{tasks\_in\_progress}}
+\index{tasks\_in\_progress@{tasks\_in\_progress}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{tasks\_in\_progress}{tasks\_in\_progress}}
+{\footnotesize\ttfamily list Flight-\/Software.\+shared.\+tasks.\+Tasks.\+tasks\+\_\+in\+\_\+progress = \mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aec819918346208f5959f80eb53756843}\label{class_flight-_software_1_1shared_1_1tasks_1_1_tasks_aec819918346208f5959f80eb53756843}} 
+\index{Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}!tasks\_total@{tasks\_total}}
+\index{tasks\_total@{tasks\_total}!Flight-\/Software.shared.tasks.Tasks@{Flight-\/Software.shared.tasks.Tasks}}
+\doxysubsubsection{\texorpdfstring{tasks\_total}{tasks\_total}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+tasks.\+Tasks.\+tasks\+\_\+total}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/shared/\mbox{\hyperlink{tasks_8py}{tasks.\+py}}\end{DoxyCompactItemize}

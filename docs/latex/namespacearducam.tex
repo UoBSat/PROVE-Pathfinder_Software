@@ -1,0 +1,408 @@
+\hypertarget{namespacearducam}{}\doxysection{arducam Namespace Reference}
+\label{namespacearducam}\index{arducam@{arducam}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacearducam_a11dac5ea36154b4b2978943812df714e}{add\+\_\+arguments}} (Config config)
+\item 
+def \mbox{\hyperlink{namespacearducam_a0f81b92c24203507bfed54b7a9dd12dd}{set\+\_\+format}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_aa735e1655efb13c1eefe89bccdc4631c}{set\+\_\+resolution}} (int arg1, int arg2, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a56b766d3bae52f232d943e401dc651ea}{set\+\_\+light\+\_\+mode}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a8798d27e41f96bfe5b7087f3f069ff9d}{set\+\_\+saturation}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_abe8e359b6ed2943bbf53e19d9656c7ff}{set\+\_\+brightness}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a1d161308568a581f18fec23b33d87d7e}{set\+\_\+contrast}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_affa0fc4bffcbe6776db70c481ce2dc5d}{set\+\_\+special\+\_\+effects}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a2df87955d98f6dfc1541e221de955d34}{set\+\_\+hue}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a3ecb8d4cc38de33687ddfa89c2ce5f3f}{set\+\_\+exposure}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_aa15667c69c52a79d993fdb1f0d62bc3e}{set\+\_\+sharpness}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a7dd00e924f18f4c4ae526644cd57c681}{set\+\_\+mirror\+\_\+flip}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a40690045bde21d1376d722d6612818d7}{set\+\_\+compress\+\_\+quality}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_aa55e36f4c8f4650b53da37b2ed21d876}{set\+\_\+test\+\_\+pattern}} (int arg, Config config, logging.\+Logger logger)
+\item 
+def \mbox{\hyperlink{namespacearducam_a497cf411e493a6fda5128bd4c0ef8767}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file arducam.py
+
+ @brief Defines the arducam imaging task.
+
+ @section description_scheduler Description
+ Defines the arducam imaging task that captures all the images from the arducam according to time stamps received form
+ the scheduler service
+ - add_arguments
+ - defaultProperties
+ - set_format
+ - set_resolution
+ - set_light_mode
+ - set_saturation
+ - set_brightness
+ - set_contrast
+ - set_special_effects
+ - set_hue
+ - set_exposure
+ - set_sharpness
+ - set_mirror_flip
+ - set_compress_quality
+ - set_test_pattern
+ - main (arducam)
+
+
+ @section libraries_arducam Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+ - python argpass library
+ - python json library
+ - python types library
+
+
+ @section todo_arducam TODO
+ - None.
+
+ @section author_arducam Author(s)
+ - Created by Vilius Stonkus on 02/08/2021.
+ - Modified by Louis Timperley on 03/08/2021.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacearducam_a11dac5ea36154b4b2978943812df714e}\label{namespacearducam_a11dac5ea36154b4b2978943812df714e}} 
+\index{arducam@{arducam}!add\_arguments@{add\_arguments}}
+\index{add\_arguments@{add\_arguments}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{add\_arguments()}{add\_arguments()}}
+{\footnotesize\ttfamily def arducam.\+add\+\_\+arguments (\begin{DoxyParamCaption}\item[{Config}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Adds command line arguments to a python arguments parser
+
+    Parameters:
+        config (Config): config
+
+    Returns:
+        parser.parse_args() (object): arguments object with string values
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a497cf411e493a6fda5128bd4c0ef8767}\label{namespacearducam_a497cf411e493a6fda5128bd4c0ef8767}} 
+\index{arducam@{arducam}!main@{main}}
+\index{main@{main}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def arducam.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Initialises the ArduCAM capturing process based on the parameters passed; Logs the output
+
+    Parameters:
+        void
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_abe8e359b6ed2943bbf53e19d9656c7ff}\label{namespacearducam_abe8e359b6ed2943bbf53e19d9656c7ff}} 
+\index{arducam@{arducam}!set\_brightness@{set\_brightness}}
+\index{set\_brightness@{set\_brightness}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_brightness()}{set\_brightness()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+brightness (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the brightness
+
+    Parameters:
+        arg (int): number which represents a certain brightness setting
+            0 - Brightness4 mode
+            1 - Brightness3 mode
+            2 - Brightness2 mode
+            3 - Brightness1 mode
+            4 - Brightness0 mode
+            5 - Brightness_1 mode
+            6 - Brightness_2 mode
+            7 - Brightness_3 mode 
+            8 - Brightness_4 mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a40690045bde21d1376d722d6612818d7}\label{namespacearducam_a40690045bde21d1376d722d6612818d7}} 
+\index{arducam@{arducam}!set\_compress\_quality@{set\_compress\_quality}}
+\index{set\_compress\_quality@{set\_compress\_quality}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_compress\_quality()}{set\_compress\_quality()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+compress\+\_\+quality (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the compress quality setting
+
+    Parameters:
+        arg (int): number which represents a certain compress quality setting
+            0 - high quality mode
+            1 - default quality mode
+            2 - low quality mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a1d161308568a581f18fec23b33d87d7e}\label{namespacearducam_a1d161308568a581f18fec23b33d87d7e}} 
+\index{arducam@{arducam}!set\_contrast@{set\_contrast}}
+\index{set\_contrast@{set\_contrast}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_contrast()}{set\_contrast()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+contrast (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the contrast
+
+    Parameters:
+        arg (int): number which represents a certain contrast setting
+            0 - Contrast4 mode
+            1 - Contrast3 mode
+            2 - Contrast2 mode
+            3 - Contrast1 mode
+            4 - Contrast0 mode
+            5 - Contrast_1 mode
+            6 - Contrast_2 mode
+            7 - Contrast_3 mode
+            8 - Contrast_4 mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a3ecb8d4cc38de33687ddfa89c2ce5f3f}\label{namespacearducam_a3ecb8d4cc38de33687ddfa89c2ce5f3f}} 
+\index{arducam@{arducam}!set\_exposure@{set\_exposure}}
+\index{set\_exposure@{set\_exposure}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_exposure()}{set\_exposure()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+exposure (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the exposure
+
+    Parameters:
+        arg (int): number which represents a certain exposure setting
+            0 - Exposure_17_EV mode
+            1 - Exposure_13_EV mode
+            2 - Exposure_10_EV mode
+            3 - Exposure_07_EV mode
+            4 - Exposure_03_EV mode
+            5 - Exposure_default mode
+            6 - Exposure03_EV mode
+            7 - Exposure07_EV mode
+            8 - Exposure10_EV mode
+            9 - Exposure13_EV mode
+            10 - Exposure17_EV mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a0f81b92c24203507bfed54b7a9dd12dd}\label{namespacearducam_a0f81b92c24203507bfed54b7a9dd12dd}} 
+\index{arducam@{arducam}!set\_format@{set\_format}}
+\index{set\_format@{set\_format}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_format()}{set\_format()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+format (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the image format
+
+    Parameters:
+        arg (int): number which represents a certain format setting
+            0 - BMP format
+            1 - JPEG format
+            2 - RAW format
+        logger (logging.Logger): returns a custom logger object
+        config (Config): config
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a2df87955d98f6dfc1541e221de955d34}\label{namespacearducam_a2df87955d98f6dfc1541e221de955d34}} 
+\index{arducam@{arducam}!set\_hue@{set\_hue}}
+\index{set\_hue@{set\_hue}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_hue()}{set\_hue()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+hue (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the hue
+
+    Parameters:
+        arg (int): number which represents a certain hue setting
+            0 - degree_180 mode
+            1 - degree_150 mode
+            2 - degree_120 mode
+            3 - degree_90 mode
+            4 - degree_60 mode
+            5 - degree_30 mode
+            6 - degree_0 mode
+            7 - degree30 mode
+            8 - degree60 mode
+            9 - degree90 mode
+            10 - degree120 mode
+            11 - degree150 mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a56b766d3bae52f232d943e401dc651ea}\label{namespacearducam_a56b766d3bae52f232d943e401dc651ea}} 
+\index{arducam@{arducam}!set\_light\_mode@{set\_light\_mode}}
+\index{set\_light\_mode@{set\_light\_mode}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_light\_mode()}{set\_light\_mode()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+light\+\_\+mode (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the light mode
+
+    Parameters:
+        arg (int): number which represents a certain light mode setting
+            0 - Advanced_AWB mode
+            1 - Simple_AWB mode
+            2 - Manual_day mode
+            3 - Manual_A mode
+            4 - Manual_cwf mode
+            5 - Manual_cloudy mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a7dd00e924f18f4c4ae526644cd57c681}\label{namespacearducam_a7dd00e924f18f4c4ae526644cd57c681}} 
+\index{arducam@{arducam}!set\_mirror\_flip@{set\_mirror\_flip}}
+\index{set\_mirror\_flip@{set\_mirror\_flip}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_mirror\_flip()}{set\_mirror\_flip()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+mirror\+\_\+flip (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the mirror flip setting
+
+    Parameters:
+        arg (int): number which represents a certain mirror flip setting
+            0 - MIRROR
+            1 - FLIP mode
+            2 - MIRROR_FLIP mode
+            7 - Normal mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_aa735e1655efb13c1eefe89bccdc4631c}\label{namespacearducam_aa735e1655efb13c1eefe89bccdc4631c}} 
+\index{arducam@{arducam}!set\_resolution@{set\_resolution}}
+\index{set\_resolution@{set\_resolution}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_resolution()}{set\_resolution()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+resolution (\begin{DoxyParamCaption}\item[{int}]{arg1,  }\item[{int}]{arg2,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the image resolution
+
+    Parameters:
+        arg1 (int): number which represents a certain JPEG or RAW resolution setting
+            if arg2 is 1 or 0 (JPEG, BMP):
+            0 - 320x240 resolution
+            1 - 640x480 resolution
+            2 - 1024x768 resolution
+            3 - 1280x960 resolution
+            4 - 1600x1200 resolution
+            5 - 2048x1536 resolution
+            6 - 2592x1944 resolution
+            if arg2 is 2 (RAW):
+        arg2 (int): number which represents a certain format setting
+            0 - BMP format
+            1 - JPEG format
+            2 - RAW format
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_a8798d27e41f96bfe5b7087f3f069ff9d}\label{namespacearducam_a8798d27e41f96bfe5b7087f3f069ff9d}} 
+\index{arducam@{arducam}!set\_saturation@{set\_saturation}}
+\index{set\_saturation@{set\_saturation}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_saturation()}{set\_saturation()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+saturation (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the saturation
+
+    Parameters:
+        arg (int): number which represents a certain saturation setting
+            0 - Saturation4 mode
+            1 - Saturation3 mode
+            2 - Saturation2 mode
+            3 - Saturation1 mode
+            4 - Saturation0 mode
+            5 - Saturation_1 mode
+            6 - Saturation_2 mode
+            7 - Saturation_3 mode 
+            8 - Saturation_4 mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_aa15667c69c52a79d993fdb1f0d62bc3e}\label{namespacearducam_aa15667c69c52a79d993fdb1f0d62bc3e}} 
+\index{arducam@{arducam}!set\_sharpness@{set\_sharpness}}
+\index{set\_sharpness@{set\_sharpness}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_sharpness()}{set\_sharpness()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+sharpness (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the sharpness
+
+    Parameters:
+        arg (int): number which represents a certain sharpness setting
+            0 - Auto_Sharpness_default mode
+            1 - Auto_Sharpness1 mode
+            2 - Auto_Sharpness2 mode
+            3 - Manual_Sharpnessoff mode
+            4 - Manual_Sharpness1 mode
+            5 - Manual_Sharpness2 mode
+            6 - Manual_Sharpness3 mode
+            7 - Manual_Sharpness4 mode
+            8 - Manual_Sharpness5 mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_affa0fc4bffcbe6776db70c481ce2dc5d}\label{namespacearducam_affa0fc4bffcbe6776db70c481ce2dc5d}} 
+\index{arducam@{arducam}!set\_special\_effects@{set\_special\_effects}}
+\index{set\_special\_effects@{set\_special\_effects}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_special\_effects()}{set\_special\_effects()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+special\+\_\+effects (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the special effects
+
+    Parameters:
+        arg (int): number which represents a certain special effects setting
+            1 - Bluish mode 
+            2 - Greenish mode
+            3 - Reddish mode
+            4 - BW mode
+            5 - Negative mode
+            6 - Sepia mode
+            7 - Normal mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacearducam_aa55e36f4c8f4650b53da37b2ed21d876}\label{namespacearducam_aa55e36f4c8f4650b53da37b2ed21d876}} 
+\index{arducam@{arducam}!set\_test\_pattern@{set\_test\_pattern}}
+\index{set\_test\_pattern@{set\_test\_pattern}!arducam@{arducam}}
+\doxysubsubsection{\texorpdfstring{set\_test\_pattern()}{set\_test\_pattern()}}
+{\footnotesize\ttfamily def arducam.\+set\+\_\+test\+\_\+pattern (\begin{DoxyParamCaption}\item[{int}]{arg,  }\item[{Config}]{config,  }\item[{logging.\+Logger}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sends a request to the ArduCAM library to change the test pattern setting
+
+    Parameters:
+        arg (int): number which represents a certain test pattern setting
+            0 - Color bar mode
+            1 - Color square mode
+            2 - BW square mode
+            3 - DLI mode
+        logger (object): returns a custom logger object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ 

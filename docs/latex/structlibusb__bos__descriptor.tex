@@ -1,0 +1,60 @@
+\hypertarget{structlibusb__bos__descriptor}{}\doxysection{libusb\+\_\+bos\+\_\+descriptor Struct Reference}
+\label{structlibusb__bos__descriptor}\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__bos__descriptor_ae0684cd2fd0a519c711b2c5169c6a54e}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__bos__descriptor_ae6dcffa81a4885e1cf677656f7ae9ff7}{b\+Descriptor\+Type}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__bos__descriptor_a02490a8cfd9d1b53ef8f19190a2a1a2c}{w\+Total\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__bos__descriptor_aba92a4ee25d13195f80651a79add48d6}{b\+Num\+Device\+Caps}}
+\item 
+struct \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\+\_\+bos\+\_\+dev\+\_\+capability\+\_\+descriptor}} $\ast$ \mbox{\hyperlink{structlibusb__bos__descriptor_ab96881b56bdbfd53fb850c4db2fac4fe}{dev\+\_\+capability}} \mbox{[}0\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the Binary Device Object Store (BOS) descriptor. This descriptor is documented in section 9.\+6.\+2 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__bos__descriptor_ae6dcffa81a4885e1cf677656f7ae9ff7}\label{structlibusb__bos__descriptor_ae6dcffa81a4885e1cf677656f7ae9ff7}} 
+\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+bos\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9caab1245826594605de870d70bffae7f2c}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+BOS}} LIBUSB\+\_\+\+DT\+\_\+\+BOS in this context. \mbox{\Hypertarget{structlibusb__bos__descriptor_ae0684cd2fd0a519c711b2c5169c6a54e}\label{structlibusb__bos__descriptor_ae0684cd2fd0a519c711b2c5169c6a54e}} 
+\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+bos\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__bos__descriptor_aba92a4ee25d13195f80651a79add48d6}\label{structlibusb__bos__descriptor_aba92a4ee25d13195f80651a79add48d6}} 
+\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}!bNumDeviceCaps@{bNumDeviceCaps}}
+\index{bNumDeviceCaps@{bNumDeviceCaps}!libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bNumDeviceCaps}{bNumDeviceCaps}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+bos\+\_\+descriptor\+::b\+Num\+Device\+Caps}
+
+The number of separate device capability descriptors in the BOS \mbox{\Hypertarget{structlibusb__bos__descriptor_ab96881b56bdbfd53fb850c4db2fac4fe}\label{structlibusb__bos__descriptor_ab96881b56bdbfd53fb850c4db2fac4fe}} 
+\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}!dev\_capability@{dev\_capability}}
+\index{dev\_capability@{dev\_capability}!libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+\doxysubsubsection{\texorpdfstring{dev\_capability}{dev\_capability}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\+\_\+bos\+\_\+dev\+\_\+capability\+\_\+descriptor}}$\ast$ libusb\+\_\+bos\+\_\+descriptor\+::dev\+\_\+capability\mbox{[}0\mbox{]}}
+
+b\+Num\+Device\+Cap Device Capability Descriptors \mbox{\Hypertarget{structlibusb__bos__descriptor_a02490a8cfd9d1b53ef8f19190a2a1a2c}\label{structlibusb__bos__descriptor_a02490a8cfd9d1b53ef8f19190a2a1a2c}} 
+\index{libusb\_bos\_descriptor@{libusb\_bos\_descriptor}!wTotalLength@{wTotalLength}}
+\index{wTotalLength@{wTotalLength}!libusb\_bos\_descriptor@{libusb\_bos\_descriptor}}
+\doxysubsubsection{\texorpdfstring{wTotalLength}{wTotalLength}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+bos\+\_\+descriptor\+::w\+Total\+Length}
+
+Length of this descriptor and all of its sub descriptors 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

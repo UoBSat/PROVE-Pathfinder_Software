@@ -1,0 +1,171 @@
+\hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler}{}\doxysection{Flight-\/\+Software.Scheduler.\+scheduler Namespace Reference}
+\label{namespace_flight-_software_1_1_scheduler_1_1scheduler}\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1942975b63ff3a214bb3703b28cc959b}{bus\+\_\+read}} ()
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a54a4650c968a801e74a438245b4f0d5f}{if\+\_\+pass\+\_\+started}} (current\+\_\+date, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8569815319c15b4fc550928cba8df833}{if\+\_\+pass\+\_\+finished}} (current\+\_\+date, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a748fd3fc05c809807bf40e909954a5b8}{if\+\_\+pass\+\_\+fully\+\_\+completed}} (current\+\_\+date, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1667a25b7439a599374d08b028c8cc96}{check\+\_\+subprocesses\+\_\+status}} (logger, tasks, complete\+\_\+flag)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_aaeeadaaeca390deaf1a662862c1572df}{kill\+\_\+subprocess}} (process, task, tasks, logger)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a2e31fc7c2e348788ed8e3761a7ffc1ba}{primary\+\_\+pass\+\_\+operations}} (pass\+\_\+ongoing, complete\+\_\+flag, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config, tasks, logger)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8536034b228b5056d29485d8e6ad7144}{calibration\+\_\+pass\+\_\+operations}} (pass\+\_\+ongoing, complete\+\_\+flag, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}} config, tasks, logger)
+\item 
+def \mbox{\hyperlink{namespace_flight-_software_1_1_scheduler_1_1scheduler_a840db6da827d1f4ce356160e5a4b19e6}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1942975b63ff3a214bb3703b28cc959b}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1942975b63ff3a214bb3703b28cc959b}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!bus\_read@{bus\_read}}
+\index{bus\_read@{bus\_read}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{bus\_read()}{bus\_read()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+bus\+\_\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Description
+
+    Parameters:
+        void
+
+    Returns:
+        True/False (boolean) - 
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8536034b228b5056d29485d8e6ad7144}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8536034b228b5056d29485d8e6ad7144}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!calibration\_pass\_operations@{calibration\_pass\_operations}}
+\index{calibration\_pass\_operations@{calibration\_pass\_operations}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{calibration\_pass\_operations()}{calibration\_pass\_operations()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+calibration\+\_\+pass\+\_\+operations (\begin{DoxyParamCaption}\item[{}]{pass\+\_\+ongoing,  }\item[{}]{complete\+\_\+flag,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config,  }\item[{}]{tasks,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}contains all the logic to perform all the tasks associated with a calibration pass
+
+    Parameters:
+        pass_ongoing (boolean) - a flag denoting if the pass has started yet
+        complete_flag (boolean) - a flag denoting if the pass is complete
+        config (object): Object containing configuration information
+        tasks (object): Object containing tasks information
+        logger (object): Object containing information on how to write logs
+
+    Returns:
+        complete_flag (boolean) - a flag denoting if the pass is complete
+        pass_ongoing (boolean) - a flag denoting if the pass has started yet
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1667a25b7439a599374d08b028c8cc96}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a1667a25b7439a599374d08b028c8cc96}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!check\_subprocesses\_status@{check\_subprocesses\_status}}
+\index{check\_subprocesses\_status@{check\_subprocesses\_status}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{check\_subprocesses\_status()}{check\_subprocesses\_status()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+check\+\_\+subprocesses\+\_\+status (\begin{DoxyParamCaption}\item[{}]{logger,  }\item[{}]{tasks,  }\item[{}]{complete\+\_\+flag }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks the status of all subprocesess that are currently in progress and detects whether the process has terminated
+
+    Parameters:
+        logger (object): Object containing information on how to write logs
+        tasks (object): Object containing tasks information
+        complete_flag (bool): Boolean, only true if the scheduler has previously logged completion of all tasks
+
+    Returns:
+        complete_flag (bool): Boolean, only true if the scheduler has previously logged completion of all tasks
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8569815319c15b4fc550928cba8df833}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a8569815319c15b4fc550928cba8df833}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!if\_pass\_finished@{if\_pass\_finished}}
+\index{if\_pass\_finished@{if\_pass\_finished}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{if\_pass\_finished()}{if\_pass\_finished()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+if\+\_\+pass\+\_\+finished (\begin{DoxyParamCaption}\item[{}]{current\+\_\+date,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks whether the pass has finished
+
+    Parameters:
+        currentTime (float): Current timestamp at time of function call
+        config (object): Object containing configuration information
+
+    Returns:
+        True/False (boolean) - represents the state of the pass. True if the pass has finished, False otherwise
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a748fd3fc05c809807bf40e909954a5b8}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a748fd3fc05c809807bf40e909954a5b8}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!if\_pass\_fully\_completed@{if\_pass\_fully\_completed}}
+\index{if\_pass\_fully\_completed@{if\_pass\_fully\_completed}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{if\_pass\_fully\_completed()}{if\_pass\_fully\_completed()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+if\+\_\+pass\+\_\+fully\+\_\+completed (\begin{DoxyParamCaption}\item[{}]{current\+\_\+date,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks if pass subprocesses have reached their extra time allowed after the pass, and thus, the pass was fully completed
+
+    Parameters:
+        currentTime (float): Current timestamp at time of function call
+        config (object): Object containing configuration information
+
+    Returns:
+        True/False (boolean) - represents the state of the complete pass. True if the pass has reached its extra time, False otherwise
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a54a4650c968a801e74a438245b4f0d5f}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a54a4650c968a801e74a438245b4f0d5f}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!if\_pass\_started@{if\_pass\_started}}
+\index{if\_pass\_started@{if\_pass\_started}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{if\_pass\_started()}{if\_pass\_started()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+if\+\_\+pass\+\_\+started (\begin{DoxyParamCaption}\item[{}]{current\+\_\+date,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks whether the pass is ongoing
+
+    Parameters:
+        currentTime (float): Current timestamp at time of function call
+        config (object): Object containing configuration information
+
+    Returns:
+        True/False (boolean) - represents the state of the pass. True if the pass is ongoing, False otherwise
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_aaeeadaaeca390deaf1a662862c1572df}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_aaeeadaaeca390deaf1a662862c1572df}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!kill\_subprocess@{kill\_subprocess}}
+\index{kill\_subprocess@{kill\_subprocess}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{kill\_subprocess()}{kill\_subprocess()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+kill\+\_\+subprocess (\begin{DoxyParamCaption}\item[{}]{process,  }\item[{}]{task,  }\item[{}]{tasks,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Kills the subprocess
+
+    Parameters:
+        process (object) - a subprocess.Popen object
+        task (object) - a json object containing the properties of the task
+        logger (object): Object containing information on how to write logs
+        tasks (object): Object containing tasks information
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a840db6da827d1f4ce356160e5a4b19e6}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a840db6da827d1f4ce356160e5a4b19e6}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!main@{main}}
+\index{main@{main}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Runs the scheduler loop, starts, kills and monitors task subprocesses, logs their outputs
+
+    Parameters:
+        void
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespace_flight-_software_1_1_scheduler_1_1scheduler_a2e31fc7c2e348788ed8e3761a7ffc1ba}\label{namespace_flight-_software_1_1_scheduler_1_1scheduler_a2e31fc7c2e348788ed8e3761a7ffc1ba}} 
+\index{Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}!primary\_pass\_operations@{primary\_pass\_operations}}
+\index{primary\_pass\_operations@{primary\_pass\_operations}!Flight-\/Software.Scheduler.scheduler@{Flight-\/Software.Scheduler.scheduler}}
+\doxysubsubsection{\texorpdfstring{primary\_pass\_operations()}{primary\_pass\_operations()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+Scheduler.\+scheduler.\+primary\+\_\+pass\+\_\+operations (\begin{DoxyParamCaption}\item[{}]{pass\+\_\+ongoing,  }\item[{}]{complete\+\_\+flag,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config}{Config}}}]{config,  }\item[{}]{tasks,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}contains all the logic to perform all the tasks associated with a primary imaging pass
+
+    Parameters:
+        pass_ongoing (boolean) - a flag denoting if the pass has started yet
+        complete_flag (boolean) - a flag denoting if the pass is complete
+        config (object): Object containing configuration information
+        tasks (object): Object containing tasks information
+        logger (object): Object containing information on how to write logs
+
+    Returns:
+        complete_flag (boolean) - a flag denoting if the pass is complete
+        pass_ongoing (boolean) - a flag denoting if the pass has started yet
+\end{DoxyVerb}
+ 

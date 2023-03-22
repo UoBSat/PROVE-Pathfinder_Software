@@ -1,0 +1,84 @@
+\hypertarget{structlibusb__ss__usb__device__capability__descriptor}{}\doxysection{libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor Struct Reference}
+\label{structlibusb__ss__usb__device__capability__descriptor}\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a64379238b9225de97b67db770c3c15e9}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ae8a297e3fb16cb5199df99816d48321a}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a25c10ea11b37e6adc0aca8c6701bcbff}{b\+Dev\+Capability\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ad387790c14d8d6eefe6aa1b4a55006bf}{bm\+Attributes}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a391eb2350276e0902776831d41b23017}{w\+Speed\+Supported}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a522e3ade3bfd1139c9e8af3876d0a843}{b\+Functionality\+Support}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ad9f0f87cfbf810e691580d3e702ddf3a}{b\+U1\+Dev\+Exit\+Lat}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a530ae59b4e6c8e3b23f6c49f59597994}{b\+U2\+Dev\+Exit\+Lat}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the Super\+Speed USB Device Capability descriptor This descriptor is documented in section 9.\+6.\+2.\+2 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_ae8a297e3fb16cb5199df99816d48321a}\label{structlibusb__ss__usb__device__capability__descriptor_ae8a297e3fb16cb5199df99816d48321a}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca56875fd1a3df25bdea7680fa9047743c}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY}} LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY in this context. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_a25c10ea11b37e6adc0aca8c6701bcbff}\label{structlibusb__ss__usb__device__capability__descriptor_a25c10ea11b37e6adc0aca8c6701bcbff}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bDevCapabilityType@{bDevCapabilityType}}
+\index{bDevCapabilityType@{bDevCapabilityType}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDevCapabilityType}{bDevCapabilityType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+Dev\+Capability\+Type}
+
+Capability type. Will have value \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64ca2f1ab0d2d1e14d4942c079749b1b6c85}{libusb\+\_\+capability\+\_\+type\+::\+LIBUSB\+\_\+\+BT\+\_\+\+SS\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+CAPABILITY}} LIBUSB\+\_\+\+BT\+\_\+\+SS\+\_\+\+USB\+\_\+\+DEVICE\+\_\+\+CAPABILITY in this context. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_a522e3ade3bfd1139c9e8af3876d0a843}\label{structlibusb__ss__usb__device__capability__descriptor_a522e3ade3bfd1139c9e8af3876d0a843}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bFunctionalitySupport@{bFunctionalitySupport}}
+\index{bFunctionalitySupport@{bFunctionalitySupport}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bFunctionalitySupport}{bFunctionalitySupport}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+Functionality\+Support}
+
+The lowest speed at which all the functionality supported by the device is available to the user. For example if the device supports all its functionality when connected at full speed and above then it sets this value to 1. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_a64379238b9225de97b67db770c3c15e9}\label{structlibusb__ss__usb__device__capability__descriptor_a64379238b9225de97b67db770c3c15e9}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_ad387790c14d8d6eefe6aa1b4a55006bf}\label{structlibusb__ss__usb__device__capability__descriptor_ad387790c14d8d6eefe6aa1b4a55006bf}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bmAttributes@{bmAttributes}}
+\index{bmAttributes@{bmAttributes}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bmAttributes}{bmAttributes}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::bm\+Attributes}
+
+Bitmap encoding of supported device level features. A value of one in a bit location indicates a feature is supported; a value of zero indicates it is not supported. See \mbox{\hyperlink{libusb_8h_aad5a5399176a35a64164dafad7fe4fcd}{libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+attributes}}. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_ad9f0f87cfbf810e691580d3e702ddf3a}\label{structlibusb__ss__usb__device__capability__descriptor_ad9f0f87cfbf810e691580d3e702ddf3a}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bU1DevExitLat@{bU1DevExitLat}}
+\index{bU1DevExitLat@{bU1DevExitLat}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bU1DevExitLat}{bU1DevExitLat}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+U1\+Dev\+Exit\+Lat}
+
+U1 Device Exit Latency. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_a530ae59b4e6c8e3b23f6c49f59597994}\label{structlibusb__ss__usb__device__capability__descriptor_a530ae59b4e6c8e3b23f6c49f59597994}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!bU2DevExitLat@{bU2DevExitLat}}
+\index{bU2DevExitLat@{bU2DevExitLat}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bU2DevExitLat}{bU2DevExitLat}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::b\+U2\+Dev\+Exit\+Lat}
+
+U2 Device Exit Latency. \mbox{\Hypertarget{structlibusb__ss__usb__device__capability__descriptor_a391eb2350276e0902776831d41b23017}\label{structlibusb__ss__usb__device__capability__descriptor_a391eb2350276e0902776831d41b23017}} 
+\index{libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}!wSpeedSupported@{wSpeedSupported}}
+\index{wSpeedSupported@{wSpeedSupported}!libusb\_ss\_usb\_device\_capability\_descriptor@{libusb\_ss\_usb\_device\_capability\_descriptor}}
+\doxysubsubsection{\texorpdfstring{wSpeedSupported}{wSpeedSupported}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+ss\+\_\+usb\+\_\+device\+\_\+capability\+\_\+descriptor\+::w\+Speed\+Supported}
+
+Bitmap encoding of the speed supported by this device when operating in Super\+Speed mode. See \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6}{libusb\+\_\+supported\+\_\+speed}}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

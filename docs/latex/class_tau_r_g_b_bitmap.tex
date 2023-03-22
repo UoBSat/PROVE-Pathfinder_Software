@@ -1,0 +1,116 @@
+\hypertarget{class_tau_r_g_b_bitmap}{}\doxysection{Tau\+RGBBitmap Class Reference}
+\label{class_tau_r_g_b_bitmap}\index{TauRGBBitmap@{TauRGBBitmap}}
+
+
+Container for rgb tau bitmap.  
+
+
+
+
+{\ttfamily \#include $<$thermalgrabber.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tau_r_g_b_bitmap_a9724ce7728872da015b03cad6e386055}{Tau\+RGBBitmap}} (unsigned int \mbox{\hyperlink{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}{width}}, unsigned int \mbox{\hyperlink{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}{height}})
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tau_r_g_b_bitmap_a918b87148738cb604375a33676d4e6cb}{$\sim$\+Tau\+RGBBitmap}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{class_tau_r_g_b_bitmap_af98718d7f88fdace4c559c89a1448623}{scan\+Line}} (unsigned int line)
+\begin{DoxyCompactList}\small\item\em Scanline function of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}{width}}
+\begin{DoxyCompactList}\small\item\em Width of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}{height}}
+\begin{DoxyCompactList}\small\item\em Height of raw tau core bitmap. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{class_tau_r_g_b_bitmap_a42450f62aa9ff80e559abe3176111358}{data}}
+\begin{DoxyCompactList}\small\item\em Array of rgb pixel values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container for rgb tau bitmap. 
+
+The \char`\"{}width\char`\"{} and \char`\"{}height\char`\"{} paramter inform about the size of the bitmap. Every pixel value is stored in the data section of this class as 24 bit value. The 24 bits per pixel contain 3 RGB channels. Each channel value is 8 bit and all channels contain the same value. The original 14 bit values of the \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} pixels are scaled down to 8 bit resolution. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tau_r_g_b_bitmap_a9724ce7728872da015b03cad6e386055}\label{class_tau_r_g_b_bitmap_a9724ce7728872da015b03cad6e386055}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!TauRGBBitmap@{TauRGBBitmap}}
+\index{TauRGBBitmap@{TauRGBBitmap}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{TauRGBBitmap()}{TauRGBBitmap()}}
+{\footnotesize\ttfamily Tau\+RGBBitmap\+::\+Tau\+RGBBitmap (\begin{DoxyParamCaption}\item[{unsigned int}]{width,  }\item[{unsigned int}]{height }\end{DoxyParamCaption})}
+
+
+
+Constructor of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. 
+
+Initializes an object for rgb tau bitmaps. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Width of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \\
+\hline
+{\em h} & height of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tau_r_g_b_bitmap_a918b87148738cb604375a33676d4e6cb}\label{class_tau_r_g_b_bitmap_a918b87148738cb604375a33676d4e6cb}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!````~TauRGBBitmap@{$\sim$TauRGBBitmap}}
+\index{````~TauRGBBitmap@{$\sim$TauRGBBitmap}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{$\sim$TauRGBBitmap()}{~TauRGBBitmap()}}
+{\footnotesize\ttfamily Tau\+RGBBitmap\+::$\sim$\+Tau\+RGBBitmap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. 
+
+Cleans up the \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} object memory. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tau_r_g_b_bitmap_af98718d7f88fdace4c559c89a1448623}\label{class_tau_r_g_b_bitmap_af98718d7f88fdace4c559c89a1448623}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!scanLine@{scanLine}}
+\index{scanLine@{scanLine}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{scanLine()}{scanLine()}}
+{\footnotesize\ttfamily unsigned char $\ast$ Tau\+RGBBitmap\+::scan\+Line (\begin{DoxyParamCaption}\item[{unsigned int}]{line }\end{DoxyParamCaption})}
+
+
+
+Scanline function of \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. 
+
+For easy access of line addresses. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_tau_r_g_b_bitmap_a42450f62aa9ff80e559abe3176111358}\label{class_tau_r_g_b_bitmap_a42450f62aa9ff80e559abe3176111358}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!data@{data}}
+\index{data@{data}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily unsigned char$\ast$ Tau\+RGBBitmap\+::data}
+
+
+
+Array of rgb pixel values. 
+
+The rgb pixel values (24 bit for all 3 channels) are stored in a byte array. \mbox{\Hypertarget{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}\label{class_tau_r_g_b_bitmap_aaf74e8df4be386d0f47fe51bb82217c5}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!height@{height}}
+\index{height@{height}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily unsigned int Tau\+RGBBitmap\+::height}
+
+
+
+Height of raw tau core bitmap. 
+
+For example 128, 256 or 512. \mbox{\Hypertarget{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}\label{class_tau_r_g_b_bitmap_af3d4ce87f0fafa45c7a216609a812045}} 
+\index{TauRGBBitmap@{TauRGBBitmap}!width@{width}}
+\index{width@{width}!TauRGBBitmap@{TauRGBBitmap}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily unsigned int Tau\+RGBBitmap\+::width}
+
+
+
+Width of raw tau core bitmap. 
+
+For example 160, 324, 336 or 640. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/inc/\mbox{\hyperlink{thermalgrabber_8h}{thermalgrabber.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{tauimagedecoder_8cpp}{tauimagedecoder.\+cpp}}\end{DoxyCompactItemize}

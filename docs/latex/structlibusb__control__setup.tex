@@ -1,0 +1,60 @@
+\hypertarget{structlibusb__control__setup}{}\doxysection{libusb\+\_\+control\+\_\+setup Struct Reference}
+\label{structlibusb__control__setup}\index{libusb\_control\_setup@{libusb\_control\_setup}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}{bm\+Request\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{b\+Request}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{w\+Value}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{w\+Index}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{w\+Length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Setup packet for control transfers. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}\label{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}} 
+\index{libusb\_control\_setup@{libusb\_control\_setup}!bmRequestType@{bmRequestType}}
+\index{bmRequestType@{bmRequestType}!libusb\_control\_setup@{libusb\_control\_setup}}
+\doxysubsubsection{\texorpdfstring{bmRequestType}{bmRequestType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+control\+\_\+setup\+::bm\+Request\+Type}
+
+Request type. Bits 0\+:4 determine recipient, see \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbae}{libusb\+\_\+request\+\_\+recipient}}. Bits 5\+:6 determine type, see \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91}{libusb\+\_\+request\+\_\+type}}. Bit 7 determines data transfer direction, see \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8b}{libusb\+\_\+endpoint\+\_\+direction}}. \mbox{\Hypertarget{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}\label{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}} 
+\index{libusb\_control\_setup@{libusb\_control\_setup}!bRequest@{bRequest}}
+\index{bRequest@{bRequest}!libusb\_control\_setup@{libusb\_control\_setup}}
+\doxysubsubsection{\texorpdfstring{bRequest}{bRequest}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+control\+\_\+setup\+::b\+Request}
+
+Request. If the type bits of bm\+Request\+Type are equal to \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91a20eca62c34d2d25be7e1776510184209}{LIBUSB\+\_\+\+REQUEST\+\_\+\+TYPE\+\_\+\+STANDARD}} then this field refers to \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236df}{libusb\+\_\+standard\+\_\+request}}. For other cases, use of this field is application-\/specific. \mbox{\Hypertarget{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}\label{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}} 
+\index{libusb\_control\_setup@{libusb\_control\_setup}!wIndex@{wIndex}}
+\index{wIndex@{wIndex}!libusb\_control\_setup@{libusb\_control\_setup}}
+\doxysubsubsection{\texorpdfstring{wIndex}{wIndex}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+control\+\_\+setup\+::w\+Index}
+
+Index. Varies according to request, typically used to pass an index or offset \mbox{\Hypertarget{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}\label{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}} 
+\index{libusb\_control\_setup@{libusb\_control\_setup}!wLength@{wLength}}
+\index{wLength@{wLength}!libusb\_control\_setup@{libusb\_control\_setup}}
+\doxysubsubsection{\texorpdfstring{wLength}{wLength}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+control\+\_\+setup\+::w\+Length}
+
+Number of bytes to transfer \mbox{\Hypertarget{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}\label{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}} 
+\index{libusb\_control\_setup@{libusb\_control\_setup}!wValue@{wValue}}
+\index{wValue@{wValue}!libusb\_control\_setup@{libusb\_control\_setup}}
+\doxysubsubsection{\texorpdfstring{wValue}{wValue}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+control\+\_\+setup\+::w\+Value}
+
+Value. Varies according to request 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

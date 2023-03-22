@@ -1,0 +1,165 @@
+\hypertarget{tauinterface_8h_source}{}\doxysection{tauinterface.\+h}
+\label{tauinterface_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/tauinterface.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/tauinterface.h}}
+\mbox{\hyperlink{tauinterface_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TAUINTERFACE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TAUINTERFACE\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{thermograbber_8h}{thermograbber.h}}>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{taucom_8h}{taucom.h}}>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tauimagedecoder_8h}{tauimagedecoder.h}}>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_interface}{TauInterface}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_thermo_grabber}{ThermoGrabber}}, \textcolor{keyword}{private} \mbox{\hyperlink{class_tau_com}{TauCom}}, \textcolor{keyword}{private} \mbox{\hyperlink{class_tau_image_decoder}{TauImageDecoder}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19     \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (*\mbox{\hyperlink{class_tau_interface_a7815bb0312f447f88196deae76493fd5}{callbackTauRawBitmapUpdate}})(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}\& tRawBitmap, \textcolor{keywordtype}{void}* caller);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{27     \mbox{\hyperlink{class_tau_interface_a7b1eded5e7f775d785f299c85c71e6cd}{TauInterface}}(\mbox{\hyperlink{class_tau_interface_a7815bb0312f447f88196deae76493fd5}{callbackTauRawBitmapUpdate}} ptr, \textcolor{keywordtype}{void}* caller);}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_tau_interface_acfe5258c55dcd11d7ad4964ac8ba3342}{\string~TauInterface}}();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_tau_interface_a37a8cba4b1ccd60076e09c5a8039229b}{connect}}();}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_tau_interface_a37a8cba4b1ccd60076e09c5a8039229b}{connect}}(\textcolor{keywordtype}{char}* iSerialUSB);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ae8e072dde193e20295306c9db1a7890e}{sendCommand}}(\textcolor{keywordtype}{char} cmd, \textcolor{keywordtype}{char}* data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} data\_len);}
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a7a5e26ddd70bee3f9aa8f73245c44040}{frameDecoded}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}} *frame);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{comment}{//Called by ThermoGrabber}}
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ac339dc13a4a1e6cb6ead6ad4f1ac3b71}{processUartData}}(uint8\_t* buffer,uint32\_t size);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{comment}{//Called by TauCom}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aacdc4c44e2b59bbca9e9f83197c7b321}{processSerialPacket}}(uint8\_t* buffer,uint32\_t size);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{comment}{//Called by ThermoGrabber}}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ac9ecaf5f6d85804bfda6078743051031}{processVideoData}}(uint16\_t* buffer, uint32\_t size);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a1f102d792a709aba6806332bb056f682}{serialPackageReceived}}(uint8\_t* buffer, uint32\_t size);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{comment}{// Getter functions}}
+\DoxyCodeLine{57     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_a91b73abb6ea878cf026e4980b7d7e5b9}{getTLinearEnableStatus}}();}
+\DoxyCodeLine{58     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_a90dc488dd4da525e742b16042bbe8e6a}{getCameraSerialNumber}}();}
+\DoxyCodeLine{59     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_a5c9cc545a68e37fe062429eb5d92839e}{getSensorSerialNumber}}();}
+\DoxyCodeLine{60     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_tau_interface_a2ed028e8e2a3a50fa8624e9ab83ff0fb}{getCameraPartNumber}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{61     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_ab67fb614d2cb91eff9c95ae184119af1}{getWidth}}();}
+\DoxyCodeLine{62     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_a9a97c7816a45a6b72fcd40ca1af0a768}{getHeight}}();}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{comment}{// Setting of Tau 2 Core}}
+\DoxyCodeLine{66     \textcolor{comment}{// Flat field correction -\/ shutter}}
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a3705603fc04fb009b5e97e003927e68d}{doFFC}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{comment}{// Setting of Tau 2 Core}}
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aa09e190cd10f60eec74be0686fccbc4a}{enableGainModeAutomatic}}();}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72     \textcolor{comment}{// Setting of Tau 2 Core}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a6a72fecd6db495ebd5d7a01043a76067}{enableGainModeHigh}}();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{comment}{// Setting of Tau 2 Core}}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a0995771fbd277c95cd1c0a57ba656e34}{enableGainModeLow}}();}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{// Setting of Tau 2 Core}}
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aba771db7cd5a8b63a229c75e2729d766}{enableGainModeManual}}();}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\_grabber::GainMode}} \mbox{\hyperlink{class_tau_interface_a9a15539ac1bcd509ad509d6db1611c1f}{getGainMode}}();}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{comment}{// Settings of Tau 2 Core}}
+\DoxyCodeLine{84     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a1fa3155af590d1fe651815da0cb37d38}{enableTLinear}}();}
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a75f8ba157e3e70e8c341061ff0380240}{disableTLinear}}();}
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a910b58fd179cfd2209a8fb021c3b6118}{setTLinearHighResolution}}();}
+\DoxyCodeLine{87     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aec9271d4e76a2a53033d36d92a731a90}{setTlinearLowResolution}}();}
+\DoxyCodeLine{88     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a87a550e0d68bba6b7690b7629bd78ffc}{enableDigitalOutputMode}}();}
+\DoxyCodeLine{89     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ac2623e44879649212b4b3c2d6cf36df0}{disableDigitalOutputMode}}();}
+\DoxyCodeLine{90     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aec7d9931852e5c0e53dd83ab3fdb5ef4}{enableDigitalOutputMode\_XPModeCMOS14Bit}}();}
+\DoxyCodeLine{91     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_afa0f80eabbe5e3e7131ea7c02c31f3d5}{disableDigitalOutputMode\_XPMode}}();}
+\DoxyCodeLine{92     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a431371b7b91ba9ef8e2500f7b005e201}{setDigitalOutputMode\_XPModeCMOSBitDepth14}}();}
+\DoxyCodeLine{93     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a85c64b6bd27ec91dcc88efd2dd21d299}{setExternalSyncToDisabled}}(); \textcolor{comment}{// Tau 2 Core generates its own sync signal without signal output}}
+\DoxyCodeLine{94     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aa103c3494cb969a5418083902736a29d}{setExternalSyncToMaster}}(); \textcolor{comment}{// Tau 2 Core generates its own sync signal with signal output}}
+\DoxyCodeLine{95     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a4ccfe9709e7e75d903a00ddf425f8315}{setExternalSyncToSlave}}(); \textcolor{comment}{// Tau 2 Core gets sync signal from external source (TCGrabberUSB or external sync input)}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{comment}{// Settings of TCGrabberUSB}}
+\DoxyCodeLine{98     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ad7bec1c161a54d9f013292005dab88f5}{disableExternalSynchronization}}();\textcolor{comment}{// Tau 2 Core has to generate its sync signal by itself}}
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_af541a19037e65d401c6289d294787546}{enableExternalSynchronizationSlaveMode}}();\textcolor{comment}{// Sync signal from external sync input}}
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_abd865881160dae96d035ef4488c72c80}{enableExternalSynchronizationMasterMode}}(uint32\_t freq, uint32\_t count);\textcolor{comment}{// Sync signal generated by TCGrabberUSB}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     \textcolor{comment}{// If watchDogCnt becomes zero, connection gets resetted}}
+\DoxyCodeLine{103     \textcolor{comment}{//static unsigned int watchDogCnt;}}
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_aaab2eb278885797caf9a52863e970257}{reenableFTDIConnection}}();}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{comment}{// set watchdog wait time in seconds}}
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_ad8a3af1ad8d364255cf0c6e35268c3d7}{setWatchdogTime}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} wait\_time);}
+\DoxyCodeLine{108     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_interface_a2364d53224ec5fc184dde5e5d4d5e7b9}{decrementWatchdogTime}}();}
+\DoxyCodeLine{109     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_a3f1cbc65c33deed11d4c801ec3754d7b}{getWatchdogTime}}();}
+\DoxyCodeLine{110     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_interface_ad878627730e150231a5b8b03bda098d6}{getWatchdogResetTime}}();}
+\DoxyCodeLine{111     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_tau_interface_a81c71fb3e76f3ab9202a94a178c54aed}{getWatchdogState}}();}
+\DoxyCodeLine{112     \textcolor{comment}{//void setWatchdogState(bool active);}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     std::thread \mbox{\hyperlink{class_tau_interface_a7b92d8b3cf14f313a153720327d15e35}{threadTauConnection}}; \textcolor{comment}{// reference to the tau connection thread}}
+\DoxyCodeLine{115     \textcolor{keywordtype}{char} \mbox{\hyperlink{class_tau_interface_a1f7ae6e6f9bb95818f8b792ad46b6d13}{mISerialUSB}}[32]=\{0\};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{keyword}{private}:}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\_grabber::GainMode}} \_gainMode;}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121     \mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}* mTauRawBitmap;}
+\DoxyCodeLine{122     \mbox{\hyperlink{class_tau_interface_a7815bb0312f447f88196deae76493fd5}{callbackTauRawBitmapUpdate}} mCallback;\textcolor{comment}{// callback for received images}}
+\DoxyCodeLine{123     \textcolor{keywordtype}{void}* mCallbackInstance;}
+\DoxyCodeLine{124     \textcolor{keywordtype}{bool} isConnected();}
+\DoxyCodeLine{125     \textcolor{keywordtype}{bool} isConfigUpdated();}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{bool} mVideoProcessingEnabled;}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mTLinearEnableStatus = 0;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mCameraSerial = 0;}
+\DoxyCodeLine{132     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mSensorSerial = 0;}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mSWMajorVersion = 0;}
+\DoxyCodeLine{135     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mSWMinorVersion = 0;}
+\DoxyCodeLine{136     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mFWMajorVersion = 0;}
+\DoxyCodeLine{137     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mFWMinorVersion = 0;}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{char} mCameraPartNumber[32] = \{0\};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keywordtype}{bool} mDigitalOutputEnabledChecked = \textcolor{keyword}{false};}
+\DoxyCodeLine{142     \textcolor{keywordtype}{bool} mDigitalOutputEnabledStatus = \textcolor{keyword}{false};}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144     \textcolor{keywordtype}{bool} mDigitalOutputXPMode14bitChecked = \textcolor{keyword}{false};}
+\DoxyCodeLine{145     \textcolor{keywordtype}{bool} mDigitalOutputXPMode14bitStatus = \textcolor{keyword}{false};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \textcolor{keywordtype}{bool} mDigitalOutputCMOSBitDepth14bitChecked = \textcolor{keyword}{false};}
+\DoxyCodeLine{148     \textcolor{keywordtype}{bool} mDigitalOutputCMOSBitDepth14bitStatus = \textcolor{keyword}{false};}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150     \textcolor{keywordtype}{bool} mTLinearEnabledChecked = \textcolor{keyword}{false};}
+\DoxyCodeLine{151     \textcolor{keywordtype}{bool} mTLinearEnabledStatus = \textcolor{keyword}{false};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{keywordtype}{void} identifyTauCore();}
+\DoxyCodeLine{154     \textcolor{keywordtype}{bool} checkSettings();}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{157         REQ\_DIGITAL\_OUTPUT\_ENABLED,}
+\DoxyCodeLine{158         REQ\_DIGITAL\_OUTPUT\_XP\_MODE,}
+\DoxyCodeLine{159         REQ\_DIGITAL\_OUTPUT\_CMOS\_MODE}
+\DoxyCodeLine{160     \} mPresentRequestDigitalOutput;}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{163         REQ\_SET\_TLIN\_ENABLED,}
+\DoxyCodeLine{164         REQ\_GET\_TLIN\_ENABLED,}
+\DoxyCodeLine{165         REQ\_SET\_TLIN\_MODE,}
+\DoxyCodeLine{166         REQ\_GET\_TLIN\_MODE}
+\DoxyCodeLine{167     \} mPresentRequestTLin;}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     std::thread threadWatchdog;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     std::mutex mWatchdogMutex;}
+\DoxyCodeLine{172     \textcolor{keywordtype}{bool} mRunWatchdog;}
+\DoxyCodeLine{173     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mWatchdogCnt;}
+\DoxyCodeLine{174     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mWatchdogCntResetValue;}
+\DoxyCodeLine{175 \};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TAUINTERFACE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,100 @@
+\hypertarget{structlibusb__endpoint__descriptor}{}\doxysection{libusb\+\_\+endpoint\+\_\+descriptor Struct Reference}
+\label{structlibusb__endpoint__descriptor}\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_aa47a5fa31c179e7cb92818c0572c18a3}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_a609c257394a574af229293bddf26986e}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_a111d087a09cbeded8e15eda9127e23d2}{b\+Endpoint\+Address}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_a932b84417c46467f9916ecf7b679160b}{bm\+Attributes}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_ac1feafc3d7310b2c8ab360513bcfa7b4}{w\+Max\+Packet\+Size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_a3194f3f04ebd860d59cbdb07d758f9d8}{b\+Interval}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_a9176a6d206a48731244e33a89a2bea0b}{b\+Refresh}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__endpoint__descriptor_ab8408ca33f4e135039b1900c6f50ce6d}{b\+Synch\+Address}}
+\item 
+const unsigned char $\ast$ \mbox{\hyperlink{structlibusb__endpoint__descriptor_a27a637679d4cd75fd6af5b8ea19a88d6}{extra}}
+\item 
+int \mbox{\hyperlink{structlibusb__endpoint__descriptor_a0b34ea2919834df309eba8f2775491ae}{extra\+\_\+length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the standard USB endpoint descriptor. This descriptor is documented in section 9.\+6.\+6 of the USB 3.\+0 specification. All multiple-\/byte fields are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__endpoint__descriptor_a609c257394a574af229293bddf26986e}\label{structlibusb__endpoint__descriptor_a609c257394a574af229293bddf26986e}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca97df43465eec9e6db81346f521777815}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+ENDPOINT}} LIBUSB\+\_\+\+DT\+\_\+\+ENDPOINT in this context. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a111d087a09cbeded8e15eda9127e23d2}\label{structlibusb__endpoint__descriptor_a111d087a09cbeded8e15eda9127e23d2}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bEndpointAddress@{bEndpointAddress}}
+\index{bEndpointAddress@{bEndpointAddress}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bEndpointAddress}{bEndpointAddress}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Endpoint\+Address}
+
+The address of the endpoint described by this descriptor. Bits 0\+:3 are the endpoint number. Bits 4\+:6 are reserved. Bit 7 indicates direction, see \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8b}{libusb\+\_\+endpoint\+\_\+direction}}. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a3194f3f04ebd860d59cbdb07d758f9d8}\label{structlibusb__endpoint__descriptor_a3194f3f04ebd860d59cbdb07d758f9d8}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bInterval@{bInterval}}
+\index{bInterval@{bInterval}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bInterval}{bInterval}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Interval}
+
+Interval for polling endpoint for data transfers. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_aa47a5fa31c179e7cb92818c0572c18a3}\label{structlibusb__endpoint__descriptor_aa47a5fa31c179e7cb92818c0572c18a3}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a932b84417c46467f9916ecf7b679160b}\label{structlibusb__endpoint__descriptor_a932b84417c46467f9916ecf7b679160b}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bmAttributes@{bmAttributes}}
+\index{bmAttributes@{bmAttributes}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bmAttributes}{bmAttributes}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::bm\+Attributes}
+
+Attributes which apply to the endpoint when it is configured using the b\+Configuration\+Value. Bits 0\+:1 determine the transfer type and correspond to \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71}{libusb\+\_\+transfer\+\_\+type}}. Bits 2\+:3 are only used for isochronous endpoints and correspond to \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441}{libusb\+\_\+iso\+\_\+sync\+\_\+type}}. Bits 4\+:5 are also only used for isochronous endpoints and correspond to \mbox{\hyperlink{libusb_8h_ab72474551b0eb965401e6febb856007c}{libusb\+\_\+iso\+\_\+usage\+\_\+type}}. Bits 6\+:7 are reserved. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a9176a6d206a48731244e33a89a2bea0b}\label{structlibusb__endpoint__descriptor_a9176a6d206a48731244e33a89a2bea0b}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bRefresh@{bRefresh}}
+\index{bRefresh@{bRefresh}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bRefresh}{bRefresh}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Refresh}
+
+For audio devices only\+: the rate at which synchronization feedback is provided. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_ab8408ca33f4e135039b1900c6f50ce6d}\label{structlibusb__endpoint__descriptor_ab8408ca33f4e135039b1900c6f50ce6d}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!bSynchAddress@{bSynchAddress}}
+\index{bSynchAddress@{bSynchAddress}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bSynchAddress}{bSynchAddress}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::b\+Synch\+Address}
+
+For audio devices only\+: the address if the synch endpoint \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a27a637679d4cd75fd6af5b8ea19a88d6}\label{structlibusb__endpoint__descriptor_a27a637679d4cd75fd6af5b8ea19a88d6}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!extra@{extra}}
+\index{extra@{extra}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra}{extra}}
+{\footnotesize\ttfamily const unsigned char$\ast$ libusb\+\_\+endpoint\+\_\+descriptor\+::extra}
+
+Extra descriptors. If libusbx encounters unknown endpoint descriptors, it will store them here, should you wish to parse them. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_a0b34ea2919834df309eba8f2775491ae}\label{structlibusb__endpoint__descriptor_a0b34ea2919834df309eba8f2775491ae}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!extra\_length@{extra\_length}}
+\index{extra\_length@{extra\_length}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{extra\_length}{extra\_length}}
+{\footnotesize\ttfamily int libusb\+\_\+endpoint\+\_\+descriptor\+::extra\+\_\+length}
+
+Length of the extra descriptors, in bytes. \mbox{\Hypertarget{structlibusb__endpoint__descriptor_ac1feafc3d7310b2c8ab360513bcfa7b4}\label{structlibusb__endpoint__descriptor_ac1feafc3d7310b2c8ab360513bcfa7b4}} 
+\index{libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}!wMaxPacketSize@{wMaxPacketSize}}
+\index{wMaxPacketSize@{wMaxPacketSize}!libusb\_endpoint\_descriptor@{libusb\_endpoint\_descriptor}}
+\doxysubsubsection{\texorpdfstring{wMaxPacketSize}{wMaxPacketSize}}
+{\footnotesize\ttfamily uint16\+\_\+t libusb\+\_\+endpoint\+\_\+descriptor\+::w\+Max\+Packet\+Size}
+
+Maximum packet size this endpoint is capable of sending/receiving. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

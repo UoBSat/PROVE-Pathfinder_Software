@@ -1,0 +1,64 @@
+\hypertarget{thermograbber_8h_source}{}\doxysection{thermograbber.\+h}
+\label{thermograbber_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/thermograbber.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/thermograbber.h}}
+\mbox{\hyperlink{thermograbber_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{keyword}{class }\mbox{\hyperlink{struct_thermo_grabber_private}{ThermoGrabberPrivate}};}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_thermo_grabber}{ThermoGrabber}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{public}:}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \mbox{\hyperlink{class_thermo_grabber_aabf50bb1586616ef6ace1d7fdd01f1b3}{ThermoGrabber}}();}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_thermo_grabber_acde75d53e8dee1afce232c3ec7c5420b}{\string~ThermoGrabber}}();}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{comment}{//Run this function to initiate the connection to ThermoGrabber USB hardware}}
+\DoxyCodeLine{14     \textcolor{comment}{//int runGrabber(void);}}
+\DoxyCodeLine{15     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_thermo_grabber_a045a14e17e30c67393970b0393e4a5c2}{runGrabber}}(\textcolor{keywordtype}{char} *iSerialUSB);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{comment}{//Closes the connection to the USB hardware, runGrabber will return after calling this}}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_a94d5f6b38d3e5f667b6740ce975f1d15}{stopGrabber}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{comment}{//Sends data to the TAU via the UART data channel}}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_a10bb4e3a94d3ed6bb9905f1de803170a}{sendUartData}}(uint8\_t* buffer,uint32\_t size);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{comment}{// Becomes true if ThermoGrabber begins}}
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_thermo_grabber_a68c57dbb46b87b3e3a41bb5cb288750a}{grabberRuns}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_ae56168018bead87c8cba23715b7ab693}{reenableFTDI}}();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_a04b060a8f4e12f6adacea9e9e591bf34}{setSyncModeNoExternalSyncOrMaster}}();}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_a51b50155af77b1c765456a5e1be649cd}{setSyncModeCameraSlave}}();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_aea257795d5d93a95323f06e63920dfd4}{setSyncModeGrabberMaster}}(uint32\_t freq, uint32\_t count);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{comment}{//This function is called when UART data was received}}
+\DoxyCodeLine{35     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_a767d559e3cfa5bf5f31ce4b237684a7e}{processUartData}}(uint8\_t* buffer,uint32\_t size)=0;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{//This function is called when a video frame was received}}
+\DoxyCodeLine{38     \textcolor{comment}{//Data is encoded in 16 bit words:}}
+\DoxyCodeLine{39     \textcolor{comment}{//Bit 15 HSYNC //0 between lines, 1 if pixel data is valid}}
+\DoxyCodeLine{40     \textcolor{comment}{//Bit 14 VSYNC //0 between frames, 1 if lines are valid}}
+\DoxyCodeLine{41     \textcolor{comment}{//BIT 13-\/0 Pixel Data}}
+\DoxyCodeLine{42     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_thermo_grabber_acc1ed06367e1fea53552a90a9dd9097f}{processVideoData}}(uint16\_t* buffer, uint32\_t size)=0;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_thermo_grabber_ad1008c24308e2f6ca54e575ba2cf980e}{getPPSTimestamp}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{private}:}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \mbox{\hyperlink{struct_thermo_grabber_private}{ThermoGrabberPrivate}}* tgP;}
+\DoxyCodeLine{49     \textcolor{keyword}{static} \textcolor{keywordtype}{int} static\_readCallback(uint8\_t *buffer, \textcolor{keywordtype}{int} length, \textcolor{keywordtype}{void} *progress, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{50     \textcolor{keywordtype}{int} readCallback(uint8\_t *buffer, \textcolor{keywordtype}{int} length, \textcolor{keywordtype}{void} *progress);}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} writeUartHeader(uint8\_t* buffer,uint8\_t dataSize);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} writeSyncHeader(uint8\_t* buffer);}
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} sendSyncValues(uint8\_t syncMode, uint32\_t time, uint32\_t count);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} mPPSTimestamp;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \};}
+
+\end{DoxyCode}

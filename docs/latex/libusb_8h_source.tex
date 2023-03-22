@@ -1,0 +1,1059 @@
+\hypertarget{libusb_8h_source}{}\doxysection{libusb.\+h}
+\label{libusb_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/inc/libusb.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/inc/libusb.h}}
+\mbox{\hyperlink{libusb_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Public libusbx header file}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Copyright © 2001 Johannes Erdfelt <johannes@erdfelt.com>}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright © 2007-\/2008 Daniel Drake <dsd@gentoo.org>}}
+\DoxyCodeLine{5 \textcolor{comment}{ * Copyright © 2012 Pete Batard <pete@akeo.ie>}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Copyright © 2012 Nathan Hjelm <hjelmn@cs.unm.edu>}}
+\DoxyCodeLine{7 \textcolor{comment}{ * For more information, please visit: http://libusbx.org}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ * This library is free software; you can redistribute it and/or}}
+\DoxyCodeLine{10 \textcolor{comment}{ * modify it under the terms of the GNU Lesser General Public}}
+\DoxyCodeLine{11 \textcolor{comment}{ * License as published by the Free Software Foundation; either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * version 2.1 of the License, or (at your option) any later version.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ * This library is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{15 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{16 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU}}
+\DoxyCodeLine{17 \textcolor{comment}{ * Lesser General Public License for more details.}}
+\DoxyCodeLine{18 \textcolor{comment}{ *}}
+\DoxyCodeLine{19 \textcolor{comment}{ * You should have received a copy of the GNU Lesser General Public}}
+\DoxyCodeLine{20 \textcolor{comment}{ * License along with this library; if not, write to the Free Software}}
+\DoxyCodeLine{21 \textcolor{comment}{ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-\/1301 USA}}
+\DoxyCodeLine{22 \textcolor{comment}{ */}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef LIBUSB\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define LIBUSB\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef \_MSC\_VER}}
+\DoxyCodeLine{28 \textcolor{comment}{/* on MS environments, the inline keyword is available in C++ only */}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#if !defined(\_\_cplusplus)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define inline \_\_inline}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 \textcolor{comment}{/* ssize\_t is also not available (copy/paste from MinGW) */}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef \_SSIZE\_T\_DEFINED}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define \_SSIZE\_T\_DEFINED}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#undef ssize\_t}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef \_WIN64}}
+\DoxyCodeLine{37   \textcolor{keyword}{typedef} \_\_int64 ssize\_t;}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{39   \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} ssize\_t;}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_WIN64 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_SSIZE\_T\_DEFINED */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_MSC\_VER */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{/* stdint.h is not available on older MSVC */}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#if defined(\_MSC\_VER) \&\& (\_MSC\_VER < 1600) \&\& (!defined(\_STDINT)) \&\& (!defined(\_STDINT\_H))}}
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int8   uint8\_t;}
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int16  uint16\_t;}
+\DoxyCodeLine{48 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \_\_int32  uint32\_t;}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#if !defined(\_WIN32\_WCE)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#include <sys/types.h>}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#if defined(\_\_linux) || defined(\_\_APPLE\_\_) || defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#include <sys/time.h>}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#include <limits.h>}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{/* 'interface' might be defined as a macro on Windows, so we need to}}
+\DoxyCodeLine{65 \textcolor{comment}{ * undefine it so as not to break the current libusbx API, because}}
+\DoxyCodeLine{66 \textcolor{comment}{ * libusb\_config\_descriptor has an 'interface' member}}
+\DoxyCodeLine{67 \textcolor{comment}{ * As this can be problematic if you include windows.h after libusb.h}}
+\DoxyCodeLine{68 \textcolor{comment}{ * in your sources, we force windows.h to be included first. */}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#if defined(\_WIN32) || defined(\_\_CYGWIN\_\_) || defined(\_WIN32\_WCE)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#if defined(interface)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#undef interface}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#if !defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#include <winsock.h>}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#if \_\_GNUC\_\_ > 4 || (\_\_GNUC\_\_ == 4 \&\& \_\_GNUC\_MINOR\_\_ >= 5)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define LIBUSB\_DEPRECATED\_FOR(f) \(\backslash\)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{  \_\_attribute\_\_((deprecated("{}Use "{}} \#f "{} instead"{})))}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define LIBUSB\_DEPRECATED\_FOR(f)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_GNUC\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{111 \textcolor{comment}{/* LIBUSB\_CALL must be defined on both definition and declaration of libusbx}}
+\DoxyCodeLine{112 \textcolor{comment}{ * functions. You'd think that declaration would be enough, but cygwin will}}
+\DoxyCodeLine{113 \textcolor{comment}{ * complain about conflicting types unless both are marked this way.}}
+\DoxyCodeLine{114 \textcolor{comment}{ * The placement of this macro is important too; it must appear after the}}
+\DoxyCodeLine{115 \textcolor{comment}{ * return type, before the function name. See internal documentation for}}
+\DoxyCodeLine{116 \textcolor{comment}{ * API\_EXPORTED.}}
+\DoxyCodeLine{117 \textcolor{comment}{ */}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#if defined(\_WIN32) || defined(\_\_CYGWIN\_\_) || defined(\_WIN32\_WCE)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define LIBUSB\_CALL WINAPI}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define LIBUSB\_CALL}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define LIBUSBX\_API\_VERSION 0x01000102}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{150 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{161 \textcolor{keyword}{static} \textcolor{keyword}{inline} uint16\_t libusb\_cpu\_to\_le16(\textcolor{keyword}{const} uint16\_t x)}
+\DoxyCodeLine{162 \{}
+\DoxyCodeLine{163     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{164         uint8\_t  b8[2];}
+\DoxyCodeLine{165         uint16\_t b16;}
+\DoxyCodeLine{166     \} \_tmp;}
+\DoxyCodeLine{167     \_tmp.b8[1] = (uint8\_t) (x >> 8);}
+\DoxyCodeLine{168     \_tmp.b8[0] = (uint8\_t) (x \& 0xff);}
+\DoxyCodeLine{169     \textcolor{keywordflow}{return} \_tmp.b16;}
+\DoxyCodeLine{170 \}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define libusb\_le16\_to\_cpu libusb\_cpu\_to\_le16}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{/* standard USB stuff */}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{186 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1}{libusb\_class\_code}} \{}
+\DoxyCodeLine{191     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ac6d01c08f92219d625162271d9547550}{LIBUSB\_CLASS\_PER\_INTERFACE}} = 0,}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{194     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a1f87be5c5c32c30e1e6831abdb61461a}{LIBUSB\_CLASS\_AUDIO}} = 1,}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{197     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a7db61f0ea65d1919962ac0370513183b}{LIBUSB\_CLASS\_COMM}} = 2,}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{200     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ad126069ffbc9cb3cda97fe0fe8c190f3}{LIBUSB\_CLASS\_HID}} = 3,}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{203     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a7abdd4f2d21f046622717f70ad0b6ea9}{LIBUSB\_CLASS\_PHYSICAL}} = 5,}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{206     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ab1592f5d41d4ee3ccfe0adef8cbf04ee}{LIBUSB\_CLASS\_PRINTER}} = 7,}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{209     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1abcd1d4f42671058f70ab9ae41c5ce303}{LIBUSB\_CLASS\_PTP}} = 6, \textcolor{comment}{/* legacy name from libusb-\/0.1 usb.h */}}
+\DoxyCodeLine{210     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1af393b0c8f1da0b9c558f6e5c113b59b2}{LIBUSB\_CLASS\_IMAGE}} = 6,}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{213     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ac84d2301375aef28bf5c3f4bda35f9d1}{LIBUSB\_CLASS\_MASS\_STORAGE}} = 8,}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{216     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a28ba55c39b90ba3f281542e4ffdb626d}{LIBUSB\_CLASS\_HUB}} = 9,}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{219     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1aa18621124b0db0f8972556647ad16827}{LIBUSB\_CLASS\_DATA}} = 10,}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{222     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1af4ec75b9ab816c46da747c80bbf9cca0}{LIBUSB\_CLASS\_SMART\_CARD}} = 0x0b,}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{225     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a5d306be7a6fbfb331ce25c8c804eada8}{LIBUSB\_CLASS\_CONTENT\_SECURITY}} = 0x0d,}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{228     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a7deae7d18c3d99dda5bb3bd8b6ec01da}{LIBUSB\_CLASS\_VIDEO}} = 0x0e,}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{231     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ab97e8441e102707252263abcdc29b4c0}{LIBUSB\_CLASS\_PERSONAL\_HEALTHCARE}} = 0x0f,}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{234     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a5f1089ee11b766a10a27c0c0600bebfa}{LIBUSB\_CLASS\_DIAGNOSTIC\_DEVICE}} = 0xdc,}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{237     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1aaeea39cf3f500f56381cd6e05132d934}{LIBUSB\_CLASS\_WIRELESS}} = 0xe0,}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{240     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1a3a95beae54453469c4862efc1606dcc9}{LIBUSB\_CLASS\_APPLICATION}} = 0xfe,}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{243     \mbox{\hyperlink{libusb_8h_ac529888effbefef8af4f9d17ebc903a1ad68e1d33a332360428f838c6ddd847f6}{LIBUSB\_CLASS\_VENDOR\_SPEC}} = 0xff}
+\DoxyCodeLine{244 \};}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{248 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9c}{libusb\_descriptor\_type}} \{}
+\DoxyCodeLine{250     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca486e222e9f3053502ce4954a5bd89ba2}{LIBUSB\_DT\_DEVICE}} = 0x01,}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{253     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca2a3f906d7755932ab67f39701da0b508}{LIBUSB\_DT\_CONFIG}} = 0x02,}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{256     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca2b8ca4332dce1357767ecab20ed2f4c2}{LIBUSB\_DT\_STRING}} = 0x03,}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{259     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca797f18e35ee27434562aed0c20c46b78}{LIBUSB\_DT\_INTERFACE}} = 0x04,}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{262     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca97df43465eec9e6db81346f521777815}{LIBUSB\_DT\_ENDPOINT}} = 0x05,}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{265     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9caab1245826594605de870d70bffae7f2c}{LIBUSB\_DT\_BOS}} = 0x0f,}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{268     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca56875fd1a3df25bdea7680fa9047743c}{LIBUSB\_DT\_DEVICE\_CAPABILITY}} = 0x10,}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{271     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca3085fb63563770bfa1ede7b27cbf4f5e}{LIBUSB\_DT\_HID}} = 0x21,}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{274     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca3972f13fb6b6abdb0978dc43d9d24e6f}{LIBUSB\_DT\_REPORT}} = 0x22,}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{277     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca77c22f3dc80f2a505c22c68cc54c70d3}{LIBUSB\_DT\_PHYSICAL}} = 0x23,}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{280     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca2186edbc7dc05b063ac41103a5ccfa9a}{LIBUSB\_DT\_HUB}} = 0x29,}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{283     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca6892da187e642c8a9b7900e86bf38ba8}{LIBUSB\_DT\_SUPERSPEED\_HUB}} = 0x2a,}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{286     \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca9bdd0a16eb0647330c2b7085520db533}{LIBUSB\_DT\_SS\_ENDPOINT\_COMPANION}} = 0x30}
+\DoxyCodeLine{287 \};}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{comment}{/* Descriptor sizes per descriptor type */}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define LIBUSB\_DT\_DEVICE\_SIZE           18}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define LIBUSB\_DT\_CONFIG\_SIZE           9}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define LIBUSB\_DT\_INTERFACE\_SIZE        9}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define LIBUSB\_DT\_ENDPOINT\_SIZE         7}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define LIBUSB\_DT\_ENDPOINT\_AUDIO\_SIZE       9   }\textcolor{comment}{/* Audio extension */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#define LIBUSB\_DT\_HUB\_NONVAR\_SIZE       7}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define LIBUSB\_DT\_SS\_ENDPOINT\_COMPANION\_SIZE    6}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define LIBUSB\_DT\_BOS\_SIZE          5}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define LIBUSB\_DT\_DEVICE\_CAPABILITY\_SIZE    3}}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300 \textcolor{comment}{/* BOS descriptor sizes */}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define LIBUSB\_BT\_USB\_2\_0\_EXTENSION\_SIZE    7}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#define LIBUSB\_BT\_SS\_USB\_DEVICE\_CAPABILITY\_SIZE 10}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define LIBUSB\_BT\_CONTAINER\_ID\_SIZE     20}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{comment}{/* We unwrap the BOS => define its max size */}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#define LIBUSB\_DT\_BOS\_MAX\_SIZE      ((LIBUSB\_DT\_BOS\_SIZE)     +\(\backslash\)}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{                    (LIBUSB\_BT\_USB\_2\_0\_EXTENSION\_SIZE)       +\(\backslash\)}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{                    (LIBUSB\_BT\_SS\_USB\_DEVICE\_CAPABILITY\_SIZE) +\(\backslash\)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{                    (LIBUSB\_BT\_CONTAINER\_ID\_SIZE))}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#define LIBUSB\_ENDPOINT\_ADDRESS\_MASK    0x0f    }\textcolor{comment}{/* in bEndpointAddress */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define LIBUSB\_ENDPOINT\_DIR\_MASK        0x80}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{318 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8b}{libusb\_endpoint\_direction}} \{}
+\DoxyCodeLine{320     \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8ba3829979c66e5344367f32f4a31d43613}{LIBUSB\_ENDPOINT\_IN}} = 0x80,}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{323     \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8ba940484c16d44bdfc6eccc2de7a9ffcb2}{LIBUSB\_ENDPOINT\_OUT}} = 0x00}
+\DoxyCodeLine{324 \};}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define LIBUSB\_TRANSFER\_TYPE\_MASK           0x03    }\textcolor{comment}{/* in bmAttributes */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{332 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71}{libusb\_transfer\_type}} \{}
+\DoxyCodeLine{334     \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a4c89624658c783ef9b2a2f08091bc7d7}{LIBUSB\_TRANSFER\_TYPE\_CONTROL}} = 0,}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{337     \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a40de9889554fc1785d784b3c31333300}{LIBUSB\_TRANSFER\_TYPE\_ISOCHRONOUS}} = 1,}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{340     \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a7bdfa2fc5dadbaaa0e9262e1b4a228e2}{LIBUSB\_TRANSFER\_TYPE\_BULK}} = 2,}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{343     \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71aefb0e07862c0eed894ec9c2f957a7e3c}{LIBUSB\_TRANSFER\_TYPE\_INTERRUPT}} = 3}
+\DoxyCodeLine{344 \};}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{348 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236df}{libusb\_standard\_request}} \{}
+\DoxyCodeLine{350     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa42f2eefbbd7a5c5cce68ca5989a02a7a}{LIBUSB\_REQUEST\_GET\_STATUS}} = 0x00,}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{353     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa0b0f3b3ac6e8ebca120bf3581c5505de}{LIBUSB\_REQUEST\_CLEAR\_FEATURE}} = 0x01,}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355     \textcolor{comment}{/* 0x02 is reserved */}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{358     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa6059966cdfccc4db0cccaab22a6d9a83}{LIBUSB\_REQUEST\_SET\_FEATURE}} = 0x03,}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360     \textcolor{comment}{/* 0x04 is reserved */}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{363     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa7c69aef99e548d128bc1f9e18c539c1d}{LIBUSB\_REQUEST\_SET\_ADDRESS}} = 0x05,}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{366     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa3ebb19fe897a2a36e90b2e8193b88b0f}{LIBUSB\_REQUEST\_GET\_DESCRIPTOR}} = 0x06,}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{369     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa40ad5a26219379bbbeab2137b21dcb74}{LIBUSB\_REQUEST\_SET\_DESCRIPTOR}} = 0x07,}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{372     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa7e33754fe6c088b94905c387155a8586}{LIBUSB\_REQUEST\_GET\_CONFIGURATION}} = 0x08,}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{375     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfaefcadf8a4b1f0d1dadd79764486b2cb3}{LIBUSB\_REQUEST\_SET\_CONFIGURATION}} = 0x09,}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{378     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa179b703deda249f6e48412bc2cf61d8c}{LIBUSB\_REQUEST\_GET\_INTERFACE}} = 0x0A,}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{381     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa72e910864721ebe3e5cb6a5b53de6061}{LIBUSB\_REQUEST\_SET\_INTERFACE}} = 0x0B,}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{384     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfab4244333798720a3664e59187819f2d5}{LIBUSB\_REQUEST\_SYNCH\_FRAME}} = 0x0C,}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{387     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa8fc0213fcc23566ec28e88bee216777b}{LIBUSB\_REQUEST\_SET\_SEL}} = 0x30,}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{391     \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfaa280efe17cdd0be55d528b9932142376}{LIBUSB\_SET\_ISOCH\_DELAY}} = 0x31,}
+\DoxyCodeLine{392 \};}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{398 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91}{libusb\_request\_type}} \{}
+\DoxyCodeLine{400     \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91a20eca62c34d2d25be7e1776510184209}{LIBUSB\_REQUEST\_TYPE\_STANDARD}} = (0x00 << 5),}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{403     \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91a43f45ae56bf339e3f984a4182fdd85f0}{LIBUSB\_REQUEST\_TYPE\_CLASS}} = (0x01 << 5),}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{406     \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91a1585f40d2a73c752a5f60688612c1345}{LIBUSB\_REQUEST\_TYPE\_VENDOR}} = (0x02 << 5),}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{409     \mbox{\hyperlink{libusb_8h_a0b0933ae70744726cde11254c39fac91a8e2a1b00f9bcf05d3303c75c9e9cda69}{LIBUSB\_REQUEST\_TYPE\_RESERVED}} = (0x03 << 5)}
+\DoxyCodeLine{410 \};}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{416 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbae}{libusb\_request\_recipient}} \{}
+\DoxyCodeLine{418     \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbaeaf39ffde2a586d565a817bfd591f2dc33}{LIBUSB\_RECIPIENT\_DEVICE}} = 0x00,}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{421     \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbaea9e5f9678cb9b301ccc07a247d350aadc}{LIBUSB\_RECIPIENT\_INTERFACE}} = 0x01,}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{424     \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbaea6873e84c5a1ae0160891ebab16e5d93b}{LIBUSB\_RECIPIENT\_ENDPOINT}} = 0x02,}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{427     \mbox{\hyperlink{libusb_8h_a20a4e8a729aa543fa742a5086596cbaeae6f863cf9e2122d2194916876e9477eb}{LIBUSB\_RECIPIENT\_OTHER}} = 0x03,}
+\DoxyCodeLine{428 \};}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#define LIBUSB\_ISO\_SYNC\_TYPE\_MASK       0x0C}}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{437 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441}{libusb\_iso\_sync\_type}} \{}
+\DoxyCodeLine{439     \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441a4a74eefd565a40b4ed911baaaaea1cee}{LIBUSB\_ISO\_SYNC\_TYPE\_NONE}} = 0,}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{442     \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441ab97a868cd66bfcac50f9ccf8ff0b3a67}{LIBUSB\_ISO\_SYNC\_TYPE\_ASYNC}} = 1,}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{445     \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441a813f487563e5b61a8399e7512f0c303b}{LIBUSB\_ISO\_SYNC\_TYPE\_ADAPTIVE}} = 2,}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{448     \mbox{\hyperlink{libusb_8h_aa2231202dfe12eddca49b1193d44a441a39244a977707c95c7f3ba0e978faba84}{LIBUSB\_ISO\_SYNC\_TYPE\_SYNC}} = 3}
+\DoxyCodeLine{449 \};}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 \textcolor{preprocessor}{\#define LIBUSB\_ISO\_USAGE\_TYPE\_MASK 0x30}}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{458 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_ab72474551b0eb965401e6febb856007c}{libusb\_iso\_usage\_type}} \{}
+\DoxyCodeLine{460     \mbox{\hyperlink{libusb_8h_ab72474551b0eb965401e6febb856007ca13edfd0d36d959bcf32d5cca341c7f38}{LIBUSB\_ISO\_USAGE\_TYPE\_DATA}} = 0,}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{463     \mbox{\hyperlink{libusb_8h_ab72474551b0eb965401e6febb856007ca2390aa76c4444e0b590fb65f305e4485}{LIBUSB\_ISO\_USAGE\_TYPE\_FEEDBACK}} = 1,}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{466     \mbox{\hyperlink{libusb_8h_ab72474551b0eb965401e6febb856007ca8e48a0bad38cfaf0e87dfdc225f91e32}{LIBUSB\_ISO\_USAGE\_TYPE\_IMPLICIT}} = 2,}
+\DoxyCodeLine{467 \};}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{474 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__device__descriptor}{libusb\_device\_descriptor}} \{}
+\DoxyCodeLine{476     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_affda0be3fe1c37092ddc7cb120428f30}{bLength}};}
+\DoxyCodeLine{477 }
+\DoxyCodeLine{481     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a63c4b109725ce829fc81c5c9cad8c87a}{bDescriptorType}};}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{485     uint16\_t \mbox{\hyperlink{structlibusb__device__descriptor_af0682f293291db942b5d253092d472e4}{bcdUSB}};}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{488     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_ab86c8f43e75d4d54fccbc199cfa9703b}{bDeviceClass}};}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{492     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a9c3a91102d3d53d9414d0dda0191c5ab}{bDeviceSubClass}};}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{496     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a480a0b5345a2e59987e20fa7247c3f0e}{bDeviceProtocol}};}
+\DoxyCodeLine{497 }
+\DoxyCodeLine{499     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a3b60170f077c9b26fc9f86e0cdb1d28a}{bMaxPacketSize0}};}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{502     uint16\_t \mbox{\hyperlink{structlibusb__device__descriptor_ad26c5e2fbd16ce3ee143f4bac5d49bda}{idVendor}};}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{505     uint16\_t \mbox{\hyperlink{structlibusb__device__descriptor_a568d479fb0b76ea572a739c961fd3047}{idProduct}};}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{508     uint16\_t \mbox{\hyperlink{structlibusb__device__descriptor_afb5e0fc6f0cfe51de900d35506fb9317}{bcdDevice}};}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{511     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_ab9e9a064265f2833d1d3f216f15a487a}{iManufacturer}};}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{514     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a20082f9e03f1cbffef3d9472a8dcfd64}{iProduct}};}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{517     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a327e8ede51268b38955ef035cf6de875}{iSerialNumber}};}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{520     uint8\_t  \mbox{\hyperlink{structlibusb__device__descriptor_a0f3f80cd931628a0531a815b59d067dd}{bNumConfigurations}};}
+\DoxyCodeLine{521 \};}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{528 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__endpoint__descriptor}{libusb\_endpoint\_descriptor}} \{}
+\DoxyCodeLine{530     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_aa47a5fa31c179e7cb92818c0572c18a3}{bLength}};}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{535     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_a609c257394a574af229293bddf26986e}{bDescriptorType}};}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{541     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_a111d087a09cbeded8e15eda9127e23d2}{bEndpointAddress}};}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{550     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_a932b84417c46467f9916ecf7b679160b}{bmAttributes}};}
+\DoxyCodeLine{551 }
+\DoxyCodeLine{553     uint16\_t \mbox{\hyperlink{structlibusb__endpoint__descriptor_ac1feafc3d7310b2c8ab360513bcfa7b4}{wMaxPacketSize}};}
+\DoxyCodeLine{554 }
+\DoxyCodeLine{556     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_a3194f3f04ebd860d59cbdb07d758f9d8}{bInterval}};}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{560     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_a9176a6d206a48731244e33a89a2bea0b}{bRefresh}};}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{563     uint8\_t  \mbox{\hyperlink{structlibusb__endpoint__descriptor_ab8408ca33f4e135039b1900c6f50ce6d}{bSynchAddress}};}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{567     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__endpoint__descriptor_a27a637679d4cd75fd6af5b8ea19a88d6}{extra}};}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{570     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__endpoint__descriptor_a0b34ea2919834df309eba8f2775491ae}{extra\_length}};}
+\DoxyCodeLine{571 \};}
+\DoxyCodeLine{572 }
+\DoxyCodeLine{578 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__interface__descriptor}{libusb\_interface\_descriptor}} \{}
+\DoxyCodeLine{580     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a646b7bf875e5b927796d47e57c9182b8}{bLength}};}
+\DoxyCodeLine{581 }
+\DoxyCodeLine{585     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_affe977ae83d3bbf07513d87ebfb6ed0e}{bDescriptorType}};}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{588     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a75046f443d3330f590f3d3fb1f9df863}{bInterfaceNumber}};}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{591     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a2c94bce217e8ecd5fd23728510e9c838}{bAlternateSetting}};}
+\DoxyCodeLine{592 }
+\DoxyCodeLine{595     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a487bd2058bfbe749d370c6e7d3add20e}{bNumEndpoints}};}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{598     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a19dcf80e6a5fedf3d3673630897ad649}{bInterfaceClass}};}
+\DoxyCodeLine{599 }
+\DoxyCodeLine{602     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a0b9b890f84694a4e6a0103944e1247f4}{bInterfaceSubClass}};}
+\DoxyCodeLine{603 }
+\DoxyCodeLine{606     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a5062bbb17fc76e6c3624ea7ca68d554c}{bInterfaceProtocol}};}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{609     uint8\_t  \mbox{\hyperlink{structlibusb__interface__descriptor_a19227cc111c27e27c2c07430777e1ab8}{iInterface}};}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{613     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__endpoint__descriptor}{libusb\_endpoint\_descriptor}} *\mbox{\hyperlink{structlibusb__interface__descriptor_a42bd0c63b361cf6c0bda5ecdf73e1c75}{endpoint}};}
+\DoxyCodeLine{614 }
+\DoxyCodeLine{617     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__interface__descriptor_aa1169e8c0b22a9928bbd51169609f31d}{extra}};}
+\DoxyCodeLine{618 }
+\DoxyCodeLine{620     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__interface__descriptor_ad77fa0b951a83d0c7eac28920367f200}{extra\_length}};}
+\DoxyCodeLine{621 \};}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{626 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__interface}{libusb\_interface}} \{}
+\DoxyCodeLine{629     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__interface__descriptor}{libusb\_interface\_descriptor}} *\mbox{\hyperlink{structlibusb__interface_a072dc48e34a98aeafbd23591ffe694ce}{altsetting}};}
+\DoxyCodeLine{630 }
+\DoxyCodeLine{632     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__interface_afc930be16a60980424f64a88b23c10e9}{num\_altsetting}};}
+\DoxyCodeLine{633 \};}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{640 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__config__descriptor}{libusb\_config\_descriptor}} \{}
+\DoxyCodeLine{642     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_a18ccd46a86328fd9c849e17ca8f01738}{bLength}};}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{647     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_abc4f9a751c5b2ed968b045cb17528f74}{bDescriptorType}};}
+\DoxyCodeLine{648 }
+\DoxyCodeLine{650     uint16\_t \mbox{\hyperlink{structlibusb__config__descriptor_a819c160c66c1bd7b569399e6a6fc278f}{wTotalLength}};}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{653     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_a2c89b2d0a9ec0440801b97a8f8145792}{bNumInterfaces}};}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{656     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_a04549d99d38080857e0256fcad8dcce7}{bConfigurationValue}};}
+\DoxyCodeLine{657 }
+\DoxyCodeLine{659     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_a06dbb2e068b3999dd23954e63640d953}{iConfiguration}};}
+\DoxyCodeLine{660 }
+\DoxyCodeLine{662     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_adb65fe86ce28394110caad982c566525}{bmAttributes}};}
+\DoxyCodeLine{663 }
+\DoxyCodeLine{667     uint8\_t  \mbox{\hyperlink{structlibusb__config__descriptor_a527518147a0c7321a195f2d8dac2ea01}{MaxPower}};}
+\DoxyCodeLine{668 }
+\DoxyCodeLine{671     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__interface}{libusb\_interface}} *\mbox{\hyperlink{structlibusb__config__descriptor_afe04b70611b0ac83866639103d27df76}{interface}};}
+\DoxyCodeLine{672 }
+\DoxyCodeLine{675     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__config__descriptor_acc982e6c82f7183dfa41076d28d991f7}{extra}};}
+\DoxyCodeLine{676 }
+\DoxyCodeLine{678     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__config__descriptor_a18439e83e8f46606a13d70c00a48a9d9}{extra\_length}};}
+\DoxyCodeLine{679 \};}
+\DoxyCodeLine{680 }
+\DoxyCodeLine{687 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor}{libusb\_ss\_endpoint\_companion\_descriptor}} \{}
+\DoxyCodeLine{688 }
+\DoxyCodeLine{690     uint8\_t  \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a576f037f393bf45926a2d45a80c3c3ce}{bLength}};}
+\DoxyCodeLine{691 }
+\DoxyCodeLine{695     uint8\_t  \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a85344cb4f4d8d03014d9cc2cf90c748f}{bDescriptorType}};}
+\DoxyCodeLine{696 }
+\DoxyCodeLine{697 }
+\DoxyCodeLine{700     uint8\_t  \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a85b999ffaff20e9e1518597339e0a7dc}{bMaxBurst}};}
+\DoxyCodeLine{701 }
+\DoxyCodeLine{706     uint8\_t  \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_aa7097b478f5e46e8cdd160fb4aaccc1f}{bmAttributes}};}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{710     uint16\_t \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor_a13605afcfe00291bc86ebb415226ece6}{wBytesPerInterval}};}
+\DoxyCodeLine{711 \};}
+\DoxyCodeLine{712 }
+\DoxyCodeLine{718 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\_bos\_dev\_capability\_descriptor}} \{}
+\DoxyCodeLine{720     uint8\_t \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor_a02cfb0bb72c092b12d76ca4676506b10}{bLength}};}
+\DoxyCodeLine{724     uint8\_t \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor_a3d86cfc459f933fd825366279671e263}{bDescriptorType}};}
+\DoxyCodeLine{726     uint8\_t \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor_a8e0b85cb554e5227a3ef860c1c97cdb0}{bDevCapabilityType}};}
+\DoxyCodeLine{728     uint8\_t \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor_af29ebe54a2123fee4c1cb48bea3d2199}{dev\_capability\_data}}}
+\DoxyCodeLine{729 \textcolor{preprocessor}{\#if defined(\_\_STDC\_VERSION\_\_) \&\& (\_\_STDC\_VERSION\_\_ >= 199901L)}}
+\DoxyCodeLine{730     [] \textcolor{comment}{/* valid C99 code */}}
+\DoxyCodeLine{731 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{732     [0] \textcolor{comment}{/* non-\/standard, but usually working code */}}
+\DoxyCodeLine{733 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{734     ;}
+\DoxyCodeLine{735 \};}
+\DoxyCodeLine{736 }
+\DoxyCodeLine{742 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__bos__descriptor}{libusb\_bos\_descriptor}} \{}
+\DoxyCodeLine{744     uint8\_t  \mbox{\hyperlink{structlibusb__bos__descriptor_ae0684cd2fd0a519c711b2c5169c6a54e}{bLength}};}
+\DoxyCodeLine{745 }
+\DoxyCodeLine{749     uint8\_t  \mbox{\hyperlink{structlibusb__bos__descriptor_ae6dcffa81a4885e1cf677656f7ae9ff7}{bDescriptorType}};}
+\DoxyCodeLine{750 }
+\DoxyCodeLine{752     uint16\_t \mbox{\hyperlink{structlibusb__bos__descriptor_a02490a8cfd9d1b53ef8f19190a2a1a2c}{wTotalLength}};}
+\DoxyCodeLine{753 }
+\DoxyCodeLine{756     uint8\_t  \mbox{\hyperlink{structlibusb__bos__descriptor_aba92a4ee25d13195f80651a79add48d6}{bNumDeviceCaps}};}
+\DoxyCodeLine{757 }
+\DoxyCodeLine{759     \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\_bos\_dev\_capability\_descriptor}} *\mbox{\hyperlink{structlibusb__bos__descriptor_ab96881b56bdbfd53fb850c4db2fac4fe}{dev\_capability}}}
+\DoxyCodeLine{760 \textcolor{preprocessor}{\#if defined(\_\_STDC\_VERSION\_\_) \&\& (\_\_STDC\_VERSION\_\_ >= 199901L)}}
+\DoxyCodeLine{761     [] \textcolor{comment}{/* valid C99 code */}}
+\DoxyCodeLine{762 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{763     [0] \textcolor{comment}{/* non-\/standard, but usually working code */}}
+\DoxyCodeLine{764 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{765     ;}
+\DoxyCodeLine{766 \};}
+\DoxyCodeLine{767 }
+\DoxyCodeLine{773 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor}{libusb\_usb\_2\_0\_extension\_descriptor}} \{}
+\DoxyCodeLine{775     uint8\_t  \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_a11b9f042687aec219e0e777530df0664}{bLength}};}
+\DoxyCodeLine{776 }
+\DoxyCodeLine{780     uint8\_t  \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_ab3f73eeaabab1e8db659bcb6b2cb59c5}{bDescriptorType}};}
+\DoxyCodeLine{781 }
+\DoxyCodeLine{785     uint8\_t  \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_aa6a3e671c23b77eef252f17ce865734e}{bDevCapabilityType}};}
+\DoxyCodeLine{786 }
+\DoxyCodeLine{791     uint32\_t  \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor_ab22e1857d38c9205aaecca52b2e20ae0}{bmAttributes}};}
+\DoxyCodeLine{792 \};}
+\DoxyCodeLine{793 }
+\DoxyCodeLine{799 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor}{libusb\_ss\_usb\_device\_capability\_descriptor}} \{}
+\DoxyCodeLine{801     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a64379238b9225de97b67db770c3c15e9}{bLength}};}
+\DoxyCodeLine{802 }
+\DoxyCodeLine{806     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ae8a297e3fb16cb5199df99816d48321a}{bDescriptorType}};}
+\DoxyCodeLine{807 }
+\DoxyCodeLine{811     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a25c10ea11b37e6adc0aca8c6701bcbff}{bDevCapabilityType}};}
+\DoxyCodeLine{812 }
+\DoxyCodeLine{817     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ad387790c14d8d6eefe6aa1b4a55006bf}{bmAttributes}};}
+\DoxyCodeLine{818 }
+\DoxyCodeLine{821     uint16\_t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a391eb2350276e0902776831d41b23017}{wSpeedSupported}};}
+\DoxyCodeLine{822 }
+\DoxyCodeLine{827     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a522e3ade3bfd1139c9e8af3876d0a843}{bFunctionalitySupport}};}
+\DoxyCodeLine{828 }
+\DoxyCodeLine{830     uint8\_t  \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_ad9f0f87cfbf810e691580d3e702ddf3a}{bU1DevExitLat}};}
+\DoxyCodeLine{831 }
+\DoxyCodeLine{833     uint16\_t \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor_a530ae59b4e6c8e3b23f6c49f59597994}{bU2DevExitLat}};}
+\DoxyCodeLine{834 \};}
+\DoxyCodeLine{835 }
+\DoxyCodeLine{841 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__container__id__descriptor}{libusb\_container\_id\_descriptor}} \{}
+\DoxyCodeLine{843     uint8\_t  \mbox{\hyperlink{structlibusb__container__id__descriptor_aa95ab98f88151e5d05f0c6d3d983abd8}{bLength}};}
+\DoxyCodeLine{844 }
+\DoxyCodeLine{848     uint8\_t  \mbox{\hyperlink{structlibusb__container__id__descriptor_a4773f74ef9411441e59e9b31bc61c44b}{bDescriptorType}};}
+\DoxyCodeLine{849 }
+\DoxyCodeLine{853     uint8\_t  \mbox{\hyperlink{structlibusb__container__id__descriptor_a9c6771495f9010d2cceb86f9738053ac}{bDevCapabilityType}};}
+\DoxyCodeLine{854 }
+\DoxyCodeLine{856     uint8\_t \mbox{\hyperlink{structlibusb__container__id__descriptor_ae9c428c25e90439904e97f697f32545b}{bReserved}};}
+\DoxyCodeLine{857 }
+\DoxyCodeLine{859     uint8\_t  \mbox{\hyperlink{structlibusb__container__id__descriptor_a0c74613e2be1d8da0e349024a8b73621}{ContainerID}}[16];}
+\DoxyCodeLine{860 \};}
+\DoxyCodeLine{861 }
+\DoxyCodeLine{864 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} \{}
+\DoxyCodeLine{870     uint8\_t  \mbox{\hyperlink{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}{bmRequestType}};}
+\DoxyCodeLine{871 }
+\DoxyCodeLine{877     uint8\_t  \mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{bRequest}};}
+\DoxyCodeLine{878 }
+\DoxyCodeLine{880     uint16\_t \mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{wValue}};}
+\DoxyCodeLine{881 }
+\DoxyCodeLine{884     uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{wIndex}};}
+\DoxyCodeLine{885 }
+\DoxyCodeLine{887     uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}};}
+\DoxyCodeLine{888 \};}
+\DoxyCodeLine{889 }
+\DoxyCodeLine{890 \textcolor{preprocessor}{\#define LIBUSB\_CONTROL\_SETUP\_SIZE (sizeof(struct libusb\_control\_setup))}}
+\DoxyCodeLine{891 }
+\DoxyCodeLine{892 \textcolor{comment}{/* libusbx */}}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894 \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}};}
+\DoxyCodeLine{895 \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}};}
+\DoxyCodeLine{896 \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}};}
+\DoxyCodeLine{897 \textcolor{keyword}{struct }libusb\_hotplug\_callback;}
+\DoxyCodeLine{898 }
+\DoxyCodeLine{902 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__version}{libusb\_version}} \{}
+\DoxyCodeLine{904     \textcolor{keyword}{const} uint16\_t \mbox{\hyperlink{structlibusb__version_a7f80ed3e95566b639fa09380e94f8d59}{major}};}
+\DoxyCodeLine{905 }
+\DoxyCodeLine{907     \textcolor{keyword}{const} uint16\_t \mbox{\hyperlink{structlibusb__version_ac886b798704bb9ca2b6cd3ae0234591f}{minor}};}
+\DoxyCodeLine{908 }
+\DoxyCodeLine{910     \textcolor{keyword}{const} uint16\_t \mbox{\hyperlink{structlibusb__version_a6a73a21564237c1fa0e6e5b038e98605}{micro}};}
+\DoxyCodeLine{911 }
+\DoxyCodeLine{913     \textcolor{keyword}{const} uint16\_t \mbox{\hyperlink{structlibusb__version_afbe4cf431bea706294667e333878508c}{nano}};}
+\DoxyCodeLine{914 }
+\DoxyCodeLine{916     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__version_a99937642131c0559025bad92e7f51f27}{rc}};}
+\DoxyCodeLine{917 }
+\DoxyCodeLine{919     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{structlibusb__version_af42453a3421515fa2db3fdf30f2367c3}{describe}};}
+\DoxyCodeLine{920 \};}
+\DoxyCodeLine{921 }
+\DoxyCodeLine{939 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}};}
+\DoxyCodeLine{940 }
+\DoxyCodeLine{956 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}};}
+\DoxyCodeLine{957 }
+\DoxyCodeLine{958 }
+\DoxyCodeLine{967 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}};}
+\DoxyCodeLine{968 }
+\DoxyCodeLine{972 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614}{libusb\_speed}} \{}
+\DoxyCodeLine{974     \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614ace31df1e97e9a66146ac83dcab1e6cfb}{LIBUSB\_SPEED\_UNKNOWN}} = 0,}
+\DoxyCodeLine{975 }
+\DoxyCodeLine{977     \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614a6017f9ac2509cd523b51c1b72ad6991b}{LIBUSB\_SPEED\_LOW}} = 1,}
+\DoxyCodeLine{978 }
+\DoxyCodeLine{980     \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614a0011bead7a48b873808795d8495b4d9e}{LIBUSB\_SPEED\_FULL}} = 2,}
+\DoxyCodeLine{981 }
+\DoxyCodeLine{983     \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614a27bc0b9fe76f8ddf524f3d2ece0eefac}{LIBUSB\_SPEED\_HIGH}} = 3,}
+\DoxyCodeLine{984 }
+\DoxyCodeLine{986     \mbox{\hyperlink{libusb_8h_a2959abf1184f87b2ce06fe90db6ce614ab8c71e1409cd555ae05937b4db9946a2}{LIBUSB\_SPEED\_SUPER}} = 4,}
+\DoxyCodeLine{987 \};}
+\DoxyCodeLine{988 }
+\DoxyCodeLine{993 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6}{libusb\_supported\_speed}} \{}
+\DoxyCodeLine{995     \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6aa7707c4cef77f4be8aceef859fad2087}{LIBUSB\_LOW\_SPEED\_OPERATION}}   = 1,}
+\DoxyCodeLine{996 }
+\DoxyCodeLine{998     \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6adbebc659daf53947527259172f81b41a}{LIBUSB\_FULL\_SPEED\_OPERATION}}  = 2,}
+\DoxyCodeLine{999 }
+\DoxyCodeLine{1001     \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6a2db8b2bb845a23ad1083521ff5b6e9a8}{LIBUSB\_HIGH\_SPEED\_OPERATION}}  = 4,}
+\DoxyCodeLine{1002 }
+\DoxyCodeLine{1004     \mbox{\hyperlink{libusb_8h_a1454797ecc0de4d084c1619c420014f6accd7b9361912b76e40348dc30e6dc7f4}{LIBUSB\_SUPER\_SPEED\_OPERATION}} = 8,}
+\DoxyCodeLine{1005 \};}
+\DoxyCodeLine{1006 }
+\DoxyCodeLine{1012 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_acb8cfa928bffdd0066a3dd2e6aba0558}{libusb\_usb\_2\_0\_extension\_attributes}} \{}
+\DoxyCodeLine{1014     \mbox{\hyperlink{libusb_8h_acb8cfa928bffdd0066a3dd2e6aba0558a02f60b018f4bc01e8813da813779b792}{LIBUSB\_BM\_LPM\_SUPPORT}} = 2,}
+\DoxyCodeLine{1015 \};}
+\DoxyCodeLine{1016 }
+\DoxyCodeLine{1022 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_aad5a5399176a35a64164dafad7fe4fcd}{libusb\_ss\_usb\_device\_capability\_attributes}} \{}
+\DoxyCodeLine{1024     \mbox{\hyperlink{libusb_8h_aad5a5399176a35a64164dafad7fe4fcda5987a17b394338df71c1e04c5c75bc21}{LIBUSB\_BM\_LTM\_SUPPORT}} = 2,}
+\DoxyCodeLine{1025 \};}
+\DoxyCodeLine{1026 }
+\DoxyCodeLine{1030 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64c}{libusb\_bos\_type}} \{}
+\DoxyCodeLine{1032     \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64cac05dcfcd0a5c0dbaef90b1d09e4b5505}{LIBUSB\_BT\_WIRELESS\_USB\_DEVICE\_CAPABILITY}}    = 1,}
+\DoxyCodeLine{1033 }
+\DoxyCodeLine{1035     \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64ca243b090db95a0fdf7104fbf581724b86}{LIBUSB\_BT\_USB\_2\_0\_EXTENSION}}          = 2,}
+\DoxyCodeLine{1036 }
+\DoxyCodeLine{1038     \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64ca2f1ab0d2d1e14d4942c079749b1b6c85}{LIBUSB\_BT\_SS\_USB\_DEVICE\_CAPABILITY}}        = 3,}
+\DoxyCodeLine{1039 }
+\DoxyCodeLine{1041     \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64cac3c00e8861b4b596ea1f53c505809e5e}{LIBUSB\_BT\_CONTAINER\_ID}}                = 4,}
+\DoxyCodeLine{1042 \};}
+\DoxyCodeLine{1043 }
+\DoxyCodeLine{1051 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29ef}{libusb\_error}} \{}
+\DoxyCodeLine{1053     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa576d8d63f6e24b2e57cb2ca63b304f15}{LIBUSB\_SUCCESS}} = 0,}
+\DoxyCodeLine{1054 }
+\DoxyCodeLine{1056     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa790feab8b45d8c323038f4d7d15eceec}{LIBUSB\_ERROR\_IO}} = -\/1,}
+\DoxyCodeLine{1057 }
+\DoxyCodeLine{1059     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa680e4bf39b66a36be3182be3ebf58062}{LIBUSB\_ERROR\_INVALID\_PARAM}} = -\/2,}
+\DoxyCodeLine{1060 }
+\DoxyCodeLine{1062     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa131f3c2f6f2bb40bc6fb60ccb6f3152f}{LIBUSB\_ERROR\_ACCESS}} = -\/3,}
+\DoxyCodeLine{1063 }
+\DoxyCodeLine{1065     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efaf8d98f464314a8e202507a0e5c67336f}{LIBUSB\_ERROR\_NO\_DEVICE}} = -\/4,}
+\DoxyCodeLine{1066 }
+\DoxyCodeLine{1068     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa28214194dc4399e51777408b2c27f03f}{LIBUSB\_ERROR\_NOT\_FOUND}} = -\/5,}
+\DoxyCodeLine{1069 }
+\DoxyCodeLine{1071     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa34ede1140a8a16022f730ac80875ed3b}{LIBUSB\_ERROR\_BUSY}} = -\/6,}
+\DoxyCodeLine{1072 }
+\DoxyCodeLine{1074     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa9b000ac2e6dc4ac864c59579dd08c8bd}{LIBUSB\_ERROR\_TIMEOUT}} = -\/7,}
+\DoxyCodeLine{1075 }
+\DoxyCodeLine{1077     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efaf00ae4b8772fda64263ae6e4d6569af0}{LIBUSB\_ERROR\_OVERFLOW}} = -\/8,}
+\DoxyCodeLine{1078 }
+\DoxyCodeLine{1080     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa1406e98370900156484f5fe609270837}{LIBUSB\_ERROR\_PIPE}} = -\/9,}
+\DoxyCodeLine{1081 }
+\DoxyCodeLine{1083     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa39c9284a18fb3277696d84d65f50dbea}{LIBUSB\_ERROR\_INTERRUPTED}} = -\/10,}
+\DoxyCodeLine{1084 }
+\DoxyCodeLine{1086     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efaff885c8ef4522f22f6673059c7b9edec}{LIBUSB\_ERROR\_NO\_MEM}} = -\/11,}
+\DoxyCodeLine{1087 }
+\DoxyCodeLine{1089     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa01b43115484f435627be755d5dc9509b}{LIBUSB\_ERROR\_NOT\_SUPPORTED}} = -\/12,}
+\DoxyCodeLine{1090 }
+\DoxyCodeLine{1091     \textcolor{comment}{/* NB: Remember to update LIBUSB\_ERROR\_COUNT below as well as the}}
+\DoxyCodeLine{1092 \textcolor{comment}{       message strings in strerror.c when adding new error codes here. */}}
+\DoxyCodeLine{1093 }
+\DoxyCodeLine{1095     \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29efa9705eb232d1a5e249926d4e76599672e}{LIBUSB\_ERROR\_OTHER}} = -\/99,}
+\DoxyCodeLine{1096 \};}
+\DoxyCodeLine{1097 }
+\DoxyCodeLine{1098 \textcolor{comment}{/* Total number of error codes in enum libusb\_error */}}
+\DoxyCodeLine{1099 \textcolor{preprocessor}{\#define LIBUSB\_ERROR\_COUNT 14}}
+\DoxyCodeLine{1100 }
+\DoxyCodeLine{1103 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856}{libusb\_transfer\_status}} \{}
+\DoxyCodeLine{1106     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856a4595f6532aab12352a58a0fd4ce48363}{LIBUSB\_TRANSFER\_COMPLETED}},}
+\DoxyCodeLine{1107 }
+\DoxyCodeLine{1109     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856aa8852ed719d03c2a3cc6f0312d919398}{LIBUSB\_TRANSFER\_ERROR}},}
+\DoxyCodeLine{1110 }
+\DoxyCodeLine{1112     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856ac2b7626d7b51cb980f83933b6ada1ddf}{LIBUSB\_TRANSFER\_TIMED\_OUT}},}
+\DoxyCodeLine{1113 }
+\DoxyCodeLine{1115     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856a8af1f19e46cccafdcf3feadce47e880b}{LIBUSB\_TRANSFER\_CANCELLED}},}
+\DoxyCodeLine{1116 }
+\DoxyCodeLine{1119     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856a23cdfd929f5fe82cca9654f8075eeebb}{LIBUSB\_TRANSFER\_STALL}},}
+\DoxyCodeLine{1120 }
+\DoxyCodeLine{1122     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856ab7dcb24f313ace407e0c070d6b2c5f13}{LIBUSB\_TRANSFER\_NO\_DEVICE}},}
+\DoxyCodeLine{1123 }
+\DoxyCodeLine{1125     \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856ab1b9cbcb1de27a8fbeceb3427fb2fb14}{LIBUSB\_TRANSFER\_OVERFLOW}},}
+\DoxyCodeLine{1126 }
+\DoxyCodeLine{1127     \textcolor{comment}{/* NB! Remember to update libusb\_error\_name()}}
+\DoxyCodeLine{1128 \textcolor{comment}{       when adding new status codes here. */}}
+\DoxyCodeLine{1129 \};}
+\DoxyCodeLine{1130 }
+\DoxyCodeLine{1133 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56d}{libusb\_transfer\_flags}} \{}
+\DoxyCodeLine{1135     \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56dae4c0697c266819c51c1734b3456e7276}{LIBUSB\_TRANSFER\_SHORT\_NOT\_OK}} = 1<<0,}
+\DoxyCodeLine{1136 }
+\DoxyCodeLine{1138     \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56dae993a26f495ac9949118e23eafa19e86}{LIBUSB\_TRANSFER\_FREE\_BUFFER}} = 1<<1,}
+\DoxyCodeLine{1139 }
+\DoxyCodeLine{1144     \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56dacf3f064997b283a14097c9f4d6f8ccc1}{LIBUSB\_TRANSFER\_FREE\_TRANSFER}} = 1<<2,}
+\DoxyCodeLine{1145 }
+\DoxyCodeLine{1169     \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56da26b66334b6ec0537c49841ca623d901f}{LIBUSB\_TRANSFER\_ADD\_ZERO\_PACKET}} = 1 << 3,}
+\DoxyCodeLine{1170 \};}
+\DoxyCodeLine{1171 }
+\DoxyCodeLine{1174 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__iso__packet__descriptor}{libusb\_iso\_packet\_descriptor}} \{}
+\DoxyCodeLine{1176     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__iso__packet__descriptor_a374d36e24869c8b07bf8eb1a18fa10ad}{length}};}
+\DoxyCodeLine{1177 }
+\DoxyCodeLine{1179     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__iso__packet__descriptor_a03fa4f4eaf8a8b4e5c05931809581a32}{actual\_length}};}
+\DoxyCodeLine{1180 }
+\DoxyCodeLine{1182     \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856}{libusb\_transfer\_status}} \mbox{\hyperlink{structlibusb__iso__packet__descriptor_aab21ee2a5835a0e53d7ac5844ee34371}{status}};}
+\DoxyCodeLine{1183 \};}
+\DoxyCodeLine{1184 }
+\DoxyCodeLine{1185 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}};}
+\DoxyCodeLine{1186 }
+\DoxyCodeLine{1196 \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (\mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} *libusb\_transfer\_cb\_fn)(\textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer);}
+\DoxyCodeLine{1197 }
+\DoxyCodeLine{1204 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} \{}
+\DoxyCodeLine{1206     \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}};}
+\DoxyCodeLine{1207 }
+\DoxyCodeLine{1209     uint8\_t \mbox{\hyperlink{structlibusb__transfer_ae26c063df30c2e29835212aad98c6e06}{flags}};}
+\DoxyCodeLine{1210 }
+\DoxyCodeLine{1212     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}};}
+\DoxyCodeLine{1213 }
+\DoxyCodeLine{1215     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}};}
+\DoxyCodeLine{1216 }
+\DoxyCodeLine{1219     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}};}
+\DoxyCodeLine{1220 }
+\DoxyCodeLine{1228     \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856}{libusb\_transfer\_status}} \mbox{\hyperlink{structlibusb__transfer_a64b2e70e76d52a7cd23daa3cd4fb397e}{status}};}
+\DoxyCodeLine{1229 }
+\DoxyCodeLine{1231     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}};}
+\DoxyCodeLine{1232 }
+\DoxyCodeLine{1236     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__transfer_a7e858f07c48a271a62209d11376ae607}{actual\_length}};}
+\DoxyCodeLine{1237 }
+\DoxyCodeLine{1240     libusb\_transfer\_cb\_fn \mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}};}
+\DoxyCodeLine{1241 }
+\DoxyCodeLine{1243     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}};}
+\DoxyCodeLine{1244 }
+\DoxyCodeLine{1246     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}};}
+\DoxyCodeLine{1247 }
+\DoxyCodeLine{1250     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\_iso\_packets}};}
+\DoxyCodeLine{1251 }
+\DoxyCodeLine{1253     \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__iso__packet__descriptor}{libusb\_iso\_packet\_descriptor}} \mbox{\hyperlink{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}{iso\_packet\_desc}}}
+\DoxyCodeLine{1254 \#if defined(\_\_STDC\_VERSION\_\_) \&\& (\_\_STDC\_VERSION\_\_ >= 199901L)}
+\DoxyCodeLine{1255     [] \textcolor{comment}{/* valid C99 code */}}
+\DoxyCodeLine{1256 \#\textcolor{keywordflow}{else}}
+\DoxyCodeLine{1257     [0] \textcolor{comment}{/* non-\/standard, but usually working code */}}
+\DoxyCodeLine{1258 \#endif}
+\DoxyCodeLine{1259     ;}
+\DoxyCodeLine{1260 \};}
+\DoxyCodeLine{1261 }
+\DoxyCodeLine{1267 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_aab1b3fa0728c06fafbee897795889bd5}{libusb\_capability}} \{}
+\DoxyCodeLine{1269     \mbox{\hyperlink{libusb_8h_aab1b3fa0728c06fafbee897795889bd5a24b79436d4bd088d169f9d1edb4b9649}{LIBUSB\_CAP\_HAS\_CAPABILITY}} = 0x0000,}
+\DoxyCodeLine{1271     \mbox{\hyperlink{libusb_8h_aab1b3fa0728c06fafbee897795889bd5a8b1bbccc648a6677cb9030a6ba827438}{LIBUSB\_CAP\_HAS\_HOTPLUG}} = 0x0001,}
+\DoxyCodeLine{1276     \mbox{\hyperlink{libusb_8h_aab1b3fa0728c06fafbee897795889bd5aa74726ef0af0e42d2d56532f82e873a5}{LIBUSB\_CAP\_HAS\_HID\_ACCESS}} = 0x0100,}
+\DoxyCodeLine{1279     \mbox{\hyperlink{libusb_8h_aab1b3fa0728c06fafbee897795889bd5ad15a06b1aede635004f08bdc0fe561cc}{LIBUSB\_CAP\_SUPPORTS\_DETACH\_KERNEL\_DRIVER}} = 0x0101}
+\DoxyCodeLine{1280 \};}
+\DoxyCodeLine{1281 }
+\DoxyCodeLine{1292 \textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2}{libusb\_log\_level}} \{}
+\DoxyCodeLine{1293     \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2af431dbe84c85599526cc0103f8178270}{LIBUSB\_LOG\_LEVEL\_NONE}} = 0,}
+\DoxyCodeLine{1294     \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2ace959b4b99f6c460dfa929b6152e49a8}{LIBUSB\_LOG\_LEVEL\_ERROR}},}
+\DoxyCodeLine{1295     \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2a1d141f7a981d9fcd4bc12e41a1a14e78}{LIBUSB\_LOG\_LEVEL\_WARNING}},}
+\DoxyCodeLine{1296     \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2ab942d780c83ba4f30b9dd2e338002a07}{LIBUSB\_LOG\_LEVEL\_INFO}},}
+\DoxyCodeLine{1297     \mbox{\hyperlink{libusb_8h_a2d6144203f0fc6d373677f6e2e89d2d2afabee6826e913933f5d6fe4040bd7b9c}{LIBUSB\_LOG\_LEVEL\_DEBUG}},}
+\DoxyCodeLine{1298 \};}
+\DoxyCodeLine{1299 }
+\DoxyCodeLine{1300 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a7c69ac34aaf043c495a9e0914662bc5f}{libusb\_init}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} **ctx);}
+\DoxyCodeLine{1301 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aa9ff0ee5b1580833ad2e23eaa89529f0}{libusb\_exit}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1302 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ab4974e3de2973e8241801f2136805749}{libusb\_set\_debug}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx, \textcolor{keywordtype}{int} level);}
+\DoxyCodeLine{1303 \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__version}{libusb\_version}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aabd3658c3810ec0d8113826e8730fba7}{libusb\_get\_version}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{1304 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a49c71913dddf7c5daf6a004d7da8c15f}{libusb\_has\_capability}}(uint32\_t capability);}
+\DoxyCodeLine{1305 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a942cc19ae021a23db16fff6f4d38beb0}{libusb\_error\_name}}(\textcolor{keywordtype}{int} errcode);}
+\DoxyCodeLine{1306 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_adc87f335a989c1adad2669aad6e1cc15}{libusb\_setlocale}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *locale);}
+\DoxyCodeLine{1307 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ab74a1ad8130ad897d68c0960be5f8d99}{libusb\_strerror}}(\textcolor{keyword}{enum} \mbox{\hyperlink{libusb_8h_ab2323aa0f04bc22038e7e1740b2f29ef}{libusb\_error}} errcode);}
+\DoxyCodeLine{1308 }
+\DoxyCodeLine{1309 ssize\_t \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a6621130c99cc8f299d47901568dac7c2}{libusb\_get\_device\_list}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1310     \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} ***list);}
+\DoxyCodeLine{1311 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_abb12b7139b9965bed377721762bb3437}{libusb\_free\_device\_list}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} **list,}
+\DoxyCodeLine{1312     \textcolor{keywordtype}{int} unref\_devices);}
+\DoxyCodeLine{1313 \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a8b4c51faab58367d79f814286b2d220c}{libusb\_ref\_device}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1314 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aaf10116272e2c71121b6e09717305adc}{libusb\_unref\_device}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1315 }
+\DoxyCodeLine{1316 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a4c4d114a3fa491a26bc0f33c449a3aa7}{libusb\_get\_configuration}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1317     \textcolor{keywordtype}{int} *\mbox{\hyperlink{namespace_flight-_software_1_1_tasks_1_1basler_1_1basler_a31d32b29ce091331d58b4c4a39b0f467}{config}});}
+\DoxyCodeLine{1318 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aad2f581b52853c0ef9f751185288b44f}{libusb\_get\_device\_descriptor}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1319     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__device__descriptor}{libusb\_device\_descriptor}} *desc);}
+\DoxyCodeLine{1320 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aefab62a09572b743bf810db2dbdc0d43}{libusb\_get\_active\_config\_descriptor}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1321     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__config__descriptor}{libusb\_config\_descriptor}} **\mbox{\hyperlink{namespace_flight-_software_1_1_tasks_1_1basler_1_1basler_a31d32b29ce091331d58b4c4a39b0f467}{config}});}
+\DoxyCodeLine{1322 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a017ef159662d53b1acc5912fd2bc4e9f}{libusb\_get\_config\_descriptor}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1323     uint8\_t config\_index, \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__config__descriptor}{libusb\_config\_descriptor}} **\mbox{\hyperlink{namespace_flight-_software_1_1_tasks_1_1basler_1_1basler_a31d32b29ce091331d58b4c4a39b0f467}{config}});}
+\DoxyCodeLine{1324 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a0be2a59c71f44089c98c7eaad667c91a}{libusb\_get\_config\_descriptor\_by\_value}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1325     uint8\_t bConfigurationValue, \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__config__descriptor}{libusb\_config\_descriptor}} **\mbox{\hyperlink{namespace_flight-_software_1_1_tasks_1_1basler_1_1basler_a31d32b29ce091331d58b4c4a39b0f467}{config}});}
+\DoxyCodeLine{1326 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a4b5db80a76a72cb55d0232bf65d390d5}{libusb\_free\_config\_descriptor}}(}
+\DoxyCodeLine{1327     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__config__descriptor}{libusb\_config\_descriptor}} *\mbox{\hyperlink{namespace_flight-_software_1_1_tasks_1_1basler_1_1basler_a31d32b29ce091331d58b4c4a39b0f467}{config}});}
+\DoxyCodeLine{1328 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a1e001174e31ae3a66905eee43566bd0b}{libusb\_get\_ss\_endpoint\_companion\_descriptor}}(}
+\DoxyCodeLine{1329     \textcolor{keyword}{struct} \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1330     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__endpoint__descriptor}{libusb\_endpoint\_descriptor}} *endpoint,}
+\DoxyCodeLine{1331     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor}{libusb\_ss\_endpoint\_companion\_descriptor}} **ep\_comp);}
+\DoxyCodeLine{1332 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a4b640425543fa89ce9a4470786e4f6d0}{libusb\_free\_ss\_endpoint\_companion\_descriptor}}(}
+\DoxyCodeLine{1333     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__ss__endpoint__companion__descriptor}{libusb\_ss\_endpoint\_companion\_descriptor}} *ep\_comp);}
+\DoxyCodeLine{1334 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_af88e6a836fe8734a888aa0c325f82da8}{libusb\_get\_bos\_descriptor}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *handle,}
+\DoxyCodeLine{1335     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__bos__descriptor}{libusb\_bos\_descriptor}} **bos);}
+\DoxyCodeLine{1336 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aaf4540be83694853389f7f322f9a0d03}{libusb\_free\_bos\_descriptor}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__bos__descriptor}{libusb\_bos\_descriptor}} *bos);}
+\DoxyCodeLine{1337 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a9d2cb2b4fb2d6d7ea6505dc707329203}{libusb\_get\_usb\_2\_0\_extension\_descriptor}}(}
+\DoxyCodeLine{1338     \textcolor{keyword}{struct} \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1339     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\_bos\_dev\_capability\_descriptor}} *dev\_cap,}
+\DoxyCodeLine{1340     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor}{libusb\_usb\_2\_0\_extension\_descriptor}} **usb\_2\_0\_extension);}
+\DoxyCodeLine{1341 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a59fdd4df58407d5f4bbe7701f1097fc3}{libusb\_free\_usb\_2\_0\_extension\_descriptor}}(}
+\DoxyCodeLine{1342     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__usb__2__0__extension__descriptor}{libusb\_usb\_2\_0\_extension\_descriptor}} *usb\_2\_0\_extension);}
+\DoxyCodeLine{1343 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a31659349f469ed9d76e907afc0dac2db}{libusb\_get\_ss\_usb\_device\_capability\_descriptor}}(}
+\DoxyCodeLine{1344     \textcolor{keyword}{struct} \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1345     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\_bos\_dev\_capability\_descriptor}} *dev\_cap,}
+\DoxyCodeLine{1346     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor}{libusb\_ss\_usb\_device\_capability\_descriptor}} **ss\_usb\_device\_cap);}
+\DoxyCodeLine{1347 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ad3a13b544fab7ee816e50c2e159fc735}{libusb\_free\_ss\_usb\_device\_capability\_descriptor}}(}
+\DoxyCodeLine{1348     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__ss__usb__device__capability__descriptor}{libusb\_ss\_usb\_device\_capability\_descriptor}} *ss\_usb\_device\_cap);}
+\DoxyCodeLine{1349 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a154e9ec273f747412af25eafdfc3b626}{libusb\_get\_container\_id\_descriptor}}(\textcolor{keyword}{struct} \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1350     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__bos__dev__capability__descriptor}{libusb\_bos\_dev\_capability\_descriptor}} *dev\_cap,}
+\DoxyCodeLine{1351     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__container__id__descriptor}{libusb\_container\_id\_descriptor}} **container\_id);}
+\DoxyCodeLine{1352 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a52187277d9b7311ffc4325ed819bf4f5}{libusb\_free\_container\_id\_descriptor}}(}
+\DoxyCodeLine{1353     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__container__id__descriptor}{libusb\_container\_id\_descriptor}} *container\_id);}
+\DoxyCodeLine{1354 uint8\_t \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_abb2ee74c03bf4233c5375d7d36d8c57a}{libusb\_get\_bus\_number}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1355 uint8\_t \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a0b0646c2b16d4b1a23a224d1f99d5ffa}{libusb\_get\_port\_number}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1356 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a7f06ad11e532c3f1b29daa63bd677e1e}{libusb\_get\_port\_numbers}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev, uint8\_t* port\_numbers, \textcolor{keywordtype}{int} port\_numbers\_len);}
+\DoxyCodeLine{1357 \mbox{\hyperlink{libusb_8h_a2698d3115702f9a9999c806872951cdd}{LIBUSB\_DEPRECATED\_FOR}}(\mbox{\hyperlink{libusb_8h_a7f06ad11e532c3f1b29daa63bd677e1e}{libusb\_get\_port\_numbers}})}
+\DoxyCodeLine{1358 int \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_af0b9a8dd687a7fb5175683cc58e64982}{libusb\_get\_port\_path}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx, \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev, uint8\_t* path, uint8\_t path\_length);}
+\DoxyCodeLine{1359 \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a0e365a24ea14b42af43f69933b4d50a1}{libusb\_get\_parent}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1360 uint8\_t \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a6a06bf356c6e3b507795126e1f7bed43}{libusb\_get\_device\_address}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1361 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ad30927a916c351127877a113dfae3afd}{libusb\_get\_device\_speed}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev);}
+\DoxyCodeLine{1362 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a66e96708a258696986d4d1b779b37a75}{libusb\_get\_max\_packet\_size}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1363     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint);}
+\DoxyCodeLine{1364 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aee6523f5b8874fc96030892ffd11f70b}{libusb\_get\_max\_iso\_packet\_size}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev,}
+\DoxyCodeLine{1365     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint);}
+\DoxyCodeLine{1366 }
+\DoxyCodeLine{1367 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a2aad4916668a37ae3fa77a1b1ca817bd}{libusb\_open}}(\mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *dev, \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} **handle);}
+\DoxyCodeLine{1368 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a6b8983695e63168a3d1e03e2d4def0e8}{libusb\_close}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle);}
+\DoxyCodeLine{1369 \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_afb0ae229cf279395cec80be519293b4d}{libusb\_get\_device}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle);}
+\DoxyCodeLine{1370 }
+\DoxyCodeLine{1371 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a99cc162f5ed2072a487ba1ba44150101}{libusb\_set\_configuration}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1372     \textcolor{keywordtype}{int} configuration);}
+\DoxyCodeLine{1373 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ae0bd63d1857b6d6dd40cb71b658b51c3}{libusb\_claim\_interface}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1374     \textcolor{keywordtype}{int} interface\_number);}
+\DoxyCodeLine{1375 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ac90d856dace626f6adb83f83f97791f0}{libusb\_release\_interface}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1376     \textcolor{keywordtype}{int} interface\_number);}
+\DoxyCodeLine{1377 }
+\DoxyCodeLine{1378 \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a30ee700cb29be139d3a080ae0b2dcafa}{libusb\_open\_device\_with\_vid\_pid}}(}
+\DoxyCodeLine{1379     \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx, uint16\_t vendor\_id, uint16\_t product\_id);}
+\DoxyCodeLine{1380 }
+\DoxyCodeLine{1381 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a65e0cd89617316f855ebe9010f823b4f}{libusb\_set\_interface\_alt\_setting}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1382     \textcolor{keywordtype}{int} interface\_number, \textcolor{keywordtype}{int} alternate\_setting);}
+\DoxyCodeLine{1383 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_acf98691739f712a4a95ed170d56eac9d}{libusb\_clear\_halt}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1384     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint);}
+\DoxyCodeLine{1385 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ac7273a49b93f9e6cf4317ac55c8b3500}{libusb\_reset\_device}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev);}
+\DoxyCodeLine{1386 }
+\DoxyCodeLine{1387 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a1ec7a2df1d7100def350c2e2e78c4b01}{libusb\_kernel\_driver\_active}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1388     \textcolor{keywordtype}{int} interface\_number);}
+\DoxyCodeLine{1389 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a4b1735fb58a237c2aab16d884d1db8aa}{libusb\_detach\_kernel\_driver}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1390     \textcolor{keywordtype}{int} interface\_number);}
+\DoxyCodeLine{1391 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ab64602ac1e82ec3caf94eb0d6a43c8ca}{libusb\_attach\_kernel\_driver}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1392     \textcolor{keywordtype}{int} interface\_number);}
+\DoxyCodeLine{1393 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a44a383fedbdb029b214750b0ee700b72}{libusb\_set\_auto\_detach\_kernel\_driver}}(}
+\DoxyCodeLine{1394     \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev, \textcolor{keywordtype}{int} enable);}
+\DoxyCodeLine{1395 }
+\DoxyCodeLine{1396 \textcolor{comment}{/* async I/O */}}
+\DoxyCodeLine{1397 }
+\DoxyCodeLine{1410 static inline \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *libusb\_control\_transfer\_get\_data(}
+\DoxyCodeLine{1411     struct \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer)}
+\DoxyCodeLine{1412 \{}
+\DoxyCodeLine{1413     \textcolor{keywordflow}{return} transfer-\/>buffer + \mbox{\hyperlink{libusb_8h_af39dc5e7622e8559df7f1d3da5478717}{LIBUSB\_CONTROL\_SETUP\_SIZE}};}
+\DoxyCodeLine{1414 \}}
+\DoxyCodeLine{1415 }
+\DoxyCodeLine{1428 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *libusb\_control\_transfer\_get\_setup(}
+\DoxyCodeLine{1429     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer)}
+\DoxyCodeLine{1430 \{}
+\DoxyCodeLine{1431     \textcolor{keywordflow}{return} (\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *)(\textcolor{keywordtype}{void} *) transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}};}
+\DoxyCodeLine{1432 \}}
+\DoxyCodeLine{1433 }
+\DoxyCodeLine{1457 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_fill\_control\_setup(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer,}
+\DoxyCodeLine{1458     uint8\_t \mbox{\hyperlink{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}{bmRequestType}}, uint8\_t \mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{bRequest}}, uint16\_t \mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{wValue}}, uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{wIndex}},}
+\DoxyCodeLine{1459     uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}})}
+\DoxyCodeLine{1460 \{}
+\DoxyCodeLine{1461     \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *setup = (\textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *)(\textcolor{keywordtype}{void} *) buffer;}
+\DoxyCodeLine{1462     setup-\/>\mbox{\hyperlink{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}{bmRequestType}} = \mbox{\hyperlink{structlibusb__control__setup_a39b148c231d675492ccd2383196926bf}{bmRequestType}};}
+\DoxyCodeLine{1463     setup-\/>\mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{bRequest}} = \mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{bRequest}};}
+\DoxyCodeLine{1464     setup-\/>\mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{wValue}} = libusb\_cpu\_to\_le16(\mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{wValue}});}
+\DoxyCodeLine{1465     setup-\/>\mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{wIndex}} = libusb\_cpu\_to\_le16(\mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{wIndex}});}
+\DoxyCodeLine{1466     setup-\/>\mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}} = libusb\_cpu\_to\_le16(\mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}});}
+\DoxyCodeLine{1467 \}}
+\DoxyCodeLine{1468 }
+\DoxyCodeLine{1469 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} * \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ae35e502a490da74abe3a7ae8792ebef0}{libusb\_alloc\_transfer}}(\textcolor{keywordtype}{int} iso\_packets);}
+\DoxyCodeLine{1470 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a1efa266ce465fb51a2395feb4c4a9ad5}{libusb\_submit\_transfer}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer);}
+\DoxyCodeLine{1471 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a99bb7eae6ec9697cda2c194ab318f50b}{libusb\_cancel\_transfer}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer);}
+\DoxyCodeLine{1472 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a34956216e994484c68e17ff522d58cfd}{libusb\_free\_transfer}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer);}
+\DoxyCodeLine{1473 }
+\DoxyCodeLine{1502 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_fill\_control\_transfer(}
+\DoxyCodeLine{1503     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer, \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}},}
+\DoxyCodeLine{1504     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}}, libusb\_transfer\_cb\_fn \mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}},}
+\DoxyCodeLine{1505     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}})}
+\DoxyCodeLine{1506 \{}
+\DoxyCodeLine{1507     \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *setup = (\textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__control__setup}{libusb\_control\_setup}} *)(\textcolor{keywordtype}{void} *) buffer;}
+\DoxyCodeLine{1508     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}} = dev\_handle;}
+\DoxyCodeLine{1509     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}} = 0;}
+\DoxyCodeLine{1510     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}} = \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a4c89624658c783ef9b2a2f08091bc7d7}{LIBUSB\_TRANSFER\_TYPE\_CONTROL}};}
+\DoxyCodeLine{1511     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}} = timeout;}
+\DoxyCodeLine{1512     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} = buffer;}
+\DoxyCodeLine{1513     \textcolor{keywordflow}{if} (setup)}
+\DoxyCodeLine{1514         transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}} = (int) (\mbox{\hyperlink{libusb_8h_af39dc5e7622e8559df7f1d3da5478717}{LIBUSB\_CONTROL\_SETUP\_SIZE}}}
+\DoxyCodeLine{1515             + \mbox{\hyperlink{libusb_8h_a22961bb8cb0d6a9b22c88079efb59b8b}{libusb\_le16\_to\_cpu}}(setup-\/>\mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}}));}
+\DoxyCodeLine{1516     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}} = user\_data;}
+\DoxyCodeLine{1517     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}} = callback;}
+\DoxyCodeLine{1518 \}}
+\DoxyCodeLine{1519 }
+\DoxyCodeLine{1533 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_fill\_bulk\_transfer(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer,}
+\DoxyCodeLine{1534     \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint,}
+\DoxyCodeLine{1535     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer, \textcolor{keywordtype}{int} length, libusb\_transfer\_cb\_fn callback,}
+\DoxyCodeLine{1536     \textcolor{keywordtype}{void} *user\_data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout)}
+\DoxyCodeLine{1537 \{}
+\DoxyCodeLine{1538     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}} = dev\_handle;}
+\DoxyCodeLine{1539     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}} = endpoint;}
+\DoxyCodeLine{1540     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}} = \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a7bdfa2fc5dadbaaa0e9262e1b4a228e2}{LIBUSB\_TRANSFER\_TYPE\_BULK}};}
+\DoxyCodeLine{1541     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}} = timeout;}
+\DoxyCodeLine{1542     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} = buffer;}
+\DoxyCodeLine{1543     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}} = length;}
+\DoxyCodeLine{1544     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}} = user\_data;}
+\DoxyCodeLine{1545     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}} = callback;}
+\DoxyCodeLine{1546 \}}
+\DoxyCodeLine{1547 }
+\DoxyCodeLine{1561 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_fill\_interrupt\_transfer(}
+\DoxyCodeLine{1562     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer, \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle,}
+\DoxyCodeLine{1563     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer, \textcolor{keywordtype}{int} length,}
+\DoxyCodeLine{1564     libusb\_transfer\_cb\_fn callback, \textcolor{keywordtype}{void} *user\_data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout)}
+\DoxyCodeLine{1565 \{}
+\DoxyCodeLine{1566     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}} = dev\_handle;}
+\DoxyCodeLine{1567     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}} = endpoint;}
+\DoxyCodeLine{1568     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}} = \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71aefb0e07862c0eed894ec9c2f957a7e3c}{LIBUSB\_TRANSFER\_TYPE\_INTERRUPT}};}
+\DoxyCodeLine{1569     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}} = timeout;}
+\DoxyCodeLine{1570     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} = buffer;}
+\DoxyCodeLine{1571     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}} = length;}
+\DoxyCodeLine{1572     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}} = user\_data;}
+\DoxyCodeLine{1573     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}} = callback;}
+\DoxyCodeLine{1574 \}}
+\DoxyCodeLine{1575 }
+\DoxyCodeLine{1590 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_fill\_iso\_transfer(\textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer,}
+\DoxyCodeLine{1591     \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint,}
+\DoxyCodeLine{1592     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer, \textcolor{keywordtype}{int} length, \textcolor{keywordtype}{int} num\_iso\_packets,}
+\DoxyCodeLine{1593     libusb\_transfer\_cb\_fn callback, \textcolor{keywordtype}{void} *user\_data, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout)}
+\DoxyCodeLine{1594 \{}
+\DoxyCodeLine{1595     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\_handle}} = dev\_handle;}
+\DoxyCodeLine{1596     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}} = endpoint;}
+\DoxyCodeLine{1597     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}} = \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71a40de9889554fc1785d784b3c31333300}{LIBUSB\_TRANSFER\_TYPE\_ISOCHRONOUS}};}
+\DoxyCodeLine{1598     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}} = timeout;}
+\DoxyCodeLine{1599     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} = buffer;}
+\DoxyCodeLine{1600     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}} = length;}
+\DoxyCodeLine{1601     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\_iso\_packets}} = num\_iso\_packets;}
+\DoxyCodeLine{1602     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\_data}} = user\_data;}
+\DoxyCodeLine{1603     transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}} = callback;}
+\DoxyCodeLine{1604 \}}
+\DoxyCodeLine{1605 }
+\DoxyCodeLine{1614 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} libusb\_set\_iso\_packet\_lengths(}
+\DoxyCodeLine{1615     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} length)}
+\DoxyCodeLine{1616 \{}
+\DoxyCodeLine{1617     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1618     \textcolor{keywordflow}{for} (i = 0; i < transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\_iso\_packets}}; i++)}
+\DoxyCodeLine{1619         transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}{iso\_packet\_desc}}[i].\mbox{\hyperlink{structlibusb__iso__packet__descriptor_a374d36e24869c8b07bf8eb1a18fa10ad}{length}} = length;}
+\DoxyCodeLine{1620 \}}
+\DoxyCodeLine{1621 }
+\DoxyCodeLine{1638 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *libusb\_get\_iso\_packet\_buffer(}
+\DoxyCodeLine{1639     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} packet)}
+\DoxyCodeLine{1640 \{}
+\DoxyCodeLine{1641     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1642     \textcolor{keywordtype}{size\_t} offset = 0;}
+\DoxyCodeLine{1643     \textcolor{keywordtype}{int} \_packet;}
+\DoxyCodeLine{1644 }
+\DoxyCodeLine{1645     \textcolor{comment}{/* oops..slight bug in the API. packet is an unsigned int, but we use}}
+\DoxyCodeLine{1646 \textcolor{comment}{     * signed integers almost everywhere else. range-\/check and convert to}}
+\DoxyCodeLine{1647 \textcolor{comment}{     * signed to avoid compiler warnings. FIXME for libusb-\/2. */}}
+\DoxyCodeLine{1648     \textcolor{keywordflow}{if} (packet > INT\_MAX)}
+\DoxyCodeLine{1649         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{1650     \_packet = (int) packet;}
+\DoxyCodeLine{1651 }
+\DoxyCodeLine{1652     \textcolor{keywordflow}{if} (\_packet >= transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\_iso\_packets}})}
+\DoxyCodeLine{1653         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{1654 }
+\DoxyCodeLine{1655     \textcolor{keywordflow}{for} (i = 0; i < \_packet; i++)}
+\DoxyCodeLine{1656         offset += transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}{iso\_packet\_desc}}[i].\mbox{\hyperlink{structlibusb__iso__packet__descriptor_a374d36e24869c8b07bf8eb1a18fa10ad}{length}};}
+\DoxyCodeLine{1657 }
+\DoxyCodeLine{1658     \textcolor{keywordflow}{return} transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} + offset;}
+\DoxyCodeLine{1659 \}}
+\DoxyCodeLine{1660 }
+\DoxyCodeLine{1680 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *libusb\_get\_iso\_packet\_buffer\_simple(}
+\DoxyCodeLine{1681     \textcolor{keyword}{struct} \mbox{\hyperlink{structlibusb__transfer}{libusb\_transfer}} *transfer, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} packet)}
+\DoxyCodeLine{1682 \{}
+\DoxyCodeLine{1683     \textcolor{keywordtype}{int} \_packet;}
+\DoxyCodeLine{1684 }
+\DoxyCodeLine{1685     \textcolor{comment}{/* oops..slight bug in the API. packet is an unsigned int, but we use}}
+\DoxyCodeLine{1686 \textcolor{comment}{     * signed integers almost everywhere else. range-\/check and convert to}}
+\DoxyCodeLine{1687 \textcolor{comment}{     * signed to avoid compiler warnings. FIXME for libusb-\/2. */}}
+\DoxyCodeLine{1688     \textcolor{keywordflow}{if} (packet > INT\_MAX)}
+\DoxyCodeLine{1689         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{1690     \_packet = (int) packet;}
+\DoxyCodeLine{1691 }
+\DoxyCodeLine{1692     \textcolor{keywordflow}{if} (\_packet >= transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\_iso\_packets}})}
+\DoxyCodeLine{1693         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{1694 }
+\DoxyCodeLine{1695     \textcolor{keywordflow}{return} transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}} + ((int) transfer-\/>\mbox{\hyperlink{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}{iso\_packet\_desc}}[0].\mbox{\hyperlink{structlibusb__iso__packet__descriptor_a374d36e24869c8b07bf8eb1a18fa10ad}{length}} * \_packet);}
+\DoxyCodeLine{1696 \}}
+\DoxyCodeLine{1697 }
+\DoxyCodeLine{1698 \textcolor{comment}{/* sync I/O */}}
+\DoxyCodeLine{1699 }
+\DoxyCodeLine{1700 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_afc37d4ff91227cbda590e3393a97336f}{libusb\_control\_transfer}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle,}
+\DoxyCodeLine{1701     uint8\_t request\_type, uint8\_t \mbox{\hyperlink{structlibusb__control__setup_a1b80a28b8d4e8586fc54358194e70087}{bRequest}}, uint16\_t \mbox{\hyperlink{structlibusb__control__setup_abbb6daa01fe4b6a05dc43492e4e53a7d}{wValue}}, uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a70c2ae456344b200a19d434ace85ae2b}{wIndex}},}
+\DoxyCodeLine{1702     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, uint16\_t \mbox{\hyperlink{structlibusb__control__setup_a3c442c64fd7619b43b782367235766cc}{wLength}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout);}
+\DoxyCodeLine{1703 }
+\DoxyCodeLine{1704 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_af67100376b025b3cf118377554c6a6cc}{libusb\_bulk\_transfer}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle,}
+\DoxyCodeLine{1705     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{int} length,}
+\DoxyCodeLine{1706     \textcolor{keywordtype}{int} *actual\_length, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout);}
+\DoxyCodeLine{1707 }
+\DoxyCodeLine{1708 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ac7a9982dc7bc7f1f452baadd8dff8396}{libusb\_interrupt\_transfer}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev\_handle,}
+\DoxyCodeLine{1709     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} endpoint, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{int} length,}
+\DoxyCodeLine{1710     \textcolor{keywordtype}{int} *actual\_length, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timeout);}
+\DoxyCodeLine{1711 }
+\DoxyCodeLine{1724 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} libusb\_get\_descriptor(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1725     uint8\_t desc\_type, uint8\_t desc\_index, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{int} length)}
+\DoxyCodeLine{1726 \{}
+\DoxyCodeLine{1727     \textcolor{keywordflow}{return} \mbox{\hyperlink{libusb_8h_afc37d4ff91227cbda590e3393a97336f}{libusb\_control\_transfer}}(dev, \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8ba3829979c66e5344367f32f4a31d43613}{LIBUSB\_ENDPOINT\_IN}},}
+\DoxyCodeLine{1728         \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa3ebb19fe897a2a36e90b2e8193b88b0f}{LIBUSB\_REQUEST\_GET\_DESCRIPTOR}}, (uint16\_t) ((desc\_type << 8) | desc\_index),}
+\DoxyCodeLine{1729         0, data, (uint16\_t) length, 1000);}
+\DoxyCodeLine{1730 \}}
+\DoxyCodeLine{1731 }
+\DoxyCodeLine{1746 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} libusb\_get\_string\_descriptor(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1747     uint8\_t desc\_index, uint16\_t langid, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{int} length)}
+\DoxyCodeLine{1748 \{}
+\DoxyCodeLine{1749     \textcolor{keywordflow}{return} \mbox{\hyperlink{libusb_8h_afc37d4ff91227cbda590e3393a97336f}{libusb\_control\_transfer}}(dev, \mbox{\hyperlink{libusb_8h_a86c880af878493aa8f805c2aba654b8ba3829979c66e5344367f32f4a31d43613}{LIBUSB\_ENDPOINT\_IN}},}
+\DoxyCodeLine{1750         \mbox{\hyperlink{libusb_8h_a5b5912057c2d7e23b3ed5aa0c20236dfa3ebb19fe897a2a36e90b2e8193b88b0f}{LIBUSB\_REQUEST\_GET\_DESCRIPTOR}}, (uint16\_t)((\mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca2b8ca4332dce1357767ecab20ed2f4c2}{LIBUSB\_DT\_STRING}} << 8) | desc\_index),}
+\DoxyCodeLine{1751         langid, data, (uint16\_t) length, 1000);}
+\DoxyCodeLine{1752 \}}
+\DoxyCodeLine{1753 }
+\DoxyCodeLine{1754 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a71a757eb75ba6c68071abd5c1e7d16e3}{libusb\_get\_string\_descriptor\_ascii}}(\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\_device\_handle}} *dev,}
+\DoxyCodeLine{1755     uint8\_t desc\_index, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{int} length);}
+\DoxyCodeLine{1756 }
+\DoxyCodeLine{1757 \textcolor{comment}{/* polling and timeouts */}}
+\DoxyCodeLine{1758 }
+\DoxyCodeLine{1759 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a568c771954c882fb5b8a27c8a242fb48}{libusb\_try\_lock\_events}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1760 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a998ccdc623daf815e0139c8a22e79089}{libusb\_lock\_events}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1761 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aa4e57b8c4559de5cc9b6939cefe3a3f8}{libusb\_unlock\_events}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1762 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a67ad7b677f2a1db96fc9ff3f93d6f9dc}{libusb\_event\_handling\_ok}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1763 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a1b39913b0ad99f86c58f7de908e63f4d}{libusb\_event\_handler\_active}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1764 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_aa2e9009e74250d455eaed4283c03e882}{libusb\_lock\_event\_waiters}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1765 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a946372598e1c673ae73980c9100352f9}{libusb\_unlock\_event\_waiters}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1766 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a5c4b3038d1dccc6caa9c4ce27450d3b5}{libusb\_wait\_for\_event}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx, \textcolor{keyword}{struct} timeval *tv);}
+\DoxyCodeLine{1767 }
+\DoxyCodeLine{1768 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a857c11585f1364a42ceef94e181930e9}{libusb\_handle\_events\_timeout}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1769     \textcolor{keyword}{struct} timeval *tv);}
+\DoxyCodeLine{1770 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a85bd06da903179fabaea797ba5767163}{libusb\_handle\_events\_timeout\_completed}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1771     \textcolor{keyword}{struct} timeval *tv, \textcolor{keywordtype}{int} *completed);}
+\DoxyCodeLine{1772 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a6959bab068afc01988f851144ebc8a85}{libusb\_handle\_events}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1773 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_af7dbc98d3dc10deecc9a8b840ffdc5e4}{libusb\_handle\_events\_completed}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx, \textcolor{keywordtype}{int} *completed);}
+\DoxyCodeLine{1774 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_ab4c07164a9f5b03576813717ff79a86a}{libusb\_handle\_events\_locked}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1775     \textcolor{keyword}{struct} timeval *tv);}
+\DoxyCodeLine{1776 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a4dc6ca6794442ddf1842f47752b6f6cd}{libusb\_pollfds\_handle\_timeouts}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1777 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a14e06f2ebb63d8430ddaddce92d611ce}{libusb\_get\_next\_timeout}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1778     \textcolor{keyword}{struct} timeval *tv);}
+\DoxyCodeLine{1779 }
+\DoxyCodeLine{1783 \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__pollfd}{libusb\_pollfd}} \{}
+\DoxyCodeLine{1785     \textcolor{keywordtype}{int} \mbox{\hyperlink{structlibusb__pollfd_a6bf9823709974cfb204e008eae7d451a}{fd}};}
+\DoxyCodeLine{1786 }
+\DoxyCodeLine{1791     \textcolor{keywordtype}{short} \mbox{\hyperlink{structlibusb__pollfd_a5e6391383c132343ecd2f34b78ca017e}{events}};}
+\DoxyCodeLine{1792 \};}
+\DoxyCodeLine{1793 }
+\DoxyCodeLine{1804 \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (\mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} *\mbox{\hyperlink{libusb_8h_a291d7463aefd0de6209b537db4d06e70}{libusb\_pollfd\_added\_cb}})(\textcolor{keywordtype}{int} fd, \textcolor{keywordtype}{short} events,}
+\DoxyCodeLine{1805     \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{1806 }
+\DoxyCodeLine{1816 \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (\mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} *\mbox{\hyperlink{libusb_8h_abff1d67f33725c93ef6dff699335c225}{libusb\_pollfd\_removed\_cb}})(\textcolor{keywordtype}{int} fd, \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{1817 }
+\DoxyCodeLine{1818 \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structlibusb__pollfd}{libusb\_pollfd}} ** \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a382edb3f0005690b0a3e7b02ef0e0d48}{libusb\_get\_pollfds}}(}
+\DoxyCodeLine{1819     \mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx);}
+\DoxyCodeLine{1820 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a3b15e3912d7dee7146b36bad190d5e2e}{libusb\_set\_pollfd\_notifiers}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1821     \mbox{\hyperlink{libusb_8h_a291d7463aefd0de6209b537db4d06e70}{libusb\_pollfd\_added\_cb}} added\_cb, \mbox{\hyperlink{libusb_8h_abff1d67f33725c93ef6dff699335c225}{libusb\_pollfd\_removed\_cb}} removed\_cb,}
+\DoxyCodeLine{1822     \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{1823 }
+\DoxyCodeLine{1836 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_a4868157346bbf2c70b6af0cb0a6c0094}{libusb\_hotplug\_callback\_handle}};}
+\DoxyCodeLine{1837 }
+\DoxyCodeLine{1843 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{1845     \mbox{\hyperlink{libusb_8h_a95ce2ec85dec177854c423cea2853c52a01a1c0c9f4e6852cb6df713f2e8a7f6b}{LIBUSB\_HOTPLUG\_ENUMERATE}} = 1,}
+\DoxyCodeLine{1846 \} \mbox{\hyperlink{libusb_8h_a95ce2ec85dec177854c423cea2853c52}{libusb\_hotplug\_flag}};}
+\DoxyCodeLine{1847 }
+\DoxyCodeLine{1853 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{1855     \mbox{\hyperlink{libusb_8h_a556d598ca379618a41bbec3597f55dcfac012270cba6e08dafe7e3bec204dffd6}{LIBUSB\_HOTPLUG\_EVENT\_DEVICE\_ARRIVED}} = 0x01,}
+\DoxyCodeLine{1856 }
+\DoxyCodeLine{1860     \mbox{\hyperlink{libusb_8h_a556d598ca379618a41bbec3597f55dcfac8234e02b673893ed549329ef3180a27}{LIBUSB\_HOTPLUG\_EVENT\_DEVICE\_LEFT}}    = 0x02,}
+\DoxyCodeLine{1861 \} \mbox{\hyperlink{libusb_8h_a556d598ca379618a41bbec3597f55dcf}{libusb\_hotplug\_event}};}
+\DoxyCodeLine{1862 }
+\DoxyCodeLine{1865 \textcolor{preprocessor}{\#define LIBUSB\_HOTPLUG\_MATCH\_ANY -\/1}}
+\DoxyCodeLine{1866 }
+\DoxyCodeLine{1889 \textcolor{keyword}{typedef} int (\mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} *\mbox{\hyperlink{libusb_8h_a34e9904eb8e5124057a866f777cc99a8}{libusb\_hotplug\_callback\_fn}})(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1890                         \mbox{\hyperlink{libusb_8h_a77eedd00d01eb7569b880e861a971c2b}{libusb\_device}} *device,}
+\DoxyCodeLine{1891                         \mbox{\hyperlink{libusb_8h_a556d598ca379618a41bbec3597f55dcf}{libusb\_hotplug\_event}} event,}
+\DoxyCodeLine{1892                         \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{1893 }
+\DoxyCodeLine{1928 \textcolor{keywordtype}{int} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_a54961ed4615afb54c8cf50236b2e40d0}{libusb\_hotplug\_register\_callback}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1929                         \mbox{\hyperlink{libusb_8h_a556d598ca379618a41bbec3597f55dcf}{libusb\_hotplug\_event}} \mbox{\hyperlink{structlibusb__pollfd_a5e6391383c132343ecd2f34b78ca017e}{events}},}
+\DoxyCodeLine{1930                         \mbox{\hyperlink{libusb_8h_a95ce2ec85dec177854c423cea2853c52}{libusb\_hotplug\_flag}} flags,}
+\DoxyCodeLine{1931                         \textcolor{keywordtype}{int} vendor\_id, \textcolor{keywordtype}{int} product\_id,}
+\DoxyCodeLine{1932                         \textcolor{keywordtype}{int} dev\_class,}
+\DoxyCodeLine{1933                         \mbox{\hyperlink{libusb_8h_a34e9904eb8e5124057a866f777cc99a8}{libusb\_hotplug\_callback\_fn}} cb\_fn,}
+\DoxyCodeLine{1934                         \textcolor{keywordtype}{void} *user\_data,}
+\DoxyCodeLine{1935                         \mbox{\hyperlink{libusb_8h_a4868157346bbf2c70b6af0cb0a6c0094}{libusb\_hotplug\_callback\_handle}} *handle);}
+\DoxyCodeLine{1936 }
+\DoxyCodeLine{1948 \textcolor{keywordtype}{void} \mbox{\hyperlink{libusb_8h_aa7d6035eb2692d455d27144560a0f68d}{LIBUSB\_CALL}} \mbox{\hyperlink{libusb_8h_afe4401894825a2671daa78cbf7094f55}{libusb\_hotplug\_deregister\_callback}}(\mbox{\hyperlink{libusb_8h_a4ec088aa7b79c4a9599e39bf36a72833}{libusb\_context}} *ctx,}
+\DoxyCodeLine{1949                         \mbox{\hyperlink{libusb_8h_a4868157346bbf2c70b6af0cb0a6c0094}{libusb\_hotplug\_callback\_handle}} handle);}
+\DoxyCodeLine{1950 }
+\DoxyCodeLine{1951 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{1952 \}}
+\DoxyCodeLine{1953 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1954 }
+\DoxyCodeLine{1955 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

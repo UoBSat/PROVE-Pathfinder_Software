@@ -1,0 +1,501 @@
+\hypertarget{namespace_flight}{}\doxysection{Flight Namespace Reference}
+\label{namespace_flight}\index{Flight@{Flight}}
+
+
+-\/Software\+::\+Scheduler\+::scheduler  
+
+
+
+
+\doxysubsection{Detailed Description}
+-\/Software\+::\+Scheduler\+::scheduler 
+
+-\/Software\+::tests\+::test\+\_\+tau2
+
+-\/Software\+::tests\+::test\+\_\+tasks
+
+-\/Software\+::tests\+::test\+\_\+scheduler
+
+-\/Software\+::tests\+::test\+\_\+logging
+
+-\/Software\+::tests\+::test\+\_\+config
+
+-\/Software\+::tests\+::test\+\_\+basler
+
+-\/Software\+::tests\+::integration-\/tests\+::test\+\_\+imaging\+\_\+passes
+
+-\/Software\+::tests\+::integration-\/tests\+::test\+\_\+calibration\+\_\+pass
+
+-\/Software\+::tests\+::integration-\/tests\+::\+OLD\+\_\+tests\+::test\+\_\+triple\+\_\+camera\+\_\+pass\+\_\+\+V3\+::test\+\_\+triple\+\_\+camera\+\_\+pass\+\_\+\+V3
+
+-\/Software\+::tests\+::integration-\/tests\+::\+OLD\+\_\+tests\+::test\+\_\+triple\+\_\+camera\+\_\+pass\+\_\+\+V1
+
+-\/Software\+::\+Tasks\+::\+Transfer-\/to-\/storage\+::transfer\+\_\+images\+\_\+\+SD
+
+-\/Software\+::\+Tasks\+::tau2\+::tau
+
+-\/Software\+::\+Tasks\+::basler\+::basler
+
+-\/Software\+::shared\+::tasks
+
+-\/Software\+::shared\+::logging
+
+-\/Software\+::shared\+::config
+
+\begin{DoxyVerb} @file scheduler.py
+
+ @brief Defines the scheduler service.
+
+ @section description_scheduler Description
+ Defines the scheduler service that runs each of the individual tasks to be performed each pass. The config.json file
+ is used to store this information and the tasks.json file is used to record what tasks are to be performed
+ - bus_read
+ - if_pass_started
+ - if_pass_finished
+ - if_pass_fully_completed
+ - check_subprocesses_status
+ - kill_subprocess
+ - main (scheduler)
+
+
+ @section libraries_scheduler Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+ - python signal library
+
+
+ @section todo_scheduler TODO
+ - None.
+
+ @section author_scheduler Author(s)
+ - Created by Vilius Stonkus on 02/08/2021.
+ - Modified by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file config.py
+
+@brief Defines the base class and functions related to the configuration of the scheduler service.
+
+@section description_tasks Description
+Defines the class and functions for controlling various parameters relating to the operation of the scheduler and pass
+operations. The config.json file is used to store this information
+- Config (base class)
+- get_config
+- get_pass_duration
+- write_timestamps
+- recentpasstimestamp
+
+
+@section libraries_logger Libraries/Modules
+- python json library
+
+
+@section todo_logger TODO
+- None.
+
+@section author_logger Author(s)
+- Created by Vilius Stonkus on 02/08/2021.
+- Modified by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file logging.py
+
+ @brief Defines the create_logger function.
+
+ @section description_logger Description
+ Defines the create_logger function for creating custom loggers for each process.
+ - create_logger
+
+
+ @section libraries_logger Libraries/Modules
+ - python logging library
+
+
+ @section todo_logger TODO
+ - None.
+
+ @section author_logger Author(s)
+ - Created by Louis Timperley on 02/08/2021.
+ - Modified by Vilius Stonkus on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file tasks.py
+
+ @brief Defines the base class and functions related to performing tasks using the scheduler service.
+
+ @section description_tasks Description
+ Defines the task functions for executing all the various tasks spawned by the scheduler service, using the python
+ subprocess library. The tasks.json file is used to record what tasks are to be performed each pass.
+ - Tasks (base class)
+ - get_tasks
+ - get_tasks_total
+ - pass_tasks_ids
+ - capture_timings
+ - array_to_string
+ - post_pass_capture_timings
+ - start_task
+
+
+ @section libraries_tasks Libraries/Modules
+ - python json library
+ - python subprocess library
+ - python numpy library
+ - python datetime library
+ - python os library
+ - shared config library
+
+
+ @section todo_tasks TODO
+ - None.
+
+ @section author_tasks Author(s)
+ - Created by Vilius Stonkus on 02/08/2021.
+ - Modified by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb}@file basler.py
+ @brief Defines the basler imaging task.
+ @section description_scheduler Description
+ Defines the basler imaging task that captures all the images from the basler according to time stamps received form
+ the scheduler service
+ - add_arguments
+ - defaultProperties
+ - set_format
+ - set_resolution
+ - set_light_mode
+ - set_saturation
+ - set_brightness
+ - set_contrast
+ - set_special_effects
+ - set_hue
+ - set_exposure
+ - set_sharpness
+ - set_mirror_flip
+ - set_compress_quality
+ - set_test_pattern
+ - main (basler)
+ @section libraries_basler Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python pypylon library
+ - python argpass library
+ - python psutil library
+ - python PIL library
+ @section todo_basler TODO
+ - None.
+ @section author_basler Author(s)
+ - Created by Vilius Stonkus on 02/08/2021.
+ - Created by Nicole Li on 02/08/2021.
+ - Modified by Louis Timperley on 03/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb}@file tau.py
+ @brief Defines the tau imaging task.
+ @section tau_version File Version:
+ - v0.1.0-alpha
+ @section description_scheduler Description
+ @section libraries_tau Libraries/Modules
+ @section todo_tau TODO
+ - Handle input from schduler
+ - Initilise all data
+ - Run tau image collection
+ - Error Handling
+ - Image processing
+ - Hard and soft crashes
+ @section author_tau Author(s)
+ - Created by Michael Jon O'Donnell mo14776@bristol.ac.uk
+ - Modified by Vilius Stonkus X/10/2022
+ @section history Histoy:
+ - 2021/11/08 - v0.1.0-alpha
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb}@file transfer_image_SD.py
+
+ @brief Defines the transfer_image_SD task.
+
+ @section description_transfer_image_SD Description
+ Defines the transfer_image_SD task that is run after the end of a pass to transfer all the images save on the BBB emmc to the SD card
+ - main (transfer_image_SD)
+
+ @section libraries_transfer_image_SD Libraries/Modules
+ - python shutil library
+ - python os library
+ - python sys library
+
+
+ @section todo_transfer_image_SD TODO
+ - None.
+
+ @section author_transfer_image_SD Author(s)
+ - Created by Vilius Stonkus on 02/08/2021.
+ - Modified by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb}@file test_triple_camera_pass_V1.py
+
+ @brief Defines a single pass test using all three cameras.
+
+ @section description_test_triple_camera_pass_V1 Description
+ This test runs an imaging pass with a defined duration and defined number of repeats, using all three cameras
+ - main (test_triple_camera_pass_V1)
+
+
+ @section libraries_test_triple_camera_pass_V1 Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_triple_camera_pass_V1 TODO
+ - None.
+
+ @section author_test_triple_camera_pass_V1 Author(s)
+ - Created by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_triple_camera_pass_V3.py
+
+ @brief Defines a multiple pass test using all three cameras and power cycling.
+
+ @section description_test_triple_camera_pass_V1 Description
+ This test runs imaging pass tests with the three cameras and sweeps through a set of different pass durations, and can
+ be use alongside power cycles between pass tests
+ i.e. multiple V1 tests with different durations and power cycling
+ - main (test_triple_camera_pass_V3)
+
+
+ @section libraries_test_triple_camera_pass_V3 Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_triple_camera_pass_V3 TODO
+ - need to improve stability in sweeping through different pass durations and coordinating with timed power cycles
+
+ @section author_test_triple_camera_pass_V3 Author(s)
+ - Created by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_calibration_passes.py
+
+ @brief Defines a multiple calibration pass test using the tau.
+
+ @section description_test_calibration_passes Description
+ This test runs multiple calibration pass tests with the tau
+ - test_calibration_pass_multi
+
+
+ @section libraries_test_calibration_passes Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_calibration_passes TODO
+ - None.
+
+ @section author_test_calibration_passes Author(s)
+ - Created by Louis Timperley on 27/01/2022.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_imaging_passes.py
+
+ @brief Defines a multiple pass test using all three cameras.
+
+ @section description_test_imaging_passes Description
+ This test runs multiple imaging pass tests with the three cameras and sweeps through a set of different pass durations,
+ i.e. multiple V1 tests with different durations
+ - test_imaging_pass_multi
+
+
+ @section libraries_test_imaging_passes Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_imaging_passes TODO
+ - None.
+
+ @section author_test_imaging_passes Author(s)
+ - Created by Louis Timperley on 02/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_basler.py
+
+ @brief Defines a tests for the tau2 camera.
+
+ @section description_test_basler Description
+ This test runs multiple  tests with the tau 2
+ - test_tau_imaging_pass
+
+
+ @section libraries_test_basler Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_basler TODO
+ - None.
+
+ @section author_test_basler Author(s)
+ - Created by Louis Timperley on 15/12/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_config.py
+
+@brief Defines test for the config class methods.
+
+@section description_test_config Description
+Defines the unit tests for the config class methods
+- test_get_config
+- test_get_pass_duration
+- test_write_timestamps
+- test_recentpasstimestamp
+
+
+@section libraries_config Libraries/Modules
+- python pytest library
+- python sys library
+- python json library
+- python datetime library
+
+
+
+@section todo_config TODO
+- None.
+
+@section author_config Author(s)
+- Created by Louis Timperley on 12/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_logging.py
+
+@brief Defines test for the create_logger function.
+
+@section description_test_logging Description
+Defines the unit test for the create_logger function and checks its enabled logging levels and creates a test log
+- test_create_logger
+
+
+@section libraries_logger Libraries/Modules
+- python pytest library
+- python sys library
+- python os library
+
+
+@section todo_logger TODO
+- None.
+
+@section author_logger Author(s)
+- Created by Louis Timperley on 12/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_scheduler.py
+
+@brief Defines test for the scheduler service.
+
+@section description_test_scheduler Description
+Defines the unit tests for the scheduler service functions
+- test_if_pass_started
+- test_if_pass_finished
+- test_pass_fully_completed
+- test_check_subprocesses_status
+- test_kill_subprocess
+
+@section libraries_scheduler Libraries/Modules
+- python pytest library
+- python sys library
+- python json library
+
+@section todo_scheduler TODO
+- None.
+
+@section author_scheduler Author(s)
+- Created by Louis Timperley on 20/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_tasks.py
+
+@brief Defines test for the tasks class methods.
+
+@section description_test_tasks Description
+Defines the unit tests for the tasks class methods
+- test_get_tasks
+- test_get_tasks_total
+- test_pass_tasks_ids
+- test_capture_timgings
+- test_array_to_string
+- test_post_pass_capture_timings
+- test_start_task
+
+
+@section libraries_tasks Libraries/Modules
+- python pytest library
+- python sys library
+- python json library
+
+@section todo_tasks TODO
+- None.
+
+@section author_tasks Author(s)
+- Created by Louis Timperley on 13/08/2021.
+\end{DoxyVerb}
+
+
+\begin{DoxyVerb} @file test_tau2.py
+
+ @brief Defines a tests for the tau2 camera.
+
+ @section description_test_tau2 Description
+ This test runs multiple  tests with the tau 2
+ - test_tau_imaging_pass
+
+
+ @section libraries_test_tau2 Libraries/Modules
+ - python subprocess library
+ - python time library
+ - python datetime library
+ - python sys library
+ - python os library
+
+
+ @section todo_test_tau2 TODO
+ - None.
+
+ @section author_test_tau2 Author(s)
+ - Created by Louis Timperley on 14/12/2021.
+\end{DoxyVerb}
+ 

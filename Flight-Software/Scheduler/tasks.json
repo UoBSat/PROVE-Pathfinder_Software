@@ -1,0 +1,80 @@
+{
+    "tasks": 
+    {
+        "transfer image data to bus":
+        [
+            {
+                "id": 13,
+                "name": "transfer images to bus",
+                "file_path": "",
+                "delay": 0
+            }
+        ],
+        "pre_calibration":
+        [
+            {
+                "id": 9,
+                "name": "Power tau",
+                "file_path": "",
+                "delay": 0
+            }
+        ],
+        "calibration":
+        [
+            {
+                "id": 10,
+                "name": "Start tau calibration capture",
+                "file_path": "/home/debian/Tasks/tau2/tau.py",
+                "delay": 0
+            }
+        ],
+        "post_calibration":
+        [
+            {
+                "id": 11,
+                "name": "Transfer calibration images to SD card",
+                "file_path": "/home/debian/Tasks/Transfer-to-storage/transfer_images_SD.py",
+                "delay": 0
+            }
+        ],
+        "pre_pass":
+        [
+            {
+                "id": 7,
+                "name": "Power Arducam",
+                "file_path": "",
+                "delay": 0
+            },
+            {
+                "id": 8,
+                "name": "Power Tau",
+                "file_path": "",
+                "delay": 0
+            }
+        ],
+        "pass":
+        [
+            {
+                "id": 1,
+                "name": "Start Basler Capture",
+                "file_path": "/home/debian/Tasks/basler/basler.py",
+                "delay": 0 
+            },
+            {
+                "id": 2,
+                "name": "Start Tau Capture",
+                "file_path": "/home/debian/Tasks/tau2/tau.py",
+                "delay": 0
+            }
+        ],
+        "post_pass":
+        [
+            {
+                "id": 4,
+                "name": "Transfer pass images to SD card",
+                "file_path": "/home/debian/Tasks/Transfer-to-storage/transfer_images_SD.py",
+                "delay": 0 
+            }
+        ]
+    }
+}

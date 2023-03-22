@@ -1,0 +1,1449 @@
+\hypertarget{ftd2xx_8h_source}{}\doxysection{ftd2xx.\+h}
+\label{ftd2xx_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/inc/ftd2xx.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/inc/ftd2xx.h}}
+\mbox{\hyperlink{ftd2xx_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*++}}
+\DoxyCodeLine{2 \textcolor{comment}{}}
+\DoxyCodeLine{3 \textcolor{comment}{Copyright © 2001-\/2011 Future Technology Devices International Limited}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{comment}{THIS SOFTWARE IS PROVIDED BY FUTURE TECHNOLOGY DEVICES INTERNATIONAL LIMITED "{}AS IS"{}}}
+\DoxyCodeLine{6 \textcolor{comment}{AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES}}
+\DoxyCodeLine{7 \textcolor{comment}{OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL}}
+\DoxyCodeLine{8 \textcolor{comment}{FUTURE TECHNOLOGY DEVICES INTERNATIONAL LIMITED BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,}}
+\DoxyCodeLine{9 \textcolor{comment}{SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT}}
+\DoxyCodeLine{10 \textcolor{comment}{OF SUBSTITUTE GOODS OR SERVICES LOSS OF USE, DATA, OR PROFITS OR BUSINESS INTERRUPTION)}}
+\DoxyCodeLine{11 \textcolor{comment}{HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR}}
+\DoxyCodeLine{12 \textcolor{comment}{TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,}}
+\DoxyCodeLine{13 \textcolor{comment}{EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{14 \textcolor{comment}{}}
+\DoxyCodeLine{15 \textcolor{comment}{FTDI DRIVERS MAY BE USED ONLY IN CONJUNCTION WITH PRODUCTS BASED ON FTDI PARTS.}}
+\DoxyCodeLine{16 \textcolor{comment}{}}
+\DoxyCodeLine{17 \textcolor{comment}{FTDI DRIVERS MAY BE DISTRIBUTED IN ANY FORM AS LONG AS LICENSE INFORMATION IS NOT MODIFIED.}}
+\DoxyCodeLine{18 \textcolor{comment}{}}
+\DoxyCodeLine{19 \textcolor{comment}{IF A CUSTOM VENDOR ID AND/OR PRODUCT ID OR DESCRIPTION STRING ARE USED, IT IS THE}}
+\DoxyCodeLine{20 \textcolor{comment}{RESPONSIBILITY OF THE PRODUCT MANUFACTURER TO MAINTAIN ANY CHANGES AND SUBSEQUENT WHQL}}
+\DoxyCodeLine{21 \textcolor{comment}{RE-\/CERTIFICATION AS A RESULT OF MAKING THESE CHANGES.}}
+\DoxyCodeLine{22 \textcolor{comment}{}}
+\DoxyCodeLine{23 \textcolor{comment}{}}
+\DoxyCodeLine{24 \textcolor{comment}{Module Name:}}
+\DoxyCodeLine{25 \textcolor{comment}{}}
+\DoxyCodeLine{26 \textcolor{comment}{ftd2xx.h}}
+\DoxyCodeLine{27 \textcolor{comment}{}}
+\DoxyCodeLine{28 \textcolor{comment}{Abstract:}}
+\DoxyCodeLine{29 \textcolor{comment}{}}
+\DoxyCodeLine{30 \textcolor{comment}{Native USB device driver for FTDI FT232x, FT245x, FT2232x and FT4232x devices}}
+\DoxyCodeLine{31 \textcolor{comment}{FTD2XX library definitions}}
+\DoxyCodeLine{32 \textcolor{comment}{}}
+\DoxyCodeLine{33 \textcolor{comment}{Environment:}}
+\DoxyCodeLine{34 \textcolor{comment}{}}
+\DoxyCodeLine{35 \textcolor{comment}{kernel \& user mode}}
+\DoxyCodeLine{36 \textcolor{comment}{}}
+\DoxyCodeLine{37 \textcolor{comment}{}}
+\DoxyCodeLine{38 \textcolor{comment}{-\/-\/*/}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#ifndef FTD2XX\_H}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define FTD2XX\_H}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{45 \textcolor{comment}{// Compiling on Windows}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{// The following ifdef block is the standard way of creating macros}}
+\DoxyCodeLine{49 \textcolor{comment}{// which make exporting from a DLL simpler.  All files within this DLL}}
+\DoxyCodeLine{50 \textcolor{comment}{// are compiled with the FTD2XX\_EXPORTS symbol defined on the command line.}}
+\DoxyCodeLine{51 \textcolor{comment}{// This symbol should not be defined on any project that uses this DLL.}}
+\DoxyCodeLine{52 \textcolor{comment}{// This way any other project whose source files include this file see}}
+\DoxyCodeLine{53 \textcolor{comment}{// FTD2XX\_API functions as being imported from a DLL, whereas this DLL}}
+\DoxyCodeLine{54 \textcolor{comment}{// sees symbols defined with this macro as being exported.}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef FTD2XX\_EXPORTS}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define FTD2XX\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#elif defined(FTD2XX\_STATIC)}}
+\DoxyCodeLine{59 \textcolor{comment}{// Avoid decorations when linking statically to D2XX.}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define FTD2XX\_API}}
+\DoxyCodeLine{61 \textcolor{comment}{// Static D2XX depends on these Windows libs:}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#pragma comment(lib, "{}setupapi.lib"{}})}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#pragma comment(lib, "{}advapi32.lib"{}})}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#pragma comment(lib, "{}user32.lib"{}})}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define FTD2XX\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#else }\textcolor{comment}{// \_WIN32}}
+\DoxyCodeLine{70 \textcolor{comment}{// Compiling on non-\/Windows platform.}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#include "{}WinTypes.h"{}}}
+\DoxyCodeLine{72 \textcolor{comment}{// No decorations needed.}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define FTD2XX\_API}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WIN32}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{keyword}{typedef} PVOID   \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}};}
+\DoxyCodeLine{78 \textcolor{keyword}{typedef} ULONG   \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{//}}
+\DoxyCodeLine{81 \textcolor{comment}{// Device status}}
+\DoxyCodeLine{82 \textcolor{comment}{//}}
+\DoxyCodeLine{83 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{84     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a57771796d33c3f4178130c5daa56b9a3}{FT\_OK}},}
+\DoxyCodeLine{85     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a51b951885e2427ac2adcc42f8e8aa7d6}{FT\_INVALID\_HANDLE}},}
+\DoxyCodeLine{86     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a52ef35c13606c4e5073f82392310829f}{FT\_DEVICE\_NOT\_FOUND}},}
+\DoxyCodeLine{87     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7afc9ebd84b6b29fc3ce081d3f5098a5fc}{FT\_DEVICE\_NOT\_OPENED}},}
+\DoxyCodeLine{88     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a187bd12394306ca35c13e95699cc2d76}{FT\_IO\_ERROR}},}
+\DoxyCodeLine{89     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a9e4e6e7f0ffce5ff0c2516fcdd9f1ec4}{FT\_INSUFFICIENT\_RESOURCES}},}
+\DoxyCodeLine{90     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a5db9fe4ea1249f6177b8e62ec42e1561}{FT\_INVALID\_PARAMETER}},}
+\DoxyCodeLine{91     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a1c1c84a2e6da2984b178a2784ace3ab9}{FT\_INVALID\_BAUD\_RATE}},}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a55cf3c5c20c011e8751d832472cba590}{FT\_DEVICE\_NOT\_OPENED\_FOR\_ERASE}},}
+\DoxyCodeLine{94     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7abd2799052f1f1abf98eba222ebe78631}{FT\_DEVICE\_NOT\_OPENED\_FOR\_WRITE}},}
+\DoxyCodeLine{95     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7acd5f30669a8d167427ac9fe660cdbf62}{FT\_FAILED\_TO\_WRITE\_DEVICE}},}
+\DoxyCodeLine{96     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a8f6929c07ae094d0d87e109de0311511}{FT\_EEPROM\_READ\_FAILED}},}
+\DoxyCodeLine{97     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a58a00530b68e32f9092a4c2b780cfcfe}{FT\_EEPROM\_WRITE\_FAILED}},}
+\DoxyCodeLine{98     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a951eb59384691e4ff67bcb9b80ff5ffb}{FT\_EEPROM\_ERASE\_FAILED}},}
+\DoxyCodeLine{99     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a944fbc6bd0e02569ddd963c3fe440b0a}{FT\_EEPROM\_NOT\_PRESENT}},}
+\DoxyCodeLine{100     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a07b21ff8dd1609f3072cd47639905ddd}{FT\_EEPROM\_NOT\_PROGRAMMED}},}
+\DoxyCodeLine{101     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7aced75884f01bf862c7662cec61dc2b2c}{FT\_INVALID\_ARGS}},}
+\DoxyCodeLine{102     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a66b84db9ae1ae21cdcc972ac2856e172}{FT\_NOT\_SUPPORTED}},}
+\DoxyCodeLine{103     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a69ca4908cb1d711452f413c66d408b8d}{FT\_OTHER\_ERROR}},}
+\DoxyCodeLine{104     \mbox{\hyperlink{ftd2xx_8h_adf764cbdea00d65edcd07bb9953ad2b7a15d7660d2fdecb7d3d479800bf1766ba}{FT\_DEVICE\_LIST\_NOT\_READY}},}
+\DoxyCodeLine{105 \};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define FT\_SUCCESS(status) ((status) == FT\_OK)}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{//}}
+\DoxyCodeLine{111 \textcolor{comment}{// FT\_OpenEx Flags}}
+\DoxyCodeLine{112 \textcolor{comment}{//}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define FT\_OPEN\_BY\_SERIAL\_NUMBER    1}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define FT\_OPEN\_BY\_DESCRIPTION      2}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define FT\_OPEN\_BY\_LOCATION         4}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define FT\_OPEN\_MASK (FT\_OPEN\_BY\_SERIAL\_NUMBER | \(\backslash\)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{                      FT\_OPEN\_BY\_DESCRIPTION | \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{                      FT\_OPEN\_BY\_LOCATION)}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{comment}{//}}
+\DoxyCodeLine{123 \textcolor{comment}{// FT\_ListDevices Flags (used in conjunction with FT\_OpenEx Flags}}
+\DoxyCodeLine{124 \textcolor{comment}{//}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define FT\_LIST\_NUMBER\_ONLY         0x80000000}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define FT\_LIST\_BY\_INDEX            0x40000000}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define FT\_LIST\_ALL                 0x20000000}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define FT\_LIST\_MASK (FT\_LIST\_NUMBER\_ONLY|FT\_LIST\_BY\_INDEX|FT\_LIST\_ALL)}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{comment}{//}}
+\DoxyCodeLine{133 \textcolor{comment}{// Baud Rates}}
+\DoxyCodeLine{134 \textcolor{comment}{//}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define FT\_BAUD\_300         300}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define FT\_BAUD\_600         600}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define FT\_BAUD\_1200        1200}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define FT\_BAUD\_2400        2400}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define FT\_BAUD\_4800        4800}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define FT\_BAUD\_9600        9600}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define FT\_BAUD\_14400       14400}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define FT\_BAUD\_19200       19200}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define FT\_BAUD\_38400       38400}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define FT\_BAUD\_57600       57600}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define FT\_BAUD\_115200      115200}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define FT\_BAUD\_230400      230400}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define FT\_BAUD\_460800      460800}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define FT\_BAUD\_921600      921600}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{comment}{//}}
+\DoxyCodeLine{152 \textcolor{comment}{// Word Lengths}}
+\DoxyCodeLine{153 \textcolor{comment}{//}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define FT\_BITS\_8           (UCHAR) 8}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define FT\_BITS\_7           (UCHAR) 7}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{comment}{//}}
+\DoxyCodeLine{159 \textcolor{comment}{// Stop Bits}}
+\DoxyCodeLine{160 \textcolor{comment}{//}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define FT\_STOP\_BITS\_1      (UCHAR) 0}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define FT\_STOP\_BITS\_2      (UCHAR) 2}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{comment}{//}}
+\DoxyCodeLine{166 \textcolor{comment}{// Parity}}
+\DoxyCodeLine{167 \textcolor{comment}{//}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define FT\_PARITY\_NONE      (UCHAR) 0}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define FT\_PARITY\_ODD       (UCHAR) 1}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define FT\_PARITY\_EVEN      (UCHAR) 2}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define FT\_PARITY\_MARK      (UCHAR) 3}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define FT\_PARITY\_SPACE     (UCHAR) 4}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{comment}{//}}
+\DoxyCodeLine{176 \textcolor{comment}{// Flow Control}}
+\DoxyCodeLine{177 \textcolor{comment}{//}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define FT\_FLOW\_NONE        0x0000}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define FT\_FLOW\_RTS\_CTS     0x0100}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define FT\_FLOW\_DTR\_DSR     0x0200}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define FT\_FLOW\_XON\_XOFF    0x0400}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{//}}
+\DoxyCodeLine{185 \textcolor{comment}{// Purge rx and tx buffers}}
+\DoxyCodeLine{186 \textcolor{comment}{//}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define FT\_PURGE\_RX         1}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define FT\_PURGE\_TX         2}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{comment}{//}}
+\DoxyCodeLine{191 \textcolor{comment}{// Events}}
+\DoxyCodeLine{192 \textcolor{comment}{//}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{keyword}{typedef} \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} (*\mbox{\hyperlink{ftd2xx_8h_ad7678ccd4a951645ce2179f50760c0e0}{PFT\_EVENT\_HANDLER}})(DWORD,DWORD);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define FT\_EVENT\_RXCHAR         1}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define FT\_EVENT\_MODEM\_STATUS   2}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define FT\_EVENT\_LINE\_STATUS    4}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{//}}
+\DoxyCodeLine{201 \textcolor{comment}{// Timeouts}}
+\DoxyCodeLine{202 \textcolor{comment}{//}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define FT\_DEFAULT\_RX\_TIMEOUT   300}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define FT\_DEFAULT\_TX\_TIMEOUT   300}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207 \textcolor{comment}{//}}
+\DoxyCodeLine{208 \textcolor{comment}{// Device types}}
+\DoxyCodeLine{209 \textcolor{comment}{//}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{keyword}{typedef} ULONG   \mbox{\hyperlink{ftd2xx_8h_a93f97052222c089b780302ff9c175cb6}{FT\_DEVICE}};}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{214     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5ab99f8bd4cc1e82b8814c8516328ab6e3}{FT\_DEVICE\_BM}},}
+\DoxyCodeLine{215     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a7d7f625750b6f8e6ffe52f7476c0fb8d}{FT\_DEVICE\_AM}},}
+\DoxyCodeLine{216     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a332f9bed769b5c31614dc58f4d15d277}{FT\_DEVICE\_100AX}},}
+\DoxyCodeLine{217     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a4db221c21cbf58e08677f62bc8da2e54}{FT\_DEVICE\_UNKNOWN}},}
+\DoxyCodeLine{218     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5ac2a75281abc9c0a22c8e9b050ec127b3}{FT\_DEVICE\_2232C}},}
+\DoxyCodeLine{219     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a19516809cd3cd1f454030e53ddbb0cb6}{FT\_DEVICE\_232R}},}
+\DoxyCodeLine{220     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5abd6d39c6ef4f9ed49fdc4bac60fd6d6b}{FT\_DEVICE\_2232H}},}
+\DoxyCodeLine{221     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5ac645608979a5fae076928728dc52acce}{FT\_DEVICE\_4232H}},}
+\DoxyCodeLine{222     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a6b4f056cfac5b1745c1e82bd738ed206}{FT\_DEVICE\_232H}},}
+\DoxyCodeLine{223     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a84c930a095fa9d8ff42500203d8a3ca0}{FT\_DEVICE\_X\_SERIES}},}
+\DoxyCodeLine{224     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5af30432ec9381d985bf6fe74e960f3ec4}{FT\_DEVICE\_4222H\_0}},}
+\DoxyCodeLine{225     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5abe2c45013d777073b0d19a7ee80cd36c}{FT\_DEVICE\_4222H\_1\_2}},}
+\DoxyCodeLine{226     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a3b747eb1dc718d0d6da9de3796ebebbb}{FT\_DEVICE\_4222H\_3}},}
+\DoxyCodeLine{227     \mbox{\hyperlink{ftd2xx_8h_a99fb83031ce9923c84392b4e92f956b5a6e13dd5f7b50b7998b48a432b2de4632}{FT\_DEVICE\_4222\_PROG}},}
+\DoxyCodeLine{228 \};}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{comment}{//}}
+\DoxyCodeLine{231 \textcolor{comment}{// Bit Modes}}
+\DoxyCodeLine{232 \textcolor{comment}{//}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define FT\_BITMODE\_RESET                    0x00}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define FT\_BITMODE\_ASYNC\_BITBANG            0x01}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define FT\_BITMODE\_MPSSE                    0x02}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define FT\_BITMODE\_SYNC\_BITBANG             0x04}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define FT\_BITMODE\_MCU\_HOST                 0x08}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define FT\_BITMODE\_FAST\_SERIAL              0x10}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define FT\_BITMODE\_CBUS\_BITBANG             0x20}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#define FT\_BITMODE\_SYNC\_FIFO                0x40}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{comment}{//}}
+\DoxyCodeLine{244 \textcolor{comment}{// FT232R CBUS Options EEPROM values}}
+\DoxyCodeLine{245 \textcolor{comment}{//}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_TXDEN                  0x00    }\textcolor{comment}{//  Tx Data Enable}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_PWRON                  0x01    }\textcolor{comment}{//  Power On}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_RXLED                  0x02    }\textcolor{comment}{//  Rx LED}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_TXLED                  0x03    }\textcolor{comment}{//  Tx LED}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_TXRXLED                0x04    }\textcolor{comment}{//  Tx and Rx LED}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_SLEEP                  0x05    }\textcolor{comment}{//  Sleep}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_CLK48                  0x06    }\textcolor{comment}{//  48MHz clock}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_CLK24                  0x07    }\textcolor{comment}{//  24MHz clock}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_CLK12                  0x08    }\textcolor{comment}{//  12MHz clock}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_CLK6                   0x09    }\textcolor{comment}{//  6MHz clock}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_IOMODE                 0x0A    }\textcolor{comment}{//  IO Mode for CBUS bit-\/bang}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_BITBANG\_WR             0x0B    }\textcolor{comment}{//  Bit-\/bang write strobe}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#define FT\_232R\_CBUS\_BITBANG\_RD             0x0C    }\textcolor{comment}{//  Bit-\/bang read strobe}}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \textcolor{comment}{//}}
+\DoxyCodeLine{262 \textcolor{comment}{// FT232H CBUS Options EEPROM values}}
+\DoxyCodeLine{263 \textcolor{comment}{//}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_TRISTATE               0x00    }\textcolor{comment}{//  Tristate}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_TXLED                  0x01    }\textcolor{comment}{//  Tx LED}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_RXLED                  0x02    }\textcolor{comment}{//  Rx LED}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_TXRXLED                0x03    }\textcolor{comment}{//  Tx and Rx LED}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_PWREN                  0x04    }\textcolor{comment}{//  Power Enable}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_SLEEP                  0x05    }\textcolor{comment}{//  Sleep}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_DRIVE\_0                0x06    }\textcolor{comment}{//  Drive pin to logic 0}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_DRIVE\_1                0x07    }\textcolor{comment}{//  Drive pin to logic 1}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_IOMODE                 0x08    }\textcolor{comment}{//  IO Mode for CBUS bit-\/bang}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_TXDEN                  0x09    }\textcolor{comment}{//  Tx Data Enable}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_CLK30                  0x0A    }\textcolor{comment}{//  30MHz clock}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_CLK15                  0x0B    }\textcolor{comment}{//  15MHz clock}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#define FT\_232H\_CBUS\_CLK7\_5                 0x0C    }\textcolor{comment}{//  7.5MHz clock}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{//}}
+\DoxyCodeLine{280 \textcolor{comment}{// FT X Series CBUS Options EEPROM values}}
+\DoxyCodeLine{281 \textcolor{comment}{//}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_TRISTATE           0x00    }\textcolor{comment}{//  Tristate}}
+\DoxyCodeLine{284 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_TXLED              0x01    }\textcolor{comment}{//  Tx LED}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_RXLED              0x02    }\textcolor{comment}{//  Rx LED}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_TXRXLED            0x03    }\textcolor{comment}{//  Tx and Rx LED}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_PWREN              0x04    }\textcolor{comment}{//  Power Enable}}
+\DoxyCodeLine{288 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_SLEEP              0x05    }\textcolor{comment}{//  Sleep}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_DRIVE\_0            0x06    }\textcolor{comment}{//  Drive pin to logic 0}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_DRIVE\_1            0x07    }\textcolor{comment}{//  Drive pin to logic 1}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_IOMODE             0x08    }\textcolor{comment}{//  IO Mode for CBUS bit-\/bang}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_TXDEN              0x09    }\textcolor{comment}{//  Tx Data Enable}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_CLK24              0x0A    }\textcolor{comment}{//  24MHz clock}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_CLK12              0x0B    }\textcolor{comment}{//  12MHz clock}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_CLK6               0x0C    }\textcolor{comment}{//  6MHz clock}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_BCD\_CHARGER        0x0D    }\textcolor{comment}{//  Battery charger detected}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_BCD\_CHARGER\_N      0x0E    }\textcolor{comment}{//  Battery charger detected inverted}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_I2C\_TXE            0x0F    }\textcolor{comment}{//  I2C Tx empty}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_I2C\_RXF            0x10    }\textcolor{comment}{//  I2C Rx full}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_VBUS\_SENSE         0x11    }\textcolor{comment}{//  Detect VBUS}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_BITBANG\_WR         0x12    }\textcolor{comment}{//  Bit-\/bang write strobe}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_BITBANG\_RD         0x13    }\textcolor{comment}{//  Bit-\/bang read strobe}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_TIMESTAMP          0x14    }\textcolor{comment}{//  Toggle output when a USB SOF token is received}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define FT\_X\_SERIES\_CBUS\_KEEP\_AWAKE         0x15    }\textcolor{comment}{//  }}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307 \textcolor{comment}{// Driver types}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define FT\_DRIVER\_TYPE\_D2XX     0}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define FT\_DRIVER\_TYPE\_VCP      1}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{314 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#ifdef FTD2XX\_STATIC}}
+\DoxyCodeLine{319     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{320         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI FT\_Initialise(}
+\DoxyCodeLine{321         \textcolor{keywordtype}{void}}
+\DoxyCodeLine{322         );}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{325         \textcolor{keywordtype}{void} WINAPI FT\_Finalise(}
+\DoxyCodeLine{326         \textcolor{keywordtype}{void}}
+\DoxyCodeLine{327         );}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// FTD2XX\_STATIC}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{331         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a5f33a6dde9b2938f8e2426b1b0353906}{FT\_Open}}(}
+\DoxyCodeLine{332         \textcolor{keywordtype}{int} deviceNumber,}
+\DoxyCodeLine{333         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} *pHandle}
+\DoxyCodeLine{334         );}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{337         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a706bccadc094e6da104864908c0f352f}{FT\_OpenEx}}(}
+\DoxyCodeLine{338         PVOID pArg1,}
+\DoxyCodeLine{339         DWORD Flags,}
+\DoxyCodeLine{340         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} *pHandle}
+\DoxyCodeLine{341         );}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}} }
+\DoxyCodeLine{344         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a5d6d6143c10c87b3c6e6b21fae4a37dc}{FT\_ListDevices}}(}
+\DoxyCodeLine{345         PVOID pArg1,}
+\DoxyCodeLine{346         PVOID pArg2,}
+\DoxyCodeLine{347         DWORD Flags}
+\DoxyCodeLine{348         );}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{351         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a62c31590fa78d9fe4e46fc1fbc71ce7e}{FT\_Close}}(}
+\DoxyCodeLine{352         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{353         );}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{356         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_abe77b78e2658d559850369fc024c8b7a}{FT\_Read}}(}
+\DoxyCodeLine{357         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{358         LPVOID lpBuffer,}
+\DoxyCodeLine{359         DWORD dwBytesToRead,}
+\DoxyCodeLine{360         LPDWORD lpBytesReturned}
+\DoxyCodeLine{361         );}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}} }
+\DoxyCodeLine{364         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a7d26ea8569aa879a9a263542c11f09c1}{FT\_Write}}(}
+\DoxyCodeLine{365         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{366         LPVOID lpBuffer,}
+\DoxyCodeLine{367         DWORD dwBytesToWrite,}
+\DoxyCodeLine{368         LPDWORD lpBytesWritten}
+\DoxyCodeLine{369         );}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}} }
+\DoxyCodeLine{372         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a4e82e98f2cdfb84336a83bc009f22d1b}{FT\_IoCtl}}(}
+\DoxyCodeLine{373         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{374         DWORD dwIoControlCode,}
+\DoxyCodeLine{375         LPVOID lpInBuf,}
+\DoxyCodeLine{376         DWORD nInBufSize,}
+\DoxyCodeLine{377         LPVOID lpOutBuf,}
+\DoxyCodeLine{378         DWORD nOutBufSize,}
+\DoxyCodeLine{379         LPDWORD lpBytesReturned,}
+\DoxyCodeLine{380         LPOVERLAPPED lpOverlapped}
+\DoxyCodeLine{381         );}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{384         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ab319e07afc99d9a293789a5235e8d1b1}{FT\_SetBaudRate}}(}
+\DoxyCodeLine{385         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{386         ULONG BaudRate}
+\DoxyCodeLine{387         );}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{390         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_acd81819aae9d79b559a950053e4c00ad}{FT\_SetDivisor}}(}
+\DoxyCodeLine{391         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{392         USHORT Divisor}
+\DoxyCodeLine{393         );}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{396         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a7f0bdde1f2aae09c3a9e9531f9b87165}{FT\_SetDataCharacteristics}}(}
+\DoxyCodeLine{397         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{398         UCHAR WordLength,}
+\DoxyCodeLine{399         UCHAR StopBits,}
+\DoxyCodeLine{400         UCHAR Parity}
+\DoxyCodeLine{401         );}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{404         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_af88da72f3267e488d99d35c7bee642b0}{FT\_SetFlowControl}}(}
+\DoxyCodeLine{405         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{406         USHORT FlowControl,}
+\DoxyCodeLine{407         UCHAR XonChar,}
+\DoxyCodeLine{408         UCHAR XoffChar}
+\DoxyCodeLine{409         );}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{412         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a379dc995669c611865bfa77c2d974e18}{FT\_ResetDevice}}(}
+\DoxyCodeLine{413         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{414         );}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{417         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_aaeb8bb58260f086294be87fff4188527}{FT\_SetDtr}}(}
+\DoxyCodeLine{418         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{419         );}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{422         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_afc9ed9087d9afe2d850fe4011da8a13d}{FT\_ClrDtr}}(}
+\DoxyCodeLine{423         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{424         );}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{427         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a91c6af959fdfb5a2d631caf1e945b065}{FT\_SetRts}}(}
+\DoxyCodeLine{428         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{429         );}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{432         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_adadcb94fe58ffc7be90bbf3c79e0899d}{FT\_ClrRts}}(}
+\DoxyCodeLine{433         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{434         );}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{437         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a235a203c92b865537fe14aa984ac97ef}{FT\_GetModemStatus}}(}
+\DoxyCodeLine{438         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{439         ULONG *pModemStatus}
+\DoxyCodeLine{440         );}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{443         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a1876bd038225e6c78d4ac17bb0cd6548}{FT\_SetChars}}(}
+\DoxyCodeLine{444         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{445         UCHAR EventChar,}
+\DoxyCodeLine{446         UCHAR EventCharEnabled,}
+\DoxyCodeLine{447         UCHAR ErrorChar,}
+\DoxyCodeLine{448         UCHAR ErrorCharEnabled}
+\DoxyCodeLine{449         );}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{452         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a722da1a691ba20623e3a820073c499af}{FT\_Purge}}(}
+\DoxyCodeLine{453         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{454         ULONG Mask}
+\DoxyCodeLine{455         );}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{458         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a644d8350893480ef39c6aed4492249be}{FT\_SetTimeouts}}(}
+\DoxyCodeLine{459         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{460         ULONG ReadTimeout,}
+\DoxyCodeLine{461         ULONG WriteTimeout}
+\DoxyCodeLine{462         );}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{465         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a6418e012a85928c31ad3b6e144fac31a}{FT\_GetQueueStatus}}(}
+\DoxyCodeLine{466         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{467         DWORD *dwRxBytes}
+\DoxyCodeLine{468         );}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{471         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a1851284723856657e7f114d51ec95a86}{FT\_SetEventNotification}}(}
+\DoxyCodeLine{472         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{473         DWORD Mask,}
+\DoxyCodeLine{474         PVOID Param}
+\DoxyCodeLine{475         );}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{478         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a9117c924aed38c8a506a550cd28fa717}{FT\_GetStatus}}(}
+\DoxyCodeLine{479         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{480         DWORD *dwRxBytes,}
+\DoxyCodeLine{481         DWORD *dwTxBytes,}
+\DoxyCodeLine{482         DWORD *dwEventDWord}
+\DoxyCodeLine{483         );}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{486         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a7b81f3eedad74c0bb93e85d19740a082}{FT\_SetBreakOn}}(}
+\DoxyCodeLine{487         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{488         );}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{491         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_afa1d9787185c2a78a452ece9ecd04a68}{FT\_SetBreakOff}}(}
+\DoxyCodeLine{492         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{493         );}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{496         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a37f355d078478f722ceecaf03e78dcb2}{FT\_SetWaitMask}}(}
+\DoxyCodeLine{497         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{498         DWORD Mask}
+\DoxyCodeLine{499         );}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{502         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a3f7f7d8c890a76a981c4f052a0d963f3}{FT\_WaitOnMask}}(}
+\DoxyCodeLine{503         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{504         DWORD *Mask}
+\DoxyCodeLine{505         );}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{508         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a733b71a6aeaa815d0a6c943df1e50297}{FT\_GetEventStatus}}(}
+\DoxyCodeLine{509         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{510         DWORD *dwEventDWord}
+\DoxyCodeLine{511         );}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{514         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ada5dab6ca007215fbdf08b4bbdd7acaf}{FT\_ReadEE}}(}
+\DoxyCodeLine{515         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{516         DWORD dwWordOffset,}
+\DoxyCodeLine{517         LPWORD lpwValue}
+\DoxyCodeLine{518         );}
+\DoxyCodeLine{519 }
+\DoxyCodeLine{520     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{521         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a24368c41e776d27c60598d631c30fbed}{FT\_WriteEE}}(}
+\DoxyCodeLine{522         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{523         DWORD dwWordOffset,}
+\DoxyCodeLine{524         WORD wValue}
+\DoxyCodeLine{525         );}
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{528         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a89da4d15e72d9055a9bf0168f375b2c5}{FT\_EraseEE}}(}
+\DoxyCodeLine{529         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{530         );}
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532     \textcolor{comment}{//}}
+\DoxyCodeLine{533     \textcolor{comment}{// structure to hold program data for FT\_EE\_Program, FT\_EE\_ProgramEx, FT\_EE\_Read }}
+\DoxyCodeLine{534     \textcolor{comment}{// and FT\_EE\_ReadEx functions}}
+\DoxyCodeLine{535     \textcolor{comment}{//}}
+\DoxyCodeLine{536     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__program__data}{ft\_program\_data}} \{}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538         DWORD \mbox{\hyperlink{structft__program__data_a6b26e04c691ec5944d2fffec797c399a}{Signature1}};         \textcolor{comment}{// Header -\/ must be 0x00000000 }}
+\DoxyCodeLine{539         DWORD \mbox{\hyperlink{structft__program__data_ab28a0f4509093050f1927f1e946f3d9f}{Signature2}};         \textcolor{comment}{// Header -\/ must be 0xffffffff}}
+\DoxyCodeLine{540         DWORD \mbox{\hyperlink{structft__program__data_a9ef2eb59fe9ef1699df92a9d50ac3a81}{Version}};               \textcolor{comment}{// Header -\/ FT\_PROGRAM\_DATA version}}
+\DoxyCodeLine{541         \textcolor{comment}{//          0 = original}}
+\DoxyCodeLine{542         \textcolor{comment}{//          1 = FT2232 extensions}}
+\DoxyCodeLine{543         \textcolor{comment}{//          2 = FT232R extensions}}
+\DoxyCodeLine{544         \textcolor{comment}{//          3 = FT2232H extensions}}
+\DoxyCodeLine{545         \textcolor{comment}{//          4 = FT4232H extensions}}
+\DoxyCodeLine{546         \textcolor{comment}{//          5 = FT232H extensions}}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548         WORD \mbox{\hyperlink{structft__program__data_a4d4e65a934b3a822d90d2b2fc461cb11}{VendorId}};              \textcolor{comment}{// 0x0403}}
+\DoxyCodeLine{549         WORD \mbox{\hyperlink{structft__program__data_a623b7980fadab4322ed41da598b45397}{ProductId}};                \textcolor{comment}{// 0x6001}}
+\DoxyCodeLine{550         \textcolor{keywordtype}{char} *\mbox{\hyperlink{structft__program__data_ae65c66ae3c75ac56bb460454f115da9d}{Manufacturer}};         \textcolor{comment}{// "{}FTDI"{}}}
+\DoxyCodeLine{551         \textcolor{keywordtype}{char} *\mbox{\hyperlink{structft__program__data_a06baa3f17985f533b165c121ec42b607}{ManufacturerId}};     \textcolor{comment}{// "{}FT"{}}}
+\DoxyCodeLine{552         \textcolor{keywordtype}{char} *\mbox{\hyperlink{structft__program__data_a7a4e096af8bd63f4766a026baf175115}{Description}};           \textcolor{comment}{// "{}USB HS Serial Converter"{}}}
+\DoxyCodeLine{553         \textcolor{keywordtype}{char} *\mbox{\hyperlink{structft__program__data_ae8dbafd18df4c0ac4548f9b2e1ba7758}{SerialNumber}};         \textcolor{comment}{// "{}FT000001"{} if fixed, or NULL}}
+\DoxyCodeLine{554         WORD \mbox{\hyperlink{structft__program__data_a95bf98d9c0b056d68078bc2d2f66b20e}{MaxPower}};              \textcolor{comment}{// 0 < MaxPower <= 500}}
+\DoxyCodeLine{555         WORD \mbox{\hyperlink{structft__program__data_ac7072dcb805fa05b3614f000498a8aed}{PnP}};                    \textcolor{comment}{// 0 = disabled, 1 = enabled}}
+\DoxyCodeLine{556         WORD \mbox{\hyperlink{structft__program__data_ad714af31e3592d4c3be2742ae9612616}{SelfPowered}};            \textcolor{comment}{// 0 = bus powered, 1 = self powered}}
+\DoxyCodeLine{557         WORD \mbox{\hyperlink{structft__program__data_ace6f9b75bffa94d7926296734f5b227f}{RemoteWakeup}};          \textcolor{comment}{// 0 = not capable, 1 = capable}}
+\DoxyCodeLine{558         \textcolor{comment}{//}}
+\DoxyCodeLine{559         \textcolor{comment}{// Rev4 (FT232B) extensions}}
+\DoxyCodeLine{560         \textcolor{comment}{//}}
+\DoxyCodeLine{561         UCHAR \mbox{\hyperlink{structft__program__data_aa0dc9b6f09c70bde10b560e3e122e79d}{Rev4}};                 \textcolor{comment}{// non-\/zero if Rev4 chip, zero otherwise}}
+\DoxyCodeLine{562         UCHAR \mbox{\hyperlink{structft__program__data_aa471198716a078ba145f1590388f7ccd}{IsoIn}};               \textcolor{comment}{// non-\/zero if in endpoint is isochronous}}
+\DoxyCodeLine{563         UCHAR \mbox{\hyperlink{structft__program__data_a829cd262ba4cee6a25d652bfe145724f}{IsoOut}};             \textcolor{comment}{// non-\/zero if out endpoint is isochronous}}
+\DoxyCodeLine{564         UCHAR \mbox{\hyperlink{structft__program__data_a922454432fb9098f4ce4cb6675be85e6}{PullDownEnable}};     \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{565         UCHAR \mbox{\hyperlink{structft__program__data_a4b2ef7f478af34cea6af64d0b0506c1e}{SerNumEnable}};         \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{566         UCHAR \mbox{\hyperlink{structft__program__data_adf5b7a284900e2dbb3d310225f85737e}{USBVersionEnable}};     \textcolor{comment}{// non-\/zero if chip uses USBVersion}}
+\DoxyCodeLine{567         WORD \mbox{\hyperlink{structft__program__data_a84fc61b75cabaf452a5f5c880d261dc6}{USBVersion}};          \textcolor{comment}{// BCD (0x0200 => USB2)}}
+\DoxyCodeLine{568         \textcolor{comment}{//}}
+\DoxyCodeLine{569         \textcolor{comment}{// Rev 5 (FT2232) extensions}}
+\DoxyCodeLine{570         \textcolor{comment}{//}}
+\DoxyCodeLine{571         UCHAR \mbox{\hyperlink{structft__program__data_a512aeedfb289bc6cda7aa28da4d5d40e}{Rev5}};                 \textcolor{comment}{// non-\/zero if Rev5 chip, zero otherwise}}
+\DoxyCodeLine{572         UCHAR \mbox{\hyperlink{structft__program__data_ab617e7e2235a84c8cf5c62a05f977eeb}{IsoInA}};             \textcolor{comment}{// non-\/zero if in endpoint is isochronous}}
+\DoxyCodeLine{573         UCHAR \mbox{\hyperlink{structft__program__data_acd261bec5257b91b7a3e371da9f25e47}{IsoInB}};             \textcolor{comment}{// non-\/zero if in endpoint is isochronous}}
+\DoxyCodeLine{574         UCHAR \mbox{\hyperlink{structft__program__data_ae4f536d9a3ee46681f6f0c9c88268458}{IsoOutA}};               \textcolor{comment}{// non-\/zero if out endpoint is isochronous}}
+\DoxyCodeLine{575         UCHAR \mbox{\hyperlink{structft__program__data_a07e87e6ceb9f1399884586926139b25c}{IsoOutB}};               \textcolor{comment}{// non-\/zero if out endpoint is isochronous}}
+\DoxyCodeLine{576         UCHAR \mbox{\hyperlink{structft__program__data_a24f71286b69d74eb238a97a2643e8dba}{PullDownEnable5}};       \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{577         UCHAR \mbox{\hyperlink{structft__program__data_a45d2edb9ee08c9d92c3d5d0d0ac79fd7}{SerNumEnable5}};       \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{578         UCHAR \mbox{\hyperlink{structft__program__data_add93538aae456427d1d922891d98c97c}{USBVersionEnable5}};   \textcolor{comment}{// non-\/zero if chip uses USBVersion}}
+\DoxyCodeLine{579         WORD \mbox{\hyperlink{structft__program__data_a0cbc74e54699448f0dcd464d057201b0}{USBVersion5}};            \textcolor{comment}{// BCD (0x0200 => USB2)}}
+\DoxyCodeLine{580         UCHAR \mbox{\hyperlink{structft__program__data_ab068b8260060f66bc10856754d581061}{AIsHighCurrent}};     \textcolor{comment}{// non-\/zero if interface is high current}}
+\DoxyCodeLine{581         UCHAR \mbox{\hyperlink{structft__program__data_afa8a84a2a087e3169f72cdd3c930fc77}{BIsHighCurrent}};     \textcolor{comment}{// non-\/zero if interface is high current}}
+\DoxyCodeLine{582         UCHAR \mbox{\hyperlink{structft__program__data_ac2bc8bf7e54408c73c4010d922cf809d}{IFAIsFifo}};           \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{583         UCHAR \mbox{\hyperlink{structft__program__data_a906ada3748a6e9ba1ff4cac63e159e9d}{IFAIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{584         UCHAR \mbox{\hyperlink{structft__program__data_ac183f4ed8ee74ecc9a006962c1ef793c}{IFAIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{585         UCHAR \mbox{\hyperlink{structft__program__data_a7b4f9d2dc2727498a52028765f8b3a15}{AIsVCP}};             \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{586         UCHAR \mbox{\hyperlink{structft__program__data_ad08f06af0e3a427cb6a826f55cc32ff5}{IFBIsFifo}};           \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{587         UCHAR \mbox{\hyperlink{structft__program__data_a1ed18c9dd5cc96d1ae96320ef2115b8b}{IFBIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{588         UCHAR \mbox{\hyperlink{structft__program__data_ad6220f0e81d216037ba11f65ec73bf4e}{IFBIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{589         UCHAR \mbox{\hyperlink{structft__program__data_a3ccf7887147a8140e74c9659de64c7aa}{BIsVCP}};             \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{590         \textcolor{comment}{//}}
+\DoxyCodeLine{591         \textcolor{comment}{// Rev 6 (FT232R) extensions}}
+\DoxyCodeLine{592         \textcolor{comment}{//}}
+\DoxyCodeLine{593         UCHAR \mbox{\hyperlink{structft__program__data_a93dee33ac5847f65157c3c5e374fa4ea}{UseExtOsc}};           \textcolor{comment}{// Use External Oscillator}}
+\DoxyCodeLine{594         UCHAR \mbox{\hyperlink{structft__program__data_a0f53600aee9f86d6286ecd0803f71825}{HighDriveIOs}};         \textcolor{comment}{// High Drive I/Os}}
+\DoxyCodeLine{595         UCHAR \mbox{\hyperlink{structft__program__data_adef6d265cbf1ca51540468b6f39c387a}{EndpointSize}};         \textcolor{comment}{// Endpoint size}}
+\DoxyCodeLine{596         UCHAR \mbox{\hyperlink{structft__program__data_a78a9293c320445bb93f54b166b81305c}{PullDownEnableR}};       \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{597         UCHAR \mbox{\hyperlink{structft__program__data_ae793566abd42704cd6bdf04b77c84f73}{SerNumEnableR}};       \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{598         UCHAR \mbox{\hyperlink{structft__program__data_a0d2de447606e38c05a02701aada981cf}{InvertTXD}};           \textcolor{comment}{// non-\/zero if invert TXD}}
+\DoxyCodeLine{599         UCHAR \mbox{\hyperlink{structft__program__data_ad39202e4a8f2d3ed219b9853d7cdad19}{InvertRXD}};           \textcolor{comment}{// non-\/zero if invert RXD}}
+\DoxyCodeLine{600         UCHAR \mbox{\hyperlink{structft__program__data_a709debf56fb2654291febd83d6e23161}{InvertRTS}};           \textcolor{comment}{// non-\/zero if invert RTS}}
+\DoxyCodeLine{601         UCHAR \mbox{\hyperlink{structft__program__data_a734bfebe12af33d52e2afe07750be245}{InvertCTS}};           \textcolor{comment}{// non-\/zero if invert CTS}}
+\DoxyCodeLine{602         UCHAR \mbox{\hyperlink{structft__program__data_af1ad28c6b71e397b08a3bda07a2f0329}{InvertDTR}};           \textcolor{comment}{// non-\/zero if invert DTR}}
+\DoxyCodeLine{603         UCHAR \mbox{\hyperlink{structft__program__data_ad7ab73b7989cb83dc2bf31d09d8a7ffa}{InvertDSR}};           \textcolor{comment}{// non-\/zero if invert DSR}}
+\DoxyCodeLine{604         UCHAR \mbox{\hyperlink{structft__program__data_a0c0b909429d5c1d25bbe1acfcda19500}{InvertDCD}};           \textcolor{comment}{// non-\/zero if invert DCD}}
+\DoxyCodeLine{605         UCHAR \mbox{\hyperlink{structft__program__data_a488afb1f4d72b128ea44a1e4d5131172}{InvertRI}};             \textcolor{comment}{// non-\/zero if invert RI}}
+\DoxyCodeLine{606         UCHAR \mbox{\hyperlink{structft__program__data_a02d61a180eb84a3d1d2689f282edd71b}{Cbus0}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{607         UCHAR \mbox{\hyperlink{structft__program__data_a474276aec2c600f0317c0a460db1da71}{Cbus1}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{608         UCHAR \mbox{\hyperlink{structft__program__data_aaae755cecc3a5badf8223e12782d37ad}{Cbus2}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{609         UCHAR \mbox{\hyperlink{structft__program__data_aba7bece422de482b850ee83df8603f05}{Cbus3}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{610         UCHAR \mbox{\hyperlink{structft__program__data_a4f360b07817acf1abd7277d7dff46cc6}{Cbus4}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{611         UCHAR \mbox{\hyperlink{structft__program__data_aec99738794a078897df1e4b893117f82}{RIsD2XX}};               \textcolor{comment}{// non-\/zero if using D2XX driver}}
+\DoxyCodeLine{612         \textcolor{comment}{//}}
+\DoxyCodeLine{613         \textcolor{comment}{// Rev 7 (FT2232H) Extensions}}
+\DoxyCodeLine{614         \textcolor{comment}{//}}
+\DoxyCodeLine{615         UCHAR \mbox{\hyperlink{structft__program__data_a54302ec0f17b20394a99db0bfdac50fd}{PullDownEnable7}};       \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{616         UCHAR \mbox{\hyperlink{structft__program__data_aced3a798466e623045b4c1cc891dcb93}{SerNumEnable7}};       \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{617         UCHAR \mbox{\hyperlink{structft__program__data_a1a161ae5da233c198ace0e36bb6c7ffa}{ALSlowSlew}};         \textcolor{comment}{// non-\/zero if AL pins have slow slew}}
+\DoxyCodeLine{618         UCHAR \mbox{\hyperlink{structft__program__data_a1c6f11e949ab0c1ac413d8143b28f44b}{ALSchmittInput}};     \textcolor{comment}{// non-\/zero if AL pins are Schmitt input}}
+\DoxyCodeLine{619         UCHAR \mbox{\hyperlink{structft__program__data_a10fd34a60e4eafb547a34c13ac720d40}{ALDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{620         UCHAR \mbox{\hyperlink{structft__program__data_a70b579cf3a9556b651411f760017b8f3}{AHSlowSlew}};         \textcolor{comment}{// non-\/zero if AH pins have slow slew}}
+\DoxyCodeLine{621         UCHAR \mbox{\hyperlink{structft__program__data_a6a6ae4b35632934297bc50385b18ddb1}{AHSchmittInput}};     \textcolor{comment}{// non-\/zero if AH pins are Schmitt input}}
+\DoxyCodeLine{622         UCHAR \mbox{\hyperlink{structft__program__data_add4068d542250349defc0ad9f6a51d3b}{AHDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{623         UCHAR \mbox{\hyperlink{structft__program__data_a2ad27a0b136d52c82e97be0596d24f7d}{BLSlowSlew}};         \textcolor{comment}{// non-\/zero if BL pins have slow slew}}
+\DoxyCodeLine{624         UCHAR \mbox{\hyperlink{structft__program__data_a426b76846e4db7ecd9e4ce2660a2d680}{BLSchmittInput}};     \textcolor{comment}{// non-\/zero if BL pins are Schmitt input}}
+\DoxyCodeLine{625         UCHAR \mbox{\hyperlink{structft__program__data_a8a55bd4110d2ad36f31260db9c627a5a}{BLDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{626         UCHAR \mbox{\hyperlink{structft__program__data_aa8140bee7add5ffdf7d4354307833137}{BHSlowSlew}};         \textcolor{comment}{// non-\/zero if BH pins have slow slew}}
+\DoxyCodeLine{627         UCHAR \mbox{\hyperlink{structft__program__data_ac8225d9a9c8e12cde47c1d7d99c9eb4c}{BHSchmittInput}};     \textcolor{comment}{// non-\/zero if BH pins are Schmitt input}}
+\DoxyCodeLine{628         UCHAR \mbox{\hyperlink{structft__program__data_ab24662f43f4fc1c442baf82feccfe045}{BHDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{629         UCHAR \mbox{\hyperlink{structft__program__data_aada296f4be68214c88608cf1657e14bf}{IFAIsFifo7}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{630         UCHAR \mbox{\hyperlink{structft__program__data_ad144fd874019e32cb625bd42d1177a1b}{IFAIsFifoTar7}};       \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{631         UCHAR \mbox{\hyperlink{structft__program__data_ac3f9c09e31314252360e6c9a44606487}{IFAIsFastSer7}};       \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{632         UCHAR \mbox{\hyperlink{structft__program__data_a292a1fe055651bd97f1719b6b99ced6c}{AIsVCP7}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{633         UCHAR \mbox{\hyperlink{structft__program__data_a73fc4f0b76da0dee036714023f45418e}{IFBIsFifo7}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{634         UCHAR \mbox{\hyperlink{structft__program__data_a3c52ca4fac055f6710035176b61344a0}{IFBIsFifoTar7}};       \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{635         UCHAR \mbox{\hyperlink{structft__program__data_a3515751d6639407ba0cd1097d477fbb5}{IFBIsFastSer7}};       \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{636         UCHAR \mbox{\hyperlink{structft__program__data_aabc8856caa07b72c2b9f3db72addb74e}{BIsVCP7}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{637         UCHAR \mbox{\hyperlink{structft__program__data_a84911f0b2d5a0b3e722ddeefdd4470cf}{PowerSaveEnable}};       \textcolor{comment}{// non-\/zero if using BCBUS7 to save power for self-\/powered designs}}
+\DoxyCodeLine{638         \textcolor{comment}{//}}
+\DoxyCodeLine{639         \textcolor{comment}{// Rev 8 (FT4232H) Extensions}}
+\DoxyCodeLine{640         \textcolor{comment}{//}}
+\DoxyCodeLine{641         UCHAR \mbox{\hyperlink{structft__program__data_a54a83cacd2ba6f2963d3b71716c1023e}{PullDownEnable8}};       \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{642         UCHAR \mbox{\hyperlink{structft__program__data_ae2a623e2fc32537111ae317b4079fd2f}{SerNumEnable8}};       \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{643         UCHAR \mbox{\hyperlink{structft__program__data_ac9bd84862d8950749f28dde07688a2dd}{ASlowSlew}};           \textcolor{comment}{// non-\/zero if A pins have slow slew}}
+\DoxyCodeLine{644         UCHAR \mbox{\hyperlink{structft__program__data_a2cd876ddaa004af5561f546ee142ba5c}{ASchmittInput}};       \textcolor{comment}{// non-\/zero if A pins are Schmitt input}}
+\DoxyCodeLine{645         UCHAR \mbox{\hyperlink{structft__program__data_a0c568765a812cf9f2e0681ffb6618943}{ADriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{646         UCHAR \mbox{\hyperlink{structft__program__data_aed9e9f03c08c0ed471cd8387f4c64769}{BSlowSlew}};           \textcolor{comment}{// non-\/zero if B pins have slow slew}}
+\DoxyCodeLine{647         UCHAR \mbox{\hyperlink{structft__program__data_ae66209d112e6834f94f496de77020605}{BSchmittInput}};       \textcolor{comment}{// non-\/zero if B pins are Schmitt input}}
+\DoxyCodeLine{648         UCHAR \mbox{\hyperlink{structft__program__data_a09d5d7234d1be0ac5d30a0a215dfd717}{BDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{649         UCHAR \mbox{\hyperlink{structft__program__data_a341949c5fa53d8f43deb3d37cba5a409}{CSlowSlew}};           \textcolor{comment}{// non-\/zero if C pins have slow slew}}
+\DoxyCodeLine{650         UCHAR \mbox{\hyperlink{structft__program__data_a7e78dd68e42bbbcff1000bcbce8a3d0d}{CSchmittInput}};       \textcolor{comment}{// non-\/zero if C pins are Schmitt input}}
+\DoxyCodeLine{651         UCHAR \mbox{\hyperlink{structft__program__data_a5128f7c002f6dad43f6f76895de512b3}{CDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{652         UCHAR \mbox{\hyperlink{structft__program__data_adfbbf08781239df8c124f00785c8b7cb}{DSlowSlew}};           \textcolor{comment}{// non-\/zero if D pins have slow slew}}
+\DoxyCodeLine{653         UCHAR \mbox{\hyperlink{structft__program__data_a380023a0d791951f3365a804b72d4b63}{DSchmittInput}};       \textcolor{comment}{// non-\/zero if D pins are Schmitt input}}
+\DoxyCodeLine{654         UCHAR \mbox{\hyperlink{structft__program__data_ae67162da23ce721b3ac18d019c255118}{DDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{655         UCHAR \mbox{\hyperlink{structft__program__data_a0f63cc46538a3e21eba64f404ab4ae25}{ARIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port A uses RI as RS485 TXDEN}}
+\DoxyCodeLine{656         UCHAR \mbox{\hyperlink{structft__program__data_af35654fab6e4041be1cea5daa8771f07}{BRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port B uses RI as RS485 TXDEN}}
+\DoxyCodeLine{657         UCHAR \mbox{\hyperlink{structft__program__data_a5bb9db57af04d2f404272c8e6c2a59f6}{CRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port C uses RI as RS485 TXDEN}}
+\DoxyCodeLine{658         UCHAR \mbox{\hyperlink{structft__program__data_a343aa9d26bc40a39661095196fa850b1}{DRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port D uses RI as RS485 TXDEN}}
+\DoxyCodeLine{659         UCHAR \mbox{\hyperlink{structft__program__data_a8fe4e6297f8bfe4b8dc7f9173bb35951}{AIsVCP8}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{660         UCHAR \mbox{\hyperlink{structft__program__data_a48229231c0aa5465553674ee64784b39}{BIsVCP8}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{661         UCHAR \mbox{\hyperlink{structft__program__data_ae07ed81a5c26a3288d28e6a77ed3a76a}{CIsVCP8}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{662         UCHAR \mbox{\hyperlink{structft__program__data_a48ca69a0ef38cbae0b5de3adff574bb7}{DIsVCP8}};               \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{663         \textcolor{comment}{//}}
+\DoxyCodeLine{664         \textcolor{comment}{// Rev 9 (FT232H) Extensions}}
+\DoxyCodeLine{665         \textcolor{comment}{//}}
+\DoxyCodeLine{666         UCHAR \mbox{\hyperlink{structft__program__data_af8a338b21c048bb0e585162bd491761e}{PullDownEnableH}};       \textcolor{comment}{// non-\/zero if pull down enabled}}
+\DoxyCodeLine{667         UCHAR \mbox{\hyperlink{structft__program__data_aff965810e81cec5c72164c76dfd9a1fb}{SerNumEnableH}};       \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{668         UCHAR \mbox{\hyperlink{structft__program__data_a660e3fbc4b880617a4301f6149d8f658}{ACSlowSlewH}};           \textcolor{comment}{// non-\/zero if AC pins have slow slew}}
+\DoxyCodeLine{669         UCHAR \mbox{\hyperlink{structft__program__data_a874c6759f768ab7b0a35262e80846b6b}{ACSchmittInputH}};       \textcolor{comment}{// non-\/zero if AC pins are Schmitt input}}
+\DoxyCodeLine{670         UCHAR \mbox{\hyperlink{structft__program__data_a1c70319de5ae333659097a99256e7aff}{ACDriveCurrentH}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{671         UCHAR \mbox{\hyperlink{structft__program__data_a315e8f813bdc38650a43cb1aa2076a58}{ADSlowSlewH}};           \textcolor{comment}{// non-\/zero if AD pins have slow slew}}
+\DoxyCodeLine{672         UCHAR \mbox{\hyperlink{structft__program__data_a6e03913656e3e15d33ec5b1620e5df15}{ADSchmittInputH}};       \textcolor{comment}{// non-\/zero if AD pins are Schmitt input}}
+\DoxyCodeLine{673         UCHAR \mbox{\hyperlink{structft__program__data_acbb0755968deda2992031f7d1b99e1a7}{ADDriveCurrentH}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{674         UCHAR \mbox{\hyperlink{structft__program__data_a8169983d1360fc06058745cb9cc7277e}{Cbus0H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{675         UCHAR \mbox{\hyperlink{structft__program__data_a6340d69327641cfac50d21459653a8be}{Cbus1H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{676         UCHAR \mbox{\hyperlink{structft__program__data_aeecd2d59d0a6cbf580e417896988046b}{Cbus2H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{677         UCHAR \mbox{\hyperlink{structft__program__data_ae3df803a222da7e55590f14cb68b5a78}{Cbus3H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{678         UCHAR \mbox{\hyperlink{structft__program__data_aec7aedcde8dad0a1b84f5d4a051737e7}{Cbus4H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{679         UCHAR \mbox{\hyperlink{structft__program__data_acb867abd77a6315c97aaa910108713a5}{Cbus5H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{680         UCHAR \mbox{\hyperlink{structft__program__data_a6f2eac8e45bd2aee3dc42d69e5e189ae}{Cbus6H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{681         UCHAR \mbox{\hyperlink{structft__program__data_a0f33d368db8f233303e88c9620fdfcd3}{Cbus7H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{682         UCHAR \mbox{\hyperlink{structft__program__data_aafd97398ad5b8ac453ded17e2b777938}{Cbus8H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{683         UCHAR \mbox{\hyperlink{structft__program__data_a707c521299114d1d4903d6286b6b07e8}{Cbus9H}};             \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{684         UCHAR \mbox{\hyperlink{structft__program__data_a38ce59e2b1723db2d14addfceecabecb}{IsFifoH}};               \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{685         UCHAR \mbox{\hyperlink{structft__program__data_ab9cf4df075da21102def2162c3d281d1}{IsFifoTarH}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{686         UCHAR \mbox{\hyperlink{structft__program__data_a445221508c1c077d30621dfe20316f59}{IsFastSerH}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{687         UCHAR \mbox{\hyperlink{structft__program__data_a449c65a49b91d6c34045632b662834ab}{IsFT1248H}};           \textcolor{comment}{// non-\/zero if interface is FT1248}}
+\DoxyCodeLine{688         UCHAR \mbox{\hyperlink{structft__program__data_a60a9e8a5d36a0e3afcb3236f82a99b1d}{FT1248CpolH}};           \textcolor{comment}{// FT1248 clock polarity -\/ clock idle high (1) or clock idle low (0)}}
+\DoxyCodeLine{689         UCHAR \mbox{\hyperlink{structft__program__data_a4088d357bd88bee7c601fa525a9175ea}{FT1248LsbH}};         \textcolor{comment}{// FT1248 data is LSB (1) or MSB (0)}}
+\DoxyCodeLine{690         UCHAR \mbox{\hyperlink{structft__program__data_accb9f60cb1450ffd7d942e95729188ed}{FT1248FlowControlH}}; \textcolor{comment}{// FT1248 flow control enable}}
+\DoxyCodeLine{691         UCHAR \mbox{\hyperlink{structft__program__data_aa92920576a9253a1ea656bb9979bdace}{IsVCPH}};             \textcolor{comment}{// non-\/zero if interface is to use VCP drivers}}
+\DoxyCodeLine{692         UCHAR \mbox{\hyperlink{structft__program__data_a52194d4e0e5d8f880186dcdb507d966a}{PowerSaveEnableH}};     \textcolor{comment}{// non-\/zero if using ACBUS7 to save power for self-\/powered designs}}
+\DoxyCodeLine{693         }
+\DoxyCodeLine{694     \} \mbox{\hyperlink{ftd2xx_8h_a3be14fb517c6ed6a254a5a640269a7b1}{FT\_PROGRAM\_DATA}}, *\mbox{\hyperlink{ftd2xx_8h_acbebd7f5804c142d322cd81d2a77d755}{PFT\_PROGRAM\_DATA}};}
+\DoxyCodeLine{695 }
+\DoxyCodeLine{696     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{697         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ab251540da5505a45eb5ebda4ee9f9497}{FT\_EE\_Program}}(}
+\DoxyCodeLine{698         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{699         \mbox{\hyperlink{structft__program__data}{PFT\_PROGRAM\_DATA}} pData}
+\DoxyCodeLine{700         );}
+\DoxyCodeLine{701 }
+\DoxyCodeLine{702     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{703         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ad4870c4da168d8facf114d446f060521}{FT\_EE\_ProgramEx}}(}
+\DoxyCodeLine{704         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{705         \mbox{\hyperlink{structft__program__data}{PFT\_PROGRAM\_DATA}} pData,}
+\DoxyCodeLine{706         \textcolor{keywordtype}{char} *Manufacturer,}
+\DoxyCodeLine{707         \textcolor{keywordtype}{char} *ManufacturerId,}
+\DoxyCodeLine{708         \textcolor{keywordtype}{char} *Description,}
+\DoxyCodeLine{709         \textcolor{keywordtype}{char} *SerialNumber}
+\DoxyCodeLine{710         );}
+\DoxyCodeLine{711 }
+\DoxyCodeLine{712     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{713         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a38d79ea84104e81aaac000a67c53887a}{FT\_EE\_Read}}(}
+\DoxyCodeLine{714         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{715         \mbox{\hyperlink{structft__program__data}{PFT\_PROGRAM\_DATA}} pData}
+\DoxyCodeLine{716         );}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{719         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a748ef5c6e1903c15fd348b256766aa2a}{FT\_EE\_ReadEx}}(}
+\DoxyCodeLine{720         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{721         \mbox{\hyperlink{structft__program__data}{PFT\_PROGRAM\_DATA}} pData,}
+\DoxyCodeLine{722         \textcolor{keywordtype}{char} *Manufacturer,}
+\DoxyCodeLine{723         \textcolor{keywordtype}{char} *ManufacturerId,}
+\DoxyCodeLine{724         \textcolor{keywordtype}{char} *Description,}
+\DoxyCodeLine{725         \textcolor{keywordtype}{char} *SerialNumber}
+\DoxyCodeLine{726         );}
+\DoxyCodeLine{727 }
+\DoxyCodeLine{728     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{729         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_aff432ce085c2948b834fe607f1107170}{FT\_EE\_UASize}}(}
+\DoxyCodeLine{730         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{731         LPDWORD lpdwSize}
+\DoxyCodeLine{732         );}
+\DoxyCodeLine{733 }
+\DoxyCodeLine{734     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{735         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_aaf0eab542414de17f694413658371a63}{FT\_EE\_UAWrite}}(}
+\DoxyCodeLine{736         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{737         PUCHAR pucData,}
+\DoxyCodeLine{738         DWORD dwDataLen}
+\DoxyCodeLine{739         );}
+\DoxyCodeLine{740 }
+\DoxyCodeLine{741     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{742         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ad5a0032edf19104afcb44cdba8b8e78f}{FT\_EE\_UARead}}(}
+\DoxyCodeLine{743         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{744         PUCHAR pucData,}
+\DoxyCodeLine{745         DWORD dwDataLen,}
+\DoxyCodeLine{746         LPDWORD lpdwBytesRead}
+\DoxyCodeLine{747         );}
+\DoxyCodeLine{748 }
+\DoxyCodeLine{749 }
+\DoxyCodeLine{750     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__header}{ft\_eeprom\_header}} \{}
+\DoxyCodeLine{751         \mbox{\hyperlink{ftd2xx_8h_a93f97052222c089b780302ff9c175cb6}{FT\_DEVICE}} \mbox{\hyperlink{structft__eeprom__header_a3b27d86c243b51e47e6c279f0ef56251}{deviceType}};        \textcolor{comment}{// FTxxxx device type to be programmed}}
+\DoxyCodeLine{752         \textcolor{comment}{// Device descriptor options}}
+\DoxyCodeLine{753         WORD \mbox{\hyperlink{structft__eeprom__header_a63538171dfe221e65f0bd27938239c30}{VendorId}};              \textcolor{comment}{// 0x0403}}
+\DoxyCodeLine{754         WORD \mbox{\hyperlink{structft__eeprom__header_a342079ae92d0b71e0e71bde526ded445}{ProductId}};                \textcolor{comment}{// 0x6001}}
+\DoxyCodeLine{755         UCHAR \mbox{\hyperlink{structft__eeprom__header_a04737398a9c4f758975303df5f0430e6}{SerNumEnable}};         \textcolor{comment}{// non-\/zero if serial number to be used}}
+\DoxyCodeLine{756         \textcolor{comment}{// Config descriptor options}}
+\DoxyCodeLine{757         WORD \mbox{\hyperlink{structft__eeprom__header_a28ce835ee57a5f21794798f64022d89b}{MaxPower}};              \textcolor{comment}{// 0 < MaxPower <= 500}}
+\DoxyCodeLine{758         UCHAR \mbox{\hyperlink{structft__eeprom__header_a98fe9504d952d4d579dd8d047a70d175}{SelfPowered}};           \textcolor{comment}{// 0 = bus powered, 1 = self powered}}
+\DoxyCodeLine{759         UCHAR \mbox{\hyperlink{structft__eeprom__header_a923b8578325e21645cc18b54784966f4}{RemoteWakeup}};         \textcolor{comment}{// 0 = not capable, 1 = capable}}
+\DoxyCodeLine{760         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{761         UCHAR \mbox{\hyperlink{structft__eeprom__header_a3a9b620423c2d0d1f452269c255f4209}{PullDownEnable}};     \textcolor{comment}{// non-\/zero if pull down in suspend enabled}}
+\DoxyCodeLine{762     \} \mbox{\hyperlink{ftd2xx_8h_ae56e56cd5071e1dd5b516d8a6c43e4f5}{FT\_EEPROM\_HEADER}}, *\mbox{\hyperlink{ftd2xx_8h_a3aef6e9186f31c9749a485c5562bd794}{PFT\_EEPROM\_HEADER}};}
+\DoxyCodeLine{763 }
+\DoxyCodeLine{764 }
+\DoxyCodeLine{765     \textcolor{comment}{// FT232B EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{766     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__232b}{ft\_eeprom\_232b}} \{}
+\DoxyCodeLine{767         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{768         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__232b_ad20111a2bbd898f3e5e8e0f780e8d7cf}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{769     \} \mbox{\hyperlink{ftd2xx_8h_ab164a8ed221dcb5643b7eabb8bf34ce5}{FT\_EEPROM\_232B}}, *\mbox{\hyperlink{ftd2xx_8h_aad872f549fd3645222d691dd10d3bd7f}{PFT\_EEPROM\_232B}};}
+\DoxyCodeLine{770 }
+\DoxyCodeLine{771 }
+\DoxyCodeLine{772     \textcolor{comment}{// FT2232 EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{773     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__2232}{ft\_eeprom\_2232}} \{}
+\DoxyCodeLine{774         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{775         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__2232_a6b294dc09899eb022f2e949b3d5c4972}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{776         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{777         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a66f55cd8947dc7015515038a35495ddc}{AIsHighCurrent}};     \textcolor{comment}{// non-\/zero if interface is high current}}
+\DoxyCodeLine{778         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a2d7b4af1ab0e3b0084e13b83f513b5d5}{BIsHighCurrent}};     \textcolor{comment}{// non-\/zero if interface is high current}}
+\DoxyCodeLine{779         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{780         UCHAR \mbox{\hyperlink{structft__eeprom__2232_acf4ea789894df80107249291ac055a6f}{AIsFifo}};               \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{781         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a6b3aab2f52076295cc32a5a785194b78}{AIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{782         UCHAR \mbox{\hyperlink{structft__eeprom__2232_acbcbf6335afad8a22eac6a575f385785}{AIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{783         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a090431f3dee969f1fd88cf30aabffe2f}{BIsFifo}};               \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{784         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a576a9319f978ff28d3bb0a042d6196a8}{BIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{785         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a33a65a0fbacf825f9af5903b834b9ab2}{BIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{786         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{787         UCHAR \mbox{\hyperlink{structft__eeprom__2232_ad86a60a990160e5976e563365b7d05d0}{ADriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{788         UCHAR \mbox{\hyperlink{structft__eeprom__2232_a74407077c9097bf480f560b0511daf79}{BDriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{789     \} \mbox{\hyperlink{ftd2xx_8h_ad11de5cd75305814fc6d08da1df57922}{FT\_EEPROM\_2232}}, *\mbox{\hyperlink{ftd2xx_8h_ad58ee3265a613012fd08b7dae6c9318f}{PFT\_EEPROM\_2232}};}
+\DoxyCodeLine{790 }
+\DoxyCodeLine{791 }
+\DoxyCodeLine{792     \textcolor{comment}{// FT232R EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{793     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__232r}{ft\_eeprom\_232r}} \{}
+\DoxyCodeLine{794         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{795         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__232r_a04ed9a15b88229df4567d6c9ccd6c99d}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{796         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{797         UCHAR \mbox{\hyperlink{structft__eeprom__232r_abd8a4afecd3fa431c7654d14886395dd}{IsHighCurrent}};       \textcolor{comment}{// non-\/zero if interface is high current}}
+\DoxyCodeLine{798         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{799         UCHAR \mbox{\hyperlink{structft__eeprom__232r_af430c36e3ca675a6860463b70b963369}{UseExtOsc}};           \textcolor{comment}{// Use External Oscillator}}
+\DoxyCodeLine{800         UCHAR \mbox{\hyperlink{structft__eeprom__232r_ae284d5a2e53c8e77dcbdd7789734b8f0}{InvertTXD}};           \textcolor{comment}{// non-\/zero if invert TXD}}
+\DoxyCodeLine{801         UCHAR \mbox{\hyperlink{structft__eeprom__232r_afbb26654eac5fa6266726e42f26ed317}{InvertRXD}};           \textcolor{comment}{// non-\/zero if invert RXD}}
+\DoxyCodeLine{802         UCHAR \mbox{\hyperlink{structft__eeprom__232r_accb739bb2d2c81f31cb9e7e634d15e7c}{InvertRTS}};           \textcolor{comment}{// non-\/zero if invert RTS}}
+\DoxyCodeLine{803         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a95c9b6e2547151c62c36a981e3d121e6}{InvertCTS}};           \textcolor{comment}{// non-\/zero if invert CTS}}
+\DoxyCodeLine{804         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a782d2b0ecc30bae4b3f967fc349f6808}{InvertDTR}};           \textcolor{comment}{// non-\/zero if invert DTR}}
+\DoxyCodeLine{805         UCHAR \mbox{\hyperlink{structft__eeprom__232r_af9f2706ecbe6182d52bce8d237cc9162}{InvertDSR}};           \textcolor{comment}{// non-\/zero if invert DSR}}
+\DoxyCodeLine{806         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a5ed1bcd1082728d070876c21c167743e}{InvertDCD}};           \textcolor{comment}{// non-\/zero if invert DCD}}
+\DoxyCodeLine{807         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a1f9d1fbebcbc86c8a27d2abf6b9169f7}{InvertRI}};             \textcolor{comment}{// non-\/zero if invert RI}}
+\DoxyCodeLine{808         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a1d81e0319e53a72bd067a3de6387f4d8}{Cbus0}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{809         UCHAR \mbox{\hyperlink{structft__eeprom__232r_aa0ed7fa40a23e6e17359c1fec9dc2677}{Cbus1}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{810         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a697c610b8e23ae556274c34703fd0582}{Cbus2}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{811         UCHAR \mbox{\hyperlink{structft__eeprom__232r_af6c591aa67f0e9ff287da8af81f7399e}{Cbus3}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{812         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a390714a332684ea05618238e7388773f}{Cbus4}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{813         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{814         UCHAR \mbox{\hyperlink{structft__eeprom__232r_a43812e19d6119e277b91f10e8db8b651}{DriverType}};         \textcolor{comment}{// }}
+\DoxyCodeLine{815     \} \mbox{\hyperlink{ftd2xx_8h_aeceefcc820613589f6892a1e7231d90f}{FT\_EEPROM\_232R}}, *\mbox{\hyperlink{ftd2xx_8h_af66e8cc0d42eada6f444afd1e73e841a}{PFT\_EEPROM\_232R}};}
+\DoxyCodeLine{816 }
+\DoxyCodeLine{817 }
+\DoxyCodeLine{818     \textcolor{comment}{// FT2232H EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{819     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__2232h}{ft\_eeprom\_2232h}} \{}
+\DoxyCodeLine{820         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{821         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__2232h_a9b818fef5106306f0fb8456979164d4e}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{822         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{823         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a202255f5052272a7807e17fd5d580438}{ALSlowSlew}};         \textcolor{comment}{// non-\/zero if AL pins have slow slew}}
+\DoxyCodeLine{824         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_aabf6af90bb51868803bb93b09f45d6fd}{ALSchmittInput}};     \textcolor{comment}{// non-\/zero if AL pins are Schmitt input}}
+\DoxyCodeLine{825         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_add083043190baacddfb71891e65f0e35}{ALDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{826         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_acfcd2fc032788785109a3f6cf48541a9}{AHSlowSlew}};         \textcolor{comment}{// non-\/zero if AH pins have slow slew}}
+\DoxyCodeLine{827         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_abeb4cedf9e0a7ff67cba78e20d1c9c53}{AHSchmittInput}};     \textcolor{comment}{// non-\/zero if AH pins are Schmitt input}}
+\DoxyCodeLine{828         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a66a0e83f79b8ab08e2b7ae6dad6a6ab9}{AHDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{829         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_ac04377c073041676bf56e25152572952}{BLSlowSlew}};         \textcolor{comment}{// non-\/zero if BL pins have slow slew}}
+\DoxyCodeLine{830         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a5f44424e437a8f95a08123f35c813e17}{BLSchmittInput}};     \textcolor{comment}{// non-\/zero if BL pins are Schmitt input}}
+\DoxyCodeLine{831         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a964876406798f7c704764488c04b1530}{BLDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{832         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_ab371dbca25fb1d51359031c74cd6821b}{BHSlowSlew}};         \textcolor{comment}{// non-\/zero if BH pins have slow slew}}
+\DoxyCodeLine{833         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a698ed4dae2f5efd99edcb349bc9d26dc}{BHSchmittInput}};     \textcolor{comment}{// non-\/zero if BH pins are Schmitt input}}
+\DoxyCodeLine{834         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a3a1abb3b2944000c21b54ce123913c5f}{BHDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{835         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{836         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a1f8310b3d7ee2c20328e1bdd812c0fa5}{AIsFifo}};               \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{837         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a497cfb3ec327a899ea4a8904a355abba}{AIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{838         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a0d84c7ea097453ff9d222c12ffc145f8}{AIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{839         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a967db8f183ffb34000282afa58f5fd0a}{BIsFifo}};               \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{840         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a88d403ec9e1b8bdb88160fd3b3129191}{BIsFifoTar}};         \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{841         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a1e713eb322844d1d45e0439087571133}{BIsFastSer}};         \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{842         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a411dc2831f568c59e7e7eed513254f94}{PowerSaveEnable}};       \textcolor{comment}{// non-\/zero if using BCBUS7 to save power for self-\/powered designs}}
+\DoxyCodeLine{843         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{844         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_af3f3a2c5c9aaa729219e0139cdfb9510}{ADriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{845         UCHAR \mbox{\hyperlink{structft__eeprom__2232h_a9a4775d141f2b01fc4d846cb3cd23368}{BDriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{846     \} \mbox{\hyperlink{ftd2xx_8h_a074a64efc2c503af0e1cdf85111feeaf}{FT\_EEPROM\_2232H}}, *\mbox{\hyperlink{ftd2xx_8h_a9d9799c29ef1931e5addd02802bca3b5}{PFT\_EEPROM\_2232H}};}
+\DoxyCodeLine{847 }
+\DoxyCodeLine{848 }
+\DoxyCodeLine{849     \textcolor{comment}{// FT4232H EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{850     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__4232h}{ft\_eeprom\_4232h}} \{}
+\DoxyCodeLine{851         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{852         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__4232h_acfee0a972954d9a20c82fcd18b082194}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{853         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{854         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a1e66ea6b513734d830d86565441b6318}{ASlowSlew}};           \textcolor{comment}{// non-\/zero if A pins have slow slew}}
+\DoxyCodeLine{855         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a47fdc0898935fa1d2c60cfcf93685231}{ASchmittInput}};       \textcolor{comment}{// non-\/zero if A pins are Schmitt input}}
+\DoxyCodeLine{856         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a67ec1ef6e8b91116d539dd304c9c6f53}{ADriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{857         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_acd3e611ccee7fc8be7c459e6a436efda}{BSlowSlew}};           \textcolor{comment}{// non-\/zero if B pins have slow slew}}
+\DoxyCodeLine{858         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a8bb143cc9d051960d4aa6fc9be3230d4}{BSchmittInput}};       \textcolor{comment}{// non-\/zero if B pins are Schmitt input}}
+\DoxyCodeLine{859         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_ac42c22b82bdca1458089ac49f0eaefa1}{BDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{860         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a6d92eb606cbe5c251751cd2d6fd8bebe}{CSlowSlew}};           \textcolor{comment}{// non-\/zero if C pins have slow slew}}
+\DoxyCodeLine{861         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a30fb25eb86d7e47668b6a044e6196705}{CSchmittInput}};       \textcolor{comment}{// non-\/zero if C pins are Schmitt input}}
+\DoxyCodeLine{862         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a28fd0e83320d2b18d8e3494f019e8f4c}{CDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{863         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_ae32b979b9db358e8b6613e41ed201110}{DSlowSlew}};           \textcolor{comment}{// non-\/zero if D pins have slow slew}}
+\DoxyCodeLine{864         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_aba9def054b418e85177c70cae98cb17e}{DSchmittInput}};       \textcolor{comment}{// non-\/zero if D pins are Schmitt input}}
+\DoxyCodeLine{865         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a36cb4f439c051c485013966f16adc5ab}{DDriveCurrent}};       \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{866         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{867         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_aa9c900ec8d69e1a792a4b9bac1b4eeb9}{ARIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port A uses RI as RS485 TXDEN}}
+\DoxyCodeLine{868         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_aa9e48949d47395e2a805d93d4affa572}{BRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port B uses RI as RS485 TXDEN}}
+\DoxyCodeLine{869         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a7b4666be110ff5f59976c3a5f67ba13d}{CRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port C uses RI as RS485 TXDEN}}
+\DoxyCodeLine{870         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_aff58f44eb2769cd3d614cdd03357a56c}{DRIIsTXDEN}};         \textcolor{comment}{// non-\/zero if port D uses RI as RS485 TXDEN}}
+\DoxyCodeLine{871         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{872         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a6a17d8b26142bd25157ea275e8034f11}{ADriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{873         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a6a5cbfcb0e59bd89ed6338f44f8c5b5c}{BDriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{874         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_af1da86c7d0ff4bb811627c5d84c5ce79}{CDriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{875         UCHAR \mbox{\hyperlink{structft__eeprom__4232h_a686ad080f8c280b2ca149233f584fb29}{DDriverType}};           \textcolor{comment}{// }}
+\DoxyCodeLine{876     \} \mbox{\hyperlink{ftd2xx_8h_a5ea8ec2cbbf2aede1b42b817066793fe}{FT\_EEPROM\_4232H}}, *\mbox{\hyperlink{ftd2xx_8h_a99d08e0e2a0dff3a320300d0b2b6396c}{PFT\_EEPROM\_4232H}};}
+\DoxyCodeLine{877 }
+\DoxyCodeLine{878 }
+\DoxyCodeLine{879     \textcolor{comment}{// FT232H EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{880     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__232h}{ft\_eeprom\_232h}} \{}
+\DoxyCodeLine{881         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{882         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__232h_a37234d2dd02343759c92fd97e4835ccb}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{883         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{884         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a3cfbbe62de0029839534fb469a9b50c9}{ACSlowSlew}};         \textcolor{comment}{// non-\/zero if AC bus pins have slow slew}}
+\DoxyCodeLine{885         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a025e35a0ae019370a4ea968f1cc2df2b}{ACSchmittInput}};     \textcolor{comment}{// non-\/zero if AC bus pins are Schmitt input}}
+\DoxyCodeLine{886         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a8cb3fbf23ced09e59165178aee3f3c57}{ACDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{887         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a192cf979058aac20dbea8840a35f1bae}{ADSlowSlew}};         \textcolor{comment}{// non-\/zero if AD bus pins have slow slew}}
+\DoxyCodeLine{888         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a9d6cc1ae3e56bad64ba55a3db9cd845c}{ADSchmittInput}};     \textcolor{comment}{// non-\/zero if AD bus pins are Schmitt input}}
+\DoxyCodeLine{889         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a6aa2aea692700ed5e98a958819db3944}{ADDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{890         \textcolor{comment}{// CBUS options}}
+\DoxyCodeLine{891         UCHAR \mbox{\hyperlink{structft__eeprom__232h_aac7c9328aa4b74813b1fbd73a0a6afbd}{Cbus0}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{892         UCHAR \mbox{\hyperlink{structft__eeprom__232h_ac56f116aab26598caa87cc9ac28376af}{Cbus1}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{893         UCHAR \mbox{\hyperlink{structft__eeprom__232h_acf4598ab9a02931e8359ab58308151f8}{Cbus2}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{894         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a5dfdd3f1536dbeab687178ceef867c26}{Cbus3}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{895         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a8c3453711bbeacd04ce19088a760d521}{Cbus4}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{896         UCHAR \mbox{\hyperlink{structft__eeprom__232h_ad90423b70af5820736e9da55335c54c2}{Cbus5}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{897         UCHAR \mbox{\hyperlink{structft__eeprom__232h_aef814f4e06e21a78bddcf36d4ef4eda6}{Cbus6}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{898         UCHAR \mbox{\hyperlink{structft__eeprom__232h_aadc831e39e9fccc0e6fc96d090a9bd8d}{Cbus7}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{899         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a4a05e570dda1b72a54e653264463436f}{Cbus8}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{900         UCHAR \mbox{\hyperlink{structft__eeprom__232h_ad995bc87428214d21c0c962cc4cc4e34}{Cbus9}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{901         \textcolor{comment}{// FT1248 options}}
+\DoxyCodeLine{902         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a372c20cdeebb5c23498d740728ac4eae}{FT1248Cpol}};         \textcolor{comment}{// FT1248 clock polarity -\/ clock idle high (1) or clock idle low (0)}}
+\DoxyCodeLine{903         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a8c3cb15f176eaaad39fddedcae8ab10d}{FT1248Lsb}};           \textcolor{comment}{// FT1248 data is LSB (1) or MSB (0)}}
+\DoxyCodeLine{904         UCHAR \mbox{\hyperlink{structft__eeprom__232h_adc5ff9bac7226be7b3181a64f24450dc}{FT1248FlowControl}};   \textcolor{comment}{// FT1248 flow control enable}}
+\DoxyCodeLine{905         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{906         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a5b6fa725478fe8f58ef4aa232ff4f6c4}{IsFifo}};             \textcolor{comment}{// non-\/zero if interface is 245 FIFO}}
+\DoxyCodeLine{907         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a73d9b80c5b4c07b2085deeb4689b4371}{IsFifoTar}};           \textcolor{comment}{// non-\/zero if interface is 245 FIFO CPU target}}
+\DoxyCodeLine{908         UCHAR \mbox{\hyperlink{structft__eeprom__232h_ad214d1fe4bf5bf916c5364777f9dc1a8}{IsFastSer}};           \textcolor{comment}{// non-\/zero if interface is Fast serial}}
+\DoxyCodeLine{909         UCHAR \mbox{\hyperlink{structft__eeprom__232h_aa2b426719debc007b4ce6166524ca68f}{IsFT1248}}  ;           \textcolor{comment}{// non-\/zero if interface is FT1248}}
+\DoxyCodeLine{910         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a60637cdb433234aa02093455605abca9}{PowerSaveEnable}};       \textcolor{comment}{// }}
+\DoxyCodeLine{911         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{912         UCHAR \mbox{\hyperlink{structft__eeprom__232h_a629a028c1c415f2f9104fe7e30154039}{DriverType}};         \textcolor{comment}{// }}
+\DoxyCodeLine{913     \} \mbox{\hyperlink{ftd2xx_8h_a1ffd4f166df4065264de103d62c970d2}{FT\_EEPROM\_232H}}, *\mbox{\hyperlink{ftd2xx_8h_a137df92269af2b180a0f9838a8b3934c}{PFT\_EEPROM\_232H}};}
+\DoxyCodeLine{914 }
+\DoxyCodeLine{915 }
+\DoxyCodeLine{916     \textcolor{comment}{// FT X Series EEPROM structure for use with FT\_EEPROM\_Read and FT\_EEPROM\_Program}}
+\DoxyCodeLine{917     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structft__eeprom__x__series}{ft\_eeprom\_x\_series}} \{}
+\DoxyCodeLine{918         \textcolor{comment}{// Common header}}
+\DoxyCodeLine{919         \mbox{\hyperlink{structft__eeprom__header}{FT\_EEPROM\_HEADER}} \mbox{\hyperlink{structft__eeprom__x__series_a4d1ac63e7dc2e8e677edcc43b566dc01}{common}};  \textcolor{comment}{// common elements for all device EEPROMs}}
+\DoxyCodeLine{920         \textcolor{comment}{// Drive options}}
+\DoxyCodeLine{921         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_aa08fe7573f5f822e12a34973055c52e3}{ACSlowSlew}};         \textcolor{comment}{// non-\/zero if AC bus pins have slow slew}}
+\DoxyCodeLine{922         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_af0941a8b6cbcfb69a84c9e9bd9751e4e}{ACSchmittInput}};     \textcolor{comment}{// non-\/zero if AC bus pins are Schmitt input}}
+\DoxyCodeLine{923         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a62017256a98fdfbd1ec5a662725f9c84}{ACDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{924         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a3a1988ab68373c2fdc375cb4c038666f}{ADSlowSlew}};         \textcolor{comment}{// non-\/zero if AD bus pins have slow slew}}
+\DoxyCodeLine{925         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_addfb6cbf3c524edfbde9dbaf37f1f5e0}{ADSchmittInput}};     \textcolor{comment}{// non-\/zero if AD bus pins are Schmitt input}}
+\DoxyCodeLine{926         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a22a0cc77e2bf346e29d171194a91bc95}{ADDriveCurrent}};     \textcolor{comment}{// valid values are 4mA, 8mA, 12mA, 16mA}}
+\DoxyCodeLine{927         \textcolor{comment}{// CBUS options}}
+\DoxyCodeLine{928         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a8204c3cd3a8d8ea0f1461217fdc7ce83}{Cbus0}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{929         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ac2cfe6ac98141e7f3552a3884304a6b3}{Cbus1}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{930         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a534b7e3869bd969bb2fe23cf3e2ffee5}{Cbus2}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{931         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a3067e895366665eb69c189f388944d4d}{Cbus3}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{932         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_aeda7e4f92d1303d6fd0d9b79c055abd7}{Cbus4}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{933         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a229d87354476bde9baf6a4f9973c607b}{Cbus5}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{934         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a464c671013e8ffbcb5cd41775b1871a5}{Cbus6}};               \textcolor{comment}{// Cbus Mux control}}
+\DoxyCodeLine{935         \textcolor{comment}{// UART signal options}}
+\DoxyCodeLine{936         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a62798961d771e89afc6d573f83ddfe20}{InvertTXD}};           \textcolor{comment}{// non-\/zero if invert TXD}}
+\DoxyCodeLine{937         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a01ecab15eacb417a6e5897f8d09fb585}{InvertRXD}};           \textcolor{comment}{// non-\/zero if invert RXD}}
+\DoxyCodeLine{938         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ad91ce924b72723ca294cc88da678f85d}{InvertRTS}};           \textcolor{comment}{// non-\/zero if invert RTS}}
+\DoxyCodeLine{939         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a9930d06b5d32e4ca1bf6c9c85e208cea}{InvertCTS}};           \textcolor{comment}{// non-\/zero if invert CTS}}
+\DoxyCodeLine{940         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a9a25e68b1d2835a499fc4faeae418af8}{InvertDTR}};           \textcolor{comment}{// non-\/zero if invert DTR}}
+\DoxyCodeLine{941         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a992ed18df69bfcce22ddf7e03bbcb484}{InvertDSR}};           \textcolor{comment}{// non-\/zero if invert DSR}}
+\DoxyCodeLine{942         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ab65f05c85d65e72b2faf17ebe126f2f0}{InvertDCD}};           \textcolor{comment}{// non-\/zero if invert DCD}}
+\DoxyCodeLine{943         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ac68d911f8f6fd11b9ffe0d397a6eeca6}{InvertRI}};             \textcolor{comment}{// non-\/zero if invert RI}}
+\DoxyCodeLine{944         \textcolor{comment}{// Battery Charge Detect options}}
+\DoxyCodeLine{945         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a168ac848d6e1e6b9e29b8740d20dbf2b}{BCDEnable}};           \textcolor{comment}{// Enable Battery Charger Detection}}
+\DoxyCodeLine{946         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ad8b6a67ca67de8dd7c892d2758bd1bba}{BCDForceCbusPWREN}};   \textcolor{comment}{// asserts the power enable signal on CBUS when charging port detected}}
+\DoxyCodeLine{947         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_ae65d73af8851dffca3c7a3f95af27196}{BCDDisableSleep}};       \textcolor{comment}{// forces the device never to go into sleep mode}}
+\DoxyCodeLine{948         \textcolor{comment}{// I2C options}}
+\DoxyCodeLine{949         WORD \mbox{\hyperlink{structft__eeprom__x__series_a41567e7ae1c0ee7b87957cade654d872}{I2CSlaveAddress}};        \textcolor{comment}{// I2C slave device address}}
+\DoxyCodeLine{950         DWORD \mbox{\hyperlink{structft__eeprom__x__series_ab997d186140523a48b9b1186a9ef6f41}{I2CDeviceId}};           \textcolor{comment}{// I2C device ID}}
+\DoxyCodeLine{951         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a1273bf5d26c7ef2f905ce6a1b3d936b4}{I2CDisableSchmitt}};   \textcolor{comment}{// Disable I2C Schmitt trigger}}
+\DoxyCodeLine{952         \textcolor{comment}{// FT1248 options}}
+\DoxyCodeLine{953         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_aad1d7a7df7f73970d4fcb1d59a22c259}{FT1248Cpol}};         \textcolor{comment}{// FT1248 clock polarity -\/ clock idle high (1) or clock idle low (0)}}
+\DoxyCodeLine{954         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_aed8eaabb6019562d67ab10a65d018376}{FT1248Lsb}};           \textcolor{comment}{// FT1248 data is LSB (1) or MSB (0)}}
+\DoxyCodeLine{955         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a41a97bfe47b52d3143f6e6a3c833da03}{FT1248FlowControl}};   \textcolor{comment}{// FT1248 flow control enable}}
+\DoxyCodeLine{956         \textcolor{comment}{// Hardware options}}
+\DoxyCodeLine{957         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a1c3a9dc30091091132b7ec653676f589}{RS485EchoSuppress}};   \textcolor{comment}{// }}
+\DoxyCodeLine{958         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_adb0618ee1305d47abec850be8f315ed4}{PowerSaveEnable}};       \textcolor{comment}{// }}
+\DoxyCodeLine{959         \textcolor{comment}{// Driver option}}
+\DoxyCodeLine{960         UCHAR \mbox{\hyperlink{structft__eeprom__x__series_a9379ff3b9473a839ebd27a753c3c1b60}{DriverType}};         \textcolor{comment}{// }}
+\DoxyCodeLine{961     \} \mbox{\hyperlink{ftd2xx_8h_a0bc1787ea3091190f8c9e4a4063b6aef}{FT\_EEPROM\_X\_SERIES}}, *\mbox{\hyperlink{ftd2xx_8h_a70a8d051c2f63136a410ef075858bdb4}{PFT\_EEPROM\_X\_SERIES}};}
+\DoxyCodeLine{962 }
+\DoxyCodeLine{963 }
+\DoxyCodeLine{964     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{965         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a42692e1095bcdd38c1f347ab5eefa20e}{FT\_EEPROM\_Read}}(}
+\DoxyCodeLine{966         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{967         \textcolor{keywordtype}{void} *eepromData,}
+\DoxyCodeLine{968         DWORD eepromDataSize,}
+\DoxyCodeLine{969         \textcolor{keywordtype}{char} *Manufacturer,}
+\DoxyCodeLine{970         \textcolor{keywordtype}{char} *ManufacturerId,}
+\DoxyCodeLine{971         \textcolor{keywordtype}{char} *Description,}
+\DoxyCodeLine{972         \textcolor{keywordtype}{char} *SerialNumber}
+\DoxyCodeLine{973         );}
+\DoxyCodeLine{974 }
+\DoxyCodeLine{975 }
+\DoxyCodeLine{976     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{977         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_aa97b1f603ad6b5bdc2b32df96341d850}{FT\_EEPROM\_Program}}(}
+\DoxyCodeLine{978         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{979         \textcolor{keywordtype}{void} *eepromData,}
+\DoxyCodeLine{980         DWORD eepromDataSize,}
+\DoxyCodeLine{981         \textcolor{keywordtype}{char} *Manufacturer,}
+\DoxyCodeLine{982         \textcolor{keywordtype}{char} *ManufacturerId,}
+\DoxyCodeLine{983         \textcolor{keywordtype}{char} *Description,}
+\DoxyCodeLine{984         \textcolor{keywordtype}{char} *SerialNumber}
+\DoxyCodeLine{985         );}
+\DoxyCodeLine{986 }
+\DoxyCodeLine{987 }
+\DoxyCodeLine{988     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{989         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a5a3a4527537d179e32831c77e9f325dc}{FT\_SetLatencyTimer}}(}
+\DoxyCodeLine{990         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{991         UCHAR ucLatency}
+\DoxyCodeLine{992         );}
+\DoxyCodeLine{993 }
+\DoxyCodeLine{994     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{995         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_add62e019900500f3c38e64b3ac62143e}{FT\_GetLatencyTimer}}(}
+\DoxyCodeLine{996         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{997         PUCHAR pucLatency}
+\DoxyCodeLine{998         );}
+\DoxyCodeLine{999 }
+\DoxyCodeLine{1000     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1001         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a540ae92eb5837aba32ad77c1b2e1d59b}{FT\_SetBitMode}}(}
+\DoxyCodeLine{1002         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1003         UCHAR ucMask,}
+\DoxyCodeLine{1004         UCHAR ucEnable}
+\DoxyCodeLine{1005         );}
+\DoxyCodeLine{1006 }
+\DoxyCodeLine{1007     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1008         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a2c7e42beec8b93abdd12455b0fb4ea16}{FT\_GetBitMode}}(}
+\DoxyCodeLine{1009         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1010         PUCHAR pucMode}
+\DoxyCodeLine{1011         );}
+\DoxyCodeLine{1012 }
+\DoxyCodeLine{1013     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1014         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a71f7062bee44b59ed30fecfb195af2c5}{FT\_SetUSBParameters}}(}
+\DoxyCodeLine{1015         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1016         ULONG ulInTransferSize,}
+\DoxyCodeLine{1017         ULONG ulOutTransferSize}
+\DoxyCodeLine{1018         );}
+\DoxyCodeLine{1019 }
+\DoxyCodeLine{1020     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1021         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a03511477a6bfcd7e263be4b63e381d7e}{FT\_SetDeadmanTimeout}}(}
+\DoxyCodeLine{1022         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1023         ULONG ulDeadmanTimeout}
+\DoxyCodeLine{1024         );}
+\DoxyCodeLine{1025 }
+\DoxyCodeLine{1026 \textcolor{preprocessor}{\#ifndef \_WIN32}}
+\DoxyCodeLine{1027     \textcolor{comment}{// Extra functions for non-\/Windows platforms to compensate}}
+\DoxyCodeLine{1028     \textcolor{comment}{// for lack of .INF file to specify Vendor and Product IDs.}}
+\DoxyCodeLine{1029 }
+\DoxyCodeLine{1030     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1031         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} \mbox{\hyperlink{ftd2xx_8h_a0c66ce494a06162ccb9f3d8370736441}{FT\_SetVIDPID}}(}
+\DoxyCodeLine{1032         DWORD dwVID, }
+\DoxyCodeLine{1033         DWORD dwPID}
+\DoxyCodeLine{1034         );}
+\DoxyCodeLine{1035             }
+\DoxyCodeLine{1036     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1037         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} \mbox{\hyperlink{ftd2xx_8h_a081dd49b56c20bdd9852b662b0108a2d}{FT\_GetVIDPID}}(}
+\DoxyCodeLine{1038         DWORD * pdwVID, }
+\DoxyCodeLine{1039         DWORD * pdwPID}
+\DoxyCodeLine{1040         );}
+\DoxyCodeLine{1041 }
+\DoxyCodeLine{1042     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1043         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_af67ee4c5463cd55b1a9809d4c41e0146}{FT\_GetDeviceLocId}}(}
+\DoxyCodeLine{1044         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1045         LPDWORD lpdwLocId}
+\DoxyCodeLine{1046         );}
+\DoxyCodeLine{1047 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WIN32        }}
+\DoxyCodeLine{1048 }
+\DoxyCodeLine{1049     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1050         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a3278224221d578283edb456646941f99}{FT\_GetDeviceInfo}}(}
+\DoxyCodeLine{1051         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1052         \mbox{\hyperlink{ftd2xx_8h_a93f97052222c089b780302ff9c175cb6}{FT\_DEVICE}} *lpftDevice,}
+\DoxyCodeLine{1053         LPDWORD lpdwID,}
+\DoxyCodeLine{1054         PCHAR SerialNumber,}
+\DoxyCodeLine{1055         PCHAR Description,}
+\DoxyCodeLine{1056         LPVOID Dummy}
+\DoxyCodeLine{1057         );}
+\DoxyCodeLine{1058 }
+\DoxyCodeLine{1059     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1060         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ae1ee9df5faecdf98edf2812fc0452b09}{FT\_StopInTask}}(}
+\DoxyCodeLine{1061         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1062         );}
+\DoxyCodeLine{1063 }
+\DoxyCodeLine{1064     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1065         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_afbfab987202b5aafa207c4639b088df3}{FT\_RestartInTask}}(}
+\DoxyCodeLine{1066         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1067         );}
+\DoxyCodeLine{1068 }
+\DoxyCodeLine{1069     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1070         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ad1f76b8aa7f33ed0b7eebd34a22e3a5c}{FT\_SetResetPipeRetryCount}}(}
+\DoxyCodeLine{1071         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1072         DWORD dwCount}
+\DoxyCodeLine{1073         );}
+\DoxyCodeLine{1074 }
+\DoxyCodeLine{1075     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1076         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a9b9c8c5f921fa96f1c8260ed3788b38f}{FT\_ResetPort}}(}
+\DoxyCodeLine{1077         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1078         );}
+\DoxyCodeLine{1079 }
+\DoxyCodeLine{1080     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1081         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a657a238350cf97c83d50fd0a25bb29a8}{FT\_CyclePort}}(}
+\DoxyCodeLine{1082         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1083         );}
+\DoxyCodeLine{1084 }
+\DoxyCodeLine{1085 }
+\DoxyCodeLine{1086     \textcolor{comment}{//}}
+\DoxyCodeLine{1087     \textcolor{comment}{// Win32-\/type functions}}
+\DoxyCodeLine{1088     \textcolor{comment}{//}}
+\DoxyCodeLine{1089 }
+\DoxyCodeLine{1090     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1091         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a15957bdc7d2c392a344f5af66519c489}{FT\_W32\_CreateFile}}(}
+\DoxyCodeLine{1092         LPCTSTR                 lpszName,}
+\DoxyCodeLine{1093         DWORD                   dwAccess,}
+\DoxyCodeLine{1094         DWORD                   dwShareMode,}
+\DoxyCodeLine{1095         LPSECURITY\_ATTRIBUTES   lpSecurityAttributes,}
+\DoxyCodeLine{1096         DWORD                   dwCreate,}
+\DoxyCodeLine{1097         DWORD                   dwAttrsAndFlags,}
+\DoxyCodeLine{1098         HANDLE                  hTemplate}
+\DoxyCodeLine{1099         );}
+\DoxyCodeLine{1100 }
+\DoxyCodeLine{1101     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1102         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a3ae3747f578394f18fdfda6f6fb4b85d}{FT\_W32\_CloseHandle}}(}
+\DoxyCodeLine{1103         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1104         );}
+\DoxyCodeLine{1105 }
+\DoxyCodeLine{1106     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1107         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a38370899c60ffbe0920f24c52cc09930}{FT\_W32\_ReadFile}}(}
+\DoxyCodeLine{1108         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1109         LPVOID lpBuffer,}
+\DoxyCodeLine{1110         DWORD nBufferSize,}
+\DoxyCodeLine{1111         LPDWORD lpBytesReturned,}
+\DoxyCodeLine{1112         LPOVERLAPPED lpOverlapped}
+\DoxyCodeLine{1113         );}
+\DoxyCodeLine{1114 }
+\DoxyCodeLine{1115     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1116         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a6781611579d3815bd7d83c82885f1e0f}{FT\_W32\_WriteFile}}(}
+\DoxyCodeLine{1117         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1118         LPVOID lpBuffer,}
+\DoxyCodeLine{1119         DWORD nBufferSize,}
+\DoxyCodeLine{1120         LPDWORD lpBytesWritten,}
+\DoxyCodeLine{1121         LPOVERLAPPED lpOverlapped}
+\DoxyCodeLine{1122         );}
+\DoxyCodeLine{1123 }
+\DoxyCodeLine{1124     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1125         DWORD WINAPI \mbox{\hyperlink{ftd2xx_8h_ad3d3d8ce04aa9488861be53c90cfe596}{FT\_W32\_GetLastError}}(}
+\DoxyCodeLine{1126         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1127         );}
+\DoxyCodeLine{1128 }
+\DoxyCodeLine{1129     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1130         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_ac84e28457fa4eddc9e034dfe376f99be}{FT\_W32\_GetOverlappedResult}}(}
+\DoxyCodeLine{1131         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1132         LPOVERLAPPED lpOverlapped,}
+\DoxyCodeLine{1133         LPDWORD lpdwBytesTransferred,}
+\DoxyCodeLine{1134         BOOL bWait}
+\DoxyCodeLine{1135         );}
+\DoxyCodeLine{1136 }
+\DoxyCodeLine{1137     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1138         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a1a3cea400cc914dd89fc3568aed9c1cb}{FT\_W32\_CancelIo}}(}
+\DoxyCodeLine{1139         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1140         );}
+\DoxyCodeLine{1141 }
+\DoxyCodeLine{1142 }
+\DoxyCodeLine{1143     \textcolor{comment}{//}}
+\DoxyCodeLine{1144     \textcolor{comment}{// Win32 COMM API type functions}}
+\DoxyCodeLine{1145     \textcolor{comment}{//}}
+\DoxyCodeLine{1146     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t}{\_FTCOMSTAT}} \{}
+\DoxyCodeLine{1147         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_ad78060ad831dfa35a9e2db1103a54c3f}{fCtsHold}} : 1;}
+\DoxyCodeLine{1148         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a63c6ff1a00dd690b0bf9347c949a59c8}{fDsrHold}} : 1;}
+\DoxyCodeLine{1149         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_afb2b9a88896f528efbe6c9ff73b7744c}{fRlsdHold}} : 1;}
+\DoxyCodeLine{1150         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a5b2fd786cc95e60df49aa55f7d4d7d5a}{fXoffHold}} : 1;}
+\DoxyCodeLine{1151         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a5a28cf3c2aea49110593931c78934416}{fXoffSent}} : 1;}
+\DoxyCodeLine{1152         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a2a4cdfc245e72f74b032f7a5cc220fd3}{fEof}} : 1;}
+\DoxyCodeLine{1153         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a04853d07abaf4fb47891a3bbdd78be8d}{fTxim}} : 1;}
+\DoxyCodeLine{1154         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a567f611e7f3dc193ff94ac4c44fbc500}{fReserved}} : 25;}
+\DoxyCodeLine{1155         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_a995717c2425e3e52f046565bb60fbb3d}{cbInQue}};}
+\DoxyCodeLine{1156         DWORD \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t_ab0fbaa7889620e204d2f583b6e31f848}{cbOutQue}};}
+\DoxyCodeLine{1157     \} \mbox{\hyperlink{ftd2xx_8h_acd7978892af86a4967239a7ab78bd81d}{FTCOMSTAT}}, *\mbox{\hyperlink{ftd2xx_8h_a1f5349d05f9219ca26b97e97fb345cb3}{LPFTCOMSTAT}};}
+\DoxyCodeLine{1158 }
+\DoxyCodeLine{1159     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___f_t_d_c_b}{\_FTDCB}} \{}
+\DoxyCodeLine{1160         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a0d577b6cc351abc8313fd7eeaf7a4468}{DCBlength}};           \textcolor{comment}{/* sizeof(FTDCB)                        */}}
+\DoxyCodeLine{1161         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a3c59a8bdbb30e28505045b3186c89cbf}{BaudRate}};             \textcolor{comment}{/* Baudrate at which running            */}}
+\DoxyCodeLine{1162         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a66a920f15680e8bc01bc4b9d7e1e442a}{fBinary}}: 1;            \textcolor{comment}{/* Binary Mode (skip EOF check)         */}}
+\DoxyCodeLine{1163         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a8a81323a9b1ba34bd0cc2ae97d898c73}{fParity}}: 1;            \textcolor{comment}{/* Enable parity checking               */}}
+\DoxyCodeLine{1164         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a3e5166713d0405820849e27ba554ba7d}{fOutxCtsFlow}}:1;       \textcolor{comment}{/* CTS handshaking on output            */}}
+\DoxyCodeLine{1165         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_af5ce76c2d358a419e028f8879aca3dcb}{fOutxDsrFlow}}:1;       \textcolor{comment}{/* DSR handshaking on output            */}}
+\DoxyCodeLine{1166         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a770cbe04afe4551d954b460e15bc253e}{fDtrControl}}:2;     \textcolor{comment}{/* DTR Flow control                     */}}
+\DoxyCodeLine{1167         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a18de82101e19a3c2be9226489e7df0b2}{fDsrSensitivity}}:1; \textcolor{comment}{/* DSR Sensitivity                      */}}
+\DoxyCodeLine{1168         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_afa27d3f28cd9154df261cd643df33497}{fTXContinueOnXoff}}: 1;    \textcolor{comment}{/* Continue TX when Xoff sent           */}}
+\DoxyCodeLine{1169         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_ad69a6d309c4e2f95588179e818a87c9d}{fOutX}}: 1;                \textcolor{comment}{/* Enable output X-\/ON/X-\/OFF             */}}
+\DoxyCodeLine{1170         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a478569c6c3f26180e3f6326f7d123959}{fInX}}: 1;              \textcolor{comment}{/* Enable input X-\/ON/X-\/OFF              */}}
+\DoxyCodeLine{1171         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a3d6289c590aebe652fbbdf4f173b16af}{fErrorChar}}: 1;      \textcolor{comment}{/* Enable Err Replacement               */}}
+\DoxyCodeLine{1172         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a96cdd935996bf8ebdfc841db6a526159}{fNull}}: 1;                \textcolor{comment}{/* Enable Null stripping                */}}
+\DoxyCodeLine{1173         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a482e77565cf032ba8024948e3546b31b}{fRtsControl}}:2;     \textcolor{comment}{/* Rts Flow control                     */}}
+\DoxyCodeLine{1174         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a507847cee5b863ccdb1949b8897940e1}{fAbortOnError}}:1;     \textcolor{comment}{/* Abort all reads and writes on Error  */}}
+\DoxyCodeLine{1175         DWORD \mbox{\hyperlink{struct___f_t_d_c_b_a14be508970e6bf12df194454e7d77583}{fDummy2}}:17;            \textcolor{comment}{/* Reserved                             */}}
+\DoxyCodeLine{1176         WORD \mbox{\hyperlink{struct___f_t_d_c_b_a09597c9223026be01c71a1374715fb2f}{wReserved}};                \textcolor{comment}{/* Not currently used                   */}}
+\DoxyCodeLine{1177         WORD \mbox{\hyperlink{struct___f_t_d_c_b_a44679a1dcfaa0f97bc4d1500538c4b47}{XonLim}};              \textcolor{comment}{/* Transmit X-\/ON threshold              */}}
+\DoxyCodeLine{1178         WORD \mbox{\hyperlink{struct___f_t_d_c_b_af78536d2734d9172b6707df1d3b1326d}{XoffLim}};                \textcolor{comment}{/* Transmit X-\/OFF threshold             */}}
+\DoxyCodeLine{1179         BYTE \mbox{\hyperlink{struct___f_t_d_c_b_a6c3cd5d1cae69a2051d8c83badc52780}{ByteSize}};              \textcolor{comment}{/* Number of bits/byte, 4-\/8             */}}
+\DoxyCodeLine{1180         BYTE \mbox{\hyperlink{struct___f_t_d_c_b_aecaa6eb87d7725f655138a6a6c04c436}{Parity}};              \textcolor{comment}{/* 0-\/4=None,Odd,Even,Mark,Space         */}}
+\DoxyCodeLine{1181         BYTE \mbox{\hyperlink{struct___f_t_d_c_b_a26a8414df8e94f282714833f9776319a}{StopBits}};              \textcolor{comment}{/* FT\_STOP\_BITS\_1 or FT\_STOP\_BITS\_2     */}}
+\DoxyCodeLine{1182         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct___f_t_d_c_b_aee3e405df31d5b168110814d5529b014}{XonChar}};                \textcolor{comment}{/* Tx and Rx X-\/ON character             */}}
+\DoxyCodeLine{1183         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct___f_t_d_c_b_a30a25a1c40525289b24b29f6593a6c51}{XoffChar}};              \textcolor{comment}{/* Tx and Rx X-\/OFF character            */}}
+\DoxyCodeLine{1184         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct___f_t_d_c_b_a0b8fa24da4dcdba892abd2c6cdb55707}{ErrorChar}};                \textcolor{comment}{/* Error replacement char               */}}
+\DoxyCodeLine{1185         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct___f_t_d_c_b_a6f0a84ef54dbc36123a40e05ba94aa4e}{EofChar}};                \textcolor{comment}{/* End of Input character               */}}
+\DoxyCodeLine{1186         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct___f_t_d_c_b_a579b4755ad4a7ea9c76ddaf5f548a460}{EvtChar}};                \textcolor{comment}{/* Received Event character             */}}
+\DoxyCodeLine{1187         WORD \mbox{\hyperlink{struct___f_t_d_c_b_a6775b20a593cc63edde243ed9605a028}{wReserved1}};          \textcolor{comment}{/* Fill for now.                        */}}
+\DoxyCodeLine{1188     \} \mbox{\hyperlink{ftd2xx_8h_a0d6148c875f248469b9e7467d166f50b}{FTDCB}}, *\mbox{\hyperlink{ftd2xx_8h_a2e9080fe9ecd5c2db204a24c5f169c4b}{LPFTDCB}};}
+\DoxyCodeLine{1189 }
+\DoxyCodeLine{1190     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s}{\_FTTIMEOUTS}} \{}
+\DoxyCodeLine{1191         DWORD \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s_a0f9592f9863a3230933833750b67d467}{ReadIntervalTimeout}};           \textcolor{comment}{/* Maximum time between read chars. */}}
+\DoxyCodeLine{1192         DWORD \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s_abec01499b73ce0bd194ca0628dbf58e8}{ReadTotalTimeoutMultiplier}}; \textcolor{comment}{/* Multiplier of characters.        */}}
+\DoxyCodeLine{1193         DWORD \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s_aa6478849c632565b01f91faca975cabe}{ReadTotalTimeoutConstant}};     \textcolor{comment}{/* Constant in milliseconds.        */}}
+\DoxyCodeLine{1194         DWORD \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s_a1944986d4b6760a45db8ce1b58fa3688}{WriteTotalTimeoutMultiplier}};   \textcolor{comment}{/* Multiplier of characters.        */}}
+\DoxyCodeLine{1195         DWORD \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s_ac36dfafaf9522e0b041080242538d196}{WriteTotalTimeoutConstant}};   \textcolor{comment}{/* Constant in milliseconds.        */}}
+\DoxyCodeLine{1196     \} \mbox{\hyperlink{ftd2xx_8h_abbae219c3661bce612c23f8b0e4d8cae}{FTTIMEOUTS}},*\mbox{\hyperlink{ftd2xx_8h_a4cfbb43e220e1453c43e30278b7c3d6e}{LPFTTIMEOUTS}};}
+\DoxyCodeLine{1197 }
+\DoxyCodeLine{1198 }
+\DoxyCodeLine{1199     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1200         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_aaa8d195fc0aca1c262380d93358c1b7f}{FT\_W32\_ClearCommBreak}}(}
+\DoxyCodeLine{1201         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1202         );}
+\DoxyCodeLine{1203 }
+\DoxyCodeLine{1204     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1205         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_aa9cfb890418cc075ff118eea5723ca7c}{FT\_W32\_ClearCommError}}(}
+\DoxyCodeLine{1206         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1207         LPDWORD lpdwErrors,}
+\DoxyCodeLine{1208         \mbox{\hyperlink{struct___f_t_c_o_m_s_t_a_t}{LPFTCOMSTAT}} lpftComstat}
+\DoxyCodeLine{1209         );}
+\DoxyCodeLine{1210 }
+\DoxyCodeLine{1211     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1212         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_ad45a28862450610c788829a903f40420}{FT\_W32\_EscapeCommFunction}}(}
+\DoxyCodeLine{1213         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1214         DWORD dwFunc}
+\DoxyCodeLine{1215         );}
+\DoxyCodeLine{1216 }
+\DoxyCodeLine{1217     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1218         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_aede7dc44dafaad417f1de4dba0887be0}{FT\_W32\_GetCommModemStatus}}(}
+\DoxyCodeLine{1219         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1220         LPDWORD lpdwModemStatus}
+\DoxyCodeLine{1221         );}
+\DoxyCodeLine{1222 }
+\DoxyCodeLine{1223     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1224         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a2e2469c00667d7e83c6cf3b6af187500}{FT\_W32\_GetCommState}}(}
+\DoxyCodeLine{1225         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1226         \mbox{\hyperlink{struct___f_t_d_c_b}{LPFTDCB}} lpftDcb}
+\DoxyCodeLine{1227         );}
+\DoxyCodeLine{1228 }
+\DoxyCodeLine{1229     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1230         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_abb58e74eef428ec53012cecc01ffa9cf}{FT\_W32\_GetCommTimeouts}}(}
+\DoxyCodeLine{1231         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1232         \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s}{FTTIMEOUTS}} *pTimeouts}
+\DoxyCodeLine{1233         );}
+\DoxyCodeLine{1234 }
+\DoxyCodeLine{1235     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1236         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a4577e81358446669e0f09cb589c37b62}{FT\_W32\_PurgeComm}}(}
+\DoxyCodeLine{1237         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1238         DWORD dwMask}
+\DoxyCodeLine{1239         );}
+\DoxyCodeLine{1240 }
+\DoxyCodeLine{1241     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1242         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_afdfd2939ead5253abf1eab515075d8e5}{FT\_W32\_SetCommBreak}}(}
+\DoxyCodeLine{1243         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1244         );}
+\DoxyCodeLine{1245 }
+\DoxyCodeLine{1246     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1247         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a082001279f7bebba623937b94b4ab981}{FT\_W32\_SetCommMask}}(}
+\DoxyCodeLine{1248         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1249         ULONG ulEventMask}
+\DoxyCodeLine{1250         );}
+\DoxyCodeLine{1251 }
+\DoxyCodeLine{1252     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1253         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_abd8c78d624b1c7594d34dee2823e3ff7}{FT\_W32\_GetCommMask}}(}
+\DoxyCodeLine{1254         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1255         LPDWORD lpdwEventMask}
+\DoxyCodeLine{1256         );}
+\DoxyCodeLine{1257 }
+\DoxyCodeLine{1258     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1259         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a662d2252f2357117e867ff4e6761093a}{FT\_W32\_SetCommState}}(}
+\DoxyCodeLine{1260         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1261         \mbox{\hyperlink{struct___f_t_d_c_b}{LPFTDCB}} lpftDcb}
+\DoxyCodeLine{1262         );}
+\DoxyCodeLine{1263 }
+\DoxyCodeLine{1264     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1265         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a909f6ca40fcc7236614faff6299af35e}{FT\_W32\_SetCommTimeouts}}(}
+\DoxyCodeLine{1266         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1267         \mbox{\hyperlink{struct___f_t_t_i_m_e_o_u_t_s}{FTTIMEOUTS}} *pTimeouts}
+\DoxyCodeLine{1268         );}
+\DoxyCodeLine{1269 }
+\DoxyCodeLine{1270     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1271         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_abd54ffd821033453cb70ee142cb712f0}{FT\_W32\_SetupComm}}(}
+\DoxyCodeLine{1272         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1273         DWORD dwReadBufferSize,}
+\DoxyCodeLine{1274         DWORD dwWriteBufferSize}
+\DoxyCodeLine{1275         );}
+\DoxyCodeLine{1276 }
+\DoxyCodeLine{1277     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1278         BOOL WINAPI \mbox{\hyperlink{ftd2xx_8h_a8de4f35f1cf683aafb706e7137f8c929}{FT\_W32\_WaitCommEvent}}(}
+\DoxyCodeLine{1279         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1280         PULONG pulEvent,}
+\DoxyCodeLine{1281         LPOVERLAPPED lpOverlapped}
+\DoxyCodeLine{1282         );}
+\DoxyCodeLine{1283 }
+\DoxyCodeLine{1284 }
+\DoxyCodeLine{1285     \textcolor{comment}{//}}
+\DoxyCodeLine{1286     \textcolor{comment}{// Device information}}
+\DoxyCodeLine{1287     \textcolor{comment}{//}}
+\DoxyCodeLine{1288 }
+\DoxyCodeLine{1289     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__ft__device__list__info__node}{\_ft\_device\_list\_info\_node}} \{}
+\DoxyCodeLine{1290         ULONG \mbox{\hyperlink{struct__ft__device__list__info__node_a721b47fa89702eff50b231f17c4298e6}{Flags}};}
+\DoxyCodeLine{1291         ULONG \mbox{\hyperlink{struct__ft__device__list__info__node_aa764a1406eb904ad4444a82f2f950b4e}{Type}};}
+\DoxyCodeLine{1292         ULONG \mbox{\hyperlink{struct__ft__device__list__info__node_a6f486d775e8b49190ec48e99cdbdcbe5}{ID}};}
+\DoxyCodeLine{1293         DWORD \mbox{\hyperlink{struct__ft__device__list__info__node_a11f8898a6bc9a91abadb14c02cac4394}{LocId}};}
+\DoxyCodeLine{1294         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct__ft__device__list__info__node_a8cd158ee3ee8f3cc63c24f0479184f5d}{SerialNumber}}[16];}
+\DoxyCodeLine{1295         \textcolor{keywordtype}{char} \mbox{\hyperlink{struct__ft__device__list__info__node_abd835f2f4961fc15d522337997805c55}{Description}}[64];}
+\DoxyCodeLine{1296         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} \mbox{\hyperlink{struct__ft__device__list__info__node_a3a26fc5e6180c4f87dec4ebf1951d100}{ftHandle}};}
+\DoxyCodeLine{1297     \} \mbox{\hyperlink{ftd2xx_8h_aaccdbb85a8514492c0956fc3273f3289}{FT\_DEVICE\_LIST\_INFO\_NODE}};}
+\DoxyCodeLine{1298 }
+\DoxyCodeLine{1299     \textcolor{comment}{// Device information flags}}
+\DoxyCodeLine{1300     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{1301         \mbox{\hyperlink{ftd2xx_8h_abc6126af1d45847bc59afa0aa3216b04ad7c65505edafca0fa22c4b1618526153}{FT\_FLAGS\_OPENED}} = 1,}
+\DoxyCodeLine{1302         \mbox{\hyperlink{ftd2xx_8h_abc6126af1d45847bc59afa0aa3216b04a6a597b179be79b51ee1ed9d39b8693f9}{FT\_FLAGS\_HISPEED}} = 2}
+\DoxyCodeLine{1303     \};}
+\DoxyCodeLine{1304 }
+\DoxyCodeLine{1305 }
+\DoxyCodeLine{1306     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1307         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a8d452a978313dbebcc600a5b1c3cbf65}{FT\_CreateDeviceInfoList}}(}
+\DoxyCodeLine{1308         LPDWORD lpdwNumDevs}
+\DoxyCodeLine{1309         );}
+\DoxyCodeLine{1310 }
+\DoxyCodeLine{1311     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1312         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_acbeeb2a0da3a34b1b61b9841ddd26974}{FT\_GetDeviceInfoList}}(}
+\DoxyCodeLine{1313         \mbox{\hyperlink{struct__ft__device__list__info__node}{FT\_DEVICE\_LIST\_INFO\_NODE}} *pDest,}
+\DoxyCodeLine{1314         LPDWORD lpdwNumDevs}
+\DoxyCodeLine{1315         );}
+\DoxyCodeLine{1316 }
+\DoxyCodeLine{1317     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1318         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a83370dba4c6c26ae0cb2cd8a58db18e1}{FT\_GetDeviceInfoDetail}}(}
+\DoxyCodeLine{1319         DWORD dwIndex,}
+\DoxyCodeLine{1320         LPDWORD lpdwFlags,}
+\DoxyCodeLine{1321         LPDWORD lpdwType,}
+\DoxyCodeLine{1322         LPDWORD lpdwID,}
+\DoxyCodeLine{1323         LPDWORD lpdwLocId,}
+\DoxyCodeLine{1324         LPVOID lpSerialNumber,}
+\DoxyCodeLine{1325         LPVOID lpDescription,}
+\DoxyCodeLine{1326         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} *pftHandle}
+\DoxyCodeLine{1327         );}
+\DoxyCodeLine{1328 }
+\DoxyCodeLine{1329 }
+\DoxyCodeLine{1330     \textcolor{comment}{//}}
+\DoxyCodeLine{1331     \textcolor{comment}{// Version information}}
+\DoxyCodeLine{1332     \textcolor{comment}{//}}
+\DoxyCodeLine{1333 }
+\DoxyCodeLine{1334     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1335         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ab77b0d3e86c7f8e430cd7458202bb1a6}{FT\_GetDriverVersion}}(}
+\DoxyCodeLine{1336         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1337         LPDWORD lpdwVersion}
+\DoxyCodeLine{1338         );}
+\DoxyCodeLine{1339 }
+\DoxyCodeLine{1340     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1341         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a4a70f5c62c29f7812b630f404b88a354}{FT\_GetLibraryVersion}}(}
+\DoxyCodeLine{1342         LPDWORD lpdwVersion}
+\DoxyCodeLine{1343         );}
+\DoxyCodeLine{1344 }
+\DoxyCodeLine{1345 }
+\DoxyCodeLine{1346     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1347         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a9b0caf8b7d383bf41b8891fd256acd16}{FT\_Rescan}}(}
+\DoxyCodeLine{1348         \textcolor{keywordtype}{void}}
+\DoxyCodeLine{1349         );}
+\DoxyCodeLine{1350 }
+\DoxyCodeLine{1351     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1352         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a5e78893b75e05208e347e9c811d0c192}{FT\_Reload}}(}
+\DoxyCodeLine{1353         WORD wVid,}
+\DoxyCodeLine{1354         WORD wPid}
+\DoxyCodeLine{1355         );}
+\DoxyCodeLine{1356 }
+\DoxyCodeLine{1357     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1358         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a53d85d4c6420e8bdcc01d35a07e9827f}{FT\_GetComPortNumber}}(}
+\DoxyCodeLine{1359         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1360         LPLONG  lpdwComPortNumber}
+\DoxyCodeLine{1361         );}
+\DoxyCodeLine{1362 }
+\DoxyCodeLine{1363 }
+\DoxyCodeLine{1364     \textcolor{comment}{//}}
+\DoxyCodeLine{1365     \textcolor{comment}{// FT232H additional EEPROM functions}}
+\DoxyCodeLine{1366     \textcolor{comment}{//}}
+\DoxyCodeLine{1367 }
+\DoxyCodeLine{1368     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1369         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ae0d4e2e728af270d20c9fb0cc72cf032}{FT\_EE\_ReadConfig}}(}
+\DoxyCodeLine{1370         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1371         UCHAR ucAddress,}
+\DoxyCodeLine{1372         PUCHAR pucValue}
+\DoxyCodeLine{1373         );}
+\DoxyCodeLine{1374 }
+\DoxyCodeLine{1375     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1376         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a06914fa1fd2222b5e70605e1592222c1}{FT\_EE\_WriteConfig}}(}
+\DoxyCodeLine{1377         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1378         UCHAR ucAddress,}
+\DoxyCodeLine{1379         UCHAR ucValue}
+\DoxyCodeLine{1380         );}
+\DoxyCodeLine{1381 }
+\DoxyCodeLine{1382     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1383         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a27d2fc79521c15478184667876926651}{FT\_EE\_ReadECC}}(}
+\DoxyCodeLine{1384         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1385         UCHAR ucOption,}
+\DoxyCodeLine{1386         LPWORD lpwValue}
+\DoxyCodeLine{1387         );}
+\DoxyCodeLine{1388 }
+\DoxyCodeLine{1389     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1390         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ad58239c8c1d7701c6bff65c109e486d6}{FT\_GetQueueStatusEx}}(}
+\DoxyCodeLine{1391         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1392         DWORD *dwRxBytes}
+\DoxyCodeLine{1393         );}
+\DoxyCodeLine{1394 }
+\DoxyCodeLine{1395     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1396         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ab1a6ad11be0b92458918eba4a5854160}{FT\_ComPortIdle}}(}
+\DoxyCodeLine{1397         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1398         );}
+\DoxyCodeLine{1399 }
+\DoxyCodeLine{1400     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1401         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ae6a9fc6003843e90c87f80f68efff4c8}{FT\_ComPortCancelIdle}}(}
+\DoxyCodeLine{1402         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle}
+\DoxyCodeLine{1403         );}
+\DoxyCodeLine{1404 }
+\DoxyCodeLine{1405     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1406         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a79ce28ad22fa10917ef42337a58f3581}{FT\_VendorCmdGet}}(}
+\DoxyCodeLine{1407         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1408         UCHAR Request,}
+\DoxyCodeLine{1409         UCHAR *Buf,}
+\DoxyCodeLine{1410         USHORT Len}
+\DoxyCodeLine{1411         );}
+\DoxyCodeLine{1412 }
+\DoxyCodeLine{1413     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1414         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_af998fd7756e7d93ef02715e48ee2809f}{FT\_VendorCmdSet}}(}
+\DoxyCodeLine{1415         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1416         UCHAR Request,}
+\DoxyCodeLine{1417         UCHAR *Buf,}
+\DoxyCodeLine{1418         USHORT Len}
+\DoxyCodeLine{1419         );}
+\DoxyCodeLine{1420 }
+\DoxyCodeLine{1421     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1422         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_ab487e034c63c8e24891206e5188c3e9e}{FT\_VendorCmdGetEx}}(}
+\DoxyCodeLine{1423         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1424         USHORT wValue,}
+\DoxyCodeLine{1425         UCHAR *Buf,}
+\DoxyCodeLine{1426         USHORT Len}
+\DoxyCodeLine{1427         );}
+\DoxyCodeLine{1428 }
+\DoxyCodeLine{1429     \mbox{\hyperlink{ftd2xx_8h_aa0d811719a1be00aa1486a70d34e7ef5}{FTD2XX\_API}}}
+\DoxyCodeLine{1430         \mbox{\hyperlink{ftd2xx_8h_a61e5e58382c1d302533317f81d6bc781}{FT\_STATUS}} WINAPI \mbox{\hyperlink{ftd2xx_8h_a5826c54f95edaa38519cdd4f8ac2ae76}{FT\_VendorCmdSetEx}}(}
+\DoxyCodeLine{1431         \mbox{\hyperlink{ftd2xx_8h_a6b3b6700c4c65514ae24fee3d5bb2908}{FT\_HANDLE}} ftHandle,}
+\DoxyCodeLine{1432         USHORT wValue,}
+\DoxyCodeLine{1433         UCHAR *Buf,}
+\DoxyCodeLine{1434         USHORT Len}
+\DoxyCodeLine{1435         );}
+\DoxyCodeLine{1436 }
+\DoxyCodeLine{1437 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{1438 \}}
+\DoxyCodeLine{1439 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1440 }
+\DoxyCodeLine{1441 }
+\DoxyCodeLine{1442 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{/* FTD2XX\_H */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1443 }
+
+\end{DoxyCode}

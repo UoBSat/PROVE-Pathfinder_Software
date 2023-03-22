@@ -1,0 +1,60 @@
+\hypertarget{structlibusb__container__id__descriptor}{}\doxysection{libusb\+\_\+container\+\_\+id\+\_\+descriptor Struct Reference}
+\label{structlibusb__container__id__descriptor}\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__container__id__descriptor_aa95ab98f88151e5d05f0c6d3d983abd8}{b\+Length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__container__id__descriptor_a4773f74ef9411441e59e9b31bc61c44b}{b\+Descriptor\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__container__id__descriptor_a9c6771495f9010d2cceb86f9738053ac}{b\+Dev\+Capability\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__container__id__descriptor_ae9c428c25e90439904e97f697f32545b}{b\+Reserved}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__container__id__descriptor_a0c74613e2be1d8da0e349024a8b73621}{Container\+ID}} \mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing the Container ID descriptor. This descriptor is documented in section 9.\+6.\+2.\+3 of the USB 3.\+0 specification. All multiple-\/byte fields, except UUIDs, are represented in host-\/endian format. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__container__id__descriptor_a4773f74ef9411441e59e9b31bc61c44b}\label{structlibusb__container__id__descriptor_a4773f74ef9411441e59e9b31bc61c44b}} 
+\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}!bDescriptorType@{bDescriptorType}}
+\index{bDescriptorType@{bDescriptorType}!libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDescriptorType}{bDescriptorType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+container\+\_\+id\+\_\+descriptor\+::b\+Descriptor\+Type}
+
+Descriptor type. Will have value \mbox{\hyperlink{libusb_8h_a0a2e8a25dfdebf29fdd4764dcdbc1a9ca56875fd1a3df25bdea7680fa9047743c}{libusb\+\_\+descriptor\+\_\+type\+::\+LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY}} LIBUSB\+\_\+\+DT\+\_\+\+DEVICE\+\_\+\+CAPABILITY in this context. \mbox{\Hypertarget{structlibusb__container__id__descriptor_a9c6771495f9010d2cceb86f9738053ac}\label{structlibusb__container__id__descriptor_a9c6771495f9010d2cceb86f9738053ac}} 
+\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}!bDevCapabilityType@{bDevCapabilityType}}
+\index{bDevCapabilityType@{bDevCapabilityType}!libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bDevCapabilityType}{bDevCapabilityType}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+container\+\_\+id\+\_\+descriptor\+::b\+Dev\+Capability\+Type}
+
+Capability type. Will have value \mbox{\hyperlink{libusb_8h_a6ccabbf3b3728ae69608ba83bba4e64cac3c00e8861b4b596ea1f53c505809e5e}{libusb\+\_\+capability\+\_\+type\+::\+LIBUSB\+\_\+\+BT\+\_\+\+CONTAINER\+\_\+\+ID}} LIBUSB\+\_\+\+BT\+\_\+\+CONTAINER\+\_\+\+ID in this context. \mbox{\Hypertarget{structlibusb__container__id__descriptor_aa95ab98f88151e5d05f0c6d3d983abd8}\label{structlibusb__container__id__descriptor_aa95ab98f88151e5d05f0c6d3d983abd8}} 
+\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}!bLength@{bLength}}
+\index{bLength@{bLength}!libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bLength}{bLength}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+container\+\_\+id\+\_\+descriptor\+::b\+Length}
+
+Size of this descriptor (in bytes) \mbox{\Hypertarget{structlibusb__container__id__descriptor_ae9c428c25e90439904e97f697f32545b}\label{structlibusb__container__id__descriptor_ae9c428c25e90439904e97f697f32545b}} 
+\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}!bReserved@{bReserved}}
+\index{bReserved@{bReserved}!libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+\doxysubsubsection{\texorpdfstring{bReserved}{bReserved}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+container\+\_\+id\+\_\+descriptor\+::b\+Reserved}
+
+Reserved field \mbox{\Hypertarget{structlibusb__container__id__descriptor_a0c74613e2be1d8da0e349024a8b73621}\label{structlibusb__container__id__descriptor_a0c74613e2be1d8da0e349024a8b73621}} 
+\index{libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}!ContainerID@{ContainerID}}
+\index{ContainerID@{ContainerID}!libusb\_container\_id\_descriptor@{libusb\_container\_id\_descriptor}}
+\doxysubsubsection{\texorpdfstring{ContainerID}{ContainerID}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+container\+\_\+id\+\_\+descriptor\+::\+Container\+ID\mbox{[}16\mbox{]}}
+
+128 bit UUID 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\hypertarget{tauimagedecoder_8h_source}{}\doxysection{tauimagedecoder.\+h}
+\label{tauimagedecoder_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/tauimagedecoder.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/tauimagedecoder.h}}
+\mbox{\hyperlink{tauimagedecoder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TAUIMAGEDECODER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TAUIMAGEDECODER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{thermalgrabber_8h}{thermalgrabber.h}}>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_image_decoder}{TauImageDecoder}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \mbox{\hyperlink{class_tau_image_decoder_a016f4cb2b2e3e557744945f346914691}{TauImageDecoder}}();}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_tau_image_decoder_af8d4d6602a26320f9c6755644e6e6e9e}{\string~TauImageDecoder}}();}
+\DoxyCodeLine{18     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_image_decoder_a7a4ddaece330fe5fbd11dedd06522fdc}{frameDecoded}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}* frame)=0;}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_image_decoder_ad71c2149775ebf808006c8c837d11ae8}{decodeData}}(vector<uint16\_t> buffer);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_image_decoder_a6c3dcb1525e7fdfb8d875cb1838452f9}{processRawData}}(\mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}* tauRawBitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{TauRGBBitmap}}* tRGBBitmap);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_image_decoder_a69a2b8c1382fd86630203b8ac55a629d}{mTauCoreResWidth}};}
+\DoxyCodeLine{25     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_image_decoder_a7b1f1f86b83ad817d227b3b39d671b6f}{mTauCoreResHeight}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{private}:}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \mbox{\hyperlink{class_tau_raw_bitmap}{TauRawBitmap}}* mTauRawBitmap;}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} processDataChunk(uint16\_t image\_data[], \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size);}
+\DoxyCodeLine{31     uint16\_t prepare16bitData(uint16\_t input);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{bool} isDataLineValid(std::vector<unsigned int> \&rawLine,}
+\DoxyCodeLine{33                          \textcolor{keywordtype}{int} referenceLineWidth,}
+\DoxyCodeLine{34                          \textcolor{keywordtype}{int} line\_count,}
+\DoxyCodeLine{35                          uint16\_t currentPixelData);}
+\DoxyCodeLine{36     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \_currentImageHeight;}
+\DoxyCodeLine{37     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \_currentImageWidth;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \_minRawValue;}
+\DoxyCodeLine{39     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \_maxRawValue;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TAUIMAGEDECODER\_H}}
+
+\end{DoxyCode}

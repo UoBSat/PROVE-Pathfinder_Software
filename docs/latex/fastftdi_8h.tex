@@ -1,0 +1,361 @@
+\hypertarget{fastftdi_8h}{}\doxysection{C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/fastftdi.h File Reference}
+\label{fastftdi_8h}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/fastftdi.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/fastftdi.h}}
+{\ttfamily \#include $<$libusb.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}}
+\item 
+struct \mbox{\hyperlink{struct_f_t_d_i_progress_info}{FTDIProgress\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_ac24921cc0ab8c760ae16ddc42efe462c}{FTDI\+\_\+\+VENDOR}}~0x0403
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a16defabdd0f1e1019913e0d523260bbd}{FTDI\+\_\+\+PRODUCT\+\_\+\+FT2232H}}~0x6010
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a2cd8034c6ad1162b178b57c939584864}{FTDI\+\_\+\+DESCRIPTION}}~\char`\"{}USB $<$-\/$>$ FLIR TAU A\char`\"{}
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a7f29b4624f94f7448203348111b41275}{FTDI\+\_\+\+COMMAND\+\_\+\+TIMEOUT}}~1000
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_ab8f10b251a2d4eee4e7f0264c88575d3}{FTDI\+\_\+\+SET\+\_\+\+BAUD\+\_\+\+REQUEST}}~0x03
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_aac16fda3efbb176b8471a0e7c4bb6792}{FTDI\+\_\+\+SET\+\_\+\+BITMODE\+\_\+\+REQUEST}}~0x0B
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_acd3b59ce968ee18a99061aa427b2119b}{FTDI\+\_\+\+EP\+\_\+\+IN}}(i)~(0x81 + (i-\/1)$\ast$2)
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a6c762928b4e55d799c2330b92f903da6}{FTDI\+\_\+\+EP\+\_\+\+OUT}}(i)~(0x02 + (i-\/1)$\ast$2)
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a228f9a3f055ef26e493cc424792ec916}{FTDI\+\_\+\+PACKET\+\_\+\+SIZE}}~512
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_a1f33a7c4c2bb83d9c40dbf07c2da98dd}{FTDI\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SIZE}}~9
+\item 
+\#define \mbox{\hyperlink{fastftdi_8h_ae9162404ccfaeed41b301944cca046ac}{FTDI\+\_\+\+HEADER\+\_\+\+SIZE}}~2
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}{FTDIStream\+Callback}}(uint8\+\_\+t $\ast$buffer, int length, \mbox{\hyperlink{struct_f_t_d_i_progress_info}{FTDIProgress\+Info}} $\ast$progress, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$userdata)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}} \{ \newline
+\mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ae488c060a0708cb491f05c9c9f64a7f2}{FTDI\+\_\+\+BITMODE\+\_\+\+RESET}} = 0
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ade79bdc048b8d14ef02ae693cfd7ffca}{FTDI\+\_\+\+BITMODE\+\_\+\+BITBANG}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a654f491851aaaec8ea5074aebc529eab}{FTDI\+\_\+\+BITMODE\+\_\+\+MPSSE}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360acdc461fd49656ce744acd1f9d5409e04}{FTDI\+\_\+\+BITMODE\+\_\+\+SYNC\+\_\+\+BITBANG}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+, \newline
+\mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a8f621e930a91989b6458f1c7ea49a6ae}{FTDI\+\_\+\+BITMODE\+\_\+\+MCU}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ac364a03daa28b416b651b92e53fd2084}{FTDI\+\_\+\+BITMODE\+\_\+\+OPTO}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ad670c271a15825e666ae490419c5671c}{FTDI\+\_\+\+BITMODE\+\_\+\+CBUS}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 5
+, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ab679c13384937615dcc86393a1bfe977}{FTDI\+\_\+\+BITMODE\+\_\+\+SYNC\+\_\+\+FIFO}} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 6
+ \}
+\item 
+enum \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162}{FTDIMPSSEOpcode}} \{ \newline
+\mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a4ae35f4cc5b4f2239d8ee1a1b90da7a1}{FTDI\+\_\+\+MPSSE\+\_\+\+SETLOW}} = 0x80
+, \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162afe1d7894698243b555830ac50885148e}{FTDI\+\_\+\+MPSSE\+\_\+\+SETHIGH}} = 0x82
+, \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a8cb5bc372b095bde4918bcc500003d76}{FTDI\+\_\+\+MPSSE\+\_\+\+GETLOW}} = 0x81
+, \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a61e79b1bb895c760d634ce57d3d907c0}{FTDI\+\_\+\+MPSSE\+\_\+\+GETHIGH}} = 0x83
+, \newline
+\mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162acfc4814626b69970febdb9c9c2b0715c}{FTDI\+\_\+\+MPSSE\+\_\+\+SETDIVISOR}} = 0x86
+ \}
+\item 
+enum \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} \{ \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a5ccfbb3dcd7dbfd4cd795f166b0bf2d3}{FTDI\+\_\+\+INTERFACE\+\_\+A}} = 1
+, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a045a2f7862087881679fa6fbc3210fe3}{FTDI\+\_\+\+INTERFACE\+\_\+B}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{fastftdi_8h_ab25285a53118b4726af0b2aec3c7054d}{FTDI\+\_\+\+Print\+Device\+List}} ()
+\item 
+int \mbox{\hyperlink{fastftdi_8h_a5f965b3a4098d9a9d980a3d7723f1586}{FTDIDevice\+\_\+\+Open}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, char $\ast$i\+Serial\+USB)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{fastftdi_8h_a5594e4f73d5361c522ea28a4e07aa237}{FTDIDevice\+\_\+\+Close}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_abf480be5e721afc9e450d703096dccbe}{FTDIDevice\+\_\+\+Reset}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_ace833527bc86b7a8bf8c074567c6e1f4}{FTDIDevice\+\_\+\+Set\+Mode}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}} mode, uint8\+\_\+t pin\+Directions, int baud\+Rate)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_a212f7fe50e70661584ffab15016c4dd9}{FTDIDevice\+\_\+\+Write}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t $\ast$data, size\+\_\+t length, bool async)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_afc81a4eaa4b298c898d457588b2d6ccf}{FTDIDevice\+\_\+\+Write\+Byte\+Sync}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t byte)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_a07c4aeb3178f8f14d843d1bdf32b1a82}{FTDIDevice\+\_\+\+Read\+Byte\+Sync}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t $\ast$byte)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_aec9e222db2d29a6f00674e09b27ed5d0}{FTDIDevice\+\_\+\+Read\+Stream}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, \mbox{\hyperlink{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}{FTDIStream\+Callback}} $\ast$callback, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$userdata, int packets\+Per\+Transfer, int num\+Transfers)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_a0facc428934f5765c20440d1a3cf6820}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Enable}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_aa484e92661f558c0a2f1f8fc3038ec61}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+Divisor}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t ValueL, uint8\+\_\+t ValueH)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_acedcb134f747cf8e13e46973b5b2f583}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+Low\+Byte}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t data, uint8\+\_\+t dir)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_af6a12104f5c76b2e489a43d5bfd53d96}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+High\+Byte}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t data, uint8\+\_\+t dir)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_af82a5ac89d2e181fea5a2d93bd9cfb6e}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Get\+Low\+Byte}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t $\ast$byte)
+\item 
+int \mbox{\hyperlink{fastftdi_8h_adde3517f42c6e47dedd949971ba2f9ac}{FTDIDevice\+\_\+\+MPSSE\+\_\+\+Get\+High\+Byte}} (\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$dev, \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}} interface, uint8\+\_\+t $\ast$byte)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{fastftdi_8h_a7f29b4624f94f7448203348111b41275}\label{fastftdi_8h_a7f29b4624f94f7448203348111b41275}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_COMMAND\_TIMEOUT@{FTDI\_COMMAND\_TIMEOUT}}
+\index{FTDI\_COMMAND\_TIMEOUT@{FTDI\_COMMAND\_TIMEOUT}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_COMMAND\_TIMEOUT}{FTDI\_COMMAND\_TIMEOUT}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+COMMAND\+\_\+\+TIMEOUT~1000}
+
+\mbox{\Hypertarget{fastftdi_8h_a2cd8034c6ad1162b178b57c939584864}\label{fastftdi_8h_a2cd8034c6ad1162b178b57c939584864}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_DESCRIPTION@{FTDI\_DESCRIPTION}}
+\index{FTDI\_DESCRIPTION@{FTDI\_DESCRIPTION}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_DESCRIPTION}{FTDI\_DESCRIPTION}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+DESCRIPTION~\char`\"{}USB $<$-\/$>$ FLIR TAU A\char`\"{}}
+
+\mbox{\Hypertarget{fastftdi_8h_acd3b59ce968ee18a99061aa427b2119b}\label{fastftdi_8h_acd3b59ce968ee18a99061aa427b2119b}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_EP\_IN@{FTDI\_EP\_IN}}
+\index{FTDI\_EP\_IN@{FTDI\_EP\_IN}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_EP\_IN}{FTDI\_EP\_IN}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+EP\+\_\+\+IN(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~(0x81 + (i-\/1)$\ast$2)}
+
+\mbox{\Hypertarget{fastftdi_8h_a6c762928b4e55d799c2330b92f903da6}\label{fastftdi_8h_a6c762928b4e55d799c2330b92f903da6}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_EP\_OUT@{FTDI\_EP\_OUT}}
+\index{FTDI\_EP\_OUT@{FTDI\_EP\_OUT}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_EP\_OUT}{FTDI\_EP\_OUT}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+EP\+\_\+\+OUT(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~(0x02 + (i-\/1)$\ast$2)}
+
+\mbox{\Hypertarget{fastftdi_8h_ae9162404ccfaeed41b301944cca046ac}\label{fastftdi_8h_ae9162404ccfaeed41b301944cca046ac}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_HEADER\_SIZE@{FTDI\_HEADER\_SIZE}}
+\index{FTDI\_HEADER\_SIZE@{FTDI\_HEADER\_SIZE}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_HEADER\_SIZE}{FTDI\_HEADER\_SIZE}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+HEADER\+\_\+\+SIZE~2}
+
+\mbox{\Hypertarget{fastftdi_8h_a1f33a7c4c2bb83d9c40dbf07c2da98dd}\label{fastftdi_8h_a1f33a7c4c2bb83d9c40dbf07c2da98dd}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_LOG\_PACKET\_SIZE@{FTDI\_LOG\_PACKET\_SIZE}}
+\index{FTDI\_LOG\_PACKET\_SIZE@{FTDI\_LOG\_PACKET\_SIZE}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_LOG\_PACKET\_SIZE}{FTDI\_LOG\_PACKET\_SIZE}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+LOG\+\_\+\+PACKET\+\_\+\+SIZE~9}
+
+\mbox{\Hypertarget{fastftdi_8h_a228f9a3f055ef26e493cc424792ec916}\label{fastftdi_8h_a228f9a3f055ef26e493cc424792ec916}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_PACKET\_SIZE@{FTDI\_PACKET\_SIZE}}
+\index{FTDI\_PACKET\_SIZE@{FTDI\_PACKET\_SIZE}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_PACKET\_SIZE}{FTDI\_PACKET\_SIZE}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+PACKET\+\_\+\+SIZE~512}
+
+\mbox{\Hypertarget{fastftdi_8h_a16defabdd0f1e1019913e0d523260bbd}\label{fastftdi_8h_a16defabdd0f1e1019913e0d523260bbd}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_PRODUCT\_FT2232H@{FTDI\_PRODUCT\_FT2232H}}
+\index{FTDI\_PRODUCT\_FT2232H@{FTDI\_PRODUCT\_FT2232H}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_PRODUCT\_FT2232H}{FTDI\_PRODUCT\_FT2232H}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+PRODUCT\+\_\+\+FT2232H~0x6010}
+
+\mbox{\Hypertarget{fastftdi_8h_ab8f10b251a2d4eee4e7f0264c88575d3}\label{fastftdi_8h_ab8f10b251a2d4eee4e7f0264c88575d3}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_SET\_BAUD\_REQUEST@{FTDI\_SET\_BAUD\_REQUEST}}
+\index{FTDI\_SET\_BAUD\_REQUEST@{FTDI\_SET\_BAUD\_REQUEST}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_SET\_BAUD\_REQUEST}{FTDI\_SET\_BAUD\_REQUEST}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+SET\+\_\+\+BAUD\+\_\+\+REQUEST~0x03}
+
+\mbox{\Hypertarget{fastftdi_8h_aac16fda3efbb176b8471a0e7c4bb6792}\label{fastftdi_8h_aac16fda3efbb176b8471a0e7c4bb6792}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_SET\_BITMODE\_REQUEST@{FTDI\_SET\_BITMODE\_REQUEST}}
+\index{FTDI\_SET\_BITMODE\_REQUEST@{FTDI\_SET\_BITMODE\_REQUEST}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_SET\_BITMODE\_REQUEST}{FTDI\_SET\_BITMODE\_REQUEST}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+SET\+\_\+\+BITMODE\+\_\+\+REQUEST~0x0B}
+
+\mbox{\Hypertarget{fastftdi_8h_ac24921cc0ab8c760ae16ddc42efe462c}\label{fastftdi_8h_ac24921cc0ab8c760ae16ddc42efe462c}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_VENDOR@{FTDI\_VENDOR}}
+\index{FTDI\_VENDOR@{FTDI\_VENDOR}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_VENDOR}{FTDI\_VENDOR}}
+{\footnotesize\ttfamily \#define FTDI\+\_\+\+VENDOR~0x0403}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}\label{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIStreamCallback@{FTDIStreamCallback}}
+\index{FTDIStreamCallback@{FTDIStreamCallback}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIStreamCallback}{FTDIStreamCallback}}
+{\footnotesize\ttfamily typedef int() FTDIStream\+Callback(uint8\+\_\+t $\ast$buffer, int length, \mbox{\hyperlink{struct_f_t_d_i_progress_info}{FTDIProgress\+Info}} $\ast$progress, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$userdata)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIBitmode@{FTDIBitmode}}
+\index{FTDIBitmode@{FTDIBitmode}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIBitmode}{FTDIBitmode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_RESET@{FTDI\_BITMODE\_RESET}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_RESET@{FTDI\_BITMODE\_RESET}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ae488c060a0708cb491f05c9c9f64a7f2}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ae488c060a0708cb491f05c9c9f64a7f2}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+RESET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_BITBANG@{FTDI\_BITMODE\_BITBANG}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_BITBANG@{FTDI\_BITMODE\_BITBANG}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ade79bdc048b8d14ef02ae693cfd7ffca}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ade79bdc048b8d14ef02ae693cfd7ffca}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+BITBANG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_MPSSE@{FTDI\_BITMODE\_MPSSE}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_MPSSE@{FTDI\_BITMODE\_MPSSE}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a654f491851aaaec8ea5074aebc529eab}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a654f491851aaaec8ea5074aebc529eab}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+MPSSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_SYNC\_BITBANG@{FTDI\_BITMODE\_SYNC\_BITBANG}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_SYNC\_BITBANG@{FTDI\_BITMODE\_SYNC\_BITBANG}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360acdc461fd49656ce744acd1f9d5409e04}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360acdc461fd49656ce744acd1f9d5409e04}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+SYNC\+\_\+\+BITBANG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_MCU@{FTDI\_BITMODE\_MCU}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_MCU@{FTDI\_BITMODE\_MCU}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a8f621e930a91989b6458f1c7ea49a6ae}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360a8f621e930a91989b6458f1c7ea49a6ae}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+MCU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_OPTO@{FTDI\_BITMODE\_OPTO}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_OPTO@{FTDI\_BITMODE\_OPTO}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ac364a03daa28b416b651b92e53fd2084}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ac364a03daa28b416b651b92e53fd2084}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+OPTO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_CBUS@{FTDI\_BITMODE\_CBUS}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_CBUS@{FTDI\_BITMODE\_CBUS}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ad670c271a15825e666ae490419c5671c}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ad670c271a15825e666ae490419c5671c}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+CBUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_BITMODE\_SYNC\_FIFO@{FTDI\_BITMODE\_SYNC\_FIFO}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_BITMODE\_SYNC\_FIFO@{FTDI\_BITMODE\_SYNC\_FIFO}}}\mbox{\Hypertarget{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ab679c13384937615dcc86393a1bfe977}\label{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360ab679c13384937615dcc86393a1bfe977}} 
+FTDI\+\_\+\+BITMODE\+\_\+\+SYNC\+\_\+\+FIFO&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}\label{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIInterface@{FTDIInterface}}
+\index{FTDIInterface@{FTDIInterface}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIInterface}{FTDIInterface}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_INTERFACE\_A@{FTDI\_INTERFACE\_A}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_INTERFACE\_A@{FTDI\_INTERFACE\_A}}}\mbox{\Hypertarget{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a5ccfbb3dcd7dbfd4cd795f166b0bf2d3}\label{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a5ccfbb3dcd7dbfd4cd795f166b0bf2d3}} 
+FTDI\+\_\+\+INTERFACE\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_INTERFACE\_B@{FTDI\_INTERFACE\_B}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_INTERFACE\_B@{FTDI\_INTERFACE\_B}}}\mbox{\Hypertarget{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a045a2f7862087881679fa6fbc3210fe3}\label{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1a045a2f7862087881679fa6fbc3210fe3}} 
+FTDI\+\_\+\+INTERFACE\+\_\+B&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIMPSSEOpcode@{FTDIMPSSEOpcode}}
+\index{FTDIMPSSEOpcode@{FTDIMPSSEOpcode}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIMPSSEOpcode}{FTDIMPSSEOpcode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162}{FTDIMPSSEOpcode}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_MPSSE\_SETLOW@{FTDI\_MPSSE\_SETLOW}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_MPSSE\_SETLOW@{FTDI\_MPSSE\_SETLOW}}}\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a4ae35f4cc5b4f2239d8ee1a1b90da7a1}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a4ae35f4cc5b4f2239d8ee1a1b90da7a1}} 
+FTDI\+\_\+\+MPSSE\+\_\+\+SETLOW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_MPSSE\_SETHIGH@{FTDI\_MPSSE\_SETHIGH}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_MPSSE\_SETHIGH@{FTDI\_MPSSE\_SETHIGH}}}\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162afe1d7894698243b555830ac50885148e}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162afe1d7894698243b555830ac50885148e}} 
+FTDI\+\_\+\+MPSSE\+\_\+\+SETHIGH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_MPSSE\_GETLOW@{FTDI\_MPSSE\_GETLOW}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_MPSSE\_GETLOW@{FTDI\_MPSSE\_GETLOW}}}\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a8cb5bc372b095bde4918bcc500003d76}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a8cb5bc372b095bde4918bcc500003d76}} 
+FTDI\+\_\+\+MPSSE\+\_\+\+GETLOW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_MPSSE\_GETHIGH@{FTDI\_MPSSE\_GETHIGH}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_MPSSE\_GETHIGH@{FTDI\_MPSSE\_GETHIGH}}}\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a61e79b1bb895c760d634ce57d3d907c0}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162a61e79b1bb895c760d634ce57d3d907c0}} 
+FTDI\+\_\+\+MPSSE\+\_\+\+GETHIGH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FTDI\_MPSSE\_SETDIVISOR@{FTDI\_MPSSE\_SETDIVISOR}!fastftdi.h@{fastftdi.h}}\index{fastftdi.h@{fastftdi.h}!FTDI\_MPSSE\_SETDIVISOR@{FTDI\_MPSSE\_SETDIVISOR}}}\mbox{\Hypertarget{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162acfc4814626b69970febdb9c9c2b0715c}\label{fastftdi_8h_a5d94496d9ffa4f0285c66b907b836162acfc4814626b69970febdb9c9c2b0715c}} 
+FTDI\+\_\+\+MPSSE\+\_\+\+SETDIVISOR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{fastftdi_8h_ab25285a53118b4726af0b2aec3c7054d}\label{fastftdi_8h_ab25285a53118b4726af0b2aec3c7054d}} 
+\index{fastftdi.h@{fastftdi.h}!FTDI\_PrintDeviceList@{FTDI\_PrintDeviceList}}
+\index{FTDI\_PrintDeviceList@{FTDI\_PrintDeviceList}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDI\_PrintDeviceList()}{FTDI\_PrintDeviceList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} FTDI\+\_\+\+Print\+Device\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_a5594e4f73d5361c522ea28a4e07aa237}\label{fastftdi_8h_a5594e4f73d5361c522ea28a4e07aa237}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_Close@{FTDIDevice\_Close}}
+\index{FTDIDevice\_Close@{FTDIDevice\_Close}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_Close()}{FTDIDevice\_Close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} FTDIDevice\+\_\+\+Close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_a0facc428934f5765c20440d1a3cf6820}\label{fastftdi_8h_a0facc428934f5765c20440d1a3cf6820}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_Enable@{FTDIDevice\_MPSSE\_Enable}}
+\index{FTDIDevice\_MPSSE\_Enable@{FTDIDevice\_MPSSE\_Enable}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_Enable()}{FTDIDevice\_MPSSE\_Enable()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_adde3517f42c6e47dedd949971ba2f9ac}\label{fastftdi_8h_adde3517f42c6e47dedd949971ba2f9ac}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_GetHighByte@{FTDIDevice\_MPSSE\_GetHighByte}}
+\index{FTDIDevice\_MPSSE\_GetHighByte@{FTDIDevice\_MPSSE\_GetHighByte}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_GetHighByte()}{FTDIDevice\_MPSSE\_GetHighByte()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Get\+High\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t $\ast$}]{byte }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_af82a5ac89d2e181fea5a2d93bd9cfb6e}\label{fastftdi_8h_af82a5ac89d2e181fea5a2d93bd9cfb6e}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_GetLowByte@{FTDIDevice\_MPSSE\_GetLowByte}}
+\index{FTDIDevice\_MPSSE\_GetLowByte@{FTDIDevice\_MPSSE\_GetLowByte}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_GetLowByte()}{FTDIDevice\_MPSSE\_GetLowByte()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Get\+Low\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t $\ast$}]{byte }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_aa484e92661f558c0a2f1f8fc3038ec61}\label{fastftdi_8h_aa484e92661f558c0a2f1f8fc3038ec61}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_SetDivisor@{FTDIDevice\_MPSSE\_SetDivisor}}
+\index{FTDIDevice\_MPSSE\_SetDivisor@{FTDIDevice\_MPSSE\_SetDivisor}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_SetDivisor()}{FTDIDevice\_MPSSE\_SetDivisor()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+Divisor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t}]{ValueL,  }\item[{uint8\+\_\+t}]{ValueH }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_af6a12104f5c76b2e489a43d5bfd53d96}\label{fastftdi_8h_af6a12104f5c76b2e489a43d5bfd53d96}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_SetHighByte@{FTDIDevice\_MPSSE\_SetHighByte}}
+\index{FTDIDevice\_MPSSE\_SetHighByte@{FTDIDevice\_MPSSE\_SetHighByte}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_SetHighByte()}{FTDIDevice\_MPSSE\_SetHighByte()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+High\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t}]{data,  }\item[{uint8\+\_\+t}]{dir }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_acedcb134f747cf8e13e46973b5b2f583}\label{fastftdi_8h_acedcb134f747cf8e13e46973b5b2f583}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_MPSSE\_SetLowByte@{FTDIDevice\_MPSSE\_SetLowByte}}
+\index{FTDIDevice\_MPSSE\_SetLowByte@{FTDIDevice\_MPSSE\_SetLowByte}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_MPSSE\_SetLowByte()}{FTDIDevice\_MPSSE\_SetLowByte()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+MPSSE\+\_\+\+Set\+Low\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t}]{data,  }\item[{uint8\+\_\+t}]{dir }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_a5f965b3a4098d9a9d980a3d7723f1586}\label{fastftdi_8h_a5f965b3a4098d9a9d980a3d7723f1586}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_Open@{FTDIDevice\_Open}}
+\index{FTDIDevice\_Open@{FTDIDevice\_Open}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_Open()}{FTDIDevice\_Open()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{char $\ast$}]{i\+Serial\+USB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_a07c4aeb3178f8f14d843d1bdf32b1a82}\label{fastftdi_8h_a07c4aeb3178f8f14d843d1bdf32b1a82}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_ReadByteSync@{FTDIDevice\_ReadByteSync}}
+\index{FTDIDevice\_ReadByteSync@{FTDIDevice\_ReadByteSync}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_ReadByteSync()}{FTDIDevice\_ReadByteSync()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Read\+Byte\+Sync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t $\ast$}]{byte }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_aec9e222db2d29a6f00674e09b27ed5d0}\label{fastftdi_8h_aec9e222db2d29a6f00674e09b27ed5d0}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_ReadStream@{FTDIDevice\_ReadStream}}
+\index{FTDIDevice\_ReadStream@{FTDIDevice\_ReadStream}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_ReadStream()}{FTDIDevice\_ReadStream()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Read\+Stream (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{\mbox{\hyperlink{fastftdi_8h_a8d8469de6b43d15f3824d73dd62a8a06}{FTDIStream\+Callback}} $\ast$}]{callback,  }\item[{\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$}]{userdata,  }\item[{int}]{packets\+Per\+Transfer,  }\item[{int}]{num\+Transfers }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_abf480be5e721afc9e450d703096dccbe}\label{fastftdi_8h_abf480be5e721afc9e450d703096dccbe}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_Reset@{FTDIDevice\_Reset}}
+\index{FTDIDevice\_Reset@{FTDIDevice\_Reset}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_Reset()}{FTDIDevice\_Reset()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_ace833527bc86b7a8bf8c074567c6e1f4}\label{fastftdi_8h_ace833527bc86b7a8bf8c074567c6e1f4}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_SetMode@{FTDIDevice\_SetMode}}
+\index{FTDIDevice\_SetMode@{FTDIDevice\_SetMode}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_SetMode()}{FTDIDevice\_SetMode()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Set\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{\mbox{\hyperlink{fastftdi_8h_a882a5f20f25b6646b6dc410b8bb13360}{FTDIBitmode}}}]{mode,  }\item[{uint8\+\_\+t}]{pin\+Directions,  }\item[{int}]{baud\+Rate }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_a212f7fe50e70661584ffab15016c4dd9}\label{fastftdi_8h_a212f7fe50e70661584ffab15016c4dd9}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_Write@{FTDIDevice\_Write}}
+\index{FTDIDevice\_Write@{FTDIDevice\_Write}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_Write()}{FTDIDevice\_Write()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{size\+\_\+t}]{length,  }\item[{bool}]{async }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{fastftdi_8h_afc81a4eaa4b298c898d457588b2d6ccf}\label{fastftdi_8h_afc81a4eaa4b298c898d457588b2d6ccf}} 
+\index{fastftdi.h@{fastftdi.h}!FTDIDevice\_WriteByteSync@{FTDIDevice\_WriteByteSync}}
+\index{FTDIDevice\_WriteByteSync@{FTDIDevice\_WriteByteSync}!fastftdi.h@{fastftdi.h}}
+\doxysubsubsection{\texorpdfstring{FTDIDevice\_WriteByteSync()}{FTDIDevice\_WriteByteSync()}}
+{\footnotesize\ttfamily int FTDIDevice\+\_\+\+Write\+Byte\+Sync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t_d_i_device}{FTDIDevice}} $\ast$}]{dev,  }\item[{\mbox{\hyperlink{fastftdi_8h_ab3db3cab37ff2e57a6cb874a339779c1}{FTDIInterface}}}]{interface,  }\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+

@@ -1,0 +1,131 @@
+{
+    "general":
+    {
+        "next_pass_type": "PRIMARY",
+        "safe_mode": false,
+        "pass_start_timestamp": 1727292818,
+        "pass_end_timestamp": 1727292968,
+        "pre_pass_init": 60,
+        "post_pass_timeout": 60,
+        "altitude": 500,
+        "pass_completion_time": 15
+    },
+    "cameras":
+    {
+        "basler":
+        {
+            "imgs_per_pass": 10,
+            "finaltimeoffset": 8,
+            "properties":
+            {
+                "gain":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "trigger_type":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "exposure_mode":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "exposure_auto":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "exposure_time":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "black_level":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "white_balance":
+                {
+                    "value": -1,
+                    "default": -1
+                },
+                "pixel_format":
+                {
+                    "value": "BayerRG12",
+                    "default": "BayerRG12"
+                },
+                "saturation":
+                {
+                    "value": -1,
+                    "default": -1
+                }
+            }
+        },
+        "tau":
+        {
+            "imgs_per_pass": 50,
+            "imgs_per_calibration": 5,
+            "finaltimeoffset": 8,
+            "properties": {
+                "gain_mode": {
+                    "value": "High",
+                    "default": "Automatic"
+                },
+                "agc_type": {
+                    "value": "PlateauHistogram",
+                    "default": "PlateauHistogram"
+                },
+                "contrast": {
+                    "value": 50,
+                    "default": 32
+                },
+                "brightness": {
+                    "value": 120,
+                    "default": 0
+                }
+            }
+        }
+    },
+    "sensors": {
+        "collection_cadence": 10,
+        "T_TEMP":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "B_TEMP":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "A_TEMP":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "CPU_TEMP":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "T_CUR":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "B_CUR":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        },
+        "A_CUR":
+        {
+            "warn_threshold": 10,
+            "error_threshold": 20
+        }
+    }
+}

@@ -1,0 +1,126 @@
+\hypertarget{structlibusb__transfer}{}\doxysection{libusb\+\_\+transfer Struct Reference}
+\label{structlibusb__transfer}\index{libusb\_transfer@{libusb\_transfer}}
+
+
+{\ttfamily \#include $<$libusb.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\+\_\+device\+\_\+handle}} $\ast$ \mbox{\hyperlink{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}{dev\+\_\+handle}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlibusb__transfer_ae26c063df30c2e29835212aad98c6e06}{flags}}
+\item 
+unsigned char \mbox{\hyperlink{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}{endpoint}}
+\item 
+unsigned char \mbox{\hyperlink{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}{type}}
+\item 
+unsigned int \mbox{\hyperlink{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}{timeout}}
+\item 
+enum \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856}{libusb\+\_\+transfer\+\_\+status}} \mbox{\hyperlink{structlibusb__transfer_a64b2e70e76d52a7cd23daa3cd4fb397e}{status}}
+\item 
+int \mbox{\hyperlink{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}{length}}
+\item 
+int \mbox{\hyperlink{structlibusb__transfer_a7e858f07c48a271a62209d11376ae607}{actual\+\_\+length}}
+\item 
+libusb\+\_\+transfer\+\_\+cb\+\_\+fn \mbox{\hyperlink{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}{callback}}
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$ \mbox{\hyperlink{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}{user\+\_\+data}}
+\item 
+unsigned char $\ast$ \mbox{\hyperlink{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}{buffer}}
+\item 
+int \mbox{\hyperlink{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}{num\+\_\+iso\+\_\+packets}}
+\item 
+struct \mbox{\hyperlink{structlibusb__iso__packet__descriptor}{libusb\+\_\+iso\+\_\+packet\+\_\+descriptor}} \mbox{\hyperlink{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}{iso\+\_\+packet\+\_\+desc}} \mbox{[}0\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The generic USB transfer structure. The user populates this structure and then submits it in order to request a transfer. After the transfer has completed, the library populates the transfer with the results and passes it back to the user. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structlibusb__transfer_a7e858f07c48a271a62209d11376ae607}\label{structlibusb__transfer_a7e858f07c48a271a62209d11376ae607}} 
+\index{libusb\_transfer@{libusb\_transfer}!actual\_length@{actual\_length}}
+\index{actual\_length@{actual\_length}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{actual\_length}{actual\_length}}
+{\footnotesize\ttfamily int libusb\+\_\+transfer\+::actual\+\_\+length}
+
+Actual length of data that was transferred. Read-\/only, and only for use within transfer callback function. Not valid for isochronous endpoint transfers. \mbox{\Hypertarget{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}\label{structlibusb__transfer_a7fa594567e074191ce8f28b5fb4a3bea}} 
+\index{libusb\_transfer@{libusb\_transfer}!buffer@{buffer}}
+\index{buffer@{buffer}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily unsigned char$\ast$ libusb\+\_\+transfer\+::buffer}
+
+Data buffer \mbox{\Hypertarget{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}\label{structlibusb__transfer_a69c6df011ec23ff3e481cc98bfff0623}} 
+\index{libusb\_transfer@{libusb\_transfer}!callback@{callback}}
+\index{callback@{callback}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily libusb\+\_\+transfer\+\_\+cb\+\_\+fn libusb\+\_\+transfer\+::callback}
+
+Callback function. This will be invoked when the transfer completes, fails, or is cancelled. \mbox{\Hypertarget{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}\label{structlibusb__transfer_adaaf06aeb5ab2a8819e75310ec253f7a}} 
+\index{libusb\_transfer@{libusb\_transfer}!dev\_handle@{dev\_handle}}
+\index{dev\_handle@{dev\_handle}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{dev\_handle}{dev\_handle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a7df95821d20d27b5597f1d783749d6a4}{libusb\+\_\+device\+\_\+handle}}$\ast$ libusb\+\_\+transfer\+::dev\+\_\+handle}
+
+Handle of the device that this transfer will be submitted to \mbox{\Hypertarget{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}\label{structlibusb__transfer_a0fcfd057f53b0e1bff6f1567761c231a}} 
+\index{libusb\_transfer@{libusb\_transfer}!endpoint@{endpoint}}
+\index{endpoint@{endpoint}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{endpoint}{endpoint}}
+{\footnotesize\ttfamily unsigned char libusb\+\_\+transfer\+::endpoint}
+
+Address of the endpoint where this transfer will be sent. \mbox{\Hypertarget{structlibusb__transfer_ae26c063df30c2e29835212aad98c6e06}\label{structlibusb__transfer_ae26c063df30c2e29835212aad98c6e06}} 
+\index{libusb\_transfer@{libusb\_transfer}!flags@{flags}}
+\index{flags@{flags}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily uint8\+\_\+t libusb\+\_\+transfer\+::flags}
+
+A bitwise OR combination of \mbox{\hyperlink{libusb_8h_a1fb47dd0f7c209b60a3609ff0c03d56d}{libusb\+\_\+transfer\+\_\+flags}}. \mbox{\Hypertarget{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}\label{structlibusb__transfer_a0de0b13dfae411fc36217d35eb89b138}} 
+\index{libusb\_transfer@{libusb\_transfer}!iso\_packet\_desc@{iso\_packet\_desc}}
+\index{iso\_packet\_desc@{iso\_packet\_desc}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{iso\_packet\_desc}{iso\_packet\_desc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structlibusb__iso__packet__descriptor}{libusb\+\_\+iso\+\_\+packet\+\_\+descriptor}} libusb\+\_\+transfer\+::iso\+\_\+packet\+\_\+desc\mbox{[}0\mbox{]}}
+
+Isochronous packet descriptors, for isochronous transfers only. \mbox{\Hypertarget{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}\label{structlibusb__transfer_a68c023e1f40b50aa8604a2495b6a391e}} 
+\index{libusb\_transfer@{libusb\_transfer}!length@{length}}
+\index{length@{length}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily int libusb\+\_\+transfer\+::length}
+
+Length of the data buffer \mbox{\Hypertarget{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}\label{structlibusb__transfer_a87d725a5521c26832fdc13611220014d}} 
+\index{libusb\_transfer@{libusb\_transfer}!num\_iso\_packets@{num\_iso\_packets}}
+\index{num\_iso\_packets@{num\_iso\_packets}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{num\_iso\_packets}{num\_iso\_packets}}
+{\footnotesize\ttfamily int libusb\+\_\+transfer\+::num\+\_\+iso\+\_\+packets}
+
+Number of isochronous packets. Only used for I/O with isochronous endpoints. \mbox{\Hypertarget{structlibusb__transfer_a64b2e70e76d52a7cd23daa3cd4fb397e}\label{structlibusb__transfer_a64b2e70e76d52a7cd23daa3cd4fb397e}} 
+\index{libusb\_transfer@{libusb\_transfer}!status@{status}}
+\index{status@{status}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{libusb_8h_a9fcb2aa23d342060ebda1d0cf7478856}{libusb\+\_\+transfer\+\_\+status}} libusb\+\_\+transfer\+::status}
+
+The status of the transfer. Read-\/only, and only for use within transfer callback function.
+
+If this is an isochronous transfer, this field may read COMPLETED even if there were errors in the frames. Use the \mbox{\hyperlink{structlibusb__iso__packet__descriptor_aab21ee2a5835a0e53d7ac5844ee34371}{status}} field in each packet to determine if errors occurred. \mbox{\Hypertarget{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}\label{structlibusb__transfer_a9a12af15ca5b482f5dcaebd26a848cbb}} 
+\index{libusb\_transfer@{libusb\_transfer}!timeout@{timeout}}
+\index{timeout@{timeout}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{timeout}{timeout}}
+{\footnotesize\ttfamily unsigned int libusb\+\_\+transfer\+::timeout}
+
+Timeout for this transfer in millseconds. A value of 0 indicates no timeout. \mbox{\Hypertarget{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}\label{structlibusb__transfer_a7c9fa575986fe9f23bbecb26b766dff1}} 
+\index{libusb\_transfer@{libusb\_transfer}!type@{type}}
+\index{type@{type}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily unsigned char libusb\+\_\+transfer\+::type}
+
+Type of the endpoint from \mbox{\hyperlink{libusb_8h_acb52027036a07de6ecc6c2bf07d07c71}{libusb\+\_\+transfer\+\_\+type}} \mbox{\Hypertarget{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}\label{structlibusb__transfer_ab75ab3e7185f08e07a1ae858a35ebb7b}} 
+\index{libusb\_transfer@{libusb\_transfer}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!libusb\_transfer@{libusb\_transfer}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}}$\ast$ libusb\+\_\+transfer\+::user\+\_\+data}
+
+User context data to pass to the callback function. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/inc/\mbox{\hyperlink{libusb_8h}{libusb.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,446 @@
+\hypertarget{class_thermal_grabber}{}\doxysection{Thermal\+Grabber Class Reference}
+\label{class_thermal_grabber}\index{ThermalGrabber@{ThermalGrabber}}
+
+
+Class for connecting \char`\"{}\+Thermal Capture Grabber USB\char`\"{}.  
+
+
+
+
+{\ttfamily \#include $<$thermalgrabber.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}}($\ast$ \mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callback\+Thermal\+Grabber}}) (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&tau\+Raw\+Bitmap, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$caller)
+\begin{DoxyCompactList}\small\item\em Type definition of callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_thermal_grabber_af6c392005121b8a8a6fd88808688f35b}{Thermal\+Grabber}} (\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callback\+Thermal\+Grabber}} cb, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$caller)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_thermal_grabber_ae322dc9cef38098cd2ce661128dca52a}{Thermal\+Grabber}} (\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callback\+Thermal\+Grabber}} cb, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$caller, char $\ast$i\+Serial\+USB)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_thermal_grabber_a02cc3194b547ce917b41e45d24c4ebf7}{$\sim$\+Thermal\+Grabber}} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a49d6aa783143bbcf78c9677ce56668e6}{change\+Watchdog\+Count}} (int wait\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Change the watchdog count reset value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_ab11b23792a8bf0bff463773121ee902c}{convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap}} (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&tau\+Raw\+Bitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&tau\+RGBBitmap)
+\begin{DoxyCompactList}\small\item\em Convert the \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} to \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a6710842cd215f6e7f918bf61b9df54ae}{convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap\+Fusion}} (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&tau\+Raw\+Bitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&tau\+RGBBitmap)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a004b088542d4a02efa187167594b87a6}{convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap\+Rainbow}} (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&tau\+Raw\+Bitmap, \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&tau\+RGBBitmap)
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_ac694262d61e78882efd99488a614d7ff}{send\+Command}} (char cmd, char $\ast$data, unsigned int data\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Send a command to Tau\+Core. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_thermal_grabber_a4736f8e0ecacb8df8abd36695587ee05}{get\+Resolution\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Get the resolution width. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_thermal_grabber_a01970f4bd5e263afea2c29b012c4ae5d}{get\+Resolution\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Get the resolution height. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_thermal_grabber_a84e19b3121dc9e769cee486c350cacee}{get\+Camera\+Serial\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Get Camera Serial Number. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{class_thermal_grabber_a1d17f396a1bfd2fb904c5b0f7d445197}{get\+Camera\+Part\+Number}} () const
+\begin{DoxyCompactList}\small\item\em Get Camera Part Number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a12bd03575ff2257106f3f75fba69b016}{do\+FFC}} ()
+\begin{DoxyCompactList}\small\item\em Shutter command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_afbc511b8f0daa175c2bbe95059a880af}{set\+Gain\+Mode}} (\mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\+\_\+grabber\+::\+Gain\+Mode}} gain\+Mode)
+\begin{DoxyCompactList}\small\item\em Set the Gain Mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\+\_\+grabber\+::\+Gain\+Mode}} \mbox{\hyperlink{class_thermal_grabber_aae221648401ed249eaad98b9fee5013d}{get\+Gain\+Mode}} ()
+\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_af01cddb1a82246f91337832f84d91147}{enable\+TLinear\+High\+Resolution}} ()
+\begin{DoxyCompactList}\small\item\em Enables TLinear in high resolution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_ac197e5264283856abfe765c1aece80a9}{enable\+Tlinear\+Low\+Resolution}} ()
+\begin{DoxyCompactList}\small\item\em Enable TLinear in low resolution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a802e09a012a74396f6e5760da7da308f}{disable\+TLinear}} ()
+\begin{DoxyCompactList}\small\item\em Disable TLinear Mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_afc11fdf1c4845ebfeaef722c3df035ff}{enable\+Internal\+Sync\+By\+Tau2\+Core\+Sync\+Out\+On}} ()
+\begin{DoxyCompactList}\small\item\em (Re-\/)Enable the standard internal sync of \mbox{\hyperlink{class_tau}{Tau}} 2 Core \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a548075ba65d926c520865c2aa2a1572e}{enable\+Internal\+Sync\+By\+Tau2\+Core\+Sync\+Out\+Off}} ()
+\begin{DoxyCompactList}\small\item\em (Re-\/)Enable the standard internal sync of \mbox{\hyperlink{class_tau}{Tau}} 2 Core \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_a9aec026a9c83a05a2a53b3ddebab3574}{enable\+Internal\+Sync\+By\+TCGrabber\+USB}} (uint32\+\_\+t frequency\+\_\+parameter, uint32\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Enable internal sync by TCGrabber\+USB. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} \mbox{\hyperlink{class_thermal_grabber_adb4c719a52869d9e19d12efe308d1c23}{enable\+External\+Sync\+As\+Slave}} ()
+\begin{DoxyCompactList}\small\item\em Enable synchronization mode as slave. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for connecting \char`\"{}\+Thermal Capture Grabber USB\char`\"{}. 
+
+Connecting Thermal Capture Grabber USB needs three steps\+:
+\begin{DoxyEnumerate}
+\item Include the library header file \char`\"{}thermalgrabber.\+h\char`\"{} into your project.
+\item Write a callback function for receiving Tau\+Raw\+Bitmaps.
+\item Use the constructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. You will have to put in 2 parameters. Firstly put in the pointer of the callback function. Secondly add the pointer of the calling instance in the constructor. 
+\end{DoxyEnumerate}
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}\label{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}} 
+\index{ThermalGrabber@{ThermalGrabber}!callbackThermalGrabber@{callbackThermalGrabber}}
+\index{callbackThermalGrabber@{callbackThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{callbackThermalGrabber}{callbackThermalGrabber}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}}($\ast$ Thermal\+Grabber\+::callback\+Thermal\+Grabber) (\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&tau\+Raw\+Bitmap, \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$caller)}
+
+
+
+Type definition of callback. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_thermal_grabber_af6c392005121b8a8a6fd88808688f35b}\label{class_thermal_grabber_af6c392005121b8a8a6fd88808688f35b}} 
+\index{ThermalGrabber@{ThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\index{ThermalGrabber@{ThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{ThermalGrabber()}{ThermalGrabber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Thermal\+Grabber\+::\+Thermal\+Grabber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callback\+Thermal\+Grabber}}}]{cb,  }\item[{\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$}]{caller }\end{DoxyParamCaption})}
+
+
+
+Constructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. 
+
+\mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}} is used to connect the \char`\"{}\+Thermal Capture Grabber USB\char`\"{} device. The callback is called every time a full frame is received from the device. In order to use the callback \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}} needs to know the calling instance. Thermal\+Capture Grabber\+USB uses the digital output of the tau core. Therefor it configures the tau core on start appropriately. The settings are volatile. 
+\begin{DoxyParams}{Parameters}
+{\em cb} & Callback. \\
+\hline
+{\em caller} & Calling instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_thermal_grabber_ae322dc9cef38098cd2ce661128dca52a}\label{class_thermal_grabber_ae322dc9cef38098cd2ce661128dca52a}} 
+\index{ThermalGrabber@{ThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\index{ThermalGrabber@{ThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{ThermalGrabber()}{ThermalGrabber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Thermal\+Grabber\+::\+Thermal\+Grabber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_thermal_grabber_a3bf2b6eea772dc18596b3ba1751ac121}{callback\+Thermal\+Grabber}}}]{cb,  }\item[{\mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} $\ast$}]{caller,  }\item[{char $\ast$}]{i\+Serial\+USB }\end{DoxyParamCaption})}
+
+
+
+Constructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. 
+
+\mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}} is used to connect the \char`\"{}\+Thermal Capture Grabber USB\char`\"{} device. The callback is called every time a full frame is received from the device. In order to use the callback \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}} needs to know the calling instance. Thermal\+Capture Grabber\+USB uses the digital output of the tau core. Therefor it configures the tau core on start appropriately. The settings are volatile. The parameter i\+Serial\+USB makes it possible to connect a Thermal\+Capture Grabber\+USB by its unique i\+Serial. This i\+Serial can be identified by inspecting the usb system log of the operation system the Thermal\+Capture Grabber\+USB is connected to. 
+\begin{DoxyParams}{Parameters}
+{\em cb} & Callback. \\
+\hline
+{\em caller} & Calling instance. \\
+\hline
+{\em i\+Serial\+USB} & Char string representation of i\+Serial. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_thermal_grabber_a02cc3194b547ce917b41e45d24c4ebf7}\label{class_thermal_grabber_a02cc3194b547ce917b41e45d24c4ebf7}} 
+\index{ThermalGrabber@{ThermalGrabber}!````~ThermalGrabber@{$\sim$ThermalGrabber}}
+\index{````~ThermalGrabber@{$\sim$ThermalGrabber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{$\sim$ThermalGrabber()}{~ThermalGrabber()}}
+{\footnotesize\ttfamily Thermal\+Grabber\+::$\sim$\+Thermal\+Grabber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor of \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}}. 
+
+Cleans up the \mbox{\hyperlink{class_thermal_grabber}{Thermal\+Grabber}} object memory and waits for connection thread to close. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_thermal_grabber_a49d6aa783143bbcf78c9677ce56668e6}\label{class_thermal_grabber_a49d6aa783143bbcf78c9677ce56668e6}} 
+\index{ThermalGrabber@{ThermalGrabber}!changeWatchdogCount@{changeWatchdogCount}}
+\index{changeWatchdogCount@{changeWatchdogCount}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{changeWatchdogCount()}{changeWatchdogCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::change\+Watchdog\+Count (\begin{DoxyParamCaption}\item[{int}]{wait\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Change the watchdog count reset value. 
+
+The watchdog checks every second for frame activity (frames from TCGrabber\+USB). Standardly the counter is set to 10 seconds. If the watchdog doesn\textquotesingle{}t notice any transfers in that time libthermalgrabber tries to reconnect TCGrabber\+USB. Normally the counter shouldn\textquotesingle{}t be modified but sometimes it\textquotesingle{}s necessary (e.\+g. when using the external sync input -\/ low-\/high-\/transition -\/ on pin5 of TCGrabber\+USB with single frame transfers -\/ the watchdog might trigger between two sync input signals). Please keep in mind that there are situations where TCGrabber\+USB can\textquotesingle{}t send frames for a couple of seconds because \mbox{\hyperlink{class_tau}{Tau}} 2 Core doesn\textquotesingle{}t transfers data (e.\+g. while ffc-\//shutter-\/events). By using \char`\"{}0\char`\"{} for parameter wait\+\_\+time the watchdog becomes inactive (will keep inactive until next connect). 
+\begin{DoxyParams}{Parameters}
+{\em count} & The waiting time that is used by the watchdog in seconds or \char`\"{}0\char`\"{} to disable the watchdog. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_thermal_grabber_ab11b23792a8bf0bff463773121ee902c}\label{class_thermal_grabber_ab11b23792a8bf0bff463773121ee902c}} 
+\index{ThermalGrabber@{ThermalGrabber}!convertTauRawBitmapToTauRGBBitmap@{convertTauRawBitmapToTauRGBBitmap}}
+\index{convertTauRawBitmapToTauRGBBitmap@{convertTauRawBitmapToTauRGBBitmap}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{convertTauRawBitmapToTauRGBBitmap()}{convertTauRawBitmapToTauRGBBitmap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&}]{tau\+Raw\+Bitmap,  }\item[{\mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&}]{tau\+RGBBitmap }\end{DoxyParamCaption})}
+
+
+
+Convert the \mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} to \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}}. 
+
+\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} has 14bit values per pixel that are stored in a 16 bit array. The converted \mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} has 24bit per pixel that are stored in a byte array. \mbox{\Hypertarget{class_thermal_grabber_a6710842cd215f6e7f918bf61b9df54ae}\label{class_thermal_grabber_a6710842cd215f6e7f918bf61b9df54ae}} 
+\index{ThermalGrabber@{ThermalGrabber}!convertTauRawBitmapToTauRGBBitmapFusion@{convertTauRawBitmapToTauRGBBitmapFusion}}
+\index{convertTauRawBitmapToTauRGBBitmapFusion@{convertTauRawBitmapToTauRGBBitmapFusion}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{convertTauRawBitmapToTauRGBBitmapFusion()}{convertTauRawBitmapToTauRGBBitmapFusion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap\+Fusion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&}]{tau\+Raw\+Bitmap,  }\item[{\mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&}]{tau\+RGBBitmap }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermal_grabber_a004b088542d4a02efa187167594b87a6}\label{class_thermal_grabber_a004b088542d4a02efa187167594b87a6}} 
+\index{ThermalGrabber@{ThermalGrabber}!convertTauRawBitmapToTauRGBBitmapRainbow@{convertTauRawBitmapToTauRGBBitmapRainbow}}
+\index{convertTauRawBitmapToTauRGBBitmapRainbow@{convertTauRawBitmapToTauRGBBitmapRainbow}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{convertTauRawBitmapToTauRGBBitmapRainbow()}{convertTauRawBitmapToTauRGBBitmapRainbow()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::convert\+Tau\+Raw\+Bitmap\+To\+Tau\+RGBBitmap\+Rainbow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tau_raw_bitmap}{Tau\+Raw\+Bitmap}} \&}]{tau\+Raw\+Bitmap,  }\item[{\mbox{\hyperlink{class_tau_r_g_b_bitmap}{Tau\+RGBBitmap}} \&}]{tau\+RGBBitmap }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermal_grabber_a802e09a012a74396f6e5760da7da308f}\label{class_thermal_grabber_a802e09a012a74396f6e5760da7da308f}} 
+\index{ThermalGrabber@{ThermalGrabber}!disableTLinear@{disableTLinear}}
+\index{disableTLinear@{disableTLinear}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{disableTLinear()}{disableTLinear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::disable\+TLinear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disable TLinear Mode. 
+
+Disables the TLinear Mode of the Tau\+Core to get raw values. \mbox{\Hypertarget{class_thermal_grabber_a12bd03575ff2257106f3f75fba69b016}\label{class_thermal_grabber_a12bd03575ff2257106f3f75fba69b016}} 
+\index{ThermalGrabber@{ThermalGrabber}!doFFC@{doFFC}}
+\index{doFFC@{doFFC}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{doFFC()}{doFFC()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::do\+FFC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shutter command. 
+
+Triggers a shutter event of the tau core that is used for a Flat Field Correction of the tau core sensor. \mbox{\Hypertarget{class_thermal_grabber_adb4c719a52869d9e19d12efe308d1c23}\label{class_thermal_grabber_adb4c719a52869d9e19d12efe308d1c23}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableExternalSyncAsSlave@{enableExternalSyncAsSlave}}
+\index{enableExternalSyncAsSlave@{enableExternalSyncAsSlave}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableExternalSyncAsSlave()}{enableExternalSyncAsSlave()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+External\+Sync\+As\+Slave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enable synchronization mode as slave. 
+
+Requirements\+:
+\begin{DoxyEnumerate}
+\item This function is supported since firmware 1.\+3 of TCGrabber\+USB (as of december 2017). Older firmware versions will ignore the TCGrabber\+USB related setting of this command. But \mbox{\hyperlink{class_tau}{Tau}} 2 Core setting of EXTERNAL\+\_\+\+SYNC will be done. Accordingly \mbox{\hyperlink{class_tau}{Tau}} 2 Core will not work with an TCGrabber\+USB with older firmware!
+\item Requires \mbox{\hyperlink{class_tau}{Tau}} 2 Core with fast video core (25Hz/30\+Hz)
+\end{DoxyEnumerate}
+
+The frame rate of the \mbox{\hyperlink{class_tau}{Tau}} 2 Core depends on the synchronization signal. Normally this signal is generated by the \mbox{\hyperlink{class_tau}{Tau}} 2 Core itself but can also be applied from outside (e.\+g. from TCGrabber\+USB or pin5 (external sync input)). In this case the sync signal has to be fed in to pin5 (external sync input) of TCGrabber\+USB. The sync signal is then forwarded to \mbox{\hyperlink{class_tau}{Tau}} 2 Core and to pin6 (external sync output) of TCGrabber\+USB. Please take care to only use frequencies in the allowed spectrum. The allowed frequency spectrum depends on whether the PAL or NTSC setting of \mbox{\hyperlink{class_tau}{Tau}} 2 Core is active. If PAL mode is active a frequency from 22.\+25\+Hz to 27.\+25\+Hz is supported by \mbox{\hyperlink{class_tau}{Tau}} 2 Core (default in this case 25Hz). In case NTSC mode is active a frequency from 24.\+98\+Hz to 29.\+98\+Hz is supported by \mbox{\hyperlink{class_tau}{Tau}} 2 Core (default in this case 29.\+97). For a detailed description please refer to the \char`\"{}\+FLIR Electrical IDD\char`\"{} (\href{http://cvs.flir.com/tau2-electrical-idd}{\texttt{ http\+://cvs.\+flir.\+com/tau2-\/electrical-\/idd}}). The \mbox{\hyperlink{class_tau}{Tau}} 2 Core will then work synchron to this signal (if requirements from above are fulfilled). Direction\+: External sync signal generator -\/\texorpdfstring{$>$}{>} sync signal -\/\texorpdfstring{$>$}{>} TCGrabber\+USB -\/\texorpdfstring{$>$}{>} \mbox{\hyperlink{class_tau}{Tau}} 2 Core. The \mbox{\hyperlink{class_tau}{Tau}} 2 Core\textquotesingle{}s config setting EXTERNAL\+\_\+\+SYNC (cmd 0x21) gets set to slave. \mbox{\Hypertarget{class_thermal_grabber_a548075ba65d926c520865c2aa2a1572e}\label{class_thermal_grabber_a548075ba65d926c520865c2aa2a1572e}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableInternalSyncByTau2CoreSyncOutOff@{enableInternalSyncByTau2CoreSyncOutOff}}
+\index{enableInternalSyncByTau2CoreSyncOutOff@{enableInternalSyncByTau2CoreSyncOutOff}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableInternalSyncByTau2CoreSyncOutOff()}{enableInternalSyncByTau2CoreSyncOutOff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+Internal\+Sync\+By\+Tau2\+Core\+Sync\+Out\+Off (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+(Re-\/)Enable the standard internal sync of \mbox{\hyperlink{class_tau}{Tau}} 2 Core 
+
+Requirements\+:
+\begin{DoxyEnumerate}
+\item This function is supported since firmware 1.\+3 of TCGrabber\+USB (as of december 2017). Older firmware versions will ignore the TCGrabber\+USB related setting of this command. But \mbox{\hyperlink{class_tau}{Tau}} 2 Core setting of EXTERNAL\+\_\+\+SYNC will be done.
+\item Requires a \mbox{\hyperlink{class_tau}{Tau}} 2 Core with fast video core (25Hz/30\+Hz).
+\end{DoxyEnumerate}
+
+The frame rate of the \mbox{\hyperlink{class_tau}{Tau}} 2 Core depends on the synchronization signal. Normally this signal is generated by the \mbox{\hyperlink{class_tau}{Tau}} 2 Core itself but can also be applied from outside (e.\+g. from TCGrabber\+USB or pin5 (external sync input)). In this case \mbox{\hyperlink{class_tau}{Tau}} 2 Core generates synchronization signals on it\textquotesingle{}s own but the forwarding to pin6 (external sync output) of TCGrabber\+USB is not enabled. \mbox{\hyperlink{class_tau}{Tau}} 2 Core\textquotesingle{}s config setting of EXTERNAL\+\_\+\+SYNC (cmd 0x21) gets set to disabled. \mbox{\Hypertarget{class_thermal_grabber_afc11fdf1c4845ebfeaef722c3df035ff}\label{class_thermal_grabber_afc11fdf1c4845ebfeaef722c3df035ff}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableInternalSyncByTau2CoreSyncOutOn@{enableInternalSyncByTau2CoreSyncOutOn}}
+\index{enableInternalSyncByTau2CoreSyncOutOn@{enableInternalSyncByTau2CoreSyncOutOn}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableInternalSyncByTau2CoreSyncOutOn()}{enableInternalSyncByTau2CoreSyncOutOn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+Internal\+Sync\+By\+Tau2\+Core\+Sync\+Out\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+(Re-\/)Enable the standard internal sync of \mbox{\hyperlink{class_tau}{Tau}} 2 Core 
+
+Requirements\+:
+\begin{DoxyEnumerate}
+\item This function is supported since firmware 1.\+3 of TCGrabber\+USB (as of december 2017). Older firmware versions will ignore the TCGrabber\+USB related setting of this command. But \mbox{\hyperlink{class_tau}{Tau}} 2 Core setting of EXTERNAL\+\_\+\+SYNC will be done.
+\item Requires \mbox{\hyperlink{class_tau}{Tau}} 2 Core with fast video core (25Hz/30\+Hz).
+\end{DoxyEnumerate}
+
+The frame rate of the \mbox{\hyperlink{class_tau}{Tau}} 2 Core depends on the synchronization signal. Normally this signal is generated by the \mbox{\hyperlink{class_tau}{Tau}} 2 Core itself but can also be applied from outside (e.\+g. from TCGrabber\+USB or pin5 (external sync input)). In this case \mbox{\hyperlink{class_tau}{Tau}} 2 Core generates synchronization signals on it\textquotesingle{}s own and forwards it to pin6 (external sync output) of TCGrabber\+USB. The forwarded sync signal on pin6 (external sync output) can be used to synchronize a second TCGrabber\+USB that is configured to use external sync signals. \mbox{\hyperlink{class_tau}{Tau}} 2 Core\textquotesingle{}s config setting of EXTERNAL\+\_\+\+SYNC (cmd 0x21) gets set to master. \mbox{\Hypertarget{class_thermal_grabber_a9aec026a9c83a05a2a53b3ddebab3574}\label{class_thermal_grabber_a9aec026a9c83a05a2a53b3ddebab3574}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableInternalSyncByTCGrabberUSB@{enableInternalSyncByTCGrabberUSB}}
+\index{enableInternalSyncByTCGrabberUSB@{enableInternalSyncByTCGrabberUSB}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableInternalSyncByTCGrabberUSB()}{enableInternalSyncByTCGrabberUSB()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+Internal\+Sync\+By\+TCGrabber\+USB (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{frequency\+\_\+parameter,  }\item[{uint32\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Enable internal sync by TCGrabber\+USB. 
+
+Requirements\+:
+\begin{DoxyEnumerate}
+\item This function is supported since firmware 1.\+3 of TCGrabber\+USB (as of december 2017). Older firmware versions will ignore the TCGrabber\+USB related setting of this command. But \mbox{\hyperlink{class_tau}{Tau}} 2 Core setting of EXTERNAL\+\_\+\+SYNC will be done. Accordingly \mbox{\hyperlink{class_tau}{Tau}} 2 Core will not work with an TCGrabber\+USB with older firmware!
+\item Requires a \mbox{\hyperlink{class_tau}{Tau}} 2 Core with fast video core (25Hz/30\+Hz).
+\end{DoxyEnumerate}
+
+The frame rate of the \mbox{\hyperlink{class_tau}{Tau}} 2 Core depends on the synchronization signal. Normally this signal is generated by the \mbox{\hyperlink{class_tau}{Tau}} 2 Core itself but can also be applied from outside (e.\+g. from TCGrabber\+USB or pin5 (external sync input)). In this case TCGrabber\+USB generates the sync signal for the \mbox{\hyperlink{class_tau}{Tau}} 2 Core and forwards it to pin6 (external sync output). The resulting frequency of the sync signal generator has to be defined by the \char`\"{}frequency\+\_\+parameter\char`\"{}. Please take care to only use frequencies in the allowed spectrum. The allowed frequency spectrum depends on whether the PAL or NTSC setting of \mbox{\hyperlink{class_tau}{Tau}} 2 Core is active. If PAL mode is active a frequency from 22.\+25\+Hz to 27.\+25\+Hz is supported by \mbox{\hyperlink{class_tau}{Tau}} 2 Core (default in this case 25Hz). In case NTSC mode is active a frequency from 24.\+98\+Hz to 29.\+98\+Hz is supported by \mbox{\hyperlink{class_tau}{Tau}} 2 Core (default in this case 29.\+97). For a detailed description please refer to the \char`\"{}\+FLIR Electrical IDD\char`\"{} (\href{http://cvs.flir.com/tau2-electrical-idd}{\texttt{ http\+://cvs.\+flir.\+com/tau2-\/electrical-\/idd}}). The tables below show the possible frequencies that TCGrabber\+USB will generate dependant on the given \char`\"{}frequency\+\_\+parameter\char`\"{}. The value \char`\"{}frequency\+\_\+parameter\char`\"{} stands for the function parameter and \char`\"{}frequency\+\_\+result\char`\"{} for the sync signal frequency generated by TCGrabber\+USB\+:
+
+Calculations of possible frequencies if PAL is active\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+result    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+result    }\\\cline{1-2}
+\endhead
+224   &22.\+4719 Hz    \\\cline{1-2}
+227   &22.\+7273 Hz    \\\cline{1-2}
+229   &22.\+9885 Hz    \\\cline{1-2}
+232   &23.\+2558 Hz    \\\cline{1-2}
+235   &23.\+5294 Hz    \\\cline{1-2}
+238   &23.\+8095 Hz    \\\cline{1-2}
+240   &24.\+0964 Hz    \\\cline{1-2}
+243   &24.\+3902 Hz    \\\cline{1-2}
+246   &24.\+6914 Hz    \\\cline{1-2}
+250   &25 Hz    \\\cline{1-2}
+253   &25.\+3165 Hz    \\\cline{1-2}
+256   &25.\+641 Hz    \\\cline{1-2}
+259   &25.\+974 Hz    \\\cline{1-2}
+263   &26.\+3158 Hz    \\\cline{1-2}
+266   &26.\+6667 Hz    \\\cline{1-2}
+270   &27.\+027 Hz   \\\cline{1-2}
+\end{longtabu}
+
+
+Calculations of possible frequencies if NTSC is active\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+result    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+parameter   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ frequency\+\_\+result    }\\\cline{1-2}
+\endhead
+250   &25 Hz    \\\cline{1-2}
+253   &25.\+3165 Hz    \\\cline{1-2}
+256   &25.\+641 Hz    \\\cline{1-2}
+259   &25.\+974 Hz    \\\cline{1-2}
+263   &26.\+3158 Hz    \\\cline{1-2}
+266   &26.\+6667 Hz    \\\cline{1-2}
+270   &27.\+027 Hz    \\\cline{1-2}
+273   &27.\+3973 Hz    \\\cline{1-2}
+277   &27.\+7778 Hz    \\\cline{1-2}
+281   &28.\+169 Hz    \\\cline{1-2}
+285   &28.\+5714 Hz    \\\cline{1-2}
+289   &28.\+9855 Hz    \\\cline{1-2}
+294   &29.\+4118 Hz    \\\cline{1-2}
+298   &29.\+8507 Hz   \\\cline{1-2}
+\end{longtabu}
+
+
+The \mbox{\hyperlink{class_tau}{Tau}} 2 Core will work synchron to this signal (if requirements from above are fulfilled). Direction\+: TCGrabber\+USB -\/\texorpdfstring{$>$}{>} sync signal -\/\texorpdfstring{$>$}{>} \mbox{\hyperlink{class_tau}{Tau}} 2 Core. The \mbox{\hyperlink{class_tau}{Tau}} 2 Core\textquotesingle{}s config setting EXTERNAL\+\_\+\+SYNC (cmd 0x21) gets set to slave. 
+\begin{DoxyParams}{Parameters}
+{\em frequency\+\_\+paramter} & A frequency parameter from the tables above \\
+\hline
+{\em count} & Number of sync pulses to generate (valid values from 1 to 32767) or \textquotesingle{}0\textquotesingle{} for continuous sync signal \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_thermal_grabber_af01cddb1a82246f91337832f84d91147}\label{class_thermal_grabber_af01cddb1a82246f91337832f84d91147}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableTLinearHighResolution@{enableTLinearHighResolution}}
+\index{enableTLinearHighResolution@{enableTLinearHighResolution}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableTLinearHighResolution()}{enableTLinearHighResolution()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+TLinear\+High\+Resolution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enables TLinear in high resolution. 
+
+Enables TLinear mode and sets the resolution of the TLinear digital video to high resolution mode (0.\+04\+Kelvin/count in 14-\/bit digital). \mbox{\Hypertarget{class_thermal_grabber_ac197e5264283856abfe765c1aece80a9}\label{class_thermal_grabber_ac197e5264283856abfe765c1aece80a9}} 
+\index{ThermalGrabber@{ThermalGrabber}!enableTlinearLowResolution@{enableTlinearLowResolution}}
+\index{enableTlinearLowResolution@{enableTlinearLowResolution}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{enableTlinearLowResolution()}{enableTlinearLowResolution()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::enable\+Tlinear\+Low\+Resolution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Enable TLinear in low resolution. 
+
+Enables TLinear mode and sets the resolution of the TLinear digital video to low resolution mode (0.\+4\+Kelvin/count in 14-\/bit digital). \mbox{\Hypertarget{class_thermal_grabber_a1d17f396a1bfd2fb904c5b0f7d445197}\label{class_thermal_grabber_a1d17f396a1bfd2fb904c5b0f7d445197}} 
+\index{ThermalGrabber@{ThermalGrabber}!getCameraPartNumber@{getCameraPartNumber}}
+\index{getCameraPartNumber@{getCameraPartNumber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{getCameraPartNumber()}{getCameraPartNumber()}}
+{\footnotesize\ttfamily const char $\ast$ Thermal\+Grabber\+::get\+Camera\+Part\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get Camera Part Number. 
+
+Get Camera Part Number of the tau core that is connected to the Thermal\+Capture Grabber\+USB. The ascii based char string contains the flir camera part number that informs about the general type of camera (resolution etc.). \begin{DoxyReturn}{Returns}
+char$\ast$ Pointer to the char string or NULL if not available 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_thermal_grabber_a84e19b3121dc9e769cee486c350cacee}\label{class_thermal_grabber_a84e19b3121dc9e769cee486c350cacee}} 
+\index{ThermalGrabber@{ThermalGrabber}!getCameraSerialNumber@{getCameraSerialNumber}}
+\index{getCameraSerialNumber@{getCameraSerialNumber}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{getCameraSerialNumber()}{getCameraSerialNumber()}}
+{\footnotesize\ttfamily unsigned int Thermal\+Grabber\+::get\+Camera\+Serial\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Camera Serial Number. 
+
+Get Camera Serial Number of the tau core that is connected to the Thermal\+Capture Grabber\+USB. The flir camera serial number is unique. \begin{DoxyReturn}{Returns}
+Camera Serial Number or \textquotesingle{}0\textquotesingle{} if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_thermal_grabber_aae221648401ed249eaad98b9fee5013d}\label{class_thermal_grabber_aae221648401ed249eaad98b9fee5013d}} 
+\index{ThermalGrabber@{ThermalGrabber}!getGainMode@{getGainMode}}
+\index{getGainMode@{getGainMode}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{getGainMode()}{getGainMode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\+\_\+grabber\+::\+Gain\+Mode}} Thermal\+Grabber\+::get\+Gain\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_thermal_grabber_a01970f4bd5e263afea2c29b012c4ae5d}\label{class_thermal_grabber_a01970f4bd5e263afea2c29b012c4ae5d}} 
+\index{ThermalGrabber@{ThermalGrabber}!getResolutionHeight@{getResolutionHeight}}
+\index{getResolutionHeight@{getResolutionHeight}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{getResolutionHeight()}{getResolutionHeight()}}
+{\footnotesize\ttfamily unsigned int Thermal\+Grabber\+::get\+Resolution\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the resolution height. 
+
+Get the resolution height of the tau core that is connected to the Thermal\+Capture Grabber\+USB. \begin{DoxyReturn}{Returns}
+Height of Resolution or \textquotesingle{}0\textquotesingle{} if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_thermal_grabber_a4736f8e0ecacb8df8abd36695587ee05}\label{class_thermal_grabber_a4736f8e0ecacb8df8abd36695587ee05}} 
+\index{ThermalGrabber@{ThermalGrabber}!getResolutionWidth@{getResolutionWidth}}
+\index{getResolutionWidth@{getResolutionWidth}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{getResolutionWidth()}{getResolutionWidth()}}
+{\footnotesize\ttfamily unsigned int Thermal\+Grabber\+::get\+Resolution\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the resolution width. 
+
+Get the resolution width of the tau core that is connected to the Thermal\+Capture Grabber\+USB. \begin{DoxyReturn}{Returns}
+Width of Resolution or \textquotesingle{}0\textquotesingle{} if not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_thermal_grabber_ac694262d61e78882efd99488a614d7ff}\label{class_thermal_grabber_ac694262d61e78882efd99488a614d7ff}} 
+\index{ThermalGrabber@{ThermalGrabber}!sendCommand@{sendCommand}}
+\index{sendCommand@{sendCommand}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{sendCommand()}{sendCommand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::send\+Command (\begin{DoxyParamCaption}\item[{char}]{cmd,  }\item[{char $\ast$}]{data,  }\item[{unsigned int}]{data\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Send a command to Tau\+Core. 
+
+Please have a look at the \char`\"{}\+FLIR TAU2/\+QUARK2 SOFTWARE IDD\char`\"{} document for further information. In general a command consists of function byte (cmd) and an optional byte array of arguments (data) and a length info of the data (the function byte/cmd is not counted). If no additional data are send put a \char`\"{}\+NULL\char`\"{} for the 2. and \char`\"{}0\char`\"{} for the 3. parameter. 
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The function that is called \\
+\hline
+{\em data} & Optional data bytes as arguments. \\
+\hline
+{\em data\+\_\+len} & The length of the data field. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_thermal_grabber_afbc511b8f0daa175c2bbe95059a880af}\label{class_thermal_grabber_afbc511b8f0daa175c2bbe95059a880af}} 
+\index{ThermalGrabber@{ThermalGrabber}!setGainMode@{setGainMode}}
+\index{setGainMode@{setGainMode}!ThermalGrabber@{ThermalGrabber}}
+\doxysubsubsection{\texorpdfstring{setGainMode()}{setGainMode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{libusb_8h_a8ca3594d1761da8da91be2851f4e8f21}{void}} Thermal\+Grabber\+::set\+Gain\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacethermal__grabber_a2e3f3ad372af0045f3135229f2db40f1}{thermal\+\_\+grabber\+::\+Gain\+Mode}}}]{gain\+Mode }\end{DoxyParamCaption})}
+
+
+
+Set the Gain Mode. 
+
+Sets the Gain Mode to Automatic, High, Low or Manual. Remember that Gain Mode is ignored when TLinear is enabled (if TLinear is supported by the device). The enum Gain\+Mode is defined in this header. 
+\begin{DoxyParams}{Parameters}
+{\em gain\+Mode} & Enum of Type Gain\+Mode. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/inc/\mbox{\hyperlink{thermalgrabber_8h}{thermalgrabber.\+h}}\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/\+Tasks/tau2/lib/libthermalgrabber/src/\mbox{\hyperlink{thermalgrabber_8cpp}{thermalgrabber.\+cpp}}\end{DoxyCompactItemize}

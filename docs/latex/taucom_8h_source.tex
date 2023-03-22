@@ -1,0 +1,55 @@
+\hypertarget{taucom_8h_source}{}\doxysection{taucom.\+h}
+\label{taucom_8h_source}\index{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/taucom.h@{C:/Users/lt17550/PycharmProjects/PROVE-\/Pathfinder/Flight-\/Software/Tasks/tau2/lib/libthermalgrabber/src/taucom.h}}
+\mbox{\hyperlink{taucom_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TAUCOM\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TAUCOM\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <inttypes.h>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define TAU\_NO\_OP\_CMD 0x00}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define TAU\_CAMERA\_RESET\_CMD 0x02}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define TAU\_SERIAL\_NUMBER\_CMD 0x04}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define TAU\_GET\_REVISION\_CMD 0x05}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define TAU\_DO\_FFC\_CMD 0x0C}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define TAU\_DIGITAL\_OUTPUT\_MODE\_CMD 0x12}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define TAU\_DIGITAL\_OUTPUT\_MODE\_ENABLED 0x0000}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define TAU\_DIGITAL\_OUTPUT\_MODE\_DISABLED 0x0002}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define TAU\_READ\_SENSOR\_CMD 0x20}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define TAU\_READ\_SENSOR\_DEGREE\_CELSIUS 0x0000 }\textcolor{comment}{// c*10}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define TAU\_CAMERA\_PART\_CMD 0x66 }\textcolor{comment}{//  get camera part number}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_tau_com}{TauCom}}}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_com_a90974f727446d399603a50f0532c4858}{parseInFrame}}(uint8\_t* in\_buffer,uint32\_t size);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_com_afd8735d0eca83c21253776f44e5354f1}{genTauFrameNoValue}}(uint8\_t \textcolor{keyword}{function},uint8\_t * out\_buf);}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_com_a242361a3b00a52c3043517afad629cbe}{genTauFrame16BitValue}}(uint8\_t \textcolor{keyword}{function},uint16\_t data,uint8\_t * out\_buf);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_com_a36f19c743fc45977962d2067459fddd7}{genTauFrame32BitValue}}(uint8\_t \textcolor{keyword}{function},uint32\_t data,uint8\_t * out\_buf);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_tau_com_a6c3a535d0af2f40b7a51828910413127}{genTauFrame}}(uint8\_t \textcolor{keyword}{function},uint8\_t data\_size,uint8\_t* data,uint8\_t* out\_buf);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \mbox{\hyperlink{class_tau_com_a6eaa5883e96b02e73ef204c7f4938a1d}{TauCom}}();}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tau_com_aeb5728b9e23efd7d0b099313b4310e80}{processSerialPacket}}(uint8\_t* buffer,uint32\_t size)=0;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{private}:}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     uint32\_t packet\_index;}
+\DoxyCodeLine{41     uint8\_t packet\_buffer[512];}
+\DoxyCodeLine{42     uint32\_t packet\_size;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{char}* decodeStatusCode(uint8\_t code);}
+\DoxyCodeLine{45     \textcolor{keywordtype}{int} checkInFrame(uint8\_t* in\_buffer,uint32\_t in\_size);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TAUCOM\_H}}
+
+\end{DoxyCode}

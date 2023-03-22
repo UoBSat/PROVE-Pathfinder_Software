@@ -1,0 +1,235 @@
+\hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config}{}\doxysection{Flight-\/\+Software.shared.\+config.\+Config Class Reference}
+\label{class_flight-_software_1_1shared_1_1config_1_1_config}\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_af3115a8ffe6ef05e7f79ad05ef1adbf9}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a935a837a34183c026b662806aef70ed3}{get\+\_\+config}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a94194a535e681002469ae13a600e0637}{write\+\_\+config}} (self, \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct}{Config\+Struct}} config)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a6dc411ee5f08938206449199ddd6e146}{get\+\_\+pass\+\_\+duration}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_ab143e1470b248656f6db9e22ee5f6124}{write\+\_\+timestamps}} (self, start\+Time, finish\+Time)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_ad74ec8d380f5ab3ae60a4232f50d4a21}{enter\+\_\+safe\+\_\+mode}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a2d53af18d4b2ab1cb7879f9ad2742e13}{exit\+\_\+safe\+\_\+mode}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_ac3d1a5b6679de7741d1d5a436e4c8100}{recentpasstimestamp}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a3f465a899bc6811ac62955cff13f9dee}{set\+\_\+telemetry\+\_\+cadence}} (self, cadence)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a4fb171a9fe0e50acdbc3023aa963d77a}{reset}} (self)
+\item 
+def \mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_a63a19e167366701f971629f75217aeef}{set\+\_\+operation\+\_\+type}} (self, optype)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_acc3d92b25b58db5597f9f0117b905188}{config\+Full}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The Config base class
+
+Class for configuring the scheduler service and pass operations
+...
+
+Methods
+-------
+get_config():
+    Reads the config.json file and returns its content in a json object
+write_config():
+    Writes the config.json file with the new content
+get_pass_duration():
+    Returns a pass duration
+write_timestamps():
+    Rewrites the config.json with new pass start and end timestamps
+recentpasstimestamp():
+    Returns the most recent start pass timestamp
+set_telemetry_cadence():
+    Sets the telemetry cadence for the sensor data
+reset():
+    Resets/Updates the config
+set_operation_type():
+    Sets the pass type\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_af3115a8ffe6ef05e7f79ad05ef1adbf9}\label{class_flight-_software_1_1shared_1_1config_1_1_config_af3115a8ffe6ef05e7f79ad05ef1adbf9}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Initialises the Config class, reads the config.json file and stores its content; defines the config variables
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_ad74ec8d380f5ab3ae60a4232f50d4a21}\label{class_flight-_software_1_1shared_1_1config_1_1_config_ad74ec8d380f5ab3ae60a4232f50d4a21}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!enter\_safe\_mode@{enter\_safe\_mode}}
+\index{enter\_safe\_mode@{enter\_safe\_mode}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{enter\_safe\_mode()}{enter\_safe\_mode()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+enter\+\_\+safe\+\_\+mode (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Rewrites the config.json with new safe mode flag
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a2d53af18d4b2ab1cb7879f9ad2742e13}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a2d53af18d4b2ab1cb7879f9ad2742e13}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!exit\_safe\_mode@{exit\_safe\_mode}}
+\index{exit\_safe\_mode@{exit\_safe\_mode}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{exit\_safe\_mode()}{exit\_safe\_mode()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+exit\+\_\+safe\+\_\+mode (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Rewrites the config.json with new safe mode flag
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a935a837a34183c026b662806aef70ed3}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a935a837a34183c026b662806aef70ed3}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!get\_config@{get\_config}}
+\index{get\_config@{get\_config}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{get\_config()}{get\_config()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+get\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Reads the config.json file and returns its content as an object
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        data_obj (ConfigStruct) - JSON config converted into a ConfigStruct class
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a6dc411ee5f08938206449199ddd6e146}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a6dc411ee5f08938206449199ddd6e146}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!get\_pass\_duration@{get\_pass\_duration}}
+\index{get\_pass\_duration@{get\_pass\_duration}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{get\_pass\_duration()}{get\_pass\_duration()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+get\+\_\+pass\+\_\+duration (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Returns a pass duration
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        duration (int) - the duration of the pass
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_ac3d1a5b6679de7741d1d5a436e4c8100}\label{class_flight-_software_1_1shared_1_1config_1_1_config_ac3d1a5b6679de7741d1d5a436e4c8100}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!recentpasstimestamp@{recentpasstimestamp}}
+\index{recentpasstimestamp@{recentpasstimestamp}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{recentpasstimestamp()}{recentpasstimestamp()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+recentpasstimestamp (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Returns the most recent start pass timestamp
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        timestamp (string) - a start pass timestamp
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a4fb171a9fe0e50acdbc3023aa963d77a}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a4fb171a9fe0e50acdbc3023aa963d77a}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!reset@{reset}}
+\index{reset@{reset}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+reset (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Resets/Updates the config
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a63a19e167366701f971629f75217aeef}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a63a19e167366701f971629f75217aeef}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!set\_operation\_type@{set\_operation\_type}}
+\index{set\_operation\_type@{set\_operation\_type}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{set\_operation\_type()}{set\_operation\_type()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+set\+\_\+operation\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{optype }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sets the pass type
+
+    Parameters:
+        self (Config) - default class from the Python convention
+        optype (string) - operation type (e.g. PRIMARY)
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a3f465a899bc6811ac62955cff13f9dee}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a3f465a899bc6811ac62955cff13f9dee}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!set\_telemetry\_cadence@{set\_telemetry\_cadence}}
+\index{set\_telemetry\_cadence@{set\_telemetry\_cadence}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{set\_telemetry\_cadence()}{set\_telemetry\_cadence()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+set\+\_\+telemetry\+\_\+cadence (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{cadence }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Sets the telemetry cadence for the sensor data
+
+    Parameters:
+        self (Config) - default class from the Python convention
+        cadence (int) - cadence
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_a94194a535e681002469ae13a600e0637}\label{class_flight-_software_1_1shared_1_1config_1_1_config_a94194a535e681002469ae13a600e0637}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!write\_config@{write\_config}}
+\index{write\_config@{write\_config}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{write\_config()}{write\_config()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+write\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{\mbox{\hyperlink{class_flight-_software_1_1shared_1_1config_1_1_config_struct}{Config\+Struct}}}]{config }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Writes the config.json file with the new content
+
+    Parameters:
+        self (Config) - default class from the Python convention
+        config (ConfigStruct) - new config object
+
+    Returns:
+        void
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_ab143e1470b248656f6db9e22ee5f6124}\label{class_flight-_software_1_1shared_1_1config_1_1_config_ab143e1470b248656f6db9e22ee5f6124}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!write\_timestamps@{write\_timestamps}}
+\index{write\_timestamps@{write\_timestamps}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{write\_timestamps()}{write\_timestamps()}}
+{\footnotesize\ttfamily def Flight-\/Software.\+shared.\+config.\+Config.\+write\+\_\+timestamps (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{start\+Time,  }\item[{}]{finish\+Time }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    Rewrites the config.json with safe mode flag set to true
+
+    Parameters:
+        self (Config) - default class from the Python convention
+
+    Returns:
+        void
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_flight-_software_1_1shared_1_1config_1_1_config_acc3d92b25b58db5597f9f0117b905188}\label{class_flight-_software_1_1shared_1_1config_1_1_config_acc3d92b25b58db5597f9f0117b905188}} 
+\index{Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}!configFull@{configFull}}
+\index{configFull@{configFull}!Flight-\/Software.shared.config.Config@{Flight-\/Software.shared.config.Config}}
+\doxysubsubsection{\texorpdfstring{configFull}{configFull}}
+{\footnotesize\ttfamily Flight-\/Software.\+shared.\+config.\+Config.\+config\+Full}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/lt17550/\+Pycharm\+Projects/\+PROVE-\/\+Pathfinder/\+Flight-\/\+Software/shared/\mbox{\hyperlink{config_8py}{config.\+py}}\end{DoxyCompactItemize}
